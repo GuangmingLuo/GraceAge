@@ -24,8 +24,9 @@ class AccountController extends CI_Controller {
         $data['loggedin'] = 'wrong user';
         if (isset($row)) {
             if (password_verify($password, $row->password)) {
-                $data['loggedin'] = 'valid user'; } 
-             }
+                $data['loggedin'] = 'valid user';
+            }
+        }
         $this->parser->parse('Account/login.html',$data);
     }
     
