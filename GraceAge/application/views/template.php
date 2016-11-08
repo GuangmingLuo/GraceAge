@@ -1,6 +1,4 @@
-<?php
-    //$myConnection = new PDO('mysql:host=studev.groept.be;dbname=a16_webapps_2', 'a16_webapps_2', '816smeug');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,10 +53,10 @@
 
       <div class="starter-template">
         <h1>{header1}</h1>
-        <p class="lead"><br>
+        <p id="q_and_a"class="lead"><br>
             {content}
             {answers}
-            <button type="button" class="{className}">{name}</button>
+            <button type="button" class="{className}">{name} </button>
             {/answers}
         </p>
       </div>
@@ -66,8 +64,13 @@
     </div><!-- /.container -->
 
     <footer>
+        <div>
+            <p id="blabla">
+                
+            </p>
+        </div>
         {navigationbuttons}
-        <button type="button" onclick="window.location='<?php echo site_url("GraceAgeController/question");?>'">{name}</button>
+        <button type="button" onclick="{func}">{name}</button>
         {/navigationbuttons}
     </footer>
     <!-- Bootstrap core JavaScript

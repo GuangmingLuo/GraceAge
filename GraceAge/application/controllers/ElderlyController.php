@@ -19,7 +19,17 @@ class ElderlyController extends CI_Controller{
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
-        $this->session->set_userdata('id', 1);
+        //echo 'id was reset';
+        if(!$this->session->has_userdata('id')) {
+            $this->session->set_userdata('id', 1);
+        }
+        else if ($this->session->id > 52){
+            $this->session->set_userdata('id', 1);
+        }
+        else if ($this->session->id < 1){
+            $this->session->set_userdata('id', 1);
+        }
+        
     }
     
     function index(){
@@ -30,6 +40,18 @@ class ElderlyController extends CI_Controller{
         $this->parser->parse('template', $data);
     }
     
+    function previous(){
+        $this->session->set_userdata('id', $this->session->id - 1);
+        $this->output->set_content_type("spplication/json")->append_output(
+                $this->Question_model->get_question_as_json($this->session->id));
+    }
+    
+    function next(){
+        $this->session->set_userdata('id', $this->session->id +1);
+        $this->output->set_content_type("spplication/json")->append_output(
+                $this->Question_model->get_question_as_json($this->session->id));
+    }
+            
     function question(){
         //$this->load->library('session');
         $data['page_title'] = 'Interrai Questionnaire';
@@ -38,7 +60,7 @@ class ElderlyController extends CI_Controller{
         $data['answers'] = $this->Question_model->get_answerbuttons();
         $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
         $data2['questions'] = $this->Question_model->get_question($this->session->userdata('id'));
-        $this->session->set_userdata('id', 2);
+        //echo '       ', $this->session->userdata('id');
         $data['content'] = $this->parser->parse('question', $data2, true);
         $this->parser->parse('template', $data);
     }

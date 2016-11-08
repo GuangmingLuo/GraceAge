@@ -20,28 +20,19 @@ class Question_model extends CI_Model{
     function __construct() {
         parent::__construct();
         $this->answers = array(
-            array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'active'),
-            array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'inactive'),
-            array('name' => 'Soms', 'title' => 'Soms', 'className' => 'inactive'),
-            array('name' => 'Meestal', 'title' => 'Meestal', 'className' => 'inactive'),
-            array('name' => 'Altijd', 'title' => 'Altijd', 'className' => 'inactive'),
+            array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button'),
+            array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button'),
+            array('name' => 'Soms', 'title' => 'Soms', 'className' => 'answer_button'),
+            array('name' => 'Meestal', 'title' => 'Meestal', 'className' => 'answer_button'),
+            array('name' => 'Altijd', 'title' => 'Altijd', 'className' => 'answer_button'),
         );
         
         $this->navigationbuttons = array(
-            array('name' => '<-- Ga terug naar de vorige vraag', 'title' => 'Vorige vraag', 'func' => '<?php echo base_url()?>GraceAgeController/question'),
-            array('name' => 'Ga verder naar de volgende vraag -->', 'title' => 'Volgende vraag', 'func' => '<?php echo base_url()?>GraceAgeController/question'),
+            array('name' => '<-- Ga terug naar de vorige vraag', 'title' => 'Vorige vraag', 'func' => 'previous()'),
+            array('name' => 'Ga verder naar de volgende vraag -->', 'title' => 'Volgende vraag', 'func' => 'next()'),
         );
     }
     
-    function set_active($answer) {
-        foreach ($this->answers as &$item) { // reference to item!!
-            if (strcasecmp($answer, $item['name']) == 0) {
-                $item['className'] = 'active';
-            } else {
-                $item['className'] = 'inactive';
-            }
-        }
-    }
     
     function get_answerbuttons(){
         //$this->set_active();
@@ -57,8 +48,17 @@ class Question_model extends CI_Model{
         $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('Question');
 
         //$query = $this->db->get('Question'); //Select all rows and columns from the table
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
         return $query->result();
+    }
+    
+    function get_question_as_json($i){
+        //$i = 1;
+        $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('Question');
+
+        //$query = $this->db->get('Question'); //Select all rows and columns from the table
+        //echo $this->db->last_query();
+        return json_encode($query->result());
     }
 
 }
