@@ -1,4 +1,20 @@
 $(document).ready(function(){
+    function handleFiles(file) {
+                    var reader = new FileReader();
+                    reader.onload = (function (theFile) {
+                        return function (e) {
+                            qrcode.decode(e.target.result);
+                        }
+                    })(file);
+                    reader.readAsDataURL(file);
+                }
+
+                $('#photo').change(function () {
+                    //console.log(this.files[0]);
+                    $('div#processing').show();
+                    handleFiles(this.files[0]);
+                });
+    
 	$('#reader').html5_qrcode(function(data){
             
             //where data will get the decoded information
