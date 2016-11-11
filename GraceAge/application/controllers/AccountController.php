@@ -7,12 +7,11 @@ class AccountController extends CI_Controller {
         parent::__construct();
         $this->load->library('parser');
     }
-    //go to this url to see the result:
-    //http://localhost/GraceAge/index.php/AccountController/login
     
     public function login() {
         $data['loggedin'] = 'not logged in';
-        $this->parser->parse('Account/login.html',$data);
+        $data['page_content']='Account/login.html';
+        $this->parser->parse('master.php',$data);
     }
     
     public function loginPost() {
@@ -27,7 +26,8 @@ class AccountController extends CI_Controller {
                 $data['loggedin'] = 'valid user';
             }
         }
-        $this->parser->parse('Account/login.html',$data);
+        $data['page_content']='Account/login.html';
+        $this->parser->parse('master.php',$data);
     }
     
     public function register() {
