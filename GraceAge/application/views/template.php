@@ -9,12 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <!--
-    <link href="http://a16_webapps_2.studev.groept.be/Stijn/assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="http://a16_webapps_2.studev.groept.be/Stijn/assets/css/starter-template.css" rel="stylesheet"/>
-    -->
-    <link href="<?= base_url()?>assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="<?= base_url()?>assets/css/starter-template.css" rel="stylesheet"/>
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../assets/css/starter-template.css" rel="stylesheet" type="text/css"/>
     
 
     <title>{page_title}</title>
@@ -76,11 +72,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
     <script src="../../assets/js/questions.js" type="text/javascript"></script>
   </body>
 </html>

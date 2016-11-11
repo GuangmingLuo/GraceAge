@@ -33,30 +33,27 @@ class ElderlyController extends CI_Controller{
     }
     
     function index(){
-        $data['page_title'] = 'Grace Age home';
-        
-        /*$data*/
-        
+        $data['page_title'] = 'Grace Age Questionnaire';
+        $data['header1'] = 'Interrai Questionnaire';
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
         $this->parser->parse('template', $data);
     }
     
     function previous(){
         $this->session->set_userdata('id', $this->session->id - 1);
-        $this->output->set_content_type("spplication/json")->append_output(
+        $this->output->set_content_type("application/json")->append_output(
                 $this->Question_model->get_question_as_json($this->session->id));
     }
     
     function next(){
         $this->session->set_userdata('id', $this->session->id +1);
-        $this->output->set_content_type("spplication/json")->append_output(
+        $this->output->set_content_type("application/json")->append_output(
                 $this->Question_model->get_question_as_json($this->session->id));
     }
             
     function question(){
         //$this->load->library('session');
-        $data['page_title'] = 'Interrai Questionnaire';
-        $data['header1'] = 'Interrai questionnaire';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
+        
         $data['answers'] = $this->Question_model->get_answerbuttons();
         $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
         $data2['questions'] = $this->Question_model->get_question($this->session->userdata('id'));
