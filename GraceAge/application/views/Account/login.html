@@ -17,19 +17,13 @@
                     <div class="framework">
                         <!-- w3-navbar w3-border w3-light-grey -->
                         <ul class="tabs">
-                            <li class = "active" style="width:50%"><a href="#">QR CODE</a></li>
-                            <li style="width:50%"><a href="#">LOGIN</a></li>
+                            <li class = "active" style="width:50%"><a data-toggle="tab" href="#QRtabContent">QR CODE</a></li>
+                            <li style="width:50%"><a data-toggle="tab" href="#loginTabContent">LOGIN</a></li>
                         </ul>
 
-                        <!--
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#QRtab">QR CODE</a></li>
-                            <li><a href="#LOGINtab">LOGIN</a></li>      
-                        </ul>
-    
-                        -->
-                        <div class="tab-content">                       
-                            <div id="QRtabContent" class="tab">
+                        <div class="tab-content"> 
+                            
+                            <div id="QRtabContent" class="tab-pane fade in active">
                                 <br>
                                 <h1>Present the badge</h1>
                                 <div id="reader" style="width:350px;height:350px;"></div>
@@ -42,7 +36,7 @@
                                 </fieldset>
                             </div>
 
-                            <div id="loginTabContent" class="tab active">
+                            <div id="loginTabContent" class="tab-pane fade">
                                 <h2>Log in</h2>{loggedin}
                                 <form name="loginForm" id="loginForm" action="loginPost" method="post">
                                     <div class="form-group">
