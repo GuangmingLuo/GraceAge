@@ -18,11 +18,15 @@ body:before{        /*background image*/
 }
 
 .framework{  /*border around info*/
-    margin-top: 30px;
     border-style: solid;
     border-color: #CDDC39;
     border-radius: 20px;
     background-color: #F0F4C3;
+}
+
+fieldset{   /* no framework around decoder*/
+    display: block;
+    border: 0px !important;
 }
 
 #reader{    /*center camera view */
@@ -38,8 +42,8 @@ body:before{        /*background image*/
     display: block;
 }
 
-
-.tabs{  /* styling 2 tabs */
+/* styling tabs*/
+.tabs{  
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -75,11 +79,15 @@ body:before{        /*background image*/
             background-color: #F0F4C3;
             border-bottom: 0px;
         }
+        
+#QRtabContent h1{ /*center title "present QR code" */
+    text-align: center;
+}
 
+#loginTabContent{
+    margin: 8px;
+}
 
-.nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: #FFF;
-  background-color: #23bab5;
-  border: 0;
-  border-radius: 0;
+#loginTabContent button{    /*submit button to the right */
+    float: right;
 }

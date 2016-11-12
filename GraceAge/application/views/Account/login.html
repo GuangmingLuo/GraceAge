@@ -29,19 +29,20 @@
     
                         -->
                         <div class="tab-content">                       
-                            <div id="QRtab" class="tab active">
+                            <div id="QRtabContent" class="tab">
                                 <br>
+                                <h1>Present the badge</h1>
+                                <div id="reader" style="width:350px;height:350px;"></div>
+
                                 <fieldset>
-                                    <label for ="photo"><b>Choose a QR Code image to get it decoded:</b></label>
+                                    <label for ="photo"><b>Camera doesn't open immediately?</b>
+                                        <br>Choose a QR Code image to get it decoded</label>
                                     <br/>
                                     <input type="file" name="photo" id="photo" value="" capture="camera">
                                 </fieldset>
-
-                                <h1>Present the badge</h1>
-                                <div id="reader" style="width:400px;height:350px;"></div>
                             </div>
 
-                            <div id="loginTab" class="tab">
+                            <div id="loginTabContent" class="tab active">
                                 <h2>Log in</h2>{loggedin}
                                 <form name="loginForm" id="loginForm" action="loginPost" method="post">
                                     <div class="form-group">
@@ -53,6 +54,8 @@
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
                                     </div>
                                     <button type="submit" class="btn btn-default">Submit</button>
+                                    <br>
+                                    <br>
                                 </form>
                             </div>
 
