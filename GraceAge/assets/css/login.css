@@ -1,3 +1,41 @@
-* {
-    background-color: red;
+.container-fluid{
+    align-content: center;
 }
+
+body:before{        /*background image*/
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.4;
+    background: url("../pictures/FlowerGarden.jpg") no-repeat center center fixed;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.col-lg-4, .col-md-4{  /*border around info*/
+    margin-top: 30px;
+    border-style: solid;
+    border-color: #CDDC39;
+    border-radius: 20px;
+    background-color: #F0F4C3;
+}
+
+#reader{    /*center camera view */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab {  /* tab that isn't active */
+    display:none;
+}
+ 
+.tab.active {   /* active tab shows all content */
+    display:block;
+}
+
+
