@@ -19,6 +19,7 @@ class Question_model extends CI_Model{
             
     function __construct() {
         parent::__construct();
+        $this->load->database();
         $this->answers = array(
             array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button'),
             array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button'),

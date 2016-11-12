@@ -7,9 +7,9 @@ class Menu_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->menu_items = array(
-            array('name' => 'Home', 'title' => 'Go Home', 'link' => 'home', 'className' => 'active'),
+            array('name' => 'Home', 'title' => 'Go Home', 'link' => 'index', 'className' => 'active'),
             array('name' => 'Tips', 'title' => 'Look at the tips', 'link' => 'tips', 'className' => 'inactive'),
-            array('name' => 'Questionnaire', 'title' => 'Fill in the questionnaire', 'link' => 'question', 'className' => 'inactive'),  
+            array('name' => 'Questionnaire', 'title' => 'Fill in the questionnaire', 'link' => 'questionnaire', 'className' => 'inactive'),  
         );
     }
      

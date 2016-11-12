@@ -33,10 +33,14 @@ class ElderlyController extends CI_Controller{
     }
     
     function index(){
-        $data['page_title'] = 'Grace Age Questionnaire';
-        $data['header1'] = 'Interrai Questionnaire';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
-        $this->parser->parse('template', $data);
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        $data['page_title'] = 'Elderly Home';
+        $data['header1'] = 'Welcome to Elderly Home';
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Home');
+        $data['content'] = "This is the home page!";
+        $data['page_content']='Elderly/index.html';
+        $this->parser->parse('master.php',$data);
     }
     
     function previous(){
@@ -51,30 +55,27 @@ class ElderlyController extends CI_Controller{
                 $this->Question_model->get_question_as_json($this->session->id));
     }
             
-    function question(){
-        //$this->load->library('session');
-        
+    function questionnaire(){
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        $data['page_title'] = 'Questionnaire';
+        $data['header1'] = 'Questionnaire';
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
         $data['answers'] = $this->Question_model->get_answerbuttons();
         $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
-        $data2['questions'] = $this->Question_model->get_question($this->session->userdata('id'));
-        //echo '       ', $this->session->userdata('id');
-        $data['content'] = $this->parser->parse('question', $data2, true);
-        $this->parser->parse('template', $data);
-    }
-    
-    function home() {
-        $data['page_title'] = 'Grace Age home';
-        $data['header1'] = 'Welcome';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Home');
-        $data['content'] = "This is the home page!";
-        $this->parser->parse('template', $data);
+        $data['questions'] = $this->Question_model->get_question($this->session->userdata('id'));;
+        $data['page_content']='Elderly/questionnaire.php';
+        $this->parser->parse('master.php',$data);
     }
     
     function tips() {
-        $data['page_title'] = 'Tips tips tips';
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        $data['page_title'] = 'Tips';
         $data['header1'] = 'Tip of the day';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
-        $data['content'] = "An apple a day, keeps the doctor away!";
-        $this->parser->parse('template', $data);
+        $data['content'] = "This is the Tips page!";
+        $data['page_content']='Elderly/tips.html';
+        $this->parser->parse('master.php',$data);
     }
 }

@@ -6,25 +6,32 @@ class AccountController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
-        $this->load->helper("url");     //baseurl
+        $this->load->helper('url');
+        $this->load->database();
     }
     
     public function login() {
+        $data['page_title'] = 'Log In Grace Age';
+        $data['show_navbar'] = false;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['loggedin'] = 'not logged in';
         $data['page_content']='Account/login.html';
         $this->parser->parse('master.php',$data);
     }
     
     public function loginPost() {
+        $data['page_title'] = 'Log In Grace Age';
+        $data['show_navbar'] = false;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
-        $this->load->database();
         $query = $this->db->query("SELECT Name, password FROM Patient where Name=?", $username);
         $row = $query->row();
         $data['loggedin'] = 'wrong user';
         if (isset($row)) {
             if (password_verify($password, $row->password)) {
                 $data['loggedin'] = 'valid user';
+                redirect(base_url() . 'ElderlyController/index');
             }
         }
         $data['page_content']='Account/login.html';
@@ -32,11 +39,18 @@ class AccountController extends CI_Controller {
     }
     
     public function register() {
+        $data['page_title'] = 'Register to Grace Age';
+        $data['show_navbar'] = false;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['register_state'] = 'Ready to log in';
-        $this->parser->parse('Account/register.html', $data);
+        $data['page_content']='Account/register.html';
+        $this->parser->parse('master.php',$data);
     }
 
     public function registerPost() {
+        $data['page_title'] = 'Register to Grace Age';
+        $data['show_navbar'] = false;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $usertype = filter_input(INPUT_POST, 'usertype');        
         $username = filter_input(INPUT_POST, 'username');
         $password1 = filter_input(INPUT_POST, 'password1');
@@ -53,7 +67,8 @@ class AccountController extends CI_Controller {
         }else{
             $data['register_state'] = 'The passwords are not the same!';
         }
-        $this->parser->parse('Account/register.html', $data);
+        $data['page_content']='Account/register.html';
+        $this->parser->parse('master.php',$data);
     }
 
 }
