@@ -17,7 +17,7 @@ body:before{        /*background image*/
     background-size: cover;
 }
 
-.col-lg-4, .col-md-4{  /*border around info*/
+.framework{  /*border around info*/
     margin-top: 30px;
     border-style: solid;
     border-color: #CDDC39;
@@ -30,12 +30,56 @@ body:before{        /*background image*/
     margin-right: auto;
 }
 
-.tab {  /* tab that isn't active */
-    display:none;
+.tab {  /* tab that isn't active*/ 
+    display: none;   
 }
- 
+
 .tab.active {   /* active tab shows all content */
-    display:block;
+    display: block;
 }
 
 
+.tabs{  /* styling 2 tabs */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0px !important;
+}
+
+    .tabs li{
+        list-style-type: none;
+        float: left;
+        text-align: center;
+    }
+
+    .tabs li a{
+        display:block;
+        padding:8px 16px;
+        background-color: #CDDC39;
+        border-top-left-radius: 17px;
+        border-top-right-radius: 17px;
+        width: 100%;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: #CDDC39;
+    }
+
+        .tabs li a:hover{
+            font-weight: bold;
+            color: black;
+            background-color: #CDDC39;
+        }
+
+        
+        .tabs>li.active>a{
+            background-color: #F0F4C3;
+            border-bottom: 0px;
+        }
+
+
+.nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #FFF;
+  background-color: #23bab5;
+  border: 0;
+  border-radius: 0;
+}
