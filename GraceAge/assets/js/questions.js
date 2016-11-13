@@ -4,6 +4,20 @@
  * and open the template in the editor.
  */
 
+function determineBrowserForQR() {
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    if (isSafari) {
+        document.getElementById('reader').style.display = 'none';
+    }
+    else {
+        document.getElementById('safariQRfunctionaity').style.display = 'none';
+    }
+}
+
+$(function(){
+determineBrowserForQR();
+});
+
 $('.answer_button').click(function(){
     //alert("Dit gebeurt wel...");
     $('.answer_button').css('background-color', "Lime");
