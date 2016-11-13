@@ -84,10 +84,10 @@ fieldset{   /* no framework around decoder*/
     text-align: center;
 }
 
-#loginTabContent{
+.tabContent{
     margin: 8px;
 }
 
-#loginTabContent button{    /*submit button to the right */
+.tabContent button{    /*submit button to the right */
     float: right;
 }
