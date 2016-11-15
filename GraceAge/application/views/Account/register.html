@@ -6,22 +6,22 @@
                     <h1>Register your account here</h1>
                     {register_state}
                     <form name="registerForm" id="registerForm" action="registerPost" method="post">                
-                        <select class="form-dropdown" style="width:150px;" id="usertype" name="usertype">
-                            <option value="0">--Select type--</option>
+                        <select class="form-dropdown" style="width:150px;" id="usertype" name="usertype" required>
+                            <option value="">--Select type--</option>
                             <option value="Patient"> OldAdult </option>
                             <option value="Caregiver"> Caregiver </option>
                         </select>                                 
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label for="password1">Password:</label>
-                            <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter password">
+                            <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter password" required>
                         </div>
                         <div class="form-group">
                             <label for="password2">Password Again:</label>
-                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Enter password">
+                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Enter password" required>
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                         <br>
