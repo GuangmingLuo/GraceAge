@@ -1,17 +1,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6">
-            <div class="framework">
-                <div class="tabContent">
-                    <h1>Register your account here</h1>
+            <div class="box">
+                <div class="tabContent fontfamily">
+                    <h1 class='fontfamily'>Register your account</h1>
                     {register_state}
                     <form name="registerForm" id="registerForm" action="registerPost" method="post">                
-                        <select class="form-dropdown" style="width:150px;" id="usertype" name="usertype" required>
+                        <select class="form-dropdown fontfamily" style="width:150px;" id="usertype" name="usertype" required>
                             <option value="">--Select type--</option>
-                            <option value="Patient"> OldAdult </option>
+                            <option value="Patient"> Patient </option>
                             <option value="Caregiver"> Caregiver </option>
-                        </select>                                 
+                        </select>   
+                        
                         <div class="form-group">
+                            <br>
                             <label for="username">Username:</label>
                             <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" required>
                         </div>
@@ -20,7 +22,7 @@
                             <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter password" required>
                         </div>
                         <div class="form-group">
-                            <label for="password2">Password Again:</label>
+                            <label for="password2">Confrim password:</label>
                             <input type="password" name="password2" class="form-control" id="password2" placeholder="Enter password" required>
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>

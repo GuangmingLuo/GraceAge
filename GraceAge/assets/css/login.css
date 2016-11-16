@@ -2,6 +2,14 @@
     align-content: center;
 }
 
+.fontfamily {
+    font-family: 'Open Sans'
+}
+
+h1 {
+    text-align: center;
+}
+
 body:before{        /*background image*/
     content: ' ';
     position: absolute;
@@ -17,7 +25,7 @@ body:before{        /*background image*/
     background-size: cover;
 }
 
-.framework{  /*border around info*/
+.box{  /*border around info*/
     border-style: solid;
     border-color: #CDDC39;
     border-radius: 20px;
@@ -79,10 +87,6 @@ fieldset{   /* no framework around decoder*/
             background-color: #F0F4C3;
             border-bottom: 0px;
         }
-        
-#QRtabContent h1{ /*center title "present QR code" */
-    text-align: center;
-}
 
 .tabContent{
     margin: 8px;
