@@ -23,8 +23,8 @@
         <script src="../../assets/js/bootstrap.min.js"></script>
         <script src="../../assets/js/jsqrcode-combined.min.js" type="text/javascript"></script>
         <script src="../../assets/js/html5-qrcode.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/getqrdata.js" type="text/javascript"></script>
         <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
         <script src="../../assets/js/questions.js" type="text/javascript"></script>
+        <script src="../../assets/js/getqrdata.js" type="text/javascript"></script>
     </body>
 </html>

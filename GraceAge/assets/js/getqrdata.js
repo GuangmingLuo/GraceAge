@@ -1,3 +1,18 @@
+function determineBrowserForQR() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('safari') !== -1) {
+        if (ua.indexOf('chrome') > -1) {
+            document.getElementById('safariQRfunctionaity').style.display = 'none'; // Chrome
+        } else {
+            document.getElementById('reader').style.display = 'none'; // Safari
+        }
+    }
+}
+
+$(function () {
+    determineBrowserForQR();
+});
+
 $(document).ready(function(){
     function handleFiles(file) {
                     var reader = new FileReader();
