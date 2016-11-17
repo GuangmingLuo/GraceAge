@@ -53,6 +53,10 @@ class ElderlyController extends CI_Controller{
             $this->session->set_userdata('n_questionaire', 1);
             $this->session->set_userdata('question_id', 1);
         }
+        if ($this->session->question_id > 52){
+            $this->session->set_userdata('question_id', 1);
+            $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
+        }
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['page_title'] = 'Questionnaire';
@@ -87,8 +91,8 @@ class ElderlyController extends CI_Controller{
                     $this->session->patient_id);
 
             $this->session->set_userdata('question_id', $this->session->question_id +1);
-            if ($this->session->id > 52){
-                $this->session->set_userdata('id', 1);
+            if ($this->session->question_id > 52){
+                $this->session->set_userdata('question_id', 1);
                 $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
             }
         }
