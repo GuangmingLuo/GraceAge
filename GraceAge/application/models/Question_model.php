@@ -62,12 +62,19 @@ class Question_model extends CI_Model{
         return json_encode($query->result());
     }
     
-    function submit_answer($answer, $q_id){
+    function undo_answer($n_questionaire, $p_id, $q_id){
+        $this->db->delete('a16_webapps_2.Patient_Answered_Question', array(
+            'Patient_idPatient' => $p_id,
+            'Question_idQuestion' => $q_id,
+            'Questionaire_Number' => $n_questionaire,
+        ));
+    }
+    function submit_answer($answer, $q_id, $n_questionaire, $p_id){
         $this->db->reconnect();
         $data = array(
-            'Patient_idPatient' => 2, // Dummy, will be edited later on
+            'Patient_idPatient' => $p_id,
             'Question_idQuestion' => $q_id,
-            'Questionaire_Number' => 1, // Dummy, update later!
+            'Questionaire_Number' => $n_questionaire,
             'Answer' => $answer,
             'DateTime' => date('Y-m-d H:i:s')
         );

@@ -10,7 +10,7 @@ $('.answer_button').click(function () {
     $(this).css('background-color', "White");
     var title = $(this).attr('title');
     $.post('answer_clicked', {clicked: title}, function(){
-        alert("success");
+        //alert("success");
     });
 
 });
@@ -25,7 +25,7 @@ function previous() {
 }
 
 function next() {
-    alert('hmmm');
+    //alert('hmmm');
     $.getJSON("next", function (data) {
         $('.answer_button').css('background-color', "Lime");
         $('#question_placeholder').text(data[0].Question);
