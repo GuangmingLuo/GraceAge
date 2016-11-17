@@ -29,7 +29,6 @@ class ElderlyController extends CI_Controller{
         else if ($this->session->id < 1){
             $this->session->set_userdata('id', 1);
         }
-        
     }
     
     function index(){
@@ -43,17 +42,8 @@ class ElderlyController extends CI_Controller{
         $this->parser->parse('master.php',$data);
     }
     
-    function previous(){
-        $this->session->set_userdata('id', $this->session->id - 1);
-        $this->output->set_content_type("application/json")->append_output(
-                $this->Question_model->get_question_as_json($this->session->id));
-    }
     
-    function next(){
-        $this->session->set_userdata('id', $this->session->id +1);
-        $this->output->set_content_type("application/json")->append_output(
-                $this->Question_model->get_question_as_json($this->session->id));
-    }
+    /*************** All Questionnaire page functions ************************/
             
     function questionnaire(){
         $data['show_navbar'] = true;
@@ -67,6 +57,28 @@ class ElderlyController extends CI_Controller{
         $data['page_content']='Elderly/questionnaire.php';
         $this->parser->parse('master.php',$data);
     }
+    
+        function previous(){
+        $this->session->set_userdata('id', $this->session->id - 1);
+        $this->output->set_content_type("application/json")->append_output(
+                $this->Question_model->get_question_as_json($this->session->id));
+    }
+    
+    function next(){
+        $this->Question_model->submit_answer($this->session->selected_answer, $this->session->id);
+        $this->session->set_userdata('id', $this->session->id +1);
+        $this->output->set_content_type("application/json")->append_output(
+                $this->Question_model->get_question_as_json($this->session->id));
+        
+    }
+    
+    function answer_clicked(){
+        $received_JSON = $this->input->post('answer_clicked');
+        $clicked = $received_JSON.clicked;
+        $this->session->set_userdata('selected_answer', $clicked);
+    }
+    
+    /************************End of Questionnaire functions****************************/
     
     function tips() {
         $data['show_navbar'] = true;
