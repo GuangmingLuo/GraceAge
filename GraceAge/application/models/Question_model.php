@@ -61,5 +61,17 @@ class Question_model extends CI_Model{
         //echo $this->db->last_query();
         return json_encode($query->result());
     }
+    
+    function submit_answer($answer, $q_id){
+        $this->db->reconnect();
+        $data = array(
+            'Patient_idPatient' => 2, // Dummy, will be edited later on
+            'Question_idQuestion' => $q_id,
+            'Questionaire_Number' => 1, // Dummy, update later!
+            'Answer' => $answer,
+            'DateTime' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('a16_webapps_2.Patient_Answered_Question', $data);
+    }
 
 }

@@ -8,6 +8,10 @@ $('.answer_button').click(function () {
     //alert("Dit gebeurt wel...");
     $('.answer_button').css('background-color', "Lime");
     $(this).css('background-color', "White");
+    var title = $(this).attr('title');
+    $.post('answer_clicked', {clicked: title}, function(){
+        alert("success");
+    });
 
 });
 
@@ -21,9 +25,9 @@ function previous() {
 }
 
 function next() {
-    //alert('hmmm');
-    $('.answer_button').css('background-color', "Lime");
+    alert('hmmm');
     $.getJSON("next", function (data) {
+        $('.answer_button').css('background-color', "Lime");
         $('#question_placeholder').text(data[0].Question);
         $('#topic_placeholder').text(data[0].Topic);
         //alert('something came in');

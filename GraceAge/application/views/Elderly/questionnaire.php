@@ -14,7 +14,7 @@
         {/questions}
     </table>
     {answers}
-    <button type="button" class="{className}">{name}</button>
+    <button type="button" class="{className}" title="{name}">{name}</button>
     {/answers}
 </p>
 {navigationbuttons}

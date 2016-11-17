@@ -20,6 +20,7 @@ class ElderlyController extends CI_Controller{
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
         //echo 'id was reset';
+        $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
         if(!$this->session->has_userdata('id')) {
             $this->session->set_userdata('id', 1);
         }
@@ -46,6 +47,9 @@ class ElderlyController extends CI_Controller{
     /*************** All Questionnaire page functions ************************/
             
     function questionnaire(){
+        //Go fetch necessary data from database to setup the correct question.
+        
+        
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['page_title'] = 'Questionnaire';
@@ -73,8 +77,7 @@ class ElderlyController extends CI_Controller{
     }
     
     function answer_clicked(){
-        $received_JSON = $this->input->post('answer_clicked');
-        $clicked = $received_JSON.clicked;
+        $clicked = $this->input->post('clicked');
         $this->session->set_userdata('selected_answer', $clicked);
     }
     
