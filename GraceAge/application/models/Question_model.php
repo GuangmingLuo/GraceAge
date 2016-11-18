@@ -20,6 +20,7 @@ class Question_model extends CI_Model{
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->library('session');
         $this->answers = array(
             array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button'),
             array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button'),
@@ -54,16 +55,72 @@ class Question_model extends CI_Model{
         return $query->result();
     }
     
-    function get_question_as_json($i){
+    function get_previous_question_as_json(){
         //$i = 1;
+        $this->session->unset_userdata('selected_answer');
+        if($this->session->question_id > 1){
+            $this->session->set_userdata('question_id', $this->session->question_id - 1);
+            $this->undo_answer(
+                        $this->session->n_questionaire, 
+                        $this->session->patient_id,
+                        $this->session->question_id);
+        }
         $this->db->reconnect();
         do{
-            $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('a16_webapps_2.Question');
+            $query = $this->db->select('Topic, Question')
+                    ->where('idQuestion', $this->session->question_id)
+                    ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
 
-        //$query = $this->db->get('Question'); //Select all rows and columns from the table
-        //echo $this->db->last_query();
+        $this->session->unset_userdata('selected_answer');
         return json_encode($query->result());
+    }
+    
+    function get_next_question_as_json(){
+        if($this->session->userdata('selected_answer')){
+            $this->submit_answer(
+                    $this->session->selected_answer, 
+                    $this->session->question_id, 
+                    $this->session->n_questionaire,
+                    $this->session->patient_id);
+
+            $this->session->set_userdata('question_id', $this->session->question_id + 1);
+            if ($this->session->question_id > 52){
+                $this->session->set_userdata('question_id', 1);
+                $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
+            }
+        }
+        $this->db->reconnect();
+        do{
+            $query = $this->db->select('Topic, Question')
+                    ->where('idQuestion', $this->session->question_id)
+                    ->get('a16_webapps_2.Question');
+        } while($query->num_rows() < 1);
+        
+        $this->session->unset_userdata('selected_answer');
+        return json_encode($query->result());
+    }
+    
+    function get_initial_state(){
+        $query = $this->db->query("SELECT * "
+                . "FROM a16_webapps_2.Patient_Answered_Question "
+                . "WHERE Patient_idPatient = " . $this->session->patient_id . " "
+                . "ORDER BY DateTime DESC "
+                . "LIMIT 1;");
+        $result = $query->row();
+        if(isset($result)){
+            $this->session->set_userdata('n_questionaire', $result->Questionaire_Number);
+            $this->session->set_userdata('question_id', $result->Question_idQuestion +1);
+        }
+        else{
+            $this->session->set_userdata('n_questionaire', 1);
+            $this->session->set_userdata('question_id', 1);
+        }
+        if ($this->session->question_id > 52){
+            $this->session->set_userdata('question_id', 1);
+            $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
+        }
+        return;
     }
     
     function undo_answer($n_questionaire, $p_id, $q_id){

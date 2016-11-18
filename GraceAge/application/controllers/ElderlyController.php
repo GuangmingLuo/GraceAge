@@ -39,24 +39,8 @@ class ElderlyController extends CI_Controller{
             
     function questionnaire(){
         //Go fetch necessary data from database to setup the correct question.
-        $query = $this->db->query("SELECT * "
-                . "FROM a16_webapps_2.Patient_Answered_Question "
-                . "WHERE Patient_idPatient = " . $this->session->patient_id . " "
-                . "ORDER BY DateTime DESC "
-                . "LIMIT 1;");
-        $result = $query->row();
-        if(isset($result)){
-            $this->session->set_userdata('n_questionaire', $result->Questionaire_Number);
-            $this->session->set_userdata('question_id', $result->Question_idQuestion +1);
-        }
-        else{
-            $this->session->set_userdata('n_questionaire', 1);
-            $this->session->set_userdata('question_id', 1);
-        }
-        if ($this->session->question_id > 52){
-            $this->session->set_userdata('question_id', 1);
-            $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
-        }
+        $this->Question_model->get_initial_state();
+        
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['page_title'] = 'Questionnaire';
@@ -70,35 +54,13 @@ class ElderlyController extends CI_Controller{
     }
     
     function previous(){
-        $this->session->unset_userdata('selected_answer');
-        if($this->session->question_id > 1){
-            $this->session->set_userdata('question_id', $this->session->question_id - 1);
-            $this->Question_model->undo_answer(
-                        $this->session->n_questionaire, 
-                        $this->session->patient_id,
-                        $this->session->question_id);
-        }
         $this->output->set_content_type("application/json")->append_output(
-                $this->Question_model->get_question_as_json($this->session->question_id));
+                $this->Question_model->get_previous_question_as_json());
     }
     
     function next(){
-        if($this->session->userdata('selected_answer')){
-            $this->Question_model->submit_answer(
-                    $this->session->selected_answer, 
-                    $this->session->question_id, 
-                    $this->session->n_questionaire,
-                    $this->session->patient_id);
-
-            $this->session->set_userdata('question_id', $this->session->question_id + 1);
-            if ($this->session->question_id > 52){
-                $this->session->set_userdata('question_id', 1);
-                $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
-            }
-        }
         $this->output->set_content_type("application/json")->append_output(
-                    $this->Question_model->get_question_as_json($this->session->question_id));
-        $this->session->unset_userdata('selected_answer');   
+                    $this->Question_model->get_next_question_as_json());   
     }
     
     function answer_clicked(){
