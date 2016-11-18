@@ -27,15 +27,10 @@ class AccountController extends CI_Controller {
         $data['show_navbar'] = false;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['loggedin'] = 'wrong user';
-
-        $sessionArray = ["isLoggedIn" =>false,
-                "username" => NULL,
-                "userType" => NULL
-                ];
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');
-            
+
             $result = $this->Account_model->getUser($username);
 
             if ($result != NULL) {
@@ -43,18 +38,18 @@ class AccountController extends CI_Controller {
                     $result["password"] = NULL;
 
                     $this->session->set_userdata($result); // session contains the colums from the datebase + "userType"
-                    if($result["userType"] == "Patient"){
-                    redirect(base_url() . 'ElderlyController/index');
-                    }
-                    else{
+                    if ($result["userType"] == "Patient") {
+                        redirect(base_url() . 'ElderlyController/index');
+                    } else { // userType = Caregiver
                         redirect(base_url() . 'CaregiverController/index');
                     }
                 }
             }
+            //the user does not exist or password is incorrect
             $data['page_content'] = 'Account/login.html';
             $this->parser->parse('master.php', $data);
-        } else {
-            $data['page_content'] = 'Account/login.html';
+        } else {    // the data from post is empty, do something
+            $data['page_content'] = 'Account/login.html';   //reload the login page
             $this->parser->parse('master.php', $data);
         }
     }
@@ -79,15 +74,15 @@ class AccountController extends CI_Controller {
             $password1 = filter_input(INPUT_POST, 'password1');
             $password2 = filter_input(INPUT_POST, 'password2');
             $this->load->database();
-            $query = $this->db->query("SELECT Name FROM Patient where Name=?", $username);
-            $row = $query->row();
-            if (isset($row)) {
-                $data['register_state'] = 'This user has already been registered';
-            } elseif ($password1 === $password2) {
+            if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
-                $this->db->query("INSERT INTO $usertype (Name, password) VALUES ('$username','$password')");
-                $data['register_state'] = 'Registration succeeds!';
-            } else {
+                if ($this->Account_model->addUser($usertype, $username, $password)){
+                    $data['register_state'] = 'Registration succeeds!';
+                } else {
+                    $data['register_state'] = 'This user has already been registered';
+                }
+            } 
+            else {
                 $data['register_state'] = 'The passwords are not the same!';
             }
         }
@@ -96,4 +91,3 @@ class AccountController extends CI_Controller {
     }
 
 }
-

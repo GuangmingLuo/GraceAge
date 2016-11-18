@@ -23,7 +23,7 @@ class Account_model extends CI_Model {
     function getUser($username) {
         $query = $this->db->query("SELECT * FROM Patient where Name=?", $username);
         $row = $query->row_array();
-        
+
         if (!isset($row)) { // not a patient
             $query = $this->db->query("SELECT * FROM Caregiver where Name=?", $username);
             $row = $query->row_array();
@@ -38,6 +38,26 @@ class Account_model extends CI_Model {
             $row["userType"] = "Patient"; //is a patient
             return $row;
         }
+    }
+
+    function addUser($usertype, $username, $password) {
+        $query = $this->db->query("SELECT Name FROM Patient where Name=?", $username);
+        $row = $query->row();
+        if (isset($row)) {// existing patient
+            return false; // no succes
+        }
+        $query = $this->db->query("SELECT Name FROM Caregiver where Name=?", $username);
+        $row = $query->row();
+        if (isset($row)) {// existing caregiver
+            return false; // no succes
+        }
+        // make the new user
+        $data = array(
+            'Name' => $username,
+            'password' => $password           
+        );
+        $this->db->insert($usertype, $data);
+        return true;
     }
 
 }

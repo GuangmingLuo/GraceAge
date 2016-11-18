@@ -25,7 +25,7 @@ class ElderlyController extends CI_Controller {
     }
 
     function index() {
-        if ($this->session->isLoggedIn == true) { // if session exists
+        if ($this->session->userType == "Patient") { // if session exists
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = 'Elderly Home';
