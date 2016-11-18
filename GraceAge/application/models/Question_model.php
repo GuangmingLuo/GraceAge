@@ -32,6 +32,7 @@ class Question_model extends CI_Model{
             array('name' => '<-- Ga terug naar de vorige vraag', 'title' => 'Vorige vraag', 'func' => 'previous()'),
             array('name' => 'Ga verder naar de volgende vraag -->', 'title' => 'Volgende vraag', 'func' => 'next()'),
         );
+        date_default_timezone_set("Europe/Brussels");
     }
     
     
@@ -55,7 +56,10 @@ class Question_model extends CI_Model{
     
     function get_question_as_json($i){
         //$i = 1;
-        $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('Question');
+        $this->db->reconnect();
+        do{
+            $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('a16_webapps_2.Question');
+        } while($query->num_rows() < 1);
 
         //$query = $this->db->get('Question'); //Select all rows and columns from the table
         //echo $this->db->last_query();
@@ -79,6 +83,7 @@ class Question_model extends CI_Model{
             'DateTime' => date('Y-m-d H:i:s')
         );
         $this->db->insert('a16_webapps_2.Patient_Answered_Question', $data);
+        return;
     }
 
 }

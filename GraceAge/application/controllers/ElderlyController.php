@@ -90,16 +90,15 @@ class ElderlyController extends CI_Controller{
                     $this->session->n_questionaire,
                     $this->session->patient_id);
 
-            $this->session->set_userdata('question_id', $this->session->question_id +1);
+            $this->session->set_userdata('question_id', $this->session->question_id + 1);
             if ($this->session->question_id > 52){
                 $this->session->set_userdata('question_id', 1);
                 $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
             }
         }
-        $this->session->unset_userdata('selected_answer');
         $this->output->set_content_type("application/json")->append_output(
                     $this->Question_model->get_question_as_json($this->session->question_id));
-        
+        $this->session->unset_userdata('selected_answer');   
     }
     
     function answer_clicked(){
