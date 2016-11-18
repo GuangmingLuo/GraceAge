@@ -25,25 +25,9 @@ class AccountController extends CI_Controller {
         $data['page_title'] = 'Log In Grace Age';
         $data['show_navbar'] = false;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['loggedin'] = 'wrong user';
-        if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
-            $username = filter_input(INPUT_POST, 'username');
-            $password = filter_input(INPUT_POST, 'password');
-            $query = $this->db->query("SELECT Name, password FROM Patient where Name=?", $username);
-            $row = $query->row();
-
-            if (isset($row)) {
-                if (password_verify($password, $row->password)) {
-                    $data['loggedin'] = 'valid user';
-                    redirect(base_url() . 'ElderlyController/index');
-                }
-            }
-            $data['page_content'] = 'Account/login.html';
-            $this->parser->parse('master.php', $data);
-        } else {
-            $data['page_content'] = 'Account/login.html';
-            $this->parser->parse('master.php', $data);
-        }
+        $data['loggedin'] = $this->Account_model->get_login_state();
+        $data['page_content'] = 'Account/login.html';
+        $this->parser->parse('master.php', $data);
     }
 
     public function register() {

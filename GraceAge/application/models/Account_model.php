@@ -30,4 +30,24 @@ class Account_model extends CI_Model{
         }
     }
     
+    function get_login_state(){
+        if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
+            $username = filter_input(INPUT_POST, 'username');
+            $password = filter_input(INPUT_POST, 'password');
+            $query = $this->db->query("SELECT Name, password FROM Patient where Name=?", $username);
+            $row = $query->row();
+            if (isset($row)) {
+                if (password_verify($password, $row->password)) {
+                    redirect(base_url() . 'ElderlyController/index');
+                    return 'Valid user';    
+                }else{
+                    return 'Password is wrong';
+                }
+            }else{
+                return 'Invalid user'; 
+            }
+        } else {
+            return 'Please fill in both username and password';
+        }
+    }
 }
