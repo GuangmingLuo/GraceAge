@@ -89,5 +89,11 @@ class AccountController extends CI_Controller {
         $data['page_content'] = 'Account/register.html';
         $this->parser->parse('master.php', $data);
     }
+    
+    public function logOut() { //destroy current session and goto login page
+        session_destroy();
+        $this->login();
+    }
+
 
 }
