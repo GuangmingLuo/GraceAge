@@ -1,28 +1,31 @@
 .container-fluid{
     align-content: center;
+    width: 100%
 }
 
+
 .fontfamily {
-    font-family: 'Open Sans'
+    font-family: 'Open Sans';       
 }
 
 h1 {
     text-align: center;
 }
 
-body:before{        /*background image*/
-    content: ' ';
+.background{
+    margin-right: -15px;
+    margin-left: -15px;
+    
+    background: url("../pictures/FlowerGarden.jpg") ;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: absolute;
+    overflow: hidden;
+    opacity: .5;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    opacity: 0.4;
-    background: url("../pictures/FlowerGarden.jpg") no-repeat center center fixed;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
 }
 
 .box{  /*border around info*/
@@ -30,6 +33,7 @@ body:before{        /*background image*/
     border-color: #CDDC39;
     border-radius: 20px;
     background-color: #F0F4C3;
+    margin-top: 20%;
 }
 
 fieldset{   /* no framework around decoder*/
@@ -40,6 +44,8 @@ fieldset{   /* no framework around decoder*/
 #reader{    /*center camera view */
     margin-left: auto;
     margin-right: auto;
+    width:350px;
+    height:350px;
 }
 
 .tab {  /* tab that isn't active*/ 

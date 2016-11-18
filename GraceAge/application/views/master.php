@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
         <link href="../../assets/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/fonts/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../assets/css/w3.css" rel="stylesheet" type="text/css"/>
         <title>{page_title}</title>
     </head>

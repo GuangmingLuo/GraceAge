@@ -21,8 +21,8 @@ class Caregiver_Menu_model extends CI_Model{
             array('name' => 'Algemeen', 'title' => 'Algemene informatie', 'link' => 'index', 'className' => 'active', 'gridClass' => 'col-lg-2'),
             array('name' => 'Persoonlijk', 'title' => 'Persoonlijk', 'link' => 'personal', 'className' => 'inactive', 'gridClass' => 'col-lg-2'),
             array('name' => 'Tips', 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2'),
-            array('name' => '', 'title' => '', 'link' => '#', 'className' => 'inactive', 'gridClass' => 'col-lg-4'),
-            array('name' => 'Profiel', 'title' => 'Profiel', 'link' => 'profile', 'className' => 'inactive', 'gridClass' => 'col-lg-2')
+            //array('name' => '', 'title' => '', 'link' => '#', 'className' => 'inactive', 'gridClass' => 'col-lg-4'),
+            //array('name' => 'Profiel', 'title' => 'Profiel', 'link' => 'profile', 'className' => 'inactive', 'gridClass' => 'col-lg-2')
         );
     }
     function set_active($menutitle) {
