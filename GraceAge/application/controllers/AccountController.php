@@ -9,6 +9,7 @@ class AccountController extends CI_Controller {
         $this->load->library('parser');
         $this->load->helper('url');
         $this->load->database();
+        $this->load->model('Account_model');
     }
 
     public function login() {
@@ -58,25 +59,7 @@ class AccountController extends CI_Controller {
         $data['page_title'] = 'Register to Grace Age';
         $data['show_navbar'] = false;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['register_state'] = 'invalid input, please fill in all fields'; // default case for register_state
-        if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
-            $usertype = filter_input(INPUT_POST, 'usertype');
-            $username = filter_input(INPUT_POST, 'username');
-            $password1 = filter_input(INPUT_POST, 'password1');
-            $password2 = filter_input(INPUT_POST, 'password2');
-            $this->load->database();
-            $query = $this->db->query("SELECT Name FROM Patient where Name=?", $username);
-            $row = $query->row();
-            if (isset($row)) {
-                $data['register_state'] = 'This user has already been registered';
-            } elseif ($password1 === $password2) {
-                $password = password_hash($password1, PASSWORD_DEFAULT);
-                $this->db->query("INSERT INTO $usertype (Name, password) VALUES ('$username','$password')");
-                $data['register_state'] = 'Registration succeeds!';
-            } else {
-                $data['register_state'] = 'The passwords are not the same!';
-            }
-        }
+        $data['register_state'] = $this->Account_model->get_register_state();
         $data['page_content'] = 'Account/register.html';
         $this->parser->parse('master.php', $data);
     }
