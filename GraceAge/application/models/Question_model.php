@@ -62,7 +62,7 @@ class Question_model extends CI_Model{
             $this->session->set_userdata('question_id', $this->session->question_id - 1);
             $this->undo_answer(
                         $this->session->n_questionaire, 
-                        $this->session->patient_id,
+                        $this->session->idPatient,
                         $this->session->question_id);
         }
         $this->db->reconnect();
@@ -82,7 +82,7 @@ class Question_model extends CI_Model{
                     $this->session->selected_answer, 
                     $this->session->question_id, 
                     $this->session->n_questionaire,
-                    $this->session->patient_id);
+                    $this->session->idPatient);
 
             $this->session->set_userdata('question_id', $this->session->question_id + 1);
             if ($this->session->question_id > 52){
