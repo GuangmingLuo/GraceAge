@@ -48,7 +48,7 @@ class Question_model extends CI_Model{
        
     function get_question($i){
         //$i = 1;
-        $query = $this->db->select('Topic, Question')->where('idQuestion', $i)->get('Question');
+        $query = $this->db->select('Topic, Question')->where('QuestionNumber', $i)->get('Question');
 
         //$query = $this->db->get('Question'); //Select all rows and columns from the table
         //echo $this->db->last_query();
@@ -68,7 +68,7 @@ class Question_model extends CI_Model{
         $this->db->reconnect();
         do{
             $query = $this->db->select('Topic, Question')
-                    ->where('idQuestion', $this->session->question_id)
+                    ->where('QuestionNumber', $this->session->question_id)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
 
@@ -93,7 +93,7 @@ class Question_model extends CI_Model{
         $this->db->reconnect();
         do{
             $query = $this->db->select('Topic, Question')
-                    ->where('idQuestion', $this->session->question_id)
+                    ->where('QuestionNumber', $this->session->question_id)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
         
@@ -110,7 +110,7 @@ class Question_model extends CI_Model{
         $result = $query->row();
         if(isset($result)){
             $this->session->set_userdata('n_questionaire', $result->Questionaire_Number);
-            $this->session->set_userdata('question_id', $result->Question_idQuestion +1);
+            $this->session->set_userdata('question_id', $result->Question_Number +1);
         }
         else{
             $this->session->set_userdata('n_questionaire', 1);
@@ -126,7 +126,7 @@ class Question_model extends CI_Model{
     function undo_answer($n_questionaire, $p_id, $q_id){
         $this->db->delete('a16_webapps_2.Patient_Answered_Question', array(
             'Patient_idPatient' => $p_id,
-            'Question_idQuestion' => $q_id,
+            'Question_Number' => $q_id,
             'Questionaire_Number' => $n_questionaire,
         ));
         $this->updatePatientScore($p_id, -1); // lose a point for not having aswerd a question
@@ -135,7 +135,7 @@ class Question_model extends CI_Model{
         $this->db->reconnect();
         $data = array(
             'Patient_idPatient' => $p_id,
-            'Question_idQuestion' => $q_id,
+            'Question_Number' => $q_id,
             'Questionaire_Number' => $n_questionaire,
             'Answer' => $answer,
             'DateTime' => date('Y-m-d H:i:s')

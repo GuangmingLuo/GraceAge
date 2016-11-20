@@ -18,10 +18,9 @@ class CaregiverController extends CI_Controller{
         $this->load->library('session');
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
-        $this->lang->load('nl','dutch'); // loading dutch, but we need to actually check with db setting
+        $this->lang->load('Caregiver', $this->session->Language); // loading dutch, but we need to actually check with db setting
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
-        $this->session->set_userdata('caregiver_id', 0);
     }
     
     function index(){
@@ -72,12 +71,18 @@ class CaregiverController extends CI_Controller{
     
     function profile(){
         if ($this->session->userType == "Caregiver") {
+            $data['change_password'] = $this->lang->line('caregiver_change_password');
+            $data['old_password'] = $this->lang->line('caregiver_old_password');
+            $data['new_password'] = $this->lang->line('caregiver_new_password');
+            $data['conf_password'] = $this->lang->line('caregiver_conf_password');
+            $data['change_lang'] = $this->lang->line('caregiver_change_lang');
+            $data['Apply'] = $this->lang->line('caregiver_apply');
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Profiel');
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['page_content'] = 'Account/profile.html';
-            $data['Person_Name'] = $this->Caregiver_Home_model->get_name($this->session->caregiver_id);
+            $data['Person_Name'] = $this->Caregiver_Home_model->get_name($this->session->idCaregiver);
             $this->parser->parse('master.php', $data);
         }
         else {
@@ -85,8 +90,19 @@ class CaregiverController extends CI_Controller{
         }
     }
     
+    function change_language(){
+        $newlang = $this->input->post('language');
+        if(isset($newlang)){
+            $this->session->set_userdata('Language', $newlang);
+            $this->db->query("UPDATE a16_webapps_2.Caregiver "
+                        . "SET Language ='".$newlang."' "
+                        . "WHERE idCaregiver = " .$this->session->idCaregiver .";");
+        }
+        redirect(base_url() . 'CaregiverController/profile');
+    }
+    
     function change_password(){
-        $username = $this->Caregiver_Home_model->get_name($this->session->caregiver_id);
+        $username = $this->Caregiver_Home_model->get_name($this->session->idCaregiver);
         //echo $username;
         $verif = $this->db->query("SELECT password, Name FROM a16_webapps_2.Caregiver WHERE Name = '" . $username."';")->row();
         $old = filter_input(INPUT_POST, 'old_password');
