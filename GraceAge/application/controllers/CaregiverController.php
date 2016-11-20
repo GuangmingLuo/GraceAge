@@ -14,13 +14,15 @@
 class CaregiverController extends CI_Controller{
     public function __construct() {
         parent::__construct();
+        $this->load->database();
         $this->load->library('session');
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->lang->load('nl','dutch'); // loading dutch, but we need to actually check with db setting
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
-    } 
+        $this->session->set_userdata('caregiver_id', 0);
+    }
     
     function index(){
         if ($this->session->userType == "Caregiver") { // if session exists
@@ -69,16 +71,37 @@ class CaregiverController extends CI_Controller{
     }
     
     function profile(){
-        if ($this->session->userType == "Caregiver") { // if session exists
+        if ($this->session->userType == "Caregiver") {
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Profiel');
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['content'] = "Manage your profile.";
-            $data['page_content'] = 'Caregiver/template.html';
-            $this->parser->parse('master.php',$data);
-        }else {
+            $data['page_content'] = 'Account/profile.html';
+            $data['Person_Name'] = $this->Caregiver_Home_model->get_name($this->session->caregiver_id);
+            $this->parser->parse('master.php', $data);
+        }
+        else {
             echo "You are not allowed to access this page!!!";
         }
+    }
+    
+    function change_password(){
+        $username = $this->Caregiver_Home_model->get_name($this->session->caregiver_id);
+        //echo $username;
+        $verif = $this->db->query("SELECT password, Name FROM a16_webapps_2.Caregiver WHERE Name = '" . $username."';")->row();
+        $old = filter_input(INPUT_POST, 'old_password');
+        $new = $this->input->post('new_password');
+        $conf = $this->input->post('conf_password');
+        if($conf === $new){
+            echo "passwords equal";
+            if(password_verify($old, $verif->password)){
+                $password = password_hash($new, PASSWORD_DEFAULT);
+                echo " -> should update";
+                $this->db->query("UPDATE a16_webapps_2.Caregiver "
+                        . "SET Name ='".$username."' , password = '".$password."' "
+                        . "WHERE idCaregiver = " .$this->session->caregiver_id .";");
+            }
+        }
+        $this->profile();
     }
 }

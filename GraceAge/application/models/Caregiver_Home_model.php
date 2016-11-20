@@ -22,6 +22,11 @@ class Caregiver_Home_model extends CI_Model{
         return $query->result();
     }
     
+    function get_name($id){
+        $query = $this->db->query("SELECT Name FROM a16_webapps_2.Caregiver WHERE idCaregiver = " . $id);
+        return $query->row()->Name;
+    }
+    
     function get_patients(){
         $query = $this->db->select('Name')->get('Patient');
         return $query->result();
