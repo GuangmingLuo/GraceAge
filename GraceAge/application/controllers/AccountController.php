@@ -70,13 +70,14 @@ class AccountController extends CI_Controller {
         $data['register_state'] = 'invalid input, please fill in all fields'; // default case for register_state
         if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
             $usertype = filter_input(INPUT_POST, 'usertype');
+            $language = filter_input(INPUT_POST, 'language');
             $username = filter_input(INPUT_POST, 'username');
             $password1 = filter_input(INPUT_POST, 'password1');
             $password2 = filter_input(INPUT_POST, 'password2');
             $this->load->database();
             if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
-                if ($this->Account_model->addUser($usertype, $username, $password)){
+                if ($this->Account_model->addUser($usertype, $language, $username, $password)){
                     $data['register_state'] = 'Registration succeeds!';
                 } else {
                     $data['register_state'] = 'This user has already been registered';

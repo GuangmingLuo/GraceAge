@@ -40,7 +40,7 @@ class Account_model extends CI_Model {
         }
     }
 
-    function addUser($usertype, $username, $password) {
+    function addUser($usertype, $language, $username, $password) {
         $query = $this->db->query("SELECT Name FROM Patient where Name=?", $username);
         $row = $query->row();
         if (isset($row)) {// existing patient
@@ -53,8 +53,9 @@ class Account_model extends CI_Model {
         }
         // make the new user
         $data = array(
+            'Language' => $language,
             'Name' => $username,
-            'password' => $password           
+            'password' => $password
         );
         $this->db->insert($usertype, $data);
         return true;
