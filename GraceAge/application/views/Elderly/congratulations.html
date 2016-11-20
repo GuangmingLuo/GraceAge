@@ -1,0 +1,12 @@
+
+ <?php
+     
+    if ($this->session->userType != "Patient"){ //check if logged in as a patient
+    die("Please login");
+}
+
+?>
+<div class="container">
+    <h1>{content}</h1>
+    <h2>your score is {score}</h2>
+</div>

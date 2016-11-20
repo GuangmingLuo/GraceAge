@@ -84,6 +84,20 @@ class ElderlyController extends CI_Controller {
         $data['page_content'] = 'Elderly/tips.html';
         $this->parser->parse('master.php', $data);
     }
+    
+    function congratulations() {
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        $data['page_title'] = 'Tips';
+        $data['header1'] = 'Tip of the day';
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
+        $data['content'] = "congratulations!!!";
+        $data['page_content'] = 'Elderly/congratulations.html';
+        
+        $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+        //$this->Question_model->updatePatientScore($this->session->idPatient, 1);
+        $this->parser->parse('master.php', $data);
+    }
 
 }
 

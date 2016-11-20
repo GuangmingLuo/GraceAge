@@ -116,7 +116,7 @@ class Question_model extends CI_Model{
             $this->session->set_userdata('n_questionaire', 1);
             $this->session->set_userdata('question_id', 1);
         }
-        if ($this->session->question_id > 52){
+        if ($this->session->question_id > 52){ // might want to add a count here later on
             $this->session->set_userdata('question_id', 1);
             $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
         }
@@ -129,6 +129,7 @@ class Question_model extends CI_Model{
             'Question_idQuestion' => $q_id,
             'Questionaire_Number' => $n_questionaire,
         ));
+        $this->updatePatientScore($p_id, -1); // lose a point for not having aswerd a question
     }
     function submit_answer($answer, $q_id, $n_questionaire, $p_id){
         $this->db->reconnect();
@@ -140,7 +141,30 @@ class Question_model extends CI_Model{
             'DateTime' => date('Y-m-d H:i:s')
         );
         $this->db->insert('a16_webapps_2.Patient_Answered_Question', $data);
+        
+        $this->updatePatientScore($p_id, 1); // gain a point for answering a question
         return;
+    }
+    
+    function updatePatientScore($pid, $increment){ // pi = user id, increment = numer with witch to increment current score, can be negative
+        $score = $this->getPatientScore($pid) + $increment;
+        $this->db->set('score', $score);        
+        $this->db->where('idPatient', $pid);
+        $this->db->update('Patient');
+        
+    }
+    
+    function getPatientScore($pid) {
+        $this->db->reconnect();
+        $query = $this->db->select('score')->where('idPatient', $pid)->get('Patient');
+        $row = $query->row();
+        $score = 0;
+        if (isset($row)) {
+            $score = $row->score;
+            if ($score == NULL)
+                $score = 0;
+        }
+        return $score;
     }
 
 }
