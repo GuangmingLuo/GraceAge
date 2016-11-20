@@ -35,26 +35,30 @@ class ElderlyController extends CI_Controller {
             $data['page_content'] = 'Elderly/index.html';
             $this->parser->parse('master.php', $data);
         } else {
-            echo "You should not be here!!!";
+            echo "You are not allowed to access this page!!!";
         }
     }
 
     /*     * ************* All Questionnaire page functions *********************** */
 
     function questionnaire() {
-        //Go fetch necessary data from database to setup the correct question.
-        $this->Question_model->get_initial_state();
+        if ($this->session->userType == "Patient") { // if session exists
+            //Go fetch necessary data from database to setup the correct question.
+            $this->Question_model->get_initial_state();
 
-        $data['show_navbar'] = true;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['page_title'] = 'Questionnaire';
-        $data['header1'] = 'Questionnaire';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
-        $data['answers'] = $this->Question_model->get_answerbuttons();
-        $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
-        $data['questions'] = $this->Question_model->get_question($this->session->question_id);
-        $data['page_content'] = 'Elderly/questionnaire.php';
-        $this->parser->parse('master.php', $data);
+            $data['show_navbar'] = true;
+            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+            $data['page_title'] = 'Questionnaire';
+            $data['header1'] = 'Questionnaire';
+            $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
+            $data['answers'] = $this->Question_model->get_answerbuttons();
+            $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
+            $data['questions'] = $this->Question_model->get_question($this->session->question_id);
+            $data['page_content'] = 'Elderly/questionnaire.php';
+            $this->parser->parse('master.php', $data);
+        } else {
+            echo "You are not allowed to access this page!!!";
+        }
     }
 
     function previous() {
