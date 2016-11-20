@@ -118,7 +118,7 @@ $autoload['config'] = array();
 |
 */
 $autoload['language'] = array();
-
+$autoload['helper'] = array('language');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Models

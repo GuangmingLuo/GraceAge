@@ -17,6 +17,7 @@ class CaregiverController extends CI_Controller{
         $this->load->library('session');
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
+        $this->lang->load('nl','dutch'); // loading dutch, but we need to actually check with db setting
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
     }
@@ -40,7 +41,7 @@ class CaregiverController extends CI_Controller{
         $data['page_title'] = 'Personal Patient Information';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Persoonlijk');
         $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-        $data['content'] = "Personal information here.";
+        $data['content'] = lang('hello'); //to check whether internationalization set up works
         $data['page_content'] = 'Caregiver/template.html';
         $this->parser->parse('master.php',$data);
     }
