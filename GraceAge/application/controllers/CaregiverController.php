@@ -52,17 +52,17 @@ class CaregiverController extends CI_Controller {
             $data['patients'] = $this->Caregiver_Home_model->get_patients();
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['answerss'] = $this->Caregiver_Home_model->print_score('axel');
-            $data['privacy'] = $this->Caregiver_Home_model->calculate_topic('axel','Privacy');
-            $data['food'] = $this->Caregiver_Home_model->calculate_topic('axel','Food');
-            $data['safety'] = $this->Caregiver_Home_model->calculate_topic('axel','Safety');
-            $data['comfort'] = $this->Caregiver_Home_model->calculate_topic('axel','Comfort');
-            $data['autonomie'] = $this->Caregiver_Home_model->calculate_topic('axel','Autonomy');
-            $data['respect'] = $this->Caregiver_Home_model->calculate_topic('axel','Respect');
-            $data['staffresp'] = $this->Caregiver_Home_model->calculate_topic('axel','StaffResponse');
-            $data['staffbonding'] = $this->Caregiver_Home_model->calculate_topic('axel','StaffBonding');
-            $data['activities'] = $this->Caregiver_Home_model->calculate_topic('axel','Activities');
-            $data['relationships'] = $this->Caregiver_Home_model->calculate_topic('axel','Relationships');
-            $data['other'] = $this->Caregiver_Home_model->calculate_topic('axel','Other');
+            $data['privacy'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Privacy');
+            $data['food'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Food');
+            $data['safety'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Safety');
+            $data['comfort'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Comfort');
+            $data['autonomie'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Autonomy');
+            $data['respect'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Respect');
+            $data['staffresp'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'StaffResponse');
+            $data['staffbonding'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'StaffBonding');
+            $data['activities'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Activities');
+            $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Relationships');
+            $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Other');
             
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
