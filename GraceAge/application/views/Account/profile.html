@@ -3,11 +3,11 @@
     <h2>{change_password}</h2>
     <form action="change_password" method="post">
         {old_password}: <br>
-        <input type="password" id= "old" name="old_password" placeholder="Enter old password" required> <br>
+        <input type="password" id= "old" name="old_password" placeholder="{old_placeholder}" required> <br>
         {new_password}: <br>
-        <input type="password" id= "new" name="new_password" placeholder="Enter new password" required> <br>
+        <input type="password" id= "new" name="new_password" placeholder="{new_placeholder}" required> <br>
         {conf_password}: <br>
-        <input type="password" id= "conf" name="conf_password" placeholder="Confirm new password" required> <br>
+        <input type="password" id= "conf" name="conf_password" placeholder="{conf_placeholder}" required> <br>
         <input type="submit" id="change_password" value="{change_password}"><br>
     </form>
     
@@ -16,5 +16,10 @@
         <input type = "radio" name="language" value="english"> English<br>
         <input type = "radio" name="language" value="dutch"> Nederlands<br>
         <input type="submit" value="{Apply}"><br>
+    </form>
+    
+    <h2>{log_out}</h2>
+    <form action="logout" method="get">
+        <input type="submit" value="{logout}"><br>
     </form>
 </div>

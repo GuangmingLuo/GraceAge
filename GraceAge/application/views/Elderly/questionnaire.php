@@ -34,7 +34,7 @@
 
             {answers}
             <div class="col-sm-2">
-                <button type="button" class="{className}">{name}</button>
+                <button type="button" title="{title}" class="{className}">{name}</button>
             </div>
             {/answers}
             <div class="col-sm-1">

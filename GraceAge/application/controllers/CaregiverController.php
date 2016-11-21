@@ -89,6 +89,11 @@ class CaregiverController extends CI_Controller {
 
     function profile() {
         if ($this->session->userType == "Caregiver") {
+            $data['log_out'] = $this->lang->line('caregiver_log_out');            
+            $data['logout'] = $this->lang->line('caregiver_logout');
+            $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
+            $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
+            $data['conf_placeholder'] = $this->lang->line('caregiver_conf_placeholder');
             $data['change_password'] = $this->lang->line('caregiver_change_password');
             $data['old_password'] = $this->lang->line('caregiver_old_password');
             $data['new_password'] = $this->lang->line('caregiver_new_password');
@@ -105,6 +110,11 @@ class CaregiverController extends CI_Controller {
         } else {
             echo "You are not allowed to access this page!!!";
         }
+    }
+    
+    function logout(){
+        session_destroy();
+        redirect(base_url() . 'AccountController/login');
     }
 
     function change_language() {

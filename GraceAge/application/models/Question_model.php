@@ -105,7 +105,7 @@ class Question_model extends CI_Model{
     function get_initial_state(){
         $query = $this->db->query("SELECT * "
                 . "FROM a16_webapps_2.Patient_Answered_Question "
-                . "WHERE Patient_idPatient = " . $this->session->patient_id . " "
+                . "WHERE Patient_idPatient = " . $this->session->idPatient . " "
                 . "ORDER BY DateTime DESC "
                 . "LIMIT 1;");
         $result = $query->row();
@@ -164,8 +164,9 @@ class Question_model extends CI_Model{
         $score = 0;
         if (isset($row)) {
             $score = $row->score;
-            if ($score == NULL)
+            if ($score == NULL){
                 $score = 0;
+            }
         }
         return $score;
     }
