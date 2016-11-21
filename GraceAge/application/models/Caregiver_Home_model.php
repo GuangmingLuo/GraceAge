@@ -38,8 +38,8 @@ class Caregiver_Home_model extends CI_Model {
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
         $id2 = $id[0]->idPatient;
-        $query = $this->db->select('Answer')->where('Patient_idPatient', $id2)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
-        return $query->result();
+        $query2 = $this->db->select('Answer')->where('Patient_idPatient', $id2)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
+        return $query2->result();
     }
 
     function calculate_topic($username, $topic) {
@@ -50,8 +50,8 @@ class Caregiver_Home_model extends CI_Model {
         $id = $query->result();
         $id2 = $id[0]->idPatient;
 
-        $query = $this->db->select('idQuestion')->where('Topic', $topic)->get('Question');
-        $questions = $query->result();
+        $query2 = $this->db->select('idQuestion')->where('Topic', $topic)->get('Question');
+        $questions = $query2->result();
         $amount = count($questions);
 
         unset($questionids);
@@ -88,8 +88,8 @@ class Caregiver_Home_model extends CI_Model {
         $id = $query->result();
         $id2 = $id[0]->idPatient;
 
-        $query = $this->db->select('idQuestion')->get('Question');
-        $questions = $query->result();
+        $query2 = $this->db->select('idQuestion')->get('Question');
+        $questions = $query2->result();
         $amount = count($questions);
 
         unset($questionids);

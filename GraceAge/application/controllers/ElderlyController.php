@@ -21,12 +21,18 @@ class ElderlyController extends CI_Controller {
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
+        $this->lang->load('elderly', $this->session->Language);
         $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
 
     function index() {
         if ($this->session->userType == "Patient") { // if session exists
             $data['show_navbar'] = true;
+            $data['settings_button'] = $this->lang->line('elderly_settings_button');
+            $data['stop_button'] = $this->lang->line('elderly_stop_button');
+            $data['questionnaire_button'] = $this->lang->line('elderly_questionnaire_button');
+            $data['tips_button'] = $this->lang->line('elderly_tips_button');
+            $data['score_button'] = $this->lang->line('elderly_score_button');
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = 'Elderly Home';
             $data['header1'] = 'Welcome to Elderly Home';
