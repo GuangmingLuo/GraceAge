@@ -22,16 +22,16 @@ class Question_model extends CI_Model{
         $this->load->database();
         $this->load->library('session');
         $this->answers = array(
-            array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button'),
-            array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button'),
-            array('name' => 'Soms', 'title' => 'Soms', 'className' => 'answer_button'),
-            array('name' => 'Meestal', 'title' => 'Meestal', 'className' => 'answer_button'),
-            array('name' => 'Altijd', 'title' => 'Altijd', 'className' => 'answer_button'),
+            array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button btn-block'),
+            array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button btn-block'),
+            array('name' => 'Soms', 'title' => 'Soms', 'className' => 'answer_button btn-block'),
+            array('name' => 'Meestal', 'title' => 'Meestal', 'className' => 'answer_button btn-block'),
+            array('name' => 'Altijd', 'title' => 'Altijd', 'className' => 'answer_button btn-block'),
         );
         
         $this->navigationbuttons = array(
-            array('name' => '<-- Ga terug naar de vorige vraag', 'title' => 'Vorige vraag', 'func' => 'previous()'),
-            array('name' => 'Ga verder naar de volgende vraag -->', 'title' => 'Volgende vraag', 'func' => 'next()'),
+            array('name' => 'GA TERUG NAAR VORIGE VRAAG','class' => 'btn  btn-arrow-left btn-block', 'title' => 'Vorige vraag', 'func' => 'previous()'),
+            array('name' => 'GA VERDER NAAR VOLGENDE VRAAG','class' => 'btn btn-arrow-right btn-block', 'title' => 'Volgende vraag', 'func' => 'next()'),
         );
         date_default_timezone_set("Europe/Brussels");
     }

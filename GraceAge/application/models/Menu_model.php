@@ -7,9 +7,9 @@ class Menu_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->menu_items = array(
-            array('name' => 'Home', 'title' => 'Go Home', 'link' => 'index', 'className' => 'active'),
-            array('name' => 'Tips', 'title' => 'Look at the tips', 'link' => 'tips', 'className' => 'inactive'),
-            array('name' => 'Questionnaire', 'title' => 'Fill in the questionnaire', 'link' => 'questionnaire', 'className' => 'inactive'),  
+            array('id'=>'Home_button', 'name' => 'Home','iconName' => 'fa fa-repeat', 'title' => 'Go Home', 'link' => 'index', 'className' => 'active'),
+            array('id'=>'Tips_button','name' => 'Tips', 'iconName' => 'fa fa-lightbulb-o','title' => 'Look at the tips', 'link' => 'tips', 'className' => 'inactive'),
+            array('id'=>'Questionnaire_button','name' => 'Questionnaire','iconName' => 'fa fa-list-alt', 'title' => 'Fill in the questionnaire', 'link' => 'questionnaire', 'className' => 'inactive'),  
         );
     }
      

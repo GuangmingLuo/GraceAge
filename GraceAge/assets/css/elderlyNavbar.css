@@ -1,0 +1,28 @@
+.fontfamily {
+    font-family: 'Open Sans'
+}
+#entireNavbar{
+    border-bottom: 4px solid;
+    border-color: #CDDC39;
+    background-color: #F0F4C3;
+    height: 100px;
+}
+
+#Tips_button,
+#Questionnaire_button{
+    display: none;
+}
+
+
+.navbar-nav > li > a {
+   line-height: 70px;
+   font-size: 28px;
+   color: #009688;
+   style: "color=#009688";
+}
+
+#navbar{
+   color: #009688;
+}
+.navbar {min-height: 100px;}
+.navbar-brand {padding: 0 15px; height: 100px; line-height: 100px;}

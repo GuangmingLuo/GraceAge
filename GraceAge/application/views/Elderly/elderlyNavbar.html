@@ -1,20 +1,34 @@
-<nav class="navbar navbar-inverse navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index">Grace Age</a>
+
+<head>
+    <link href="../../assets/css/elderlyNavbar.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+<nav id="entireNavbar" class="navbar navbar-inverse navbar-default">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <!--<div class="col-sm-2">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index">Grace Age</a>
+                </div>
+            </div>
+            -->
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    {menu_items}
+                    <li id="{id}"><a href="{link}" title="{title}" class="{className}" style="color:#009688">
+                            <i class="{iconName}" aria-hidden="true"></i>{name}</a></li>
+                    {/menu_items}
+                </ul>
+            </div>
+        </div>
+
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            {menu_items}
-            <li><a href="{link}" title="{title}" class="{className}">{name}</a></li>
-            {/menu_items}
-        </ul>
-    </div>
-  </div>
 </nav>
