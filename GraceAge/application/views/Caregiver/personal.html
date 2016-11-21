@@ -1,37 +1,83 @@
 <div class="container row" style="width: auto">
     <div class="col-lg-5 overviewbox">
-        <button onclick="getScore()">Search Patient</button>
-        <input type="text" id="myaddress" size="60" value="axel"/><br>
+
+        
+
+        <input type="text" id="patientt" size="60" value=""/><br>
+        <button onclick="showmap()">Look up!</button>
+        <br>List of names:<br>
         {patients}
         {Name}<br>
-        {/patients}<br>
-        
-        
-        
-        {privacy}<br>
-        {food}<br>
-        {safety}<br>
-        {comfort}<br>
-        {autonomie}<br>
-        {respect}<br>
-        {staffresp}<br>
-        {staffbonding}<br>
-        {activities}<br>
-        {relationships}<br>
-        {other}<br>
-        
-        
-        
-        
+        {/patients}
     </div>
     <div class="col-lg-1"></div>
     <div class="col-lg-5">
         <div class="row">
             <div class="col-md-12 overviewbox">
-        {topics}
-        {Topic}<br>
-        {/topics}
-    </div>
+                <table style="width:100%">
+                    <tr>
+                        <th>Topic</th>
+                        <th>Score in %</th> 
+
+                    </tr>
+                    <tr>
+                        <td>Privacy</td>
+                        <td>{privacy}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Food</td>
+                        <td>{food}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Safety</td>
+                        <td>{safety}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Comfort</td>
+                        <td>{comfort}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Autonomy</td>
+                        <td>{autonomie}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Respect</td>
+                        <td>{respect}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Staff Resoponse</td>
+                        <td>{staffresp}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Staff Bonding</td>
+                        <td>{staffbonding}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Activities</td>
+                        <td>{activities}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Relationship</td>
+                        <td>{relationships}</td> 
+
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td>{other}</td> 
+
+                    </tr>
+
+                </table>
+            </div>
         </div>
 
     </div>
