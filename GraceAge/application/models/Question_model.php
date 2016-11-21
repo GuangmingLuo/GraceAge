@@ -146,14 +146,16 @@ class Question_model extends CI_Model{
         return;
     }
     
-    function updatePatientScore($pid, $increment){ // pi = user id, increment = numer with witch to increment current score, can be negative
-        $score = $this->getPatientScore($pid) + $increment;
-        $this->db->set('score', $score);        
+    function updatePatientScore($pid, $increment, $add = true) { // pi = user id, increment = numer with witch to increment current score, can be negative
+        if ($add) {
+            $score = $this->getPatientScore($pid) + $increment; //default
+        } else {$score = $increment;}
+
+        $this->db->set('score', $score);
         $this->db->where('idPatient', $pid);
         $this->db->update('Patient');
-        
     }
-    
+
     function getPatientScore($pid) {
         $this->db->reconnect();
         $query = $this->db->select('score')->where('idPatient', $pid)->get('Patient');
