@@ -104,7 +104,7 @@ class AccountController extends CI_Controller {
 
     public function logOut() { //destroy current session and goto login page
         session_destroy();
-        $this->login();
+        redirect(base_url() . 'AccountController/login');
     }
 
 }
