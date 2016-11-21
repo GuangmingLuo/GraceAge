@@ -1,5 +1,5 @@
 <head>
-            <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <div class="container row" style="width: auto">
@@ -10,13 +10,13 @@
                 <label class='fontfamily' for="username">Username:</label>
                 <input type="text" name="username" class="form-control fontfamily" id="username" placeholder="Fill in username" autofocus required>
             </div>
-            
+
             <button type="submit" class="btn btn-default fontfamily">Submit</button>
             <br>
             <br>
         </form>
 
-       
+
         <br>List of names:<br>
         {patients}
         {Name}<br>
@@ -87,8 +87,18 @@
                         <td>{other}</td> 
 
                     </tr>
+                    <tr>
+                        <td>........................</td>
+                        <td>......... </td>
+                    </tr>
+                    <tr>
+                        <td>Average score:</td>
+                        <td>{avg}</td>
+                    </tr>
+
 
                 </table>
+
             </div>
         </div>
 
