@@ -1,10 +1,18 @@
 <div class="container row" style="width: auto">
     <div class="col-lg-5 overviewbox">
 
-        
+        <form name="namesearch" id="namesearch" action="personal" method="get">
+            <div class="form-group">
+                <label class='fontfamily' for="username">Username:</label>
+                <input type="text" name="username" class="form-control fontfamily" id="username" placeholder="Enter username" autofocus required>
+            </div>
+            
+            <button type="submit" class="btn btn-default fontfamily">Submit</button>
+            <br>
+            <br>
+        </form>
 
-        <input type="text" id="patientt" size="60" value=""/><br>
-        <button onclick="showmap()">Look up!</button>
+       
         <br>List of names:<br>
         {patients}
         {Name}<br>
