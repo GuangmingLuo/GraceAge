@@ -48,7 +48,7 @@ class CaregiverController extends CI_Controller {
             $data['page_title'] = 'Personal Patient Information';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Persoonlijk');
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['content'] = lang('hello'); //to check whether internationalization set up works
+            $data['content'] = lang(''); //to check whether internationalization set up works
             $data['patients'] = $this->Caregiver_Home_model->get_patients();
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['answerss'] = $this->Caregiver_Home_model->print_score('axel');
@@ -63,6 +63,7 @@ class CaregiverController extends CI_Controller {
             $data['activities'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Activities');
             $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Relationships');
             $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Other');
+            $data['avg'] = $this->Caregiver_Home_model->average_score($this->input->get('username'));
             
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
