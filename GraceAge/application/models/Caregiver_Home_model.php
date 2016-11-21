@@ -65,6 +65,9 @@ class Caregiver_Home_model extends CI_Model {
             $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
             $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
             $antwoord = $query->result();
+            if(count($antwoord) == 0){
+                return 0;
+            }
             $antwoord2 = $antwoord[0]->Answer;
             array_push($antwoordenarray, $antwoord2);
         }
