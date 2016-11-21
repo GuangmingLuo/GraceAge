@@ -64,6 +64,7 @@ class CaregiverController extends CI_Controller {
             $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Relationships');
             $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Other');
             $data['avg'] = $this->Caregiver_Home_model->average_score($this->input->get('username'));
+            $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
             
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
