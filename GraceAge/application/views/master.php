@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
         <link href="../../assets/fonts/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
         <link href="../../assets/css/w3.css" rel="stylesheet" type="text/css"/>
         <title>{page_title}</title>
     </head>
@@ -22,6 +22,7 @@
 
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
         <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
         <script src="../../assets/js/questions.js" type="text/javascript"></script>
     </body>

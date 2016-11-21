@@ -11,22 +11,34 @@ class AccountController extends CI_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->model('Account_model');
+        $this->lang->load('login', 'english');
+    }
+    
+    private function load_common_parts(){
+        $data['page_title'] = 'Log In Grace Age';
+        $data['BAGDE'] = lang('BAGDE');
+        $data['LOG_IN'] = lang('LOG_IN');
+        $data['show_navbar'] = false;
+        $data['show_your_badge'] = lang('show_your_badge');
+        $data['no_camera'] = lang('no_camera');
+        $data['credentials'] = lang('credentials');
+        $data['username'] = lang('username');
+        $data['password'] = lang('password');
+        $data['confirm'] = lang('confirm');
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        return $data;
     }
 
     public function login() {
-        $data['page_title'] = 'Log In Grace Age';
-        $data['show_navbar'] = false;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['loggedin'] = 'not logged in';
+        $data['loggedin'] = lang('not_logged_in');
+        $data = array_merge($data, $this->load_common_parts()); 
         $data['page_content'] = 'Account/login.html';
         $this->parser->parse('master.php', $data);
     }
 
     public function loginPost() {
-        $data['page_title'] = 'Log In Grace Age';
-        $data['show_navbar'] = false;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['loggedin'] = 'wrong user';
+        $data['loggedin'] = lang('wrong_credentials');
+        $data = array_merge($data, $this->load_common_parts());
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');
@@ -77,24 +89,22 @@ class AccountController extends CI_Controller {
             $this->load->database();
             if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
-                if ($this->Account_model->addUser($usertype, $language, $username, $password)){
+                if ($this->Account_model->addUser($usertype, $language, $username, $password)) {
                     $data['register_state'] = 'Registration succeeds!';
                 } else {
                     $data['register_state'] = 'This user has already been registered';
                 }
-            } 
-            else {
+            } else {
                 $data['register_state'] = 'The passwords are not the same!';
             }
         }
         $data['page_content'] = 'Account/register.html';
         $this->parser->parse('master.php', $data);
     }
-    
+
     public function logOut() { //destroy current session and goto login page
         session_destroy();
         $this->login();
     }
-
 
 }
