@@ -19,7 +19,8 @@ class CaregiverController extends CI_Controller {
         $this->load->library('session');
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
-        $this->lang->load('caregiver', $this->session->Language); // loading dutch, but we need to actually check with db setting
+        $this->lang->load('caregiver', $this->session->Language);
+        $this->lang->load('caregiver_menu', $this->session->Language);
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
     }
@@ -27,9 +28,11 @@ class CaregiverController extends CI_Controller {
     function index() {
         if ($this->session->userType == "Caregiver") { // if session exists
             $data['show_navbar'] = true;
+            $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['page_title'] = 'Caregiver Home';
             $data['header1'] = 'Welcome to Caregiver Home';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Algemeen');
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['urgent'] = $this->Caregiver_Home_model->get_patients();
@@ -44,9 +47,11 @@ class CaregiverController extends CI_Controller {
 
     function personal() {
         if ($this->session->userType == "Caregiver") { // if session exists
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
+            $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['show_navbar'] = true;
             $data['page_title'] = 'Personal Patient Information';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Persoonlijk');
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_personal'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = lang(''); //to check whether internationalization set up works
             $data['patients'] = $this->Caregiver_Home_model->get_patients();
@@ -75,9 +80,11 @@ class CaregiverController extends CI_Controller {
 
     function tips() {
         if ($this->session->userType == "Caregiver") { // if session exists
+            $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['show_navbar'] = true;
             $data['page_title'] = 'Tips';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Tips');
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = "Tips to be added.";
             $data['page_content'] = 'Caregiver/template.html';
@@ -89,6 +96,7 @@ class CaregiverController extends CI_Controller {
 
     function profile() {
         if ($this->session->userType == "Caregiver") {
+            $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['log_out'] = $this->lang->line('caregiver_log_out');            
             $data['logout'] = $this->lang->line('caregiver_logout');
             $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
@@ -100,9 +108,10 @@ class CaregiverController extends CI_Controller {
             $data['conf_password'] = $this->lang->line('caregiver_conf_password');
             $data['change_lang'] = $this->lang->line('caregiver_change_lang');
             $data['Apply'] = $this->lang->line('caregiver_apply');
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems('Profiel');
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['page_content'] = 'Account/profile.html';
             $data['Person_Name'] = $this->session->Name;

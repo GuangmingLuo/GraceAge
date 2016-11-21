@@ -31,15 +31,14 @@ class Question_model extends CI_Model{
         );
         
         $this->navigationbuttons = array(
-            array('name' => 'GA TERUG NAAR VORIGE VRAAG','class' => 'btn  btn-arrow-left btn-block', 'title' => 'Vorige vraag', 'func' => 'previous()'),
-            array('name' => 'GA VERDER NAAR VOLGENDE VRAAG','class' => 'btn btn-arrow-right btn-block', 'title' => 'Volgende vraag', 'func' => 'next()'),
+            array('name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'Vorige vraag', 'func' => 'previous()'),
+            array('name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'Volgende vraag', 'func' => 'next()'),
         );
         date_default_timezone_set("Europe/Brussels");
     }
     
     
     function get_answerbuttons(){
-        //$this->set_active();
         return $this->answers;
     }
     
@@ -48,16 +47,11 @@ class Question_model extends CI_Model{
     }
        
     function get_question($i){
-        //$i = 1;
         $query = $this->db->select('Topic, Question')->where('QuestionNumber', $i)->get('Question');
-
-        //$query = $this->db->get('Question'); //Select all rows and columns from the table
-        //echo $this->db->last_query();
         return $query->result();
     }
     
     function get_previous_question_as_json(){
-        //$i = 1;
         $this->session->unset_userdata('selected_answer');
         if($this->session->question_id > 1){
             $this->session->set_userdata('question_id', $this->session->question_id - 1);
@@ -147,7 +141,7 @@ class Question_model extends CI_Model{
         return;
     }
     
-    function updatePatientScore($pid, $increment, $add = true) { // pi = user id, increment = numer with witch to increment current score, can be negative
+    function updatePatientScore($pid, $increment, $add = true) { // pi = user id, increment = number with witch to increment current score, can be negative
         if ($add) {
             $score = $this->getPatientScore($pid) + $increment; //default
         } else {$score = $increment;}
