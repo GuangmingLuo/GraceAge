@@ -7,8 +7,8 @@
 $('.answer_button').click(function () {
     $('.answer_button').css('border-color', "#CDDC39");
     $(this).css('border-color', "#009688");
-    var title = $(this).attr('title');
-    $.post('answer_clicked', {clicked: title}, function(){
+    var value = $(this).attr('title');
+    $.post('answer_clicked', {clicked: value}, function(){
     });
 
 });

@@ -21,12 +21,13 @@ class Question_model extends CI_Model{
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
+        $this->lang->load('question', $this->session->Language);
         $this->answers = array(
-            array('name' => 'Nooit', 'title' => 'Nooit', 'className' => 'answer_button btn-block'),
-            array('name' => 'Zelden', 'title' => 'Zelden', 'className' => 'answer_button btn-block'),
-            array('name' => 'Soms', 'title' => 'Soms', 'className' => 'answer_button btn-block'),
-            array('name' => 'Meestal', 'title' => 'Meestal', 'className' => 'answer_button btn-block'),
-            array('name' => 'Altijd', 'title' => 'Altijd', 'className' => 'answer_button btn-block'),
+            array('title' => '0', 'name' => $this->lang->line('question_never'), 'className' => 'answer_button btn-block'),
+            array('title' => '1', 'name' => $this->lang->line('question_rarely'), 'className' => 'answer_button btn-block'),
+            array('title' => '2', 'name' => $this->lang->line('question_sometimes'), 'className' => 'answer_button btn-block'),
+            array('title' => '3', 'name' => $this->lang->line('question_usually'), 'className' => 'answer_button btn-block'),
+            array('title' => '4', 'name' => $this->lang->line('question_always'), 'className' => 'answer_button btn-block'),
         );
         
         $this->navigationbuttons = array(
