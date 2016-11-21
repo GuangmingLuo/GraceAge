@@ -57,32 +57,18 @@ class Caregiver_Home_model extends CI_Model {
         for ($x = 0; $x < $amount; $x++) {
             $questionids[$x] = $questions[$x]->idQuestion;
         }
-        
+
         unset($antwoordenarray);
         $antwoordenarray = array();
-        
-        foreach($questionids as $idss){
+
+        foreach ($questionids as $idss) {
             $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
             $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
             $antwoord = $query->result();
             $antwoord2 = $antwoord[0]->Answer;
             array_push($antwoordenarray, $antwoord2);
         }
-        
-        foreach($antwoordenarray as $kk){
-            
-            echo $kk;
-            
-            
-        }
-        echo $amount;
         $som = array_sum($antwoordenarray) * 25 / $amount;
-        
-        echo $som;
-        
-        
-        
-        
         return $som;
     }
 
