@@ -43,6 +43,9 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function calculate_topic($username, $topic) {
+        if($username == NULL){
+           return 0;
+        }
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
         $id2 = $id[0]->idPatient;
