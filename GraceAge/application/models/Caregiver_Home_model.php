@@ -75,7 +75,9 @@ class Caregiver_Home_model extends CI_Model {
             array_push($antwoordenarray, $antwoord2);
         }
         $som = array_sum($antwoordenarray) * 25 / $amount;
-        return $som;
+        
+        $nombre_format_francais = number_format($som, 2, ',', ' ');
+        return $nombre_format_francais;
     }
 
 }
