@@ -117,5 +117,11 @@ class Caregiver_Home_model extends CI_Model {
         return $nombre_format_francais;
         
     }
+    function current_user($username){
+        if($username == NULL){
+            return " nobody, please select someone.";
+        }
+        return $username;
+    }
 
 }
