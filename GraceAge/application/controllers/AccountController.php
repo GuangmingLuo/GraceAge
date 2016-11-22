@@ -11,10 +11,19 @@ class AccountController extends CI_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->model('Account_model');
-        $this->lang->load('login', 'english');
     }
-    
-    private function load_common_parts(){
+
+    public function change_language() {
+        $language = $_GET["language"];
+        if ($language == "english") {
+            $language = "dutch";
+        } else
+            $language = "english";
+        $this->lang->load('login', $language);
+        redirect(base_url() . 'AccountController/login?language=' . $language);
+    }
+
+    private function load_common_parts() {
         $data['page_title'] = 'Log In Grace Age';
         $data['BAGDE'] = lang('BAGDE');
         $data['LOG_IN'] = lang('LOG_IN');
@@ -30,13 +39,27 @@ class AccountController extends CI_Controller {
     }
 
     public function login() {
+        $language = "dutch";
+        if (isset($_GET["language"])) {
+            $language = $_GET["language"];
+        }
+        $this->lang->load('login', $language);
+        $data['language'] = $language;
+
         $data['loggedin'] = lang('not_logged_in');
-        $data = array_merge($data, $this->load_common_parts()); 
+        $data = array_merge($data, $this->load_common_parts());
         $data['page_content'] = 'Account/login.html';
         $this->parser->parse('master.php', $data);
     }
 
     public function loginPost() {
+        $language = "dutch";
+        if (isset($_POST["language"])) {
+            $language = $_POST["language"];
+        }
+        $this->lang->load('login', $language);
+        $data['language'] = $language;
+
         $data['loggedin'] = lang('wrong_credentials');
         $data = array_merge($data, $this->load_common_parts());
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
