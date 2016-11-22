@@ -34,6 +34,7 @@ class CaregiverController extends CI_Controller {
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
+            $this->Caregiver_Home_model->get_topic_with_score();
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['urgent'] = $this->Caregiver_Home_model->get_patients();
             $data['content'] = "";

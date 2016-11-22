@@ -12,6 +12,8 @@
  * @author orditech
  */
 class Caregiver_Home_model extends CI_Model {
+    
+    private $all_answers;
 
     public function __construct() {
         parent::__construct();
@@ -20,7 +22,7 @@ class Caregiver_Home_model extends CI_Model {
 
     function get_topics() {
         $query = $this->db->distinct()->select('Topic')->get('Question');
-        return $query->result();
+        return $query->result_array();
     }
 
     function get_name($id) {
@@ -33,6 +35,39 @@ class Caregiver_Home_model extends CI_Model {
         return $query->result();
     }
 
+    function get_answer_array(){
+        $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
+                ->from('Question')
+                ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
+                ->where('Language', 'dutch')
+                ->get();
+        $this->all_answers = $query->result_array(); //Store the data in an array;
+        //print_r($this->all_answers);
+        //echo count($this->all_answers);
+    }
+    
+    function calculate_score($topic){
+        $sum_of_answers = 0;
+        $iterations = 0;
+        for($i = 0; $i < count($this->all_answers); $i++){
+            if($this->all_answers[$i]['Topic'] == $topic){
+                $sum_of_answers += $this->all_answers[$i]['Answer'];
+                $iterations++;
+            }
+        }
+        return ($sum_of_answers/$iterations) * 25;
+    }
+    
+    function get_topic_with_score(){
+        $this->get_answer_array();
+        $topics = $this->get_topics();
+        $scores;
+        for($j = 0; $j < count($topics); $j++){
+            $scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
+        }
+        echo json_encode($scores);
+    }
+            
     function print_score($username) {
         /* $query = $this->db->query("SELECT idPatient FROM Patient where Name= '?' ", $username); */
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
