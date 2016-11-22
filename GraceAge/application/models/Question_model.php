@@ -46,11 +46,12 @@ class Question_model extends CI_Model{
         return $this->navigationbuttons;
     }
        
-    function get_question($i){
-        $query = $this->db->select('Topic, Question')->where('QuestionNumber', $i)->get('Question');
+    function get_question($i, $language) {
+        $array = array('QuestionNumber' => $i, 'Language' => $language);
+        $query = $this->db->select('Topic, Question')->where($array)->get('Question');
         return $query->result();
     }
-    
+
     function get_previous_question_as_json(){
         $this->session->unset_userdata('selected_answer');
         if($this->session->question_id > 1){
@@ -62,8 +63,9 @@ class Question_model extends CI_Model{
         }
         $this->db->reconnect();
         do{
+            $array = array('QuestionNumber' => $this->session->question_id, 'Language' => $this->session->Language);
             $query = $this->db->select('Topic, Question')
-                    ->where('QuestionNumber', $this->session->question_id)
+                    ->where($array)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
 
@@ -87,8 +89,9 @@ class Question_model extends CI_Model{
         }
         $this->db->reconnect();
         do{
+            $array = array('QuestionNumber' => $this->session->question_id, 'Language' => $this->session->Language);
             $query = $this->db->select('Topic, Question')
-                    ->where('QuestionNumber', $this->session->question_id)
+                    ->where($array)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
         

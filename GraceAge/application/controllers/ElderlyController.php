@@ -58,7 +58,7 @@ class ElderlyController extends CI_Controller {
             $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
             $data['answers'] = $this->Question_model->get_answerbuttons();
             $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
-            $data['questions'] = $this->Question_model->get_question($this->session->question_id);
+            $data['questions'] = $this->Question_model->get_question($this->session->question_id, $this->session->Language);
             $data['page_content'] = 'Elderly/questionnaire.php';
             $this->parser->parse('master.php', $data);
         } else {
