@@ -50,15 +50,15 @@ class Caregiver_Home_model extends CI_Model {
         $id = $query->result();
         $id2 = $id[0]->idPatient;
 
-        $query2 = $this->db->select('idQuestion')->where('Topic', $topic)->get('Question');
-        $questions = $query2->result();
+        $query = $this->db->distinct()->select('QuestionNumber')->where('Topic', $topic)->get('Question');
+        $questions = $query->result();
         $amount = count($questions);
 
         unset($questionids);
         $questionids = array();
 
         for ($x = 0; $x < $amount; $x++) {
-            $questionids[$x] = $questions[$x]->idQuestion;
+            $questionids[$x] = $questions[$x]->QuestionNumber;
         }
 
         unset($antwoordenarray);
@@ -69,6 +69,7 @@ class Caregiver_Home_model extends CI_Model {
             $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
             $antwoord = $query->result();
             if(count($antwoord) == 0){
+                
                 return 0;
             }
             $antwoord2 = $antwoord[0]->Answer;
