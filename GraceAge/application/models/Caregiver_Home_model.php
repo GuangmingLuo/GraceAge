@@ -89,7 +89,7 @@ class Caregiver_Home_model extends CI_Model {
         $id = $query->result();
         $id2 = $id[0]->idPatient;
 
-        $query2 = $this->db->select('idQuestion')->get('Question');
+        $query2 = $this->db->distinct()->select('QuestionNumber')->get('Question');
         $questions = $query2->result();
         $amount = count($questions);
 
@@ -97,7 +97,7 @@ class Caregiver_Home_model extends CI_Model {
         $questionids = array();
 
         for ($x = 0; $x < $amount; $x++) {
-            $questionids[$x] = $questions[$x]->idQuestion;
+            $questionids[$x] = $questions[$x]->QuestionNumber;
         }
         unset($antwoordenarray);
         $antwoordenarray = array();
