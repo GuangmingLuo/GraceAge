@@ -23,11 +23,11 @@ class Question_model extends CI_Model{
         $this->load->library('session');
         $this->lang->load('question', $this->session->Language);
         $this->answers = array(
-            array('title' => '0', 'name' => $this->lang->line('question_never'), 'className' => 'answer_button btn-block'),
-            array('title' => '1', 'name' => $this->lang->line('question_rarely'), 'className' => 'answer_button btn-block'),
-            array('title' => '2', 'name' => $this->lang->line('question_sometimes'), 'className' => 'answer_button btn-block'),
-            array('title' => '3', 'name' => $this->lang->line('question_usually'), 'className' => 'answer_button btn-block'),
-            array('title' => '4', 'name' => $this->lang->line('question_always'), 'className' => 'answer_button btn-block'),
+            array('title' => '1', 'name' => $this->lang->line('question_never'), 'className' => 'answer_button btn-block'),
+            array('title' => '2', 'name' => $this->lang->line('question_rarely'), 'className' => 'answer_button btn-block'),
+            array('title' => '3', 'name' => $this->lang->line('question_sometimes'), 'className' => 'answer_button btn-block'),
+            array('title' => '4', 'name' => $this->lang->line('question_usually'), 'className' => 'answer_button btn-block'),
+            array('title' => '5', 'name' => $this->lang->line('question_always'), 'className' => 'answer_button btn-block'),
         );
         
         $this->navigationbuttons = array(
@@ -80,7 +80,7 @@ class Question_model extends CI_Model{
                     $this->session->question_id, 
                     $this->session->n_questionaire,
                     $this->session->idPatient);
-
+            
             $this->session->set_userdata('question_id', $this->session->question_id + 1);
             if ($this->session->question_id > 52){
                 $this->session->set_userdata('question_id', 1);
