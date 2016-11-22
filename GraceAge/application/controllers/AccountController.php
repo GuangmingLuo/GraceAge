@@ -23,18 +23,31 @@ class AccountController extends CI_Controller {
         redirect(base_url() . 'AccountController/login?language=' . $language);
     }
 
-    private function load_common_parts() {
-        $data['page_title'] = 'Log In Grace Age';
-        $data['BAGDE'] = lang('BAGDE');
-        $data['LOG_IN'] = lang('LOG_IN');
+    private function common_data() {
         $data['show_navbar'] = false;
-        $data['show_your_badge'] = lang('show_your_badge');
-        $data['no_camera'] = lang('no_camera');
-        $data['credentials'] = lang('credentials');
         $data['username'] = lang('username');
         $data['password'] = lang('password');
         $data['confirm'] = lang('confirm');
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        return $data;
+    }
+    
+    private function login_data() {
+        $data['page_title'] = lang('LOG_IN') . " Grace Age";
+        $data['BAGDE'] = lang('BAGDE');
+        $data['LOG_IN'] = lang('LOG_IN');
+        $data['show_your_badge'] = lang('show_your_badge');
+        $data['no_camera'] = lang('no_camera');
+        $data['credentials'] = lang('credentials');
+        return $data;
+    }
+    
+    private function register_data() {
+        $data['page_title'] = lang('create_account');
+        $data['user_type'] = lang('user_type');
+        $data['patient'] = lang('patient');
+        $data['caregiver'] = lang('caregiver');
+        $data['language'] = lang('language');
         return $data;
     }
 
@@ -45,9 +58,8 @@ class AccountController extends CI_Controller {
         }
         $this->lang->load('login', $language);
         $data['language'] = $language;
-
         $data['loggedin'] = lang('not_logged_in');
-        $data = array_merge($data, $this->load_common_parts());
+        $data = array_merge($data, $this->common_data(), $this->login_data());
         $data['page_content'] = 'Account/login.html';
         $this->parser->parse('master.php', $data);
     }
@@ -59,19 +71,15 @@ class AccountController extends CI_Controller {
         }
         $this->lang->load('login', $language);
         $data['language'] = $language;
-
         $data['loggedin'] = lang('wrong_credentials');
-        $data = array_merge($data, $this->load_common_parts());
+        $data = array_merge($data, $this->common_data(), $this->login_data());
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');
-
             $result = $this->Account_model->getUser($username);
-
             if ($result != NULL) {
                 if (password_verify($password, $result["password"])) {
                     $result["password"] = NULL;
-
                     $this->session->set_userdata($result); // session contains the colums from the datebase + "userType"
                     if ($result["userType"] == "Patient") {
                         redirect(base_url() . 'ElderlyController/index');
@@ -90,19 +98,17 @@ class AccountController extends CI_Controller {
     }
 
     public function register() {
-        $data['page_title'] = 'Register to Grace Age';
-        $data['show_navbar'] = false;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['register_state'] = 'Ready to log in';
+        $this->lang->load('login', 'english');
+        $data['register_state'] = lang('not_created');
+        $data = array_merge($data, $this->common_data(), $this->register_data());
         $data['page_content'] = 'Account/register.html';
         $this->parser->parse('master.php', $data);
     }
 
     public function registerPost() {
-        $data['page_title'] = 'Register to Grace Age';
-        $data['show_navbar'] = false;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['register_state'] = 'invalid input, please fill in all fields'; // default case for register_state
+        $this->lang->load('login', 'english');
+        $data['register_state'] = lang('not_created');
+        $data = array_merge($data, $this->common_data(), $this->register_data());
         if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
             $usertype = filter_input(INPUT_POST, 'usertype');
             $language = filter_input(INPUT_POST, 'language');
@@ -113,12 +119,12 @@ class AccountController extends CI_Controller {
             if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
                 if ($this->Account_model->addUser($usertype, $language, $username, $password)) {
-                    $data['register_state'] = 'Registration succeeds!';
+                    $data['register_state'] = lang('account_created');
                 } else {
-                    $data['register_state'] = 'This user has already been registered';
+                    $data['register_state'] = lang('user_exists');
                 }
             } else {
-                $data['register_state'] = 'The passwords are not the same!';
+                $data['register_state'] = lang('different_passwords');
             }
         }
         $data['page_content'] = 'Account/register.html';
