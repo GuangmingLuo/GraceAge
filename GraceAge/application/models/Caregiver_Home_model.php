@@ -48,6 +48,9 @@ class Caregiver_Home_model extends CI_Model {
         }
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
+        if(count($id)==0){
+            return "wrong name";
+        }
         $id2 = $id[0]->idPatient;
 
         $query = $this->db->distinct()->select('QuestionNumber')->where('Topic', $topic)->get('Question');
@@ -87,6 +90,9 @@ class Caregiver_Home_model extends CI_Model {
         }
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
+        if(count($id)==0){
+            return "wrong name";
+        }
         $id2 = $id[0]->idPatient;
 
         $query2 = $this->db->distinct()->select('QuestionNumber')->get('Question');
