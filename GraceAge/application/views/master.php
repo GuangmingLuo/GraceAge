@@ -25,5 +25,6 @@
         <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
         <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
         <script src="../../assets/js/questions.js" type="text/javascript"></script>
+        <script src="../../assets/js/chart.js" type="text/javascript"></script>
     </body>
 </html>

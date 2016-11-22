@@ -36,7 +36,6 @@ class CaregiverController extends CI_Controller {
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['urgent'] = $this->Caregiver_Home_model->get_patients();
-            //$data['content'] = "This is the home page!";
             $data['content'] = "";
             $data['page_content'] = 'Caregiver/index.html';
             $this->parser->parse('master.php', $data);
