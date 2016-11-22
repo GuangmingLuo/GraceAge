@@ -112,7 +112,7 @@ class CaregiverController extends CI_Controller {
             $data['page_title'] = 'Edit Profile';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['page_content'] = 'Account/profile.html';
+            $data['page_content'] = 'Account/caregiver_profile.html';
             $data['Person_Name'] = $this->session->Name;
             $this->parser->parse('master.php', $data);
         } else {

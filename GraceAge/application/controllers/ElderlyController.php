@@ -22,6 +22,7 @@ class ElderlyController extends CI_Controller {
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
         $this->lang->load('elderly', $this->session->Language);
+        $this->lang->load('caregiver',$this->session->Language);
         $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
 
@@ -119,5 +120,59 @@ class ElderlyController extends CI_Controller {
         $this->parser->parse('master.php', $data);
     }
 
+    function profile(){
+        if ($this->session->userType == "Patient") {
+            $data['show_navbar'] = false;
+            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+            $data['log_out'] = $this->lang->line('caregiver_log_out');            
+            $data['logout'] = $this->lang->line('caregiver_logout');
+            $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
+            $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
+            $data['conf_placeholder'] = $this->lang->line('caregiver_conf_placeholder');
+            $data['change_password'] = $this->lang->line('caregiver_change_password');
+            $data['old_password'] = $this->lang->line('caregiver_old_password');
+            $data['new_password'] = $this->lang->line('caregiver_new_password');
+            $data['conf_password'] = $this->lang->line('caregiver_conf_password');
+            $data['change_lang'] = $this->lang->line('caregiver_change_lang');
+            $data['Apply'] = $this->lang->line('caregiver_apply');
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
+            $data['page_title'] = 'Edit Profile';
+            $data['page_content'] = 'Account/elderly_profile.html';
+            $data['Person_Name'] = $this->session->Name;
+            $this->parser->parse('master.php', $data);
+        }
+    }
+    
+    function logout(){
+        session_destroy();
+        redirect(base_url() . 'AccountController/login');
+    }
+    
+    function change_language() {
+        $newlang = $this->input->post('language');
+        if (isset($newlang)) {
+            $this->session->set_userdata('Language', $newlang);
+            $this->db->query("UPDATE a16_webapps_2.Patient "
+                    . "SET Language ='" . $newlang . "' "
+                    . "WHERE idPatient = " . $this->session->idPatient . ";");
+        }
+        redirect(base_url() . 'ElderlyController/profile');
+    }
+    
+    function change_password() {
+        $verif = $this->db->query("SELECT password, Name FROM a16_webapps_2.Patient WHERE idPatient = '" . $this->session->idPatient . "';")->row();
+        $old = filter_input(INPUT_POST, 'old_password');
+        $new = $this->input->post('new_password');
+        $conf = $this->input->post('conf_password');
+        if ($conf === $new) {
+            if (password_verify($old, $verif->password)) {
+                $password = password_hash($new, PASSWORD_DEFAULT);
+                $this->db->query("UPDATE a16_webapps_2.Patient "
+                        . "SET password = '" . $password . "' "
+                        . "WHERE idPatient = " . $this->session->idPatient . ";");
+            }
+        }
+        $this->profile();
+    }
 }
 

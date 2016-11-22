@@ -1,0 +1,25 @@
+<div>
+    <h1>{Person_Name}</h1>
+    <h2>{change_password}</h2>
+    <form action="change_password" method="post">
+        {old_password}: <br>
+        <input type="password" id= "old" name="old_password" placeholder="{old_placeholder}" required> <br>
+        {new_password}: <br>
+        <input type="password" id= "new" name="new_password" placeholder="{new_placeholder}" required> <br>
+        {conf_password}: <br>
+        <input type="password" id= "conf" name="conf_password" placeholder="{conf_placeholder}" required> <br>
+        <input type="submit" id="change_password" value="{change_password}"><br>
+    </form>
+    
+    <h2>{change_lang}</h2>
+    <form action="change_language" method="post">
+        <input type = "radio" name="language" value="english"> English<br>
+        <input type = "radio" name="language" value="dutch"> Nederlands<br>
+        <input type="submit" value="{Apply}"><br>
+    </form>
+    
+    <h2>{log_out}</h2>
+    <form action="logout" method="get">
+        <input type="submit" value="{logout}"><br>
+    </form>
+</div>
