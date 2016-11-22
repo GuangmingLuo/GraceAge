@@ -1,21 +1,19 @@
-.container-fluid{
-    overflow-y: hidden; 
-    overflow-x: hidden; 
-}
-
 .navbar-collapse{
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 100px;
+    height: 10% !important;
     margin: 0px;
+    align-items: center;
+    text-align: center;
+
 }
     .navbar-collapse a, 
     .navbar-collapse a:hover, 
     .navbar-collapse a:active, 
     .navbar-collapse a:focus{
-        align-items: center;
         background-color: #F0F4C3;
+        align-items: center;
         align-content: center;
         text-align: center;
     }
@@ -24,15 +22,16 @@
     border-top: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 100px;
+    height: 10%;
     margin: 0px;
+    align-items: center;
+    text-align: center;
 }
 
     .navbar-fixed-bottom a, 
     .navbar-fixed-bottom a:hover, 
     .navbar-fixed-bottom a:active,
     .navbar-fixed-bottom a:focus{
-        text-align: center;
         background-color: #F0F4C3;
     }
 
@@ -44,7 +43,7 @@
 }
 
 .btn-group{
-    height: 100%;
+    height: 80%;
     position: absolute;
     overflow: hidden;
 }
@@ -52,7 +51,6 @@
     .btn{
         border: 0px;
         background-color: white;
-        height: 100% !important;
         color: black;
         font-size: 32px;
     }
@@ -62,7 +60,4 @@
             color: black;
             font-weight: bold;
         }
-
-.fa-list-alt, .fa-lightbulb-o, .fa-trophy{
-       font-size: 50px;     
-}
+        
