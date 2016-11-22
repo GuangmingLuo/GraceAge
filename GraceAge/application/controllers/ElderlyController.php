@@ -27,7 +27,7 @@ class ElderlyController extends CI_Controller {
 
     function index() {
         if ($this->session->userType == "Patient") { // if session exists
-            $data['show_navbar'] = true;
+            $data['show_navbar'] = false;
             $data['settings_button'] = $this->lang->line('elderly_settings_button');
             $data['stop_button'] = $this->lang->line('elderly_stop_button');
             $data['questionnaire_button'] = $this->lang->line('elderly_questionnaire_button');
@@ -91,6 +91,17 @@ class ElderlyController extends CI_Controller {
         $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
         $data['content'] = "This is the Tips page!";
         $data['page_content'] = 'Elderly/tips.html';
+        $this->parser->parse('master.php', $data);
+    }
+    
+    function score() {
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        $data['page_title'] = 'Score';
+        $data['header1'] = 'Your score';
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
+        $data['content'] = "This is the Score page!";
+        $data['page_content'] = 'Elderly/score.html';
         $this->parser->parse('master.php', $data);
     }
     

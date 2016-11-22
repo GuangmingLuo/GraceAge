@@ -1,29 +1,45 @@
-<div class = "row navbar-default">
-    <div class = "col-lg-offset-4 col-lg-4">
-        <button type="button" class="">{settings_button}</button>
-    </div>
-</div>
+<head>
+    <link href="../../../assets/css/elderlyHome.css" rel="stylesheet" type="text/css"/>
+</head>
 
-<div class = "row">
-           
-    <div class = "col-sm-4 col-md-4 col-lg-4">
-       <button type="button" class="fa fa-list-alt"> {questionnaire_button}</button>
-    </div>
-    
-    <div class = "col-sm-4 col-md-4 col-lg-4">
-       <button type="button" class="fa fa-lightbulb-o"> {tips_button}</button>
-    </div>
-    
-    <div class = "col-sm-4 col-md-4 col-lg-4">
-       <button type="button" class="fa fa-trophy"> {score_button}</button>
+<div class ="container-fluid" >
+    <div class = "row">
+        <div class="navbar navbar-collapse">
+            <div class = "col-lg-offset-4 col-lg-4">
+                <button type="button" class="fa fa-cog"> </br>{settings_button}</button>
+            </div>
+        </div>
     </div>
 
-</div>
+    <div class = "row">
+        
+        <div class="btn-group btn-group-justified">
+            <a href="questionnaire" class="fa fa-list-alt btn btn-primary"></br>{questionnaire_button}</a>
+            <a href="tips" class="fa fa-lightbulb-o btn btn-primary"></br>{tips_button}</a>
+            <a href="score" class="fa fa-trophy btn btn-primary"></br>{score_button}</a>
+        </div>
 
-<div class ="row navbar-fixed-bottom">
-    <div class = "col-md-offset-4 col-md-4" >
-        <a href="../AccountController/logout" class="btn btn-default" >{stop_button}</a>
-    </div> 
+        <!--
+        <div class = "col-sm-4">
+            <button type="button" class="fa fa-list-alt"> </br>{questionnaire_button}</button>
+        </div>
+
+        <div id ="middleframe" class = "col-sm-4">
+            <button type="button" class="fa fa-lightbulb-o"> </br>{tips_button}</button>
+        </div>
+
+        <div class = "col-sm-4">
+            <button type="button" class="fa fa-trophy"> </br>{score_button}</button>
+        </div>
+        -->
+
+    </div>
+
+    <div class ="row navbar-fixed-bottom">
+        <div class = "col-md-offset-4 col-md-4" >
+            <a href="../AccountController/logout" class="fa fa-power-off btn btn-default" > {stop_button}</a>
+        </div> 
+    </div>
 </div>
 
 
