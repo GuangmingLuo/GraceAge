@@ -27,11 +27,6 @@
     text-align: center;
 }
 
-.navbar{
-    background-color: #F0F4C3;
-    height: 50px;
-}
-
 /* make 3 buttons visible with a line */
 #tipsButtonBorder{
     border-width: 0px;
@@ -46,7 +41,7 @@
 }
 
 .btn-group{
-    height: 80% !important;
+    height: 85% !important;
     position: absolute;
     overflow: hidden;
 }
@@ -70,11 +65,17 @@
         background-color: #CDDC39;
         color: black;
     }
+  
+/* text in the middle of the icon */    
+#stopbuttonwrapper{
+    display: inline-block;
+    vertical-align: 50%;
+}
     
-    #stopbuttonwrapper{
-        display: inline-block;
-    }
-    
-    #textstopbutton{
-        vertical-align: 50%;
-    }
+#textstopbutton{
+    vertical-align: 50%;
+}
+
+.fontfamily {
+    font-family: 'Open Sans';       
+}
