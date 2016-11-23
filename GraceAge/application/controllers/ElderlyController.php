@@ -109,12 +109,12 @@ class ElderlyController extends CI_Controller {
     function congratulations() {
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['page_title'] = 'Tips';
-        $data['header1'] = 'Tip of the day';
+        $data['page_title'] = 'Congratulations';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
         $data['content'] = "congratulations!!!";
         $data['page_content'] = 'Elderly/congratulations.html';
-        
+        $data['congrats_message']  = $this->lang->line('congrats_message');
+        $data['your_score_is'] = $this->lang->line('your_score_is');
         $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
         //$this->Question_model->updatePatientScore($this->session->idPatient, 1);
         $this->parser->parse('master.php', $data);
