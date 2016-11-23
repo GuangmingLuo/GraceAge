@@ -6,37 +6,40 @@
     <div class = "row">
         <div class="navbar navbar-collapse">
             <div class = "col-lg-offset-4 col-lg-4">
-                <a href="profile" class="fa fa-cog btn btn-default" > </br>{settings_button}</a>
+                <button class="btn btn-primary">
+                    <a href="profile"></a>
+                    <i class="fa fa-cog fa-3x"></i></br>{settings_button}
+                </button>
             </div>
         </div>
     </div>
 
     <div class = "row">      
         <div class="btn-group btn-group-justified">
-            <a href="questionnaire" class="fa fa-list-alt btn btn-primary">
-                </br><p>{questionnaire_button}</p></a>
-            <a href="tips" id ="tipsButtonBorder" class="fa fa-lightbulb-o btn btn-primary">
-                </br><p>{tips_button}</p></a>
-            <a href="score" class="fa fa-trophy btn btn-primary">
-                </br><p>{score_button}</p></a>
+            <a href="questionnaire" class="btn btn-primary">
+                <i class="fa fa-list-alt fa-5x" ></i>
+                <p>{questionnaire_button}</p>
+            </a>
+            <a href="tips" id ="tipsButtonBorder" class="btn btn-primary">
+                <i class="fa fa-lightbulb-o fa-5x"></i>
+                <p>{tips_button}</p>
+            </a>
+            <a href="score" class="btn btn-primary">
+                <i class="fa fa-trophy fa-5x"></i>
+                <p>{score_button}</p>
+            </a>
         </div>
     </div>
 
     <div class ="row">
-        <div class ="navbar-fixed-bottom">
+        <div class ="navbar navbar-fixed-bottom">
             <div class = "col-md-offset-4 col-md-4" >
-                <a href="../AccountController/logout" class="fa fa-power-off btn btn-default" > {stop_button}</a>
+                <button class="btn btn-primary">
+                    <a href="../AccountController/logout"></a>
+                    <i class="fa fa-power-off fa-3x"></i> 
+                    <span id="textstopbutton">{stop_button} </span>
+                </button>
             </div> 
         </div>
     </div>
 </div>
-
-
-
-
-
-<!--
-<div class="container">
-    <h1>{content}</h1>
-</div>
--->

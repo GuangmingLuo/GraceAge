@@ -6,35 +6,33 @@
     margin: 0px;
     align-items: center;
     text-align: center;
-
 }
-    .navbar-collapse a, 
-    .navbar-collapse a:hover, 
-    .navbar-collapse a:active, 
-    .navbar-collapse a:focus{
-        background-color: #F0F4C3;
-        align-items: center;
-        align-content: center;
-        text-align: center;
-    }
+
+.navbar-collapse .btn-primary,
+.navbar-fixed-bottom .btn-primary{
+    background-color: #F0F4C3;
+    border-width: 0px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
 
 .navbar-fixed-bottom{
     border-top: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 10%;
+    height: 10% !important;
     margin: 0px;
     align-items: center;
     text-align: center;
 }
 
-    .navbar-fixed-bottom a, 
-    .navbar-fixed-bottom a:hover, 
-    .navbar-fixed-bottom a:active,
-    .navbar-fixed-bottom a:focus{
-        background-color: #F0F4C3;
-    }
+.navbar{
+    background-color: #F0F4C3;
+    height: 50px;
+}
 
+/* make 3 buttons visible with a line */
 #tipsButtonBorder{
     border-width: 0px;
     border-left: 4px solid;
@@ -42,22 +40,41 @@
     border-color: #CDDC39;
 }
 
+.btn-primary{
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+
 .btn-group{
-    height: 80%;
+    height: 80% !important;
     position: absolute;
     overflow: hidden;
 }
 
-    .btn{
-        border: 0px;
-        background-color: white;
-        color: black;
-        font-size: 32px;
+/* style all the buttons in the middle*/
+.btn-group>.btn{
+    border: 0px;
+    background-color: white;
+    color: black;
+    font-size: 28px;
+}
+    
+    /* style icons in the button*/
+    .btn>.fa{
+        color:#009688;
     }
 
-        .btn:hover, .btn:focus, .btn:active{
-            background-color: white;
-            color: black;
-            font-weight: bold;
-        }
-        
+    .btn-group>.btn:hover, 
+    .btn-group>.btn:focus, 
+    .btn-group>.btn:active{
+        background-color: #CDDC39;
+        color: black;
+    }
+    
+    .btn-primary{
+        display: inline-block;
+    }
+    
+    #textstopbutton{
+        vertical-align: 50%;
+    }
