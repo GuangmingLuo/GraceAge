@@ -1,11 +1,17 @@
+.container-fluid {
+    padding: 0px !important;
+}
+
 .fontfamily {
     font-family: 'Open Sans'
 }
+
 #entireNavbar{
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
     height: 10%;
+    width: 100%;
     margin: 0px;
 }
 

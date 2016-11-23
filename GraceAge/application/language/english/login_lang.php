@@ -1,7 +1,7 @@
 <?php
 // ENGLISH //
 defined('BASEPATH') OR exit('No direct script access allowed');
-$lang['BAGDE'] = 'BAGDE';
+$lang['BAGDE'] = 'BADGE';
 $lang['LOG_IN'] = "LOG IN";
 $lang['show_your_badge'] = "Show your Badge";
 $lang['no_camera'] = "No camera? Use a photo of your badge instead.";
