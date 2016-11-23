@@ -3,7 +3,6 @@
     width: 100%
 }
 
-
 .fontfamily {
     font-family: 'Open Sans';       
 }
@@ -26,6 +25,7 @@ h1 {
     opacity: .5;
     width: 100%;
     height: 100%;
+    z-index: -1;
 }
 
 .box{  /*border around info*/
@@ -100,4 +100,8 @@ fieldset{   /* no framework around decoder*/
 
 .tabContent button{    /*submit button to the right */
     float: right;
+}
+
+#languageTab{
+    text-align: right;
 }
