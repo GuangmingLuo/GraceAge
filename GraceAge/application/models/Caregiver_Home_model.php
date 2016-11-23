@@ -39,8 +39,8 @@ class Caregiver_Home_model extends CI_Model {
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
                 ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
-                ->where('Language', 'dutch')
-                ->get();
+                ->where('Language', 'dutch')    //TODO Get the language from the logged in caregiver.
+                ->get();                        //TODO Only get the answers from the most recent questionnaire.
         $this->all_answers = $query->result_array(); //Store the data in an array;
         //print_r($this->all_answers);
         //echo count($this->all_answers);
@@ -66,7 +66,7 @@ class Caregiver_Home_model extends CI_Model {
             $scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
         }
         //echo json_encode($scores);
-        return json_encode($scores);
+        return json_encode($scores);    //TODO: Don't send topic as key but as another value.
     }
             
     function print_score($username) {

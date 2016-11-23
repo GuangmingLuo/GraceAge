@@ -39,7 +39,7 @@ class CaregiverController extends CI_Controller {
             $data['content'] = "";
             $data['page_content'] = 'Caregiver/index.html';
             $this->parser->parse('master.php', $data);
-            echo $this->Caregiver_Home_model->get_topic_with_score();
+            //echo $this->Caregiver_Home_model->get_topic_with_score();
         } else {
             echo "You are not allowed to access this page!!!";
         }

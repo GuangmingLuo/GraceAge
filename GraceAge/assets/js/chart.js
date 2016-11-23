@@ -8,38 +8,40 @@ google.charts.load('current', {packages: ['bar']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries(){
+
     $.getJSON("getArray", function(data){
         var data = google.visualization.arrayToDataTable([
-        ['Onderwerp', 'Laatste nieuwe scores per onderwerp'],
-        ['Privacy', data.Privacy],
-        ['Eten', 65.9],
-        ['Veiligheid', 61.5],
-        ['Comfort', 40],
-        ['Autonomie', 29],
-        ['Respect', 85],
-        ['Staf Respons', 76.9],
-        ['Staf Bonding', 20.1],
-        ['Activiteiten', 56],
-        ['Relaties', 79.6],
-        ['Andere', 56]
-    ]);
-    var options = {
-        chart:{
-            title: 'Algemene score'
-        },
-        bars: 'horizontal',
-        chartArea: {width: '65%'}, //This is the width of the bar chart inside its div
-        hAxis: {
-            title: 'Score (%)',
-            minValue: 0
-        },
-        vAxis: {
-            title: 'Topic'
-        }
-    };
+            ['Onderwerp', 'Laatste nieuwe scores per onderwerp'],
+            ['Privacy', data.Privacy],
+            ['Eten', data.Food],
+            ['Veiligheid', data.Safety],
+            ['Comfort', data.Comfort],
+            ['Autonomie', data.Autonomy],
+            ['Respect', data.Respect],
+            ['Staf Respons', data.StaffResponse],
+            ['Staf Bonding', data.StaffBonding],
+            ['Activiteiten', data.Activities],
+            ['Relaties', data.Relationships],
+            ['Andere', data.Other]
+        ]);
+        var options = {
+            chart:{
+                title: 'Algemene score'
+            },
+            bars: 'horizontal',
+            chartArea: {width: '65%'}, //This is the width of the bar chart inside its div
+            colors: ['#7a993c'],
+            hAxis: {
+                title: 'Score (%)',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Topic'
+            }
+        };
     
-    var chart = new google.charts.Bar(document.getElementById('chart_div'));
-    chart.draw(data, options);
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, options);
     });
     
 }
