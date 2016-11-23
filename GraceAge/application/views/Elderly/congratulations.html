@@ -1,12 +1,21 @@
 
- <?php
-     
-    if ($this->session->userType != "Patient"){ //check if logged in as a patient
-    die("Please login");
+<?php
+
+if ($this->session->userType != "Patient"){ //check if logged in as a patient
+die("Please login");
 }
 
 ?>
+<head>
+    <link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
+</head>
+
 <div class="container">
     <h1>{content}</h1>
     <h2>your score is {score}</h2>
 </div>
+
+<div class="col-sm-offset-6 col-sm-5">
+    <a  class="btn btn-arrow-right btn-block" href="questionnaire">{name}</a>
+</div>
+
