@@ -5,14 +5,14 @@
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 100px;
+    height: 10%;
+    margin: 0px;
 }
 
 #Tips_button,
 #Questionnaire_button{
     display: none;
 }
-
 
 .navbar-nav > li > a {
    line-height: 70px;

@@ -1,24 +1,31 @@
 
 <?php
-
 if ($this->session->userType != "Patient"){ //check if logged in as a patient
 die("Please login");
 }
-
 ?>
-<div class="background"></div>
 <head>
     <link href="../../assets/css/Congratulations.css" rel="stylesheet" type="text/css"/>
 </head>
 
+<div class="container-fluid">
+    <div class="background"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="content">
+                <h1><b>{congrats_message}</b></h1> </br>
+                <h2>{your_score_is} {score} <i class="fa fa-star fa-1x"></i></h2> 
+                <h2>{these_can_be_exchanged}</h2>
+            </div>
+        </div>
+    </div>
 
-<div class="container">
-    
-    <h1>{congrats_message}</h1> 
-    <h2>{your_score_is} {score} <i class="fa fa-star fa-2x"></i></h2> 
-    <h2>{these_can_be_exchanged}</h2>
-</div>
+    <div class="row">
+        <div class="col-sm-offset-6 col-sm-5">
+            <div id="buttonnext">
+            <a  class="btn btn-arrow-right btn-block" href="questionnaire">{button_text}</a>
+            </div>
+        </div>
+    </div>
 
-<div class="col-sm-offset-6 col-sm-5">
-    <a  class="btn btn-arrow-right btn-block" href="questionnaire">{button_text}</a>
 </div>
