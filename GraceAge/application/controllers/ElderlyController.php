@@ -107,14 +107,17 @@ class ElderlyController extends CI_Controller {
     }
     
     function congratulations() {
+        $this->lang->load('congratulations', $this->session->Language);
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
         $data['page_title'] = 'Congratulations';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
         $data['content'] = "congratulations!!!";
         $data['page_content'] = 'Elderly/congratulations.html';
-        $data['congrats_message']  = $this->lang->line('congrats_message');
-        $data['your_score_is'] = $this->lang->line('your_score_is');
+        $data['congrats_message']  = $this->lang->line('congrats_congrats_message');
+        $data['your_score_is'] = $this->lang->line('congrats_your_score_is');
+        $data['these_can_be_exchanged'] = $this->lang->line('congrats_these_can_be_exchanged');
+        $data['button_text'] = $this->lang->line('congrats_button_text');
         $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
         //$this->Question_model->updatePatientScore($this->session->idPatient, 1);
         $this->parser->parse('master.php', $data);
