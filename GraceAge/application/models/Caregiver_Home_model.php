@@ -65,7 +65,8 @@ class Caregiver_Home_model extends CI_Model {
         for($j = 0; $j < count($topics); $j++){
             $scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
         }
-        echo json_encode($scores);
+        //echo json_encode($scores);
+        return json_encode($scores);
     }
             
     function print_score($username) {

@@ -34,12 +34,12 @@ class CaregiverController extends CI_Controller {
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $this->Caregiver_Home_model->get_topic_with_score();
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['urgent'] = $this->Caregiver_Home_model->get_patients();
             $data['content'] = "";
             $data['page_content'] = 'Caregiver/index.html';
             $this->parser->parse('master.php', $data);
+            echo $this->Caregiver_Home_model->get_topic_with_score();
         } else {
             echo "You are not allowed to access this page!!!";
         }
@@ -76,6 +76,10 @@ class CaregiverController extends CI_Controller {
         } else {
             echo "You are not allowed to access this page!!!";
         }
+    }
+    
+    function getArray(){
+        $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_topic_with_score());
     }
 
     function tips() {

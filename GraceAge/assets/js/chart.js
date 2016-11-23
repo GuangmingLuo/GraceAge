@@ -8,9 +8,10 @@ google.charts.load('current', {packages: ['bar']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries(){
-    var data = google.visualization.arrayToDataTable([
+    $.getJSON("getArray", function(data){
+        var data = google.visualization.arrayToDataTable([
         ['Onderwerp', 'Laatste nieuwe scores per onderwerp'],
-        ['Privacy', 50.7],
+        ['Privacy', data.Privacy],
         ['Eten', 65.9],
         ['Veiligheid', 61.5],
         ['Comfort', 40],
@@ -22,7 +23,6 @@ function drawMultSeries(){
         ['Relaties', 79.6],
         ['Andere', 56]
     ]);
-    
     var options = {
         chart:{
             title: 'Algemene score'
@@ -40,5 +40,6 @@ function drawMultSeries(){
     
     var chart = new google.charts.Bar(document.getElementById('chart_div'));
     chart.draw(data, options);
+    });
     
 }
