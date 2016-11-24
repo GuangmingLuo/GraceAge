@@ -11,7 +11,6 @@
         <title>{page_title}</title>
     </head>
     <body>
-
         <?php
         if (!$show_navbar == false) {
             include($navbar_content);
@@ -19,12 +18,10 @@
         ?>
 
         <?php include($page_content); ?>
-
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../../assets/js/bootstrap.min.js"></script>
         <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
         <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
         <script src="../../assets/js/questions.js" type="text/javascript"></script>
-        <script src="../../assets/js/chart.js" type="text/javascript"></script>
     </body>
 </html>
