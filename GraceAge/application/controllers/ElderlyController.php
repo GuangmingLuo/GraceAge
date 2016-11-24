@@ -125,8 +125,9 @@ class ElderlyController extends CI_Controller {
 
     function profile(){
         if ($this->session->userType == "Patient") {
-            $data['show_navbar'] = false;
+            $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+            $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
             $data['log_out'] = $this->lang->line('caregiver_log_out');            
             $data['logout'] = $this->lang->line('caregiver_logout');
             $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
