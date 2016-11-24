@@ -161,11 +161,11 @@ class CaregiverController extends CI_Controller {
         $this->profile();
     }
     
-    function debug(){
-        $array = $this->Caregiver_Home_model->calculate_topic_testplsignore(9);
+    function debug() {
+        $array = $this->Caregiver_Home_model->calculate_topic_testplsignore("axel");
         foreach ($array as $k => $v) {
-        echo "\$a[$k] => $v.\n";
-}
+            echo "\$a[$k] => $v.\n";
+        }
     }
 
 }

@@ -119,22 +119,21 @@ class Caregiver_Home_model extends CI_Model {
         $nombre_format_francais = number_format($som, 2, ',', ' ');
         return $nombre_format_francais;
     }
-    
-    function calculate_topic_testplsignore($userid) {
-        if ($userid == NULL) {
-            return 0;
+    //calculate topic scores and average score for ginven userid
+    function calculate_topic_testplsignore($username) {
+        $query = $this->db->query("SELECT idPatient FROM Patient where Name=?", $username);
+        $result = $query->row();
+        if (!isset($result)) {
+            return "wrong name";
         }
-
+        $userid = $result->idPatient;
         $query = $this->db->query('SELECT DISTINCT QuestionNUmber FROM a16_webapps_2.Question;');
-        $numberOfQuestions = count($query->result());
-        // slect the latest 52 question number, topic, answer etc from user with id $userid
+        $numberOfQuestions = count($query->result()); // slect the latest 52 question number, topic, answer etc from user with id $userid
         $sql = "SELECT a.Question_Number, q.Topic, a.Answer, a.Questionaire_Number, a.DateTime FROM a16_webapps_2.Patient_Answered_Question AS a, a16_webapps_2.Question AS q WHERE a.Patient_idPatient = ? AND q.idQuestion = a.Question_Number ORDER BY a.DateTime DESC LIMIT ?;";
         $query = $this->db->query($sql, array($userid, $numberOfQuestions));
         $result = $query->result();
-
         $answerScore = array(); // keeps the score per topic
         $questionCount = array(); // keeps the amount of questions per topic
-
         $totalScore = 0; // total score of all answers
         foreach ($result as $row) {// go through the answers
             if (isset($answerScore[$row->Topic]))
@@ -148,16 +147,13 @@ class Caregiver_Home_model extends CI_Model {
                 $questionCount[$row->Topic] = 1;
             $totalScore += $row->Answer;
         }
-
-
         foreach ($answerScore as $k => $v) { // every score * 25 / amount of topic questions
-
             $temp = $v * 25 / $questionCount[$k];
             $answerScore[$k] = $nombre_format_francais = number_format($temp, 2, ',', ' ');
         }
-        $avg = $totalScore *25 / $numberOfQuestions;
+        $avg = $totalScore * 25 / $numberOfQuestions;
         $answerScore["Average"] = $nombre_format_francais = number_format($avg, 2, ',', ' ');
-        
+
         return $answerScore;
     }
 
