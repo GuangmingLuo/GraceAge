@@ -85,6 +85,7 @@ class Question_model extends CI_Model{
             if ($this->session->question_id > 52){
                 $this->session->set_userdata('question_id', 1);
                 $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
+                //delete_old_data($this->session->idPatient, $this->session->n_questionaire);
             }
         }
         $this->db->reconnect();
@@ -97,6 +98,12 @@ class Question_model extends CI_Model{
         
         $this->session->unset_userdata('selected_answer');
         return json_encode($query->result());
+    }
+    
+    function delete_old_data($user_id, $current_q_number){
+        $this->db->query("DELETE FROM a16_webapps_2.Patient_Answered_Question WHERE "
+                . "Patient_idPatient = " .$user_id ." AND "
+                . "Questionaire_Number < " .$current_q_number - 2 ." ;");
     }
     
     function get_initial_state(){

@@ -14,6 +14,7 @@ $('.answer_button').click(function () {
 });
 
 function previous() {
+    $('.answer_button').css('border-color', "#CDDC39");
     $.getJSON("previous", function (data) {
         $('#question_placeholder').text(data[0].Question);
         $('#topic_placeholder').text(data[0].Topic);
@@ -21,6 +22,7 @@ function previous() {
 }
 
 function next() {
+    $('.answer_button').css('border-color', "#CDDC39");
     $.getJSON("next", function (data) {
         $('#question_placeholder').text(data[0].Question);
         $('#topic_placeholder').text(data[0].Topic);
