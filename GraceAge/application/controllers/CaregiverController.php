@@ -42,6 +42,7 @@ class CaregiverController extends CI_Controller {
             //echo $this->Caregiver_Home_model->get_topic_with_score();
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
 
@@ -75,6 +76,7 @@ class CaregiverController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
     
@@ -95,6 +97,7 @@ class CaregiverController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
 
@@ -122,6 +125,7 @@ class CaregiverController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
     

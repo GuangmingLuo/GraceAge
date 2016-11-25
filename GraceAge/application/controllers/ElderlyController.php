@@ -43,6 +43,7 @@ class ElderlyController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
 
@@ -64,6 +65,7 @@ class ElderlyController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
 
@@ -144,6 +146,9 @@ class ElderlyController extends CI_Controller {
             $data['page_content'] = 'Account/elderly_profile.html';
             $data['Person_Name'] = $this->session->Name;
             $this->parser->parse('master.php', $data);
+        } else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
         }
     }
     
