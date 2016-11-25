@@ -3,12 +3,12 @@
     width: 100%
 }
 
-.fontfamily {
+.fonttype {
     font-family: 'Open Sans';       
 }
 
-h1 {
-    text-align: center;
+fieldset{
+    padding: 0px;
 }
 
 .background{
@@ -29,11 +29,15 @@ h1 {
 }
 
 .box{  /*border around info*/
-    border-style: solid;
+    border: 4px solid;
     border-color: #CDDC39;
-    border-radius: 20px;
+    border-radius: 4px !important;
     background-color: #F0F4C3;
     margin-top: 20%;
+}
+
+.tab-content{
+    margin: 10%;
 }
 
 fieldset{   /* no framework around decoder*/
@@ -46,6 +50,21 @@ fieldset{   /* no framework around decoder*/
     margin-right: auto;
     width:350px;
     height:350px;
+}
+
+#loginForm .btn{
+    margin: 0px;
+    width: 100%;
+    background-color: #CDDC39;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;   
+}
+
+.form-group{
+    margin: 0px;
+    padding: 0px;
+    border: none;
 }
 
 .tab {  /* tab that isn't active*/ 
@@ -74,34 +93,29 @@ fieldset{   /* no framework around decoder*/
         display:block;
         padding:8px 16px;
         background-color: #CDDC39;
-        border-top-left-radius: 17px;
-        border-top-right-radius: 17px;
         width: 100%;
-        border-style: solid;
-        border-width: 0.5px;
         border-color: #CDDC39;
     }
 
         .tabs li a:hover{
-            font-weight: bold;
+            text-decoration: none;
             color: black;
             background-color: #CDDC39;
         }
 
-        
         .tabs>li.active>a{
             background-color: #F0F4C3;
             border-bottom: 0px;
+            font-weight: bold;
         }
-
-.tabContent{
-    margin: 8px;
-}
-
-.tabContent button{    /*submit button to the right */
-    float: right;
-}
 
 #languageTab{
     text-align: right;
 }
+
+#safariQRfunctionaity input{
+    border: 1px solid;
+    border-color: lightgray;
+    background-color: white;
+}
+
