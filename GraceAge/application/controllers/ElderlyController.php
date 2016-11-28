@@ -98,16 +98,22 @@ class ElderlyController extends CI_Controller {
     }
     
     function score() {
-        $data['show_navbar'] = true;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['page_title'] = 'Score';
-        $data['header1'] = 'Your score';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
-        $data['content'] = "This is the Score page!";
-        $data['page_content'] = 'Elderly/score.html';
-        $this->parser->parse('master.php', $data);
+        if ($this->session->userType == "Patient") {
+            $data['show_navbar'] = true;
+            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+            $data['score_text'] = lang('score_text');
+            $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+            $data['page_title'] = 'Score';
+            $data['header1'] = 'Your score';
+            $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
+            $data['page_content'] = 'Elderly/score.html';
+            $this->parser->parse('master.php', $data);
+        } else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
+        }
     }
-    
+
     function congratulations() {
         $this->lang->load('congratulations', $this->session->Language);
         $data['show_navbar'] = true;

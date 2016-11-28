@@ -14,3 +14,4 @@ $lang['caregiver_new_placeholder'] = 'New password';
 $lang['caregiver_old_placeholder'] = 'Old password';
 $lang['caregiver_conf_placeholder'] = 'New password';
 $lang['caregiver_menu_profile'] = 'Profile';
+$lang['score_text'] = 'Your score is';
