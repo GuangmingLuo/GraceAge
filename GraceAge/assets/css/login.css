@@ -1,6 +1,7 @@
 .container-fluid{
     align-content: center;
-    width: 100%
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .fonttype {
@@ -52,13 +53,15 @@ fieldset{   /* no framework around decoder*/
     height:350px;
 }
 
-#loginForm .btn{
+#loginForm .btn,
+#registerForm .btn{
     margin: 0px;
     width: 100%;
     background-color: #CDDC39;
     border: none;
     text-transform: uppercase;
-    font-weight: bold;   
+    font-weight: bold; 
+    padding: 3%;
 }
 
 .form-group{
@@ -118,4 +121,19 @@ fieldset{   /* no framework around decoder*/
     border-color: lightgray;
     background-color: white;
 }
+
+/*the register page*/
+.form-group{
+    padding-bottom: 2%;
+}
+
+.form-control option{
+    background-color: red;
+}
+
+h1{
+    text-align: center;
+}
+
+
 
