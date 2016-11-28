@@ -21,6 +21,7 @@ class ElderlyController extends CI_Controller {
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
+        $this->load->model('Tip_model');
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
         $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
@@ -87,14 +88,31 @@ class ElderlyController extends CI_Controller {
     /*     * **********************End of Questionnaire functions*************************** */
 
     function tips() {
-        $data['show_navbar'] = true;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        $data['page_title'] = 'Tips';
-        $data['header1'] = 'Tip of the day';
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
-        $data['content'] = "This is the Tips page!";
-        $data['page_content'] = 'Elderly/tips.html';
-        $this->parser->parse('master.php', $data);
+        if ($this->session->userType == "Patient") { // if session exists
+            $data['show_navbar'] = true;
+            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+            $data['page_title'] = $this->lang->line('tips');;
+            $data['header'] = $this->lang->line('choose_as_goal');
+            $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
+            $data['navigationbuttons'] = $this->Tip_model->get_navigationbuttons();
+            $data['tip_1'] = $this->Tip_model->get_tip('1');
+            $data['tip_2'] = $this->Tip_model->get_tip('3');
+            $data['tip_3'] = $this->Tip_model->get_tip('6');
+            $data['tip_4'] = $this->Tip_model->get_tip('9');
+            $data['page_content'] = 'Elderly/tips.html';
+            $this->parser->parse('master.php', $data);
+        }else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
+        }
+    }
+    
+    function back() {
+        redirect(base_url() . 'ElderlyController/questionnaire');
+    }
+
+    function forward() {
+        redirect(base_url() . 'ElderlyController/questionnaire');
     }
     
     function score() {
