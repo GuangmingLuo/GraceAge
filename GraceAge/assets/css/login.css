@@ -94,7 +94,7 @@ fieldset{   /* no framework around decoder*/
 
     .tabs li a{
         display:block;
-        padding:8px 16px;
+        padding: 8px 16px;
         background-color: #CDDC39;
         width: 100%;
         border-color: #CDDC39;
@@ -131,7 +131,18 @@ fieldset{   /* no framework around decoder*/
     background-color: red;
 }
 
-h1{
+#registerTitle{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+    padding: 8px;
+    background-color: #CDDC39;
+    width: 100%;  
+    
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
     text-align: center;
 }
 
