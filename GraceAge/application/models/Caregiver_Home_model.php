@@ -78,6 +78,34 @@ class Caregiver_Home_model extends CI_Model {
         //echo json_encode($scores);
         return json_encode($scores);    //TODO: Don't send topic as key but as another value.
     }
+    function get_topics_with_lowest_scores($number){
+        $this->get_answer_array();
+        $topics = $this->get_topics();
+        $n = count($topics);
+        $scores;        
+        for($i = 0,$j = 0; $j < $n; $j++,$i++){
+            $scores[$i]['Topic'] = $topics[$j]['Topic']; //echo $scores[$i]['Topic'];
+            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']); //echo round($scores[$i]['Score'],2);
+        }
+        for($i = 0;$i < $n;$i++) {
+            for($j = 1;$j < ($n - $i);$j++) {
+                if ($scores[$j - 1]['Score'] > $scores[$j]['Score']) {
+                    //swap the elements!
+                    $temp['Score'] = $scores[$j - 1]['Score'];
+                    $temp['Topic'] = $scores[$j - 1]['Topic'];
+                    $scores[$j-1]['Score'] = $scores[$j]['Score'];
+                    $scores[$j-1]['Topic'] = $scores[$j]['Topic'];
+                    $scores[$j]['Score'] = $temp['Score'];
+                    $scores[$j]['Topic'] = $temp['Topic'];
+                }
+            }
+        }
+        $topics;
+        for($i = 0;$i < $number;$i++) {
+            $topics[$i] = $scores[$i]['Topic']; //echo $topics[$i];
+        }
+        return $topics;    
+    }
             
     function print_score($username) {
         /* $query = $this->db->query("SELECT idPatient FROM Patient where Name= '?' ", $username); */

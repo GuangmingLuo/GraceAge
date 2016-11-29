@@ -21,12 +21,13 @@ class Tip_model extends CI_Model{
     }    
     
     function get_tip($i) {
-        $query = $this->db->select($this->session->Language)->where('idtips', $i)->get('tips');
+        $random = rand(1, 2);
+        $query = $this->db->select($this->session->Language)->where('topic', $i)->get('tips');
         if($this->session->Language === 'english'){
-            return $query->row()->english;
+            return $query->row($random)->english;
         }
         if($this->session->Language === 'dutch'){
-            return $query->row()->dutch;
+            return $query->row($random)->dutch;
         }
         
         

@@ -22,6 +22,7 @@ class ElderlyController extends CI_Controller {
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
         $this->load->model('Tip_model');
+        $this->load->model('Caregiver_Home_model'); // In order to call the function: get_topics_with_lowest_scores()
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
         $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
@@ -98,10 +99,11 @@ class ElderlyController extends CI_Controller {
             $data['header'] = $this->lang->line('overview_of_tips');
             $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
             $data['navigationbuttons'] = $this->Tip_model->get_navigationbuttons();
-            $data['tip_1'] = $this->Tip_model->get_tip('1');
-            $data['tip_2'] = $this->Tip_model->get_tip('3');
-            $data['tip_3'] = $this->Tip_model->get_tip('6');
-            $data['tip_4'] = $this->Tip_model->get_tip('9');
+            $topics = $this->Caregiver_Home_model->get_topics_with_lowest_scores('4');            
+            $data['tip_1'] = $this->Tip_model->get_tip($topics[0]);
+            $data['tip_2'] = $this->Tip_model->get_tip($topics[1]);
+            $data['tip_3'] = $this->Tip_model->get_tip($topics[2]);
+            $data['tip_4'] = $this->Tip_model->get_tip($topics[3]);
             $data['page_content'] = 'Elderly/tips.html';
             $this->parser->parse('master.php', $data);
         }else {
