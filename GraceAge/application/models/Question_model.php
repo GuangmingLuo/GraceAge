@@ -65,12 +65,13 @@ class Question_model extends CI_Model{
         $this->db->reconnect();
         do{
             $array = array('QuestionNumber' => $this->session->question_id, 'Language' => $this->session->Language);
-            $query = $this->db->select('Topic, Question')
+            $query = $this->db->select('Topic, Question, QuestionNumber')
                     ->where($array)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
 
         $this->session->unset_userdata('selected_answer');
+        
         return json_encode($query->result());
     }
     
@@ -92,7 +93,7 @@ class Question_model extends CI_Model{
         $this->db->reconnect();
         do{
             $array = array('QuestionNumber' => $this->session->question_id, 'Language' => $this->session->Language);
-            $query = $this->db->select('Topic, Question')
+            $query = $this->db->select('Topic, Question, QuestionNumber')
                     ->where($array)
                     ->get('a16_webapps_2.Question');
         } while($query->num_rows() < 1);
@@ -105,6 +106,11 @@ class Question_model extends CI_Model{
         $this->db->query("DELETE FROM a16_webapps_2.Patient_Answered_Question WHERE "
                 . "Patient_idPatient = " .$user_id ." AND "
                 . "Questionaire_Number < " .$current_q_number - 2 ." ;");
+    }
+    
+    function get_progress()
+    {
+        return $this->session->question_id;
     }
     
     function get_initial_state(){
@@ -127,6 +133,15 @@ class Question_model extends CI_Model{
             $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
         }
         return;
+    }
+    function initial_progressbar_count($questionNumber)
+    {
+        //return $questionNumber
+    }
+    
+    function initial_progressbar_width($questionNumber)
+    {
+        return ($questionNumber/52)*100;
     }
     
     function undo_answer($n_questionaire, $p_id, $q_id){
@@ -151,6 +166,8 @@ class Question_model extends CI_Model{
         $this->updatePatientScore($p_id, 1); // gain a point for answering a question
         return;
     }
+    
+    
     
     function updatePatientScore($pid, $increment, $add = true) { // pi = user id, increment = number with witch to increment current score, can be negative
         if ($add) {

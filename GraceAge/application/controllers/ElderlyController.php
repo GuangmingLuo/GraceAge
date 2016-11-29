@@ -54,6 +54,9 @@ class ElderlyController extends CI_Controller {
         if ($this->session->userType == "Patient") { // if session exists
             //Go fetch necessary data from database to setup the correct question.
             $this->Question_model->get_initial_state();
+            $data['questionNumber'] = ($this->session->question_id);
+            $data['pbQuestionText'] = lang('question_text');
+            $data['initial_pbWidth'] = (($this->session->question_id)/52)*100;
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = 'Questionnaire';

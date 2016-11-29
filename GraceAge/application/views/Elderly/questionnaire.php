@@ -6,10 +6,28 @@
 
     <main id="q_and_a">
         <h1>{header1}</h1>
+        
+        <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <div class="progress">
+                    <div id="progressbar" class="progress-bar progress-bar-striped" role="progressbar" style="width:{initial_pbWidth}%">
+                        <span id="progressbarQuestionCount">{pbQuestionText} <a id="pbQuestionCount">{questionNumber}/52</a> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+        
+        
         <div class="row">
             <div class="col-sm-1">
             </div>
             <div class="col-sm-10">
+                
+
                 <div id="question_panel" class="panel panel-default">
                     <table>
                         <tr>

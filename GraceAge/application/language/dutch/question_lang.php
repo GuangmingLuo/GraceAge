@@ -9,5 +9,5 @@ $lang['question_usually'] = 'Meestal';
 $lang['question_always'] = 'Altijd';
 $lang['question_previous'] = 'GA TERUG NAAR VORIGE VRAAG';
 $lang['question_next'] = 'GA VERDER NAAR VOLGENDE VRAAG';
-
+$lang['question_text'] = 'Vraag';
 

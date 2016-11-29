@@ -9,3 +9,4 @@ $lang['question_usually'] = 'Usually';
 $lang['question_always'] = 'Always';
 $lang['question_previous'] = 'GO BACK TO PREVIOUS QUESTION';
 $lang['question_next'] = 'CONTINUE TO NEXT QUESTION';
+$lang['question_text'] = 'Question';
