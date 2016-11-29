@@ -17,6 +17,8 @@ class Caregiver_Home_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('session');
+        $this->load->helper('date');
         //$this->load->database();
     }
 
@@ -36,12 +38,16 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function get_answer_array(){
+        $language = $this->session->userdata('Language');
+        
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
                 ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
                 ->where('Language', 'dutch')    //TODO Get the language from the logged in caregiver.
-                ->get();                        //TODO Only get the answers from the most recent questionnaire.
+                ->where('DateTime >=', 'now() - INTERVAL 1 MONTH', FALSE)  //Get Answers from past month. FALSE has to be added for MYSQL functions.
+                ->get();
         $this->all_answers = $query->result_array(); //Store the data in an array;
+        return $language;
         //print_r($this->all_answers);
         //echo count($this->all_answers);
     }
@@ -62,8 +68,12 @@ class Caregiver_Home_model extends CI_Model {
         $this->get_answer_array();
         $topics = $this->get_topics();
         $scores;
+        $i = 1;
         for($j = 0; $j < count($topics); $j++){
-            $scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
+            $scores[$i]['Topic'] = $topics[$j]['Topic'];
+            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']);
+            //$scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
+            $i++;
         }
         //echo json_encode($scores);
         return json_encode($scores);    //TODO: Don't send topic as key but as another value.

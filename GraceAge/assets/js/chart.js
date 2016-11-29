@@ -12,17 +12,17 @@ function drawMultSeries(){
     $.getJSON("getArray", function(data){
         var data = google.visualization.arrayToDataTable([
             ['Onderwerp', 'Laatste nieuwe scores per onderwerp'],
-            ['Privacy', data.Privacy],
-            ['Eten', data.Food],
-            ['Veiligheid', data.Safety],
-            ['Comfort', data.Comfort],
-            ['Autonomie', data.Autonomy],
-            ['Respect', data.Respect],
-            ['Staf Respons', data.StaffResponse],
-            ['Staf Bonding', data.StaffBonding],
-            ['Activiteiten', data.Activities],
-            ['Relaties', data.Relationships],
-            ['Andere', data.Other]
+            [data[1].Topic, data[1].Score],
+            [data[2].Topic, data[2].Score],
+            [data[3].Topic, data[3].Score],
+            [data[4].Topic, data[4].Score],
+            [data[5].Topic, data[5].Score],
+            [data[6].Topic, data[6].Score],
+            [data[7].Topic, data[7].Score],
+            [data[8].Topic, data[8].Score],
+            [data[9].Topic, data[9].Score],
+            [data[10].Topic, data[10].Score],
+            [data[11].Topic, data[11].Score]
         ]);
         var options = {
             chart:{
@@ -30,18 +30,22 @@ function drawMultSeries(){
             },
             bars: 'horizontal',
             chartArea: {width: '65%'}, //This is the width of the bar chart inside its div
-            colors: ['#7a993c'],
+            colors: ['#cddc39'],
             hAxis: {
                 title: 'Score (%)',
-                minValue: 0
+                viewWindow: {
+                    max: 100,
+                    min: 0
+                }
             },
             vAxis: {
-                title: 'Topic'
+                title: 'Onderwerp'
             }
         };
     
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
-        chart.draw(data, options);
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        //chart.draw(data, options);
     });
     
 }
