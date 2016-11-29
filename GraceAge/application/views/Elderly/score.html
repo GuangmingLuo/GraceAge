@@ -1,3 +1,20 @@
 <div class="container">
-    {score_text} {score}
+    {score_text} {score}<br>
+    {exchange_score}<br>
+    {buy_reward}<br>
+    {reward_text}
+    <?php if(count($rewards)==0) echo "<br>Currently you cannot buy any rewards. Your score is too low." ?>
+    <ul class="list-group">
+        {rewards}
+        <li class="list-group-item">
+            <a href="buyReward?reward={Reward}">{Reward} - {Price}</a>              
+        </li>
+        {/rewards}
+    </ul>
+    {rewards_bought_text}
+    <ul class="list-group">
+        {rewards_bought}
+        <li class="list-group-item">{Reward} - {Price} ({Date}) </li>
+        {/rewards_bought}
+    </ul>
 </div>

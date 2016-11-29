@@ -34,6 +34,7 @@ class Question_model extends CI_Model{
             array('name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'Vorige vraag', 'func' => 'previous()'),
             array('name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'Volgende vraag', 'func' => 'next()'),
         );
+        
         date_default_timezone_set("Europe/Brussels");
     }
     
@@ -174,5 +175,38 @@ class Question_model extends CI_Model{
         }
         return $score;
     }
+    
+    function getRewards($idPatient) {
+        $score = $this->getPatientScore($idPatient);
+        $query = $this->db->query("select Reward, Price from Rewards where Price <= ?", $score);
+        $rewards = $query->result();
+        return $rewards;
+    }
+    
+    function getRewardsBought($patientId) {
+        $query = $this->db->query("select Date, Reward, Price from Rewards JOIN PatientReward ON Rewards.Id = PatientReward.RewardId where PatientId=?", $patientId);
+        $rewardsBought = $query->result();
+        return $rewardsBought;
+    }
+    
+    function buyReward($reward, $idPatient) {
+        $getRewardIdPrice = $this->db->query("SELECT Id, Price FROM Rewards where Reward = ?", $reward);
+        $rewardIdPrice = $getRewardIdPrice->row();
+        
+        if ($this->getPatientScore($idPatient) >= $rewardIdPrice->Price) {
 
+            $data = array(
+                'PatientId' => $idPatient,
+                'RewardId' => $rewardIdPrice->Id
+            );
+
+            $this->db->insert('PatientReward', $data);
+
+            $score = $this->getPatientScore($idPatient) - $rewardIdPrice->Price;
+
+            $this->db->set('score', $score);
+            $this->db->where('idPatient', $idPatient);
+            $this->db->update('Patient');
+        }
+    }
 }

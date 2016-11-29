@@ -121,8 +121,16 @@ class ElderlyController extends CI_Controller {
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['score_text'] = lang('score_text');
             $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+            $data['exchange_score'] = lang('exchange_score');
+            $data['buy_reward'] = lang('buy_reward');
+            $data['reward_text'] = lang('reward_text');
+            $data['rewards_bought_text'] = lang('rewards_bought_text');
             $data['page_title'] = 'Score';
             $data['header1'] = 'Your score';
+            
+            $data['rewards'] = $this->Question_model->getRewards($this->session->idPatient);
+            
+            $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
             $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
             $data['page_content'] = 'Elderly/score.html';
             $this->parser->parse('master.php', $data);
@@ -130,6 +138,13 @@ class ElderlyController extends CI_Controller {
             echo "You are not allowed to access this page!!!";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
+    }
+    
+    function buyReward(){
+        $reward = $_GET["reward"];
+        $idPatient = $this->session->idPatient;
+        $this->Question_model->buyReward($reward, $idPatient);
+        redirect(base_url() . 'ElderlyController/score');
     }
 
     function congratulations() {

@@ -14,4 +14,3 @@ $lang['caregiver_new_placeholder'] = 'Nieuw wachtwoord';
 $lang['caregiver_old_placeholder'] = 'Oud wachtwoord';
 $lang['caregiver_conf_placeholder'] = 'Nieuw wachtwoord';
 $lang['caregiver_menu_profile'] = 'Profiel';
-$lang['score_text'] = 'Uw score is';
