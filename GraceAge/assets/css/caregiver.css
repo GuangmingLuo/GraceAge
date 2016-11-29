@@ -2,20 +2,21 @@ body{
     background-color: #F0F4C3;
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 .navbar{
     background-color: white !important;
     border: none;
     border-radius: 0px;
-    /*margin: 0px;
-    padding: 0px;*/
+    margin: 0px;
+    padding: 0px;
 }
 
 ul.navbar-nav li a{
     display: block;
     width: 100%;
-    color: black;
+    color: black !important;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -28,16 +29,4 @@ ul.navbar-nav li a{
 ul.navbar-nav li a.active{
     background-color: #F0F4C3;
     color: black;
-}
-
-ul.navbar-nav li a:hover{
-    background-color: red;
-}
-
-.overviewbox, .urgentpatientsbox, .messagesbox{
-    border-style: solid;
-    border-color: #CDDC39;
-    border-radius: 20px;
-    background-color: #F0F4C3;
-    margin: 2.5%;
 }

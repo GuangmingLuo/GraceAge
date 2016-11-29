@@ -14,6 +14,7 @@
 class Caregiver_Menu_model extends CI_Model{
     
     private $caregiver_menu_items;
+    private $caregiver_profile_items;
     
     public function __construct() {
         parent::__construct();
@@ -26,6 +27,11 @@ class Caregiver_Menu_model extends CI_Model{
             //array('name' => '', 'title' => '', 'link' => '#', 'className' => 'inactive', 'gridClass' => 'col-lg-4'),
             //array('name' => 'Profiel', 'title' => 'Profiel', 'link' => 'profile', 'className' => 'inactive', 'gridClass' => 'col-lg-2')
         );
+        
+        $this->caregiver_profile_items = array(
+            array('name' => $this->lang->line('settings'), 'title' => 'Afmelden', 'link' => 'profile', 'className' => 'active'),
+            array('name' => $this->lang->line('logout'), 'title' => 'Afmelden', 'link' => '../AccountController/logout', 'className' => 'inactive')
+            );
     }
     function set_active($menutitle) {
         foreach ($this->caregiver_menu_items as &$item) { // reference to item!!
@@ -40,5 +46,10 @@ class Caregiver_Menu_model extends CI_Model{
     function get_menuitems($menutitle='Algemeen') {
         $this->set_active($menutitle);
         return $this->caregiver_menu_items;
+    }
+    
+    function get_profileitems($menutitle='Profiel'){
+        $this->set_active($menutitle);
+        return $this->caregiver_profile_items;
     }
 }
