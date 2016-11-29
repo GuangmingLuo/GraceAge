@@ -177,8 +177,7 @@ class Question_model extends CI_Model{
     }
     
     function getRewards($idPatient) {
-        $score = $this->getPatientScore($idPatient);
-        $query = $this->db->query("select Reward, Price from Rewards where Price <= ?", $score);
+        $query = $this->db->query("select Reward, Price from Rewards");
         $rewards = $query->result();
         return $rewards;
     }
@@ -207,6 +206,9 @@ class Question_model extends CI_Model{
             $this->db->set('score', $score);
             $this->db->where('idPatient', $idPatient);
             $this->db->update('Patient');
+            
+            return true;
         }
+        return false;
     }
 }

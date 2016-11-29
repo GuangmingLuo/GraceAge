@@ -117,6 +117,20 @@ class ElderlyController extends CI_Controller {
     
     function score() {
         if ($this->session->userType == "Patient") {
+
+            $rewardBought = "false";
+            $data['too_low_score'] = "Buy A Reward";
+            
+            if (isset($_GET["rewardBought"])) {
+                $rewardBought = $_GET["rewardBought"];
+                if ($rewardBought=="true") {
+                    $data['too_low_score'] = "You bought the reward!";
+                }
+                if ($rewardBought=="false") {
+                    $data['too_low_score'] = "Currently you cannot buy this reward. Your score is too low.";
+                }      
+            }
+            
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['score_text'] = lang('score_text');
@@ -127,9 +141,9 @@ class ElderlyController extends CI_Controller {
             $data['rewards_bought_text'] = lang('rewards_bought_text');
             $data['page_title'] = 'Score';
             $data['header1'] = 'Your score';
-            
+
             $data['rewards'] = $this->Question_model->getRewards($this->session->idPatient);
-            
+
             $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
             $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
             $data['page_content'] = 'Elderly/score.html';
@@ -139,12 +153,12 @@ class ElderlyController extends CI_Controller {
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
-    
+
     function buyReward(){
         $reward = $_GET["reward"];
         $idPatient = $this->session->idPatient;
-        $this->Question_model->buyReward($reward, $idPatient);
-        redirect(base_url() . 'ElderlyController/score');
+        $rewardBought = ($this->Question_model->buyReward($reward, $idPatient)) ? 'true' : 'false';
+        redirect(base_url() . 'ElderlyController/score?rewardBought=' . $rewardBought);
     }
 
     function congratulations() {
