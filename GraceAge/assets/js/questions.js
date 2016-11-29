@@ -44,5 +44,11 @@ function next() {
         $('#question_placeholder').text(data[0].Question);
         $('#topic_placeholder').text(data[0].Topic);
         move(data[0].QuestionNumber.valueOf());
+        
+         if(data[0].QuestionNumber.valueOf()== 52){ // show congratualtions at and of questionnaire
+        window.location.href = "congratulations";
+    }
     });
+    
+   
 }
