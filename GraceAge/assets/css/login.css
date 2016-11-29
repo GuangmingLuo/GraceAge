@@ -127,10 +127,6 @@ fieldset{   /* no framework around decoder*/
     padding-bottom: 2%;
 }
 
-.form-control option{
-    background-color: red;
-}
-
 #registerTitle{
     margin: 0;
     padding: 0;
