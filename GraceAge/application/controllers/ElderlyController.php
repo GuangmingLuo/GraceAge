@@ -119,15 +119,15 @@ class ElderlyController extends CI_Controller {
         if ($this->session->userType == "Patient") {
 
             $rewardBought = "false";
-            $data['too_low_score'] = "Buy A Reward";
+            $data['reward_message'] = lang('buy_the_reward');
             
             if (isset($_GET["rewardBought"])) {
                 $rewardBought = $_GET["rewardBought"];
                 if ($rewardBought=="true") {
-                    $data['too_low_score'] = "You bought the reward!";
+                    $data['reward_message'] = lang('you_bought_reward');
                 }
                 if ($rewardBought=="false") {
-                    $data['too_low_score'] = "Currently you cannot buy this reward. Your score is too low.";
+                    $data['reward_message'] = lang('too_low_score');
                 }      
             }
             

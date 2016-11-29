@@ -12,3 +12,6 @@ $lang['exchange_score']='Exchange score for rewards';
 $lang['buy_reward']='Click on the reward you want to buy';
 $lang['reward_text']='Rewards you can buy:';
 $lang['rewards_bought_text']='Your rewards:';
+$lang['buy_the_reward']="Buy A Reward";
+$lang['you_bought_reward']="You bought the reward!";
+$lang['too_low_score']="Currently you cannot buy this reward. Your score is too low.";
