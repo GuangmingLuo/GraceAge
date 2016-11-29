@@ -92,7 +92,7 @@ class ElderlyController extends CI_Controller {
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = $this->lang->line('tips');;
-            $data['header'] = $this->lang->line('choose_as_goal');
+            $data['header'] = $this->lang->line('overview_of_tips');
             $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
             $data['navigationbuttons'] = $this->Tip_model->get_navigationbuttons();
             $data['tip_1'] = $this->Tip_model->get_tip('1');
@@ -107,13 +107,6 @@ class ElderlyController extends CI_Controller {
         }
     }
     
-    function back() {
-        redirect(base_url() . 'ElderlyController/questionnaire');
-    }
-
-    function forward() {
-        redirect(base_url() . 'ElderlyController/questionnaire');
-    }
     
     function score() {
         if ($this->session->userType == "Patient") {

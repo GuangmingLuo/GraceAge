@@ -16,7 +16,7 @@ class Tip_model extends CI_Model{
         
         $this->navigationbuttons = array(
             array('name' => $this->lang->line('return_to_question'),'class' => 'btn  btn-arrow-left btn-block',  'func' => 'back()'),
-            array('name' => $this->lang->line('confirm_weekly_goal'),'class' => 'btn btn-arrow-right btn-block', 'func' => 'forward()'),
+            array('name' => $this->lang->line('go_to_score'),'class' => 'btn btn-arrow-right btn-block', 'func' => 'forward()'),
         );
     }    
     
