@@ -134,15 +134,6 @@ class Question_model extends CI_Model{
         }
         return;
     }
-    function initial_progressbar_count($questionNumber)
-    {
-        //return $questionNumber
-    }
-    
-    function initial_progressbar_width($questionNumber)
-    {
-        return ($questionNumber/52)*100;
-    }
     
     function undo_answer($n_questionaire, $p_id, $q_id){
         $this->db->delete('a16_webapps_2.Patient_Answered_Question', array(

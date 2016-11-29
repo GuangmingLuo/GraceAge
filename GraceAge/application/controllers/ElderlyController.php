@@ -54,11 +54,11 @@ class ElderlyController extends CI_Controller {
     function questionnaire() {
         if ($this->session->userType == "Patient") { // if session exists
             //Go fetch necessary data from database to setup the correct question.
-            $this->Question_model->get_initial_state();
-            $data['questionNumber'] = ($this->session->question_id);
-            $data['pbQuestionText'] = lang('question_text');
-            $data['initial_pbWidth'] = (($this->session->question_id)/52)*100;
+            $this->Question_model->get_initial_state();            
             $data['show_navbar'] = true;
+            $data['questionNumber'] = ($this->session->question_id);                // set initial questionNumber for progressbar
+            $data['pbQuestionText'] = lang('question_text');                        // set label of progressbar
+            $data['initial_pbWidth'] = (($this->session->question_id)/52)*100;      // set initial width of progressbar
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = 'Questionnaire';
             $data['header1'] = 'Questionnaire';

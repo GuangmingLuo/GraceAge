@@ -5,47 +5,40 @@
  */
 
 $('.answer_button').click(function () {
-    $('.answer_button').css('border-color', "#CDDC39");
-    $(this).css('border-color', "#009688");
-    var title = $(this).attr('title');
+    $('.answer_button').css('border-color', "#CDDC39");     //reset borders of all answerbuttons
+    $(this).css('border-color', "#009688");                 //set border of selected answer to highlight color
+    var title = $(this).attr('title');                      
     $.post('answer_clicked', {clicked: title}, function(){
     });
 
 });
 
-function move(questionID) {
-    //value = $("#progressbar").valueOf();
-    
-    var targetValue = (questionID/52)*100;
-  //var interval = setInterval(function() {
-      //value++;
+function updateProgressbar(questionID) {
+    var targetValue = (questionID/52)*100;              //convert questionNumber to percentage
       $("#progressbar")
-      .css("width", targetValue + "%")
-      .attr("aria-valuenow", targetValue);
-      $("#pbQuestionCount").text(questionID + "/52");
-      //.text(questionID + "/52");
-      //if (value >= targetValue)
-          //clearInterval(interval);
-  //}, 10);
+      .css("width", targetValue + "%")                  //set new length of progress on progressbar
+      .attr("aria-valuenow", targetValue);              //set controlValue of progressbar
+      $("#pbQuestionCount").text(questionID + "/52");   //update text on bar
+      
 }
 
 function previous() {
-    $('.answer_button').css('border-color', "#CDDC39");
+    $('.answer_button').css('border-color', "#CDDC39");         //reset border of answerbutton
     $.getJSON("previous", function (data) {
-        $('#question_placeholder').text(data[0].Question);
-        $('#topic_placeholder').text(data[0].Topic);  
-        move(data[0].QuestionNumber.valueOf());
+        $('#question_placeholder').text(data[0].Question);      //set question
+        $('#topic_placeholder').text(data[0].Topic);            //set topic
+        updateProgressbar(data[0].QuestionNumber.valueOf());    //call function to update progressbar
     });
 }
 
 function next() {
-    $('.answer_button').css('border-color', "#CDDC39");
+    $('.answer_button').css('border-color', "#CDDC39");         //reset border of answerbutton
     $.getJSON("next", function (data) {
-        $('#question_placeholder').text(data[0].Question);
-        $('#topic_placeholder').text(data[0].Topic);
-        move(data[0].QuestionNumber.valueOf());
+        $('#question_placeholder').text(data[0].Question);      //set question
+        $('#topic_placeholder').text(data[0].Topic);            //set topic
+        updateProgressbar(data[0].QuestionNumber.valueOf());    //call function to update progressbar
         
-         if(data[0].QuestionNumber.valueOf()== 52){ // show congratualtions at and of questionnaire
+         if(data[0].QuestionNumber.valueOf()== 1){ // show congratualtions at and of questionnaire -> when 52nd question is answered questionumber equals 1
         window.location.href = "congratulations";
     }
     });
