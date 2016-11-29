@@ -200,7 +200,7 @@ class Question_model extends CI_Model{
     }
     
     function getRewardsBought($patientId) {
-        $query = $this->db->query("select Date, Reward, Price from Rewards JOIN PatientReward ON Rewards.Id = PatientReward.RewardId where PatientId=?", $patientId);
+        $query = $this->db->query("select Date, Reward, Price from Rewards JOIN PatientReward ON Rewards.Id = PatientReward.RewardId where PatientId=? order by Date desc limit 5", $patientId);
         $rewardsBought = $query->result();
         return $rewardsBought;
     }
