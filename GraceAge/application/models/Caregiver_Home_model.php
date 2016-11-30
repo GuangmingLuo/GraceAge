@@ -135,7 +135,7 @@ class Caregiver_Home_model extends CI_Model {
         $names = $query->row()->Name;
 
         $namesid = $query->result();
-        for ($i = 0; $i < count($namesid); $i++) {
+        for ($i = 0; $i < count($namesid); $i++) {      //get all last answers from all patients
             $id = $namesid[$i]->idPatient;
             $query2 = $this->db->select('Patient_idPatient, Answer')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
             $temp = $query2->result();
@@ -147,13 +147,10 @@ class Caregiver_Home_model extends CI_Model {
 
             $temp2 = $allanswers;
         }
-        for ($i = 0; $i < count($namesid); $i++) {
+        for ($i = 0; $i < count($namesid); $i++) {          //itterate through all patients
             $sum = 0;
             $id = $namesid[$i]->idPatient;
-            //echo " ".$id;
-            //echo " ".$namesid[$i]->idPatient;
-            for ($j = 0; $j < count($allanswers); $j++) {
-
+            for ($j = 0; $j < count($allanswers); $j++) {   //itterate through all the answers the patient has answered
                 if ($allanswers[$j]->Patient_idPatient == $namesid[$i]->idPatient) {
                     $sum += $allanswers[$j]->Answer;
                     $k++;
@@ -166,11 +163,10 @@ class Caregiver_Home_model extends CI_Model {
             }
             $k = 0;
             $nombre_format_francais = number_format($avg, 2, ',', ' ');
-            //echo " ".$namesid[$i]->Name;
-            if ($avg != 100 && $avg != 0) {
+
+            if ($avg != 100 && $avg != 0) {     //check if the patient has allready filled in answers
                 array_push($results, array('Score' => $nombre_format_francais, 'Name' => $namesid[$i]->Name));
             }
-            //echo " ".$nombre_format_francais;
         }
         foreach ($results as $key => $row) {
             $score[$key] = $row['Score'];
@@ -180,14 +176,7 @@ class Caregiver_Home_model extends CI_Model {
 
         array_multisort($score, SORT_ASC, $name, SORT_ASC, $results);
         $urgent = array_slice($results, 0, 10);
-        /* foreach ($urgent as $row) {
-          print_r($row);
-          } */
-        /* for($i =0; $i<count($urgent); $i++){
-          echo " ".$urgent[$i]['Name'];
-          echo " ".$urgent[$i]['Score'];
-          echo "<br>";
-          } */
+
         return $urgent;
     }
 
