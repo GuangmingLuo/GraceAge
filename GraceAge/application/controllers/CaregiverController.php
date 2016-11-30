@@ -33,10 +33,10 @@ class CaregiverController extends CI_Controller {
             $data['header1'] = 'Welcome to Caregiver Home';
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();            
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
-            $data['urgent'] = $this->Caregiver_Home_model->get_patients();
+            $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
             $data['content'] = "";
             $data['page_content'] = 'Caregiver/index.html';
             $this->parser->parse('master.php', $data);
@@ -45,7 +45,7 @@ class CaregiverController extends CI_Controller {
             echo count($this->Caregiver_Home_model->get_answer_array());
         } else {
             echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
 
@@ -56,35 +56,35 @@ class CaregiverController extends CI_Controller {
             $data['show_navbar'] = true;
             $data['page_title'] = 'Personal Patient Information';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_personal'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();            
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = lang(''); //to check whether internationalization set up works
             $data['patients'] = $this->Caregiver_Home_model->get_patients();
             $data['topics'] = $this->Caregiver_Home_model->get_topics();
             $data['answerss'] = $this->Caregiver_Home_model->print_score('axel');
-            $data['privacy'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Privacy');
-            $data['food'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Food');
-            $data['safety'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Safety');
-            $data['comfort'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Comfort');
-            $data['autonomie'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Autonomy');
-            $data['respect'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Respect');
-            $data['staffresp'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'StaffResponse');
-            $data['staffbonding'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'StaffBonding');
-            $data['activities'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Activities');
-            $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Relationships');
-            $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'),'Other');
+            $data['privacy'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Privacy');
+            $data['food'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Food');
+            $data['safety'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Safety');
+            $data['comfort'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Comfort');
+            $data['autonomie'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Autonomy');
+            $data['respect'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Respect');
+            $data['staffresp'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'StaffResponse');
+            $data['staffbonding'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'StaffBonding');
+            $data['activities'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Activities');
+            $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Relationships');
+            $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Other');
             $data['avg'] = $this->Caregiver_Home_model->average_score($this->input->get('username'));
             $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
-            
+
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
-    
-    function getArray(){
+
+    function getArray() {
         $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_topic_with_score());
     }
 
@@ -95,21 +95,21 @@ class CaregiverController extends CI_Controller {
             $data['page_title'] = 'Tips';
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();            
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = "Tips to be added.";
             $data['page_content'] = 'Caregiver/template.html';
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
 
     function profile() {
         if ($this->session->userType == "Caregiver") {
             $data['profile_func'] = base_url() . 'CaregiverController/profile';
-            $data['log_out'] = $this->lang->line('caregiver_log_out');            
+            $data['log_out'] = $this->lang->line('caregiver_log_out');
             $data['logout'] = $this->lang->line('caregiver_logout');
             $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
             $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
@@ -124,18 +124,18 @@ class CaregiverController extends CI_Controller {
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();            
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['page_content'] = 'Account/caregiver_profile.html';
             $data['Person_Name'] = $this->session->Name;
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
-    
-    function logout(){
+
+    function logout() {
         session_destroy();
         redirect(base_url() . 'AccountController/login');
     }
@@ -170,7 +170,7 @@ class CaregiverController extends CI_Controller {
         }
         $this->profile();
     }
-    
+
     function debug() {
         $array = $this->Caregiver_Home_model->calculate_topic_testplsignore("axel");
         foreach ($array as $k => $v) {
