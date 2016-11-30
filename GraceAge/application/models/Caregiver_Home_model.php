@@ -12,7 +12,7 @@
  * @author orditech
  */
 class Caregiver_Home_model extends CI_Model {
-    
+
     private $all_answers;
 
     public function __construct() {
@@ -37,9 +37,9 @@ class Caregiver_Home_model extends CI_Model {
         return $query->result();
     }
 
-    function get_answer_array(){
+    function get_answer_array() {
         $language = $this->session->userdata('Language');
-        
+
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
                 ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
@@ -51,25 +51,25 @@ class Caregiver_Home_model extends CI_Model {
         //print_r($this->all_answers);
         //echo count($this->all_answers);
     }
-    
-    function calculate_score($topic){
+
+    function calculate_score($topic) {
         $sum_of_answers = 0;
         $iterations = 0;
-        for($i = 0; $i < count($this->all_answers); $i++){
-            if($this->all_answers[$i]['Topic'] == $topic){
+        for ($i = 0; $i < count($this->all_answers); $i++) {
+            if ($this->all_answers[$i]['Topic'] == $topic) {
                 $sum_of_answers += $this->all_answers[$i]['Answer'];
                 $iterations++;
             }
         }
-        return ($sum_of_answers/$iterations) * 25;
+        return ($sum_of_answers / $iterations) * 25;
     }
-    
-    function get_topic_with_score(){
+
+    function get_topic_with_score() {
         $this->get_answer_array();
         $topics = $this->get_topics();
         $scores;
         $i = 1;
-        for($j = 0; $j < count($topics); $j++){
+        for ($j = 0; $j < count($topics); $j++) {
             $scores[$i]['Topic'] = $topics[$j]['Topic'];
             $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']);
             //$scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
@@ -78,35 +78,36 @@ class Caregiver_Home_model extends CI_Model {
         //echo json_encode($scores);
         return json_encode($scores);    //TODO: Don't send topic as key but as another value.
     }
-    function get_topics_with_lowest_scores($number){
+
+    function get_topics_with_lowest_scores($number) {
         $this->get_answer_array();
         $topics = $this->get_topics();
         $n = count($topics);
-        $scores;        
-        for($i = 0,$j = 0; $j < $n; $j++,$i++){
+        $scores;
+        for ($i = 0, $j = 0; $j < $n; $j++, $i++) {
             $scores[$i]['Topic'] = $topics[$j]['Topic']; //echo $scores[$i]['Topic'];
             $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']); //echo round($scores[$i]['Score'],2);
         }
-        for($i = 0;$i < $n;$i++) {
-            for($j = 1;$j < ($n - $i);$j++) {
+        for ($i = 0; $i < $n; $i++) {
+            for ($j = 1; $j < ($n - $i); $j++) {
                 if ($scores[$j - 1]['Score'] > $scores[$j]['Score']) {
                     //swap the elements!
                     $temp['Score'] = $scores[$j - 1]['Score'];
                     $temp['Topic'] = $scores[$j - 1]['Topic'];
-                    $scores[$j-1]['Score'] = $scores[$j]['Score'];
-                    $scores[$j-1]['Topic'] = $scores[$j]['Topic'];
+                    $scores[$j - 1]['Score'] = $scores[$j]['Score'];
+                    $scores[$j - 1]['Topic'] = $scores[$j]['Topic'];
                     $scores[$j]['Score'] = $temp['Score'];
                     $scores[$j]['Topic'] = $temp['Topic'];
                 }
             }
         }
         $topics;
-        for($i = 0;$i < $number;$i++) {
+        for ($i = 0; $i < $number; $i++) {
             $topics[$i] = $scores[$i]['Topic']; //echo $topics[$i];
         }
-        return $topics;    
+        return $topics;
     }
-            
+
     function print_score($username) {
         /* $query = $this->db->query("SELECT idPatient FROM Patient where Name= '?' ", $username); */
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
@@ -116,13 +117,87 @@ class Caregiver_Home_model extends CI_Model {
         return $query2->result();
     }
 
+    function get_username_id() {
+        $namesid;
+        $query = $this->db->select('Name, idPatient')->get('Patient');
+        return $query->result();
+    }
+
+    function calculate_avg() {
+        $namesid;
+        $allanswers;
+        $temp;
+        $temp2;
+        $results = array();
+        $avg = 0;
+        $k = 0;
+        $query = $this->db->select('Name, idPatient')->order_by('idPAtient', 'ASC')->get('Patient');
+        $names = $query->row()->Name;
+
+        $namesid = $query->result();
+        for ($i = 0; $i < count($namesid); $i++) {
+            $id = $namesid[$i]->idPatient;
+            $query2 = $this->db->select('Patient_idPatient, Answer')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
+            $temp = $query2->result();
+            if (isset($temp2)) {
+                $allanswers = array_merge($temp2, $temp);
+            } else {
+                $allanswers = $temp;
+            }
+
+            $temp2 = $allanswers;
+        }
+        for ($i = 0; $i < count($namesid); $i++) {
+            $sum = 0;
+            $id = $namesid[$i]->idPatient;
+            //echo " ".$id;
+            //echo " ".$namesid[$i]->idPatient;
+            for ($j = 0; $j < count($allanswers); $j++) {
+
+                if ($allanswers[$j]->Patient_idPatient == $namesid[$i]->idPatient) {
+                    $sum += $allanswers[$j]->Answer;
+                    $k++;
+                }
+            }
+            if ($k == 0) {
+                $avg = 0;
+            } else {
+                $avg = $sum * 25 / $k;
+            }
+            $k = 0;
+            $nombre_format_francais = number_format($avg, 2, ',', ' ');
+            //echo " ".$namesid[$i]->Name;
+            if ($avg != 100 && $avg != 0) {
+                array_push($results, array('Score' => $nombre_format_francais, 'Name' => $namesid[$i]->Name));
+            }
+            //echo " ".$nombre_format_francais;
+        }
+        foreach ($results as $key => $row) {
+            $score[$key] = $row['Score'];
+            $name[$key] = $row['Name'];
+        }
+
+
+        array_multisort($score, SORT_ASC, $name, SORT_ASC, $results);
+        $urgent = array_slice($results, 0, 10);
+        /* foreach ($urgent as $row) {
+          print_r($row);
+          } */
+        /* for($i =0; $i<count($urgent); $i++){
+          echo " ".$urgent[$i]['Name'];
+          echo " ".$urgent[$i]['Score'];
+          echo "<br>";
+          } */
+        return $urgent;
+    }
+
     function calculate_topic($username, $topic) {
-        if($username == NULL){
-           return 0;
+        if ($username == NULL) {
+            return 0;
         }
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
-        if(count($id)==0){
+        if (count($id) == 0) {
             return "wrong name";
         }
         $id2 = $id[0]->idPatient;
@@ -145,18 +220,19 @@ class Caregiver_Home_model extends CI_Model {
             $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
             $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
             $antwoord = $query->result();
-            if(count($antwoord) == 0){
-                
+            if (count($antwoord) == 0) {
+
                 return 0;
             }
             $antwoord2 = $antwoord[0]->Answer;
-            array_push($antwoordenarray, $antwoord2);
+            array_push($antwoordenarray, $antwoord2 - 1);
         }
         $som = array_sum($antwoordenarray) * 25 / $amount;
-        
+
         $nombre_format_francais = number_format($som, 2, ',', ' ');
         return $nombre_format_francais;
     }
+
     //calculate topic scores and average score for ginven userid
     function calculate_topic_testplsignore($username) {
         $query = $this->db->query("SELECT idPatient FROM Patient where Name=?", $username);
@@ -192,16 +268,16 @@ class Caregiver_Home_model extends CI_Model {
         $avg = $totalScore * 25 / $numberOfQuestions;
         $answerScore["Average"] = $nombre_format_francais = number_format($avg, 2, ',', ' ');
 
-        return $answerScore;
+        return $avg;
     }
 
-    function average_score($username){
-        if($username == NULL){
-           return 0;
+    function average_score($username) {
+        if ($username == NULL) {
+            return 0;
         }
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id = $query->result();
-        if(count($id)==0){
+        if (count($id) == 0) {
             return "wrong name";
         }
         $id2 = $id[0]->idPatient;
@@ -223,20 +299,20 @@ class Caregiver_Home_model extends CI_Model {
             $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
             $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
             $antwoord = $query->result();
-            if(count($antwoord) == 0){
+            if (count($antwoord) == 0) {
                 return 0;
             }
             $antwoord2 = $antwoord[0]->Answer;
-            array_push($antwoordenarray, $antwoord2);
+            array_push($antwoordenarray, $antwoord2 - 1);
         }
         $som = array_sum($antwoordenarray) * 25 / $amount;
-        
+
         $nombre_format_francais = number_format($som, 2, ',', ' ');
         return $nombre_format_francais;
-        
     }
-    function current_user($username){
-        if($username == NULL){
+
+    function current_user($username) {
+        if ($username == NULL) {
             return " nobody, please select someone.";
         }
         return $username;
