@@ -60,21 +60,8 @@ class CaregiverController extends CI_Controller {
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = lang(''); //to check whether internationalization set up works
             $data['patients'] = $this->Caregiver_Home_model->get_patients();
-            $data['topics'] = $this->Caregiver_Home_model->get_topics();
-            $data['answerss'] = $this->Caregiver_Home_model->print_score('axel');
-            $data['privacy'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Privacy');
-            $data['food'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Food');
-            $data['safety'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Safety');
-            $data['comfort'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Comfort');
-            $data['autonomie'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Autonomy');
-            $data['respect'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Respect');
-            $data['staffresp'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'StaffResponse');
-            $data['staffbonding'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'StaffBonding');
-            $data['activities'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Activities');
-            $data['relationships'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Relationships');
-            $data['other'] = $this->Caregiver_Home_model->calculate_topic($this->input->get('username'), 'Other');
-            $data['avg'] = $this->Caregiver_Home_model->average_score($this->input->get('username'));
             $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
+            $data['results'] = $this->Caregiver_Home_model->calculate_topic_eff($this->input->get('username'));
 
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
