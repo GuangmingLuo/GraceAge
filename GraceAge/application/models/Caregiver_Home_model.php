@@ -108,14 +108,7 @@ class Caregiver_Home_model extends CI_Model {
         return $topics;
     }
 
-    function print_score($username) {
-        /* $query = $this->db->query("SELECT idPatient FROM Patient where Name= '?' ", $username); */
-        $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
-        $id = $query->result();
-        $id2 = $id[0]->idPatient;
-        $query2 = $this->db->select('Answer')->where('Patient_idPatient', $id2)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
-        return $query2->result();
-    }
+
 
     function get_username_id() {
         $namesid;
@@ -180,125 +173,66 @@ class Caregiver_Home_model extends CI_Model {
         return $urgent;
     }
 
-    function calculate_topic($username, $topic) {
-        if ($username == NULL) {
-            return 0;
-        }
-        $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
-        $id = $query->result();
-        if (count($id) == 0) {
-            return "wrong name";
-        }
-        $id2 = $id[0]->idPatient;
+    function calculate_topic_eff($username) {
 
-        $query = $this->db->distinct()->select('QuestionNumber')->where('Topic', $topic)->get('Question');
+        $answerspatient;
+        $display = array();
+        $query = $this->db->distinct()->select('Topic')->get('Question'); //get all the topics
+        $topics = $query->result();
+
+
+        if ($username == NULL) {
+            for($i = 0; $i < count($topics) ; $i++){
+                array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
+            }
+        }else{
+        $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
+        $id2 = $query->result();
+        $id = $id2[0]->idPatient;
+
+        $query = $this->db->distinct()->select('QuestionNumber, Topic')->get('Question');
         $questions = $query->result();
-        $amount = count($questions);
 
-        unset($questionids);
-        $questionids = array();
+        
 
-        for ($x = 0; $x < $amount; $x++) {
-            $questionids[$x] = $questions[$x]->QuestionNumber;
-        }
+        $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');  //get last answered questions
+        $answers = $query->result();
+        $aaa =0;
+        
 
-        unset($antwoordenarray);
-        $antwoordenarray = array();
-
-        foreach ($questionids as $idss) {
-            $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
-            $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
-            $antwoord = $query->result();
-            if (count($antwoord) == 0) {
-
-                return 0;
+        for ($i = 0; $i < count($topics); $i++) {
+            $current = $topics[$i]->Topic;
+            //echo " ".$current;
+            $topicscore=0;
+            $topicavg;
+            $k = 0;
+            $neededquestions;
+            for ($a = 0 ; $a < count($questions); $a++) {
+                if($topics[$i]->Topic == $questions[$a]->Topic) {
+                    $questionnr = $questions[$a]->QuestionNumber;
+                    for($j = 0; $j < count($answers) ; $j++){
+                        if($questionnr == $answers[$j]->Question_Number){
+                            $topicscore += $answers[$j]->Answer;
+                            $k++;
+                        }
+                    }
+                    
+                }
             }
-            $antwoord2 = $antwoord[0]->Answer;
-            array_push($antwoordenarray, $antwoord2 - 1);
+            $topicavg = $topicscore * 25 / $k;
+            $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
+            array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
         }
-        $som = array_sum($antwoordenarray) * 25 / $amount;
-
-        $nombre_format_francais = number_format($som, 2, ',', ' ');
-        return $nombre_format_francais;
+        
+        }
+        return $display;
     }
 
-    //calculate topic scores and average score for ginven userid
-    function calculate_topic_testplsignore($username) {
-        $query = $this->db->query("SELECT idPatient FROM Patient where Name=?", $username);
-        $result = $query->row();
-        if (!isset($result)) {
-            return "wrong name";
-        }
-        $userid = $result->idPatient;
-        $query = $this->db->query('SELECT DISTINCT QuestionNUmber FROM a16_webapps_2.Question;');
-        $numberOfQuestions = count($query->result()); // slect the latest 52 question number, topic, answer etc from user with id $userid
-        $sql = "SELECT a.Question_Number, q.Topic, a.Answer, a.Questionaire_Number, a.DateTime FROM a16_webapps_2.Patient_Answered_Question AS a, a16_webapps_2.Question AS q WHERE a.Patient_idPatient = ? AND q.idQuestion = a.Question_Number ORDER BY a.DateTime DESC LIMIT ?;";
-        $query = $this->db->query($sql, array($userid, $numberOfQuestions));
-        $result = $query->result();
-        $answerScore = array(); // keeps the score per topic
-        $questionCount = array(); // keeps the amount of questions per topic
-        $totalScore = 0; // total score of all answers
-        foreach ($result as $row) {// go through the answers
-            if (isset($answerScore[$row->Topic]))
-                $answerScore[$row->Topic] += $row->Answer; //if the topic is not yet in array
-            else
-                $answerScore[$row->Topic] = $row->Answer;
+    
 
-            if (isset($questionCount[$row->Topic]))
-                $questionCount[$row->Topic] ++;
-            else
-                $questionCount[$row->Topic] = 1;
-            $totalScore += $row->Answer;
-        }
-        foreach ($answerScore as $k => $v) { // every score * 25 / amount of topic questions
-            $temp = $v * 25 / $questionCount[$k];
-            $answerScore[$k] = $nombre_format_francais = number_format($temp, 2, ',', ' ');
-        }
-        $avg = $totalScore * 25 / $numberOfQuestions;
-        $answerScore["Average"] = $nombre_format_francais = number_format($avg, 2, ',', ' ');
+    
 
-        return $avg;
-    }
-
-    function average_score($username) {
-        if ($username == NULL) {
-            return 0;
-        }
-        $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
-        $id = $query->result();
-        if (count($id) == 0) {
-            return "wrong name";
-        }
-        $id2 = $id[0]->idPatient;
-
-        $query2 = $this->db->distinct()->select('QuestionNumber')->get('Question');
-        $questions = $query2->result();
-        $amount = count($questions);
-
-        unset($questionids);
-        $questionids = array();
-
-        for ($x = 0; $x < $amount; $x++) {
-            $questionids[$x] = $questions[$x]->QuestionNumber;
-        }
-        unset($antwoordenarray);
-        $antwoordenarray = array();
-
-        foreach ($questionids as $idss) {
-            $voorwaarde = array('Patient_idPatient' => $id2, 'Question_Number' => $idss);
-            $query = $this->db->select('Answer')->where($voorwaarde)->order_by('DateTime', 'DESC')->limit(1)->get('Patient_Answered_Question');
-            $antwoord = $query->result();
-            if (count($antwoord) == 0) {
-                return 0;
-            }
-            $antwoord2 = $antwoord[0]->Answer;
-            array_push($antwoordenarray, $antwoord2 - 1);
-        }
-        $som = array_sum($antwoordenarray) * 25 / $amount;
-
-        $nombre_format_francais = number_format($som, 2, ',', ' ');
-        return $nombre_format_francais;
-    }
+    
 
     function current_user($username) {
         if ($username == NULL) {
