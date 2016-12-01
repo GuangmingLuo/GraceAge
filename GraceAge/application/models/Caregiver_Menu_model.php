@@ -25,7 +25,7 @@ class Caregiver_Menu_model extends CI_Model{
             array('name' => $this->lang->line('caregiver_menu_personal'), 'title' => 'Persoonlijk', 'link' => 'personal', 'className' => 'inactive', 'gridClass' => 'col-lg-2'),
             array('name' => $this->lang->line('caregiver_menu_tips'), 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2'),
             //array('name' => '', 'title' => '', 'link' => '#', 'className' => 'inactive', 'gridClass' => 'col-lg-4'),
-            //array('name' => 'Profiel', 'title' => 'Profiel', 'link' => 'profile', 'className' => 'inactive', 'gridClass' => 'col-lg-2')
+            array('showID' => 'settingsMobile', 'name' => $this->lang->line('settings'), 'title' => 'Afmelden', 'link' => 'profile', 'className' => 'active', 'gridClass' => 'col-lg-2'),
         );
         
         $this->caregiver_profile_items = array(
