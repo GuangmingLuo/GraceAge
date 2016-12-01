@@ -33,6 +33,14 @@ class Tip_model extends CI_Model{
         
     }
     
+    function add_tip($topic, $tip){
+        $data = array(
+            'topic' => $topic,
+            $this->session->Language => $tip
+        );
+        $this->db->insert('a16_webapps_2.tips' , $data);
+    }
+    
     function get_navigationbuttons(){
         return $this->navigationbuttons;
     }

@@ -1,8 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 $('.answer_button').click(function () {
     $('.answer_button').css('border-color', "#CDDC39");     //reset borders of all answerbuttons

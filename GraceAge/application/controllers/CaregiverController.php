@@ -21,8 +21,10 @@ class CaregiverController extends CI_Controller {
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->lang->load('caregiver', $this->session->Language);
         $this->lang->load('caregiver_menu', $this->session->Language);
+        $this->lang->load('tip', $this->session->Language);
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
+        $this->load->model('Tip_model');
     }
 
     function index() {
@@ -85,12 +87,28 @@ class CaregiverController extends CI_Controller {
             $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['content'] = "Tips to be added.";
-            $data['page_content'] = 'Caregiver/template.html';
+            $data['options'] = $this->Caregiver_Home_model->get_topics();
+            $data['choose_option'] = $this->lang->line('tip_choose_topic');
+            $data['add_new_tip'] = $this->lang->line('tip_add_new_tip');
+            $data['page_content'] = 'Caregiver/tips.html';
+            $data['write_new_tip'] = $this->lang->line('tip_write_new');
             $this->parser->parse('master.php', $data);
         } else {
             echo "You are not allowed to access this page!!!";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
+    }
+    
+    function get_tips(){
+        $topic = $this->input->post('topic');
+        $this->output->set_content_type("application/json")->append_output(
+                $this->Caregiver_Home_model->get_tips_as_json($topic));
+    }
+    
+    function add_tip(){
+        $topic = $this->input->post('topic');
+        $tip = $this->input->post('tip');
+        $this->Tip_model->add_tip($topic, $tip);
     }
 
     function profile() {
@@ -110,7 +128,7 @@ class CaregiverController extends CI_Controller {
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
             $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['page_content'] = 'Account/caregiver_profile.html';

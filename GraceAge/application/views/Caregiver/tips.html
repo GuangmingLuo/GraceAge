@@ -1,0 +1,31 @@
+<head>
+    <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<div class="container-fluid">
+    <div class ="row">
+        <div class="col-sm-8">
+            <select id="select_topic" class="btn btn-default fontfamily" onchange="register_topic()">
+                <option value="0">--{choose_option}--</option>
+                {options}
+                <option value="{Topic}">{Topic}</option>
+                {/options}
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <form>
+                <input type="text" id="new_tip" placeholder="{write_new_tip}">
+                <input type="button" class="btn btn-default fontfamily" onclick="add_new_tip()" value="{add_new_tip}">
+            </form>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class ="col-sm-12 overviewbox">
+            <ul id="tips_list">
+            </ul>
+        </div>
+    </div>
+    
+</div>
