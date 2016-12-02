@@ -10,10 +10,10 @@ function register_topic(){
         
         $.each(tips, function(i, tip){
             if(tip.hasOwnProperty('dutch')){
-                $tips_list.append("<li id='tip" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.dutch + "</li>"); // make new <li> element with id = idtips 
+                $tips_list.append("<li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.dutch + "</li>"); // make new <li> element with id = idtips 
             }
             if(tip.hasOwnProperty('english')){
-                $tips_list.append("<li id='tip" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>");
+                $tips_list.append("<li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>");
             }
         });
     });
@@ -31,6 +31,14 @@ function add_new_tip(){
 
 
    function tipClick(id){ // do something when a tip is clicked
-    
+       
+       $(document.getElementById('editform')).remove(); // remove old form if it excists
+           
+      $(document.getElementById(id)).after("<form id='editform' ></form>"); // show a form here to update or delete the question
+      $(document.getElementById('editform')).append("<input type='text' id='newtext'>");
+      $(document.getElementById('editform')).append("<input type='button' onclick='updateTip(" + id+ ")' value='update'>"); // button run updateTip(id) on klick
+      
+      
+     
 };
 
