@@ -177,10 +177,11 @@ class CaregiverController extends CI_Controller {
     }
 
     function debug() {
-        $array = $this->Caregiver_Home_model->calculate_topic_testplsignore("axel");
-        foreach ($array as $k => $v) {
-            echo "\$a[$k] => $v.\n";
-        }
+        //$array = $this->Caregiver_Home_model->calculate_topic_testplsignore("axel");
+        //foreach ($array as $k => $v) {
+        //    echo "\$a[$k] => $v.\n";
+        //}
+        $this->Tip_model->remove_tip(42);
     }
 
 }

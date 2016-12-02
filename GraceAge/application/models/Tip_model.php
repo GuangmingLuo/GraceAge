@@ -33,8 +33,8 @@ class Tip_model extends CI_Model{
         
     }
     function get_tips_as_json($topic) {
-        $query = $this->db->select($this->session->Language)->where('topic', $topic)->get('tips');
-        return json_encode($query->result_array());
+        $query = $this->db->select($this->session->Language)->select('tips.idtips')->where('topic', $topic)->get('tips');
+        return json_encode($query->result());
     }
     
     function add_tip($topic, $tip){
