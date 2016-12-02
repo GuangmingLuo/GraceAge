@@ -19,6 +19,7 @@ class Caregiver_Home_model extends CI_Model {
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('date');
+        $this->lang->load('topics', $this->session->Language);
         //$this->load->database();
     }
 
@@ -45,18 +46,13 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function get_answer_array() {
-        $language = $this->session->userdata('Language');
-
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
                 ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
-                ->where('Language', 'dutch')    //TODO Get the language from the logged in caregiver.
+                //->where('Language', $language)    //TODO Get the language from the logged in caregiver.
                 ->where('DateTime >=', 'now() - INTERVAL 1 MONTH', FALSE)  //Get Answers from past month. FALSE has to be added for MYSQL functions.
                 ->get();
         $this->all_answers = $query->result_array(); //Store the data in an array;
-        return $language;
-        //print_r($this->all_answers);
-        //echo count($this->all_answers);
     }
 
     function calculate_score($topic) {
@@ -74,16 +70,20 @@ class Caregiver_Home_model extends CI_Model {
     function get_topic_with_score() {
         $this->get_answer_array();
         $topics = $this->get_topics();
-        $scores;
-        $i = 1;
-        for ($j = 0; $j < count($topics); $j++) {
-            $scores[$i]['Topic'] = $topics[$j]['Topic'];
-            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']);
-            //$scores[$topics[$j]['Topic']] = $this->calculate_score($topics[$j]['Topic']);
-            $i++;
+        $topic_array = $this->lang->line('topic_array');
+        $scores = [];
+        for ($j = 0; $j < count($topic_array); $j++) {
+            $scores[$j + 1]['Topic'] = $topic_array[$j];
+            $scores[$j + 1]['Score'] = $this->calculate_score($topics[$j]['Topic']);
         }
-        //echo json_encode($scores);
-        return json_encode($scores);    //TODO: Don't send topic as key but as another value.
+        $scores[$j + 1]['Topic'] = $this->lang->line('y_label');
+        $scores[$j + 1]['Score'] = $this->lang->line('recent');
+        return json_encode($scores);
+    }
+    
+    function get_chart_title(){
+        $title = $this->lang->line('chart_title');
+        return json_encode($title);
     }
 
     function get_topics_with_lowest_scores($number) {
@@ -147,6 +147,7 @@ class Caregiver_Home_model extends CI_Model {
 
             $temp2 = $allanswers;
         }
+
         for ($i = 0; $i < count($namesid); $i++) {          //itterate through all patients
             $sum = 0;
             $id = $namesid[$i]->idPatient;
