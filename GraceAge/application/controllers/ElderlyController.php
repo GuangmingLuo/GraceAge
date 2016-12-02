@@ -140,7 +140,7 @@ class ElderlyController extends CI_Controller {
             $data['page_title'] = 'Score';
             $data['header1'] = 'Your score';
 
-            $data['rewards'] = $this->Question_model->getRewards($this->session->idPatient);
+            $data['rewards'] = $this->Question_model->getRewards($this->session->Language);
 
             $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
             $data['menu_items'] = $this->Menu_model->get_menuitems('Score');

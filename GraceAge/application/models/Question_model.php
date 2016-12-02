@@ -184,8 +184,9 @@ class Question_model extends CI_Model{
         return $score;
     }
     
-    function getRewards($idPatient) {
-        $query = $this->db->query("select Reward, Price from Rewards");
+    
+    function getRewards($language) {
+        $query = $this->db->query("select Reward, Price from Rewards where Language=?", $language);
         $rewards = $query->result();
         return $rewards;
     }
