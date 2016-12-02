@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AccountController extends CI_Controller {
-
+    
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
@@ -130,6 +130,9 @@ class AccountController extends CI_Controller {
                     $data['register_state'] = lang('account_created');
                 } else {
                     $data['register_state'] = lang('user_exists');
+                    $data['username'] = $username;
+                    $data['password1'] = $password1;
+                    $data['password2'] = $password2;
                 }
             } else {
                 $data['register_state'] = lang('different_passwords');
