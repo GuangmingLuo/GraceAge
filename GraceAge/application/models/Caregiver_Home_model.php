@@ -196,7 +196,15 @@ class Caregiver_Home_model extends CI_Model {
         }else{
         $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
         $id2 = $query->result();
+        if(count($id2)==0){
+            if (count($id2)==0) {
+            for($i = 0; $i < count($topics) ; $i++){
+                array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
+            }
+        }
+        }else{
         $id = $id2[0]->idPatient;
+        
 
         $query = $this->db->distinct()->select('QuestionNumber, Topic')->get('Question');
         $questions = $query->result();
@@ -231,7 +239,7 @@ class Caregiver_Home_model extends CI_Model {
             $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
             array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
         }
-        
+        }
         }
         return $display;
     }
