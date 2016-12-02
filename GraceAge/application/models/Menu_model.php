@@ -6,8 +6,11 @@ class Menu_model extends CI_Model {
      
     function __construct() {
         parent::__construct();
+        $this->load->library('session');
+        $this->lang->load('elderly', $this->session->Language);
+        
         $this->menu_items = array(
-            array('id'=>'Home_button', 'name' => 'Home','iconName' => 'fa fa-repeat', 'title' => 'Go Home', 'link' => 'index', 'className' => 'active'),
+            array('id'=>'Home_button', 'name' => $this->lang->line('return_to_home'),'iconName' => 'fa fa-repeat', 'title' => 'Go Home', 'link' => 'index', 'className' => 'active'),
             array('id'=>'Tips_button','name' => 'Tips', 'iconName' => 'fa fa-lightbulb-o','title' => 'Look at the tips', 'link' => 'tips', 'className' => 'inactive'),
             array('id'=>'Questionnaire_button','name' => 'Questionnaire','iconName' => 'fa fa-list-alt', 'title' => 'Fill in the questionnaire', 'link' => 'questionnaire', 'className' => 'inactive'),  
         );

@@ -2,33 +2,41 @@
     padding: 0px !important;
 }
 
-.fontfamily {
-    font-family: 'Open Sans'
+#Tips_button,
+#Questionnaire_button{
+    display: none;
 }
 
 #entireNavbar{
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 10%;
-    width: 100%;
+    height: 10% !important;
     margin: 0px;
+    padding: 0px;
 }
 
-#Tips_button,
-#Questionnaire_button{
-    display: none;
+.navbar-nav>li{
+   text-align: center;
 }
 
-.navbar-nav > li > a {
-   line-height: 70px;
-   font-size: 28px;
+.col-sm-11{
+       text-align: center;
+    align-items: center;
+
+}
+
+.navbar-nav > li > a > span
+{
+   font-size: 16px;
+   font-weight: bold;
+   color: #000;
+   font-family: 'Open Sans';       
+}
+.navbar-nav > li > a > i {
+   font-size: 40px;
+   font-weight: bold;
    color: #009688;
-   style: "color=#009688";
 }
 
-#navbar{
-   color: #009688;
-}
-.navbar {min-height: 100px;}
-.navbar-brand {padding: 0 15px; height: 100px; line-height: 100px;}
+

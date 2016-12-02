@@ -2,6 +2,7 @@
 // ENGLISH //
 defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['hello'] = 'Hello';
+$lang['return_to_home'] = 'RETURN TO START';
 $lang['elderly_settings_button']='WHO AM I?';
 $lang['elderly_stop_button']='STOP APPLICATION';
 $lang['elderly_tips_button']='PUSH HERE TO VIEW TIPS AND GOALS';

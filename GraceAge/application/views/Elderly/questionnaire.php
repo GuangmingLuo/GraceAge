@@ -2,31 +2,30 @@
 <head>
     <link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id='questionnairy_content' class="container">
-
-    <main id="q_and_a">
+<div id='questionnairy_wrapper' class="container">
+    <div id='questionnairy_content' class="container">
         <h1>{header1}</h1>
-        
-        <div class="row">
-            <div class="col-sm-3">
+
+        <div id='bar_row' class="row">
+            <div class="col-xs-3">
             </div>
-            <div class="col-sm-6">
+            <div class="col-xs-6">
                 <div class="progress">
                     <div id="progressbar" class="progress-bar progress-bar-striped" role="progressbar" style="width:{initial_pbWidth}%">
                         <span id="progressbarQuestionCount">{pbQuestionText} <a id="pbQuestionCount">{questionNumber}/52</a> </span>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-3">
             </div>
         </div>
-        
-        
-        <div class="row">
-            <div class="col-sm-1">
+
+
+        <div id='question_row' class="row">
+            <div class="col-xs-1">
             </div>
-            <div class="col-sm-10">
-                
+            <div class="col-xs-10">
+
 
                 <div id="question_panel" class="panel panel-default">
                     <table>
@@ -43,10 +42,10 @@
                     </table>
                 </div>
             </div>
-            <div class="col-sm-1">
+            <div class="col-xs-1">
             </div>
         </div>
-        <div class="row">
+        <div id='answers_row' class="row">
             <div class="col-sm-1">
             </div>
 
@@ -58,19 +57,18 @@
             <div class="col-sm-1">
             </div>
         </div>
-    </main>
-
-</div>
-<footer>
-    <div class="row">
-        <div class="col-sm-1">
-        </div>
-        {navigationbuttons}
-        <div class="col-sm-5">
-            <button type="button" class ="{class}" onclick="{func}" >{name}</button>
-        </div>
-        {/navigationbuttons}
-        <div class="col-sm-1">
-        </div>
     </div>
-</footer>
+    <footer>
+        <div class="row">
+            <div class="col-xs-1">
+            </div>
+            {navigationbuttons}
+            <div class="col-xs-5" id="{title}">
+                <button style="white-space: normal" type="button" class ="{class}" onclick="{func}" >{name}</button>
+            </div>
+            {/navigationbuttons}
+            <div class="col-xs-1">
+            </div>
+        </div>
+    </footer>
+</div>

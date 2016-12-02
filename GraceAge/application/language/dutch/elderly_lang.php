@@ -2,6 +2,7 @@
 // DUTCH //
 defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['hello'] = 'Hallo';
+$lang['return_to_home'] = 'TERUG NAAR START';
 $lang['elderly_settings_button']='WIE BEN IK?';
 $lang['elderly_stop_button']='STOP APPLICATIE';
 $lang['elderly_tips_button']='DRUK HIER OM JE TIPS TE BEKIJKEN';
