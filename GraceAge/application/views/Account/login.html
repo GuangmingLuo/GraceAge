@@ -24,7 +24,7 @@
                         </fieldset>
                     </div>
                     <div id="loginTabContent" class="tabContent tab-pane fade">
-                        <form name="loginForm" id="loginForm" action="loginPost" method="post">
+                        <form name="loginForm" id="loginForm">
                             <input type="hidden" value="{language}" name="language" />
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control fonttype" id="username" placeholder={username} autofocus required>
@@ -33,7 +33,7 @@
                                 <input type="password" name="password" class="form-control fonttype" id="password" placeholder={password} required>
                             </div>
                             </br>
-                            <button type="submit" class="btn btn-default fonttype">{confirm}</button>
+                            <input type="button" class="btn btn-default fonttype" value="{confirm}" onclick="login()">
                         </form>
                     </div>
                 </div>

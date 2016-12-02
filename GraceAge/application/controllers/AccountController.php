@@ -64,7 +64,7 @@ class AccountController extends CI_Controller {
         $this->parser->parse('master.php', $data);
     }
 
-    public function loginPost() {
+    function login_valid(){
         $language = "dutch";
         if (isset($_POST["language"])) {
             $language = $_POST["language"];
@@ -77,23 +77,31 @@ class AccountController extends CI_Controller {
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');
             $result = $this->Account_model->getUser($username);
+            $data2['valid_user'] = ($result != null);
+            $data2['correct_password'] = password_verify($password, $result["password"]);
             if ($result != NULL) {
                 if (password_verify($password, $result["password"])) {
+                    $data2['usertype'] = $result['userType'];
                     $result["password"] = NULL;
-                    $this->session->set_userdata($result); // session contains the colums from the datebase + "userType"
-                    if ($result["userType"] == "Patient") {
-                        redirect(base_url() . 'ElderlyController/index');
-                    } else { // userType = Caregiver
-                        redirect(base_url() . 'CaregiverController/index');
-                    }
+                    $this->session->set_userdata($result);
                 }
+            
             }
-            //the user does not exist or password is incorrect
-            $data['page_content'] = 'Account/login.html';
-            $this->parser->parse('master.php', $data);
-        } else {    // the data from post is empty, do something
-            $data['page_content'] = 'Account/login.html';   //reload the login page
-            $this->parser->parse('master.php', $data);
+            $this->output->set_content_type("application/json")->append_output(json_encode($data2));
+        }
+        else{
+            $this->output->set_content_type("application/json")->append_output(json_encode(array(
+                'valid_user' => false,
+                'correct_password' => false
+            )));
+        }
+    }
+    
+    function loginPost() {
+        if ($this->session->userType == "Patient") {
+            redirect(base_url() . 'ElderlyController/index');
+        } else if($this->session->userType == "Caregiver") { // userType = Caregiver
+            redirect(base_url() . 'CaregiverController/index');
         }
     }
 

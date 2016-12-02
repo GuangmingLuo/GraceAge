@@ -26,5 +26,6 @@
         <script src="../../assets/js/questions.js" type="text/javascript"></script>
         <script src="../../assets/js/tips.js" type="text/javascript"></script>
         <script src="../../assets/js/caregiver_tips.js" type="text/javascript"></script>
+        <script src="../../assets/js/login.js" type="text/javascript"></script>
     </body>
 </html>
