@@ -32,10 +32,7 @@ class Caregiver_Home_model extends CI_Model {
         return json_encode($query->result_array());
     }
     
-    function get_tips_as_json($topic) {
-        $query = $this->db->select($this->session->Language)->where('topic', $topic)->get('tips');
-        return json_encode($query->result_array());
-    }
+    
 
     function get_name($id) {
         $query = $this->db->query("SELECT Name FROM a16_webapps_2.Caregiver WHERE idCaregiver = " . $id);

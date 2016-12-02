@@ -32,6 +32,10 @@ class Tip_model extends CI_Model{
         
         
     }
+    function get_tips_as_json($topic) {
+        $query = $this->db->select($this->session->Language)->where('topic', $topic)->get('tips');
+        return json_encode($query->result_array());
+    }
     
     function add_tip($topic, $tip){
         $data = array(
@@ -39,6 +43,11 @@ class Tip_model extends CI_Model{
             $this->session->Language => $tip
         );
         $this->db->insert('a16_webapps_2.tips' , $data);
+    }
+    
+    function remove_tip($tipId){
+        $this->db->where('idtips', $tipId);
+        $this->db->delete('tips');
     }
     
     function get_navigationbuttons(){

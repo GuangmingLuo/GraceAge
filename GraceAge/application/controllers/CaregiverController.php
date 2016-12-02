@@ -102,7 +102,7 @@ class CaregiverController extends CI_Controller {
     function get_tips(){
         $topic = $this->input->post('topic');
         $this->output->set_content_type("application/json")->append_output(
-                $this->Caregiver_Home_model->get_tips_as_json($topic));
+                $this->Tip_model->get_tips_as_json($topic));
     }
     
     function add_tip(){
