@@ -51,18 +51,19 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Change password</td>
-                            <td id ="passwordRow" ><form action="change_password" method="post">
-                                    <input type="password" id= "old" name="old_password" placeholder="{old_placeholder}" required><br>
-                                    <input type="password" id= "new" name="new_password" placeholder="{new_placeholder}" required><br>
-                                    <input type="password" id= "conf" name="conf_password" placeholder="{conf_placeholder}" required>
-                                </form></td>
+                            <td>Change password</td>                            
+                            <td id ="passwordRow" class="form-group">
+                                <input type="password" id= "old" name="old_password" class="form-control fonttype" placeholder="{old_placeholder}" required>
+                                <input type="password" id= "new" name="new_password" class="form-control fonttype" placeholder="{new_placeholder}" required>
+                                <input type="password" id= "conf" name="conf_password" class="form-control fonttype" placeholder="{conf_placeholder}" required>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 
                 <div id="buttonSubmit">
                     <input type="button" class="btn btn-default" value="Save">
+                    </br>
                     </br>
                 </div>
                 
