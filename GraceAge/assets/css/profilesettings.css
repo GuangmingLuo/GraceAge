@@ -37,7 +37,8 @@
 /* input fields */
 input[type=password] {
   text-transform: lowercase;
-  border: 1px solid #999;
+  border: 1px solid lightgray !important;
+  border-radius: 3px;
   width: 35%;
   min-width: 160px;
   height: 35px;
@@ -48,7 +49,8 @@ input[type=password] {
 
 select {
   text-transform: capitalize;
-  border: 1px solid #999;
+  border: 1px solid lightgray !important;
+  border-radius: 3px;
   width: 35% !important;
   min-width: 160px !important;
   height: 35px;
@@ -87,5 +89,4 @@ select {
         margin-top: 0px;
     }
 }
-
 
