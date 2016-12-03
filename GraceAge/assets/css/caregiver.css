@@ -63,6 +63,7 @@ li.active{
     background-color: #F0F4C3 !important;
     color: black;
     text-decoration: none !important;
+    height: 51px;
 }
 
 .fa{
@@ -106,8 +107,8 @@ li.active{
         display: block;
     }
     
-    .fa{
-        color: #CDDC39;
+    fa-sign-out{
+        color: #CDDC39 !important;
     }
     
     .dropdown{

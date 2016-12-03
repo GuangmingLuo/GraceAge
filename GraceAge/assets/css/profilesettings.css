@@ -71,4 +71,12 @@
     color: #009688;
 }
 
+/* mobile version with navbar collapse*/
+@media only screen and (max-width: 766px){
+
+    #pageTitle{
+        margin-top: 0px;
+    }
+}
+
 
