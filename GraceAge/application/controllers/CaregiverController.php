@@ -135,7 +135,7 @@ class CaregiverController extends CI_Controller {
             $data['show_navbar'] = true;
             $data['page_title'] = 'Edit Profile';
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
             $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
             $data['page_content'] = 'Account/caregiver_profile.html';
