@@ -62,6 +62,13 @@ ul.dropdown li:active{
     text-decoration: none !important;
 }
 
+li.active{
+    background-color: #F0F4C3 !important;
+    color: black;
+    text-decoration: none !important;
+}
+
+
 .fa{
     color: #009688;
 }
