@@ -56,18 +56,14 @@ ul.dropdown li:hover{
 
 /* active tab in background color*/
 ul.navbar-nav li a.active,
-ul.dropdown li:active{
-    background-color: #F0F4C3 !important;
-    color: black;
-    text-decoration: none !important;
-}
-
+ul.dropdown li a.active,
+dropdown-toggle a,
 li.active{
+    display: block;
     background-color: #F0F4C3 !important;
     color: black;
     text-decoration: none !important;
 }
-
 
 .fa{
     color: #009688;
@@ -82,15 +78,17 @@ li.active{
     margin-left: 30px;
 }
 
-#profiletab{
+#logouttab{
     margin-right: 20px;
     display: none;
 }
 
+/* settings tab not visible in navbar on desktop screen */
 #settingsMobile{
     display: none;
 }
 
+/* mobile version */
 @media only screen and (max-width: 766px){
     ul.navbar-nav li a{
         text-align: left;
@@ -98,7 +96,7 @@ li.active{
         font-size: 13px;
     }
     
-    #profiletab{
+    #logouttab{
         margin-right: 20px;
         display: block;
         font-size: 13px;
