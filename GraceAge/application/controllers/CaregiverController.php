@@ -177,7 +177,7 @@ class CaregiverController extends CI_Controller {
                 echo " -> should update";
                 $this->db->query("UPDATE a16_webapps_2.Caregiver "
                         . "SET Name ='" . $username . "' , password = '" . $password . "' "
-                        . "WHERE idCaregiver = " . $this->session->caregiver_id . ";");
+                        . "WHERE idCaregiver = " . $this->session->idCaregiver . ";");
             }
         }
         $this->profile();

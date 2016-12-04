@@ -18,7 +18,7 @@ function postForm() {
     if (!(old == false || newpass == false || conf == false)) {
         if (newpass === conf) {
 
-
+            
             $.post("change_password", {old_password: old, new_password: newpass, conf_password: conf});
 
         } else
@@ -28,7 +28,6 @@ function postForm() {
     alert("changes saved")
 
 
-}
-;
+};
 
 
