@@ -18,6 +18,7 @@ $lang['user_type'] ="User type:";
 $lang['patient'] ="Patient";
 $lang['caregiver'] ="Caregiver";
 $lang['language'] ="Language:";
+$lang['other_language'] ="NEDERLANDS";
 $lang['not_created'] ="Account not created";
 $lang['account_created'] ="Account created";
 $lang['different_passwords'] ="The passwords are different.";

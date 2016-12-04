@@ -14,13 +14,15 @@ class AccountController extends CI_Controller {
     }
 
     public function change_language() {
-        $language = $_GET["language"];
+        $language =  $this->session->language;
         if ($language == "english") {
-            $language = "dutch";
-        } else
-            $language = "english";
-        $this->lang->load('login', $language);
-        redirect(base_url() . 'AccountController/login?language=' . $language);
+            $this->session->set_userdata('language', "dutch");
+        } 
+        else {
+            $this->session->set_userdata('language', "english");
+        }
+        $this->lang->load('login', $this->session->language);
+        redirect(base_url() . 'AccountController/login');
     }
 
     private function common_data() {
@@ -52,12 +54,11 @@ class AccountController extends CI_Controller {
     }
 
     public function login() {
-        $language = "dutch";
-        if (isset($_GET["language"])) {
-            $language = $_GET["language"];
+        if(!$this->session->has_userdata('language')){
+            $this->session->set_userdata('language', "dutch");
         }
-        $this->lang->load('login', $language);
-        $data['language'] = $language;
+        $this->lang->load('login', $this->session->language);
+        $data['other_language'] = $this->lang->line('other_language');
         $data['loggedin'] = lang('not_logged_in');
         $data = array_merge($data, $this->common_data(), $this->login_data());
         $data['page_content'] = 'Account/login.html';
@@ -65,14 +66,7 @@ class AccountController extends CI_Controller {
     }
 
     function login_valid(){
-        $language = "dutch";
-        if (isset($_POST["language"])) {
-            $language = $_POST["language"];
-        }
-        $this->lang->load('login', $language);
-        $data['language'] = $language;
-        $data['loggedin'] = lang('wrong_credentials');
-        $data = array_merge($data, $this->common_data(), $this->login_data());
+        $this->lang->load('login', $this->session->language);
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');

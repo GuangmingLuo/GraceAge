@@ -18,6 +18,7 @@ $lang['user_type'] ="Type Gebruiker:";
 $lang['patient'] ="Patient";
 $lang['caregiver'] ="Zorgverlener";
 $lang['language'] ="Taal:";
+$lang['other_language'] ="ENGLISH";
 $lang['not_created'] ="Geen account aangemaakt";
 $lang['account_created'] ="Account aangemaakt";
 $lang['different_passwords'] ="Paswoorden zijn niet gelijk.";
