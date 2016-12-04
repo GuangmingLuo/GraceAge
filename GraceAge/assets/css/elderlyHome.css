@@ -2,7 +2,17 @@
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 10% !important;
+    height: 90px !important;
+    margin: 0px;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar-fixed-bottom{
+    border-top: 4px solid;
+    border-color: #CDDC39;
+    background-color: #F0F4C3;
+    height: 90px !important;
     margin: 0px;
     align-items: center;
     text-align: center;
@@ -15,16 +25,6 @@
     color: black;
     font-size: 15px;
     font-weight: bold;
-}
-
-.navbar-fixed-bottom{
-    border-top: 4px solid;
-    border-color: #CDDC39;
-    background-color: #F0F4C3;
-    height: 10% !important;
-    margin: 0px;
-    align-items: center;
-    text-align: center;
 }
 
 /* make 3 buttons visible with 2 vertical lines */
@@ -69,16 +69,6 @@
         background-color: #CDDC39;
         color: black;
     }   
-  
-/* text in the middle of the icon */    
-#stopbuttonwrapper{
-    display: inline-block;
-    vertical-align: 50%;
-}
-    
-#textstopbutton{
-    vertical-align: 50%;
-}
 
 .fontfamily {
     font-family: 'Open Sans';       
@@ -134,12 +124,11 @@
         padding-right: 10%;
     }
     
-    .navbar-fixed-bottom i{
-        text-align: center;
-        padding-top: 5%;
+    .navbar-collapse, .navbar-fixed-bottom{
+        height: 110px !important;
     }
     
-    .navbar-fixed-bottom span{
-        text-align: center;
+    .navbar-fixed-bottom i{
+        padding-top: 0px;
     }
 }
