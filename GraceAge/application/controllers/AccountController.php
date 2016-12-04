@@ -79,6 +79,7 @@ class AccountController extends CI_Controller {
             $result = $this->Account_model->getUser($username);
             $data2['valid_user'] = ($result != null);
             $data2['correct_password'] = password_verify($password, $result["password"]);
+            $data2['errormessage'] = $this->lang->line('wrong_credentials');
             if ($result != NULL) {
                 if (password_verify($password, $result["password"])) {
                     $data2['usertype'] = $result['userType'];
@@ -92,7 +93,8 @@ class AccountController extends CI_Controller {
         else{
             $this->output->set_content_type("application/json")->append_output(json_encode(array(
                 'valid_user' => false,
-                'correct_password' => false
+                'correct_password' => false,
+                'errormessage' => $this->lang->line('empty_credentials')
             )));
         }
     }

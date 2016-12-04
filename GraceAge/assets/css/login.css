@@ -138,6 +138,12 @@ select {
     padding-bottom: 2%;
 }
 
+/*make warning invisible*/
+.alert.alert-warning.inactive{
+    background-color: #F0F4C3;
+    color: #F0F4C3;
+}
+
 #registerTitle{
     margin: 0;
     padding: 0;

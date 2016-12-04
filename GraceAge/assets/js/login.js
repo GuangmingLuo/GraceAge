@@ -8,6 +8,10 @@ function login(){
         if(data.valid_user && data.correct_password){
             window.location.href = "loginPost";
         }
+        else{
+            $("#errorbox").removeClass('inactive');
+            $("#errorbox").html(data.errormessage);
+        }
     });
 }
 
