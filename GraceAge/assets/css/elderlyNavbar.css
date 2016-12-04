@@ -11,10 +11,17 @@
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 10% !important;
+    height: 90px !important;
     margin: 0px;
     padding: 0px;
 }
+
+@media only screen and (orientation: portrait){
+    #entireNavbar{
+        height: 110px !important;
+    }
+}
+
 
 .navbar-nav>li{
    text-align: center;

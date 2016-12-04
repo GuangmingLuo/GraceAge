@@ -19,9 +19,6 @@ h1{
     margin-top:7vw;
 }
 
-
-
-
 #questionnairy_wrapper{
     width:100%;
     margin:0px;
@@ -33,7 +30,6 @@ h1{
         margin-top: 3vh;
             margin-bottom: 50 px;
 }
-
 
 .progress-bar
 {
@@ -55,7 +51,6 @@ h1{
     width: 100%;
     color: black;
  }
-
 
 button{
     background-color: #F0F4C3;
@@ -82,11 +77,18 @@ footer{
     background-color: #F0F4C3;
     margin-top: 50px;
     line-height: 50px;
-    height : 100px;
+    height: 90px !important;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
+
+@media only screen and (orientation: portrait){
+    footer{
+        height: 110px !important;
+    }
+}
+
 #question_panel
 {
     background-color: #F0F4C3;
