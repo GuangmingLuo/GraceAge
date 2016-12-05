@@ -118,6 +118,7 @@ class CaregiverController extends CI_Controller {
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
             $data['write_new_reward'] = $this->lang->line('write_new_reward');
             $data['add_new_reward'] = $this->lang->line('add_new_reward');
+            $data['price'] = $this->lang->line('price');
             $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
             $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
@@ -134,9 +135,10 @@ class CaregiverController extends CI_Controller {
                 $this->Reward_model->get_rewards_as_json());
     }
     
-    function add_rewards(){ echo "sucess";
+    function add_reward(){
         $reward = $this->input->post('reward');
-        $this->Reward_model->add_rewards($reward);
+        $price = $this->input->post('price');
+        $this->Reward_model->add_reward($reward,$price);
     }
     
     function get_tips(){

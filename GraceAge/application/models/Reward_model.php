@@ -18,10 +18,10 @@ class Reward_model extends CI_Model{
         return json_encode($query->result());
     }
     
-    function add_reward($reward){
+    function add_reward($reward,$price){
         $data = array(
             'Reward' => $reward,
-            'Price' => '10',
+            'Price' => $price,
             'Language' => $this->session->Language,
         );
         $this->db->insert('a16_webapps_2.Rewards' , $data);

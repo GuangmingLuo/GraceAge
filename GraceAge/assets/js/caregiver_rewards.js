@@ -2,6 +2,7 @@ window.onload = showRewards;
 var $rewards_list = $('#rewards_list');
 
 function showRewards(){ 
+    $rewards_list.empty();
     $.post("get_rewards", function(rewards){  
         $.each(rewards, function(i, reward){            
             $rewards_list.append("<li id='" + reward.Id +"' onClick='rewardClick(this.id)'>"+ "Reward: "+reward.Reward + " Price: "+ reward.Price +" Language: "+ reward.Language+ "</li>"); 
@@ -11,10 +12,9 @@ function showRewards(){
 
 function add_new_reward(){
     var new_reward = $("#new_reward").val();
-    $.post("add_tip", {reward: new_reward}, function(){
-        $rewards_list.append("<li>"+ new_reward +"</li>");
-        alert("yes...");
-    });
+    var new_price = $("#price").val();
+    $.post("add_reward",{reward: new_reward,price:new_price});
+    showRewards();
 }
 
 
