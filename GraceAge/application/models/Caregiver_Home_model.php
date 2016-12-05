@@ -27,13 +27,11 @@ class Caregiver_Home_model extends CI_Model {
         $query = $this->db->distinct()->select('Topic')->get('Question');
         return $query->result_array();
     }
-    
-        function get_topics_as_json() {
+
+    function get_topics_as_json() {
         $query = $this->db->distinct()->select('Topic')->get('Question');
         return json_encode($query->result_array());
     }
-    
-    
 
     function get_name($id) {
         $query = $this->db->query("SELECT Name FROM a16_webapps_2.Caregiver WHERE idCaregiver = " . $id);
@@ -80,8 +78,8 @@ class Caregiver_Home_model extends CI_Model {
         $scores[$j + 1]['Score'] = $this->lang->line('recent');
         return json_encode($scores);
     }
-    
-    function get_chart_title(){
+
+    function get_chart_title() {
         $title = $this->lang->line('chart_title');
         return json_encode($title);
     }
@@ -114,8 +112,6 @@ class Caregiver_Home_model extends CI_Model {
         }
         return $topics;
     }
-
-
 
     function get_username_id() {
         $namesid;
@@ -153,7 +149,7 @@ class Caregiver_Home_model extends CI_Model {
             $id = $namesid[$i]->idPatient;
             for ($j = 0; $j < count($allanswers); $j++) {   //itterate through all the answers the patient has answered
                 if ($allanswers[$j]->Patient_idPatient == $namesid[$i]->idPatient) {
-                    $sum += $allanswers[$j]->Answer;
+                    $sum += $allanswers[$j]->Answer -1;
                     $k++;
                 }
             }
@@ -182,64 +178,69 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function calculate_topic_eff($username) {
-
-        $answerspatient;
         $display = array();
-        $query = $this->db->distinct()->select('Topic')->get('Question'); //get all the topics
-        $topics = $query->result();
 
 
-        if ($username == NULL) {
-            for($i = 0; $i < count($topics) ; $i++){
+        if ($username == NULL) {        //give results for no name, all 0
+            $query = $this->db->distinct()->select('Topic')->get('Question'); //get all the topics
+            $topics = $query->result();
+            for ($i = 0; $i < count($topics); $i++) {
                 array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
             }
-        }else{
-        $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');
-        $id2 = $query->result();
-        if(count($id2)==0){
-            if (count($id2)==0) {
-            for($i = 0; $i < count($topics) ; $i++){
-                array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
-            }
-        }
-        }else{
-        $id = $id2[0]->idPatient;
-        
+        } else {
+            $language;
+            $query = $this->db->select('Language')->where('Name', $username)->get('Patient');
+            $language2 = $query->result();
+            $language = $language2[0]->Language;
+            
+            
+            $query = $this->db->distinct()->select('Topic')->where('Language', $language)->get('Question'); //get all the topics
+            $topics = $query->result();
+            $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');      //get id of patient to use 
+            $id2 = $query->result();
+            if (count($id2) == 0) {                     //if wrong name is given
+                if (count($id2) == 0) {
+                    for ($i = 0; $i < count($topics); $i++) {
+                        array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
+                    }
+                }
+            } else {
+                $id = $id2[0]->idPatient;
 
-        $query = $this->db->distinct()->select('QuestionNumber, Topic')->get('Question');
-        $questions = $query->result();
 
-        
+                $query = $this->db->distinct()->select('QuestionNumber, Topic')->where('Language', $language)->get('Question'); //get all the question numbers allong with their topic
+                $questions = $query->result();
 
-        $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');  //get last answered questions
-        $answers = $query->result();
-        $aaa =0;
-        
 
-        for ($i = 0; $i < count($topics); $i++) {
-            $current = $topics[$i]->Topic;
-            //echo " ".$current;
-            $topicscore=0;
-            $topicavg;
-            $k = 0;
-            $neededquestions;
-            for ($a = 0 ; $a < count($questions); $a++) {
-                if($topics[$i]->Topic == $questions[$a]->Topic) {
-                    $questionnr = $questions[$a]->QuestionNumber;
-                    for($j = 0; $j < count($answers) ; $j++){
-                        if($questionnr == $answers[$j]->Question_Number){
-                            $topicscore += $answers[$j]->Answer;
-                            $k++;
+
+                $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');  //get last answered questions and their number
+                $answers = $query->result();
+                $aaa = 0;
+
+
+                for ($i = 0; $i < count($topics); $i++) {       //itterate through the topics
+                    $current = $topics[$i]->Topic;
+                    
+                    $topicscore = 0;
+                    $topicavg;
+                    $k = 0;     //amount of questions in the topic
+                    
+                    for ($a = 0; $a < count($questions); $a++) {    //itterate through the questions
+                        if ($topics[$i]->Topic == $questions[$a]->Topic) {  //if question is part of topic do...s
+                            $questionnr = $questions[$a]->QuestionNumber;
+                            for ($j = 0; $j < count($answers); $j++) {
+                                if ($questionnr == $answers[$j]->Question_Number) {
+                                    $topicscore += $answers[$j]->Answer -1;
+                                    $k++;
+                                }
+                            }
                         }
                     }
-                    
+                    $topicavg = $topicscore * 25 / $k;
+                    $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
+                    array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
                 }
             }
-            $topicavg = $topicscore * 25 / $k;
-            $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
-            array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
-        }
-        }
         }
         return $display;
     }
@@ -250,32 +251,32 @@ class Caregiver_Home_model extends CI_Model {
         }
         return $username;
     }
-    
-    function add_message($message){
-        if($message == "" || strlen($message) > 255){
+
+    function add_message($message) {
+        if ($message == "" || strlen($message) > 255) {
             //error message, nothing filled in or too long
-        }else{
-        //echo "..".$message."..";
-        $name = $this->session->Name;
-        date_default_timezone_set("Europe/Brussels");
-        $data = array(
-            'Name' => $name,
-            'Message' => $message,
-            'Date' => date('Y-m-d H:i:s')
-        );
-        $this->db->insert('a16_webapps_2.Messages', $data);
+        } else {
+            //echo "..".$message."..";
+            $name = $this->session->Name;
+            date_default_timezone_set("Europe/Brussels");
+            $data = array(
+                'Name' => $name,
+                'Message' => $message,
+                'Date' => date('Y-m-d H:i:s')
+            );
+            $this->db->insert('a16_webapps_2.Messages', $data);
         }
     }
-    
-    function show_messages(){
+
+    function show_messages() {
         $messages;
         $query = $this->db->select('Name, Message')->order_by('Date', 'DESC')->limit(10)->get('Messages');
         $messages = $query->result();
         $result = array();
         $messageshow = array();
-        
-        for($i = count($messages)-1; $i >=0; $i--){
-            array_push($result, array('Message' => $messages[$i]->Name.": ".$messages[$i]->Message."."));
+
+        for ($i = count($messages) - 1; $i >= 0; $i--) {
+            array_push($result, array('Message' => $messages[$i]->Name . ": " . $messages[$i]->Message . "."));
         }
 //        for($j = 0; $j < count($result); $j++){
 //            echo " ".$result[$j]['Message'];
