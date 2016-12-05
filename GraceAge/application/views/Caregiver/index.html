@@ -29,7 +29,7 @@
             </div>
         </div>
         </br>
-        
+
 
         </br>
 
@@ -37,31 +37,32 @@
 
 
     </div>
-    
+
     <div class="col-lg-4">
         <div class="row">
             <div class="col-md-12 Messagebox">
                 <table style="width:100%">
                     <tr>
-                    <b>Last Messages:</b></br>
-                       
+                    <b>Last Messages:</b></br></br>
+
 
                     </tr>
-                    {show}
-                    <tr>{Message} </br></tr>
-                    {/show}
-
+                    
+                    <ul class="list-group">
+                        {show}<li class="list-group-item">{Date} {Name} : {Message} {/show} 
+                        
+                    </ul>
 
 
                 </table>
-                
-               <form  name="messagesend" id="messagesend" action="index" method="get">
-            <label class='fontfamily' for="messagesend">Message to write:</label>
-            <textarea name="messagesend" cols="55" rows="5"></textarea>
-            <br />
-            <input name="Send" type="submit" />
-        </form> 
-                
+
+                <form  name="messagesend" id="messagesend" action="index" method="get">
+                    <label class='fontfamily' for="messagesend">Message to write:</label>
+                    <textarea name="messagesend" cols="55" rows="5"></textarea>
+                    <br />
+                    <input name="Send" type="submit" />
+                </form> 
+
             </div>
         </div>
     </div>
