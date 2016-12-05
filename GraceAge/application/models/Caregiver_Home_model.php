@@ -149,7 +149,7 @@ class Caregiver_Home_model extends CI_Model {
             $id = $namesid[$i]->idPatient;
             for ($j = 0; $j < count($allanswers); $j++) {   //itterate through all the answers the patient has answered
                 if ($allanswers[$j]->Patient_idPatient == $namesid[$i]->idPatient) {
-                    $sum += $allanswers[$j]->Answer -1;
+                    $sum += $allanswers[$j]->Answer - 1;
                     $k++;
                 }
             }
@@ -192,8 +192,8 @@ class Caregiver_Home_model extends CI_Model {
             $query = $this->db->select('Language')->where('Name', $username)->get('Patient');
             $language2 = $query->result();
             $language = $language2[0]->Language;
-            
-            
+
+
             $query = $this->db->distinct()->select('Topic')->where('Language', $language)->get('Question'); //get all the topics
             $topics = $query->result();
             $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');      //get id of patient to use 
@@ -220,17 +220,17 @@ class Caregiver_Home_model extends CI_Model {
 
                 for ($i = 0; $i < count($topics); $i++) {       //itterate through the topics
                     $current = $topics[$i]->Topic;
-                    
+
                     $topicscore = 0;
                     $topicavg;
                     $k = 0;     //amount of questions in the topic
-                    
+
                     for ($a = 0; $a < count($questions); $a++) {    //itterate through the questions
                         if ($topics[$i]->Topic == $questions[$a]->Topic) {  //if question is part of topic do...s
                             $questionnr = $questions[$a]->QuestionNumber;
                             for ($j = 0; $j < count($answers); $j++) {
                                 if ($questionnr == $answers[$j]->Question_Number) {
-                                    $topicscore += $answers[$j]->Answer -1;
+                                    $topicscore += $answers[$j]->Answer - 1;
                                     $k++;
                                 }
                             }
@@ -270,13 +270,15 @@ class Caregiver_Home_model extends CI_Model {
 
     function show_messages() {
         $messages;
-        $query = $this->db->select('Name, Message')->order_by('Date', 'DESC')->limit(10)->get('Messages');
+        $query = $this->db->select('Name, Message, Date')->order_by('Date', 'DESC')->limit(6)->get('Messages');
         $messages = $query->result();
         $result = array();
         $messageshow = array();
 
         for ($i = count($messages) - 1; $i >= 0; $i--) {
-            array_push($result, array('Message' => $messages[$i]->Name . ": " . $messages[$i]->Message . "."));
+           // $date = strtotime($$messages[$i]['Date']);
+            //$mysqldate = date( 'Y-m-d H:i:s', $date );
+            array_push($result, array('Name' => $messages[$i]->Name, 'Message' => $messages[$i]->Message, 'Date' => $messages[$i]->Date));
         }
 //        for($j = 0; $j < count($result); $j++){
 //            echo " ".$result[$j]['Message'];
