@@ -107,6 +107,25 @@ class CaregiverController extends CI_Controller {
         }
     }
     
+    function reward() {
+        if ($this->session->userType == "Caregiver") { // if session exists
+            $data['profile_func'] = base_url() . 'CaregiverController/reward';
+            $data['show_navbar'] = true;
+            $data['page_title'] = 'Reward';
+            $data['profile'] = $this->lang->line('caregiver_menu_profile');
+            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
+            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
+            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
+            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
+            $data['page_content'] = 'Caregiver/reward.html';
+           
+            $this->parser->parse('master.php', $data);
+        } else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
+        }
+    }
+    
     function get_tips(){
         $topic = $this->input->post('topic');
         $this->output->set_content_type("application/json")->append_output(

@@ -133,7 +133,7 @@ class AccountController extends CI_Controller {
             } else {
                 $data['register_state'] = lang('different_passwords');
             }
-        }//else{redirect(base_url() . 'AccountController/login');}
+        }
         $data['page_content'] = 'Account/register.html';
         $this->parser->parse('master.php', $data);
     }
