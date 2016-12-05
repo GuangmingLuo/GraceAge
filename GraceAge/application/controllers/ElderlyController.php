@@ -15,7 +15,7 @@ class ElderlyController extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->database();
+        
         $this->load->library('session');
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.

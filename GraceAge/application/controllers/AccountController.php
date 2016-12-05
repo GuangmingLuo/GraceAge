@@ -8,7 +8,7 @@ class AccountController extends CI_Controller {
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
-        $this->load->database();
+        
         $this->load->library('session');
         $this->load->model('Account_model');
     }

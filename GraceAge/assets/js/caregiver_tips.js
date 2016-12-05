@@ -32,13 +32,24 @@ function add_new_tip(){
 
    function tipClick(id){ // do something when a tip is clicked
        
-       $(document.getElementById('editform')).remove(); // remove old form if it excists
+      $(document.getElementById('editform')).remove(); // remove old form if it excists
            
       $(document.getElementById(id)).after("<form id='editform' ></form>"); // show a form here to update or delete the question
       $(document.getElementById('editform')).append("<input type='text' id='newtext'>");
       $(document.getElementById('editform')).append("<input type='button' onclick='updateTip(" + id+ ")' value='update'>"); // button run updateTip(id) on klick
-      
+      $(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
       
      
 };
+
+function updateTip(id){
+    var select = document.getElementById("select_topic");
+    var chosen_topic = select.options[select.selectedIndex].value;
+    var new_tip = $("#newtext").val();
+    alert(new_tip);
+};
+
+function deleteTip(id){
+    
+}
 
