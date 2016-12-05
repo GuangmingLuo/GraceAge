@@ -236,7 +236,11 @@ class Caregiver_Home_model extends CI_Model {
                             }
                         }
                     }
-                    $topicavg = $topicscore * 25 / $k;
+                    if ($k == 0) {
+                        $topicavg = 0;
+                    } else {
+                        $topicavg = $topicscore * 25 / $k;
+                    }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                     array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
                 }
@@ -276,7 +280,7 @@ class Caregiver_Home_model extends CI_Model {
         $messageshow = array();
 
         for ($i = count($messages) - 1; $i >= 0; $i--) {
-           // $date = strtotime($$messages[$i]['Date']);
+            // $date = strtotime($$messages[$i]['Date']);
             //$mysqldate = date( 'Y-m-d H:i:s', $date );
             array_push($result, array('Name' => $messages[$i]->Name, 'Message' => $messages[$i]->Message, 'Date' => $messages[$i]->Date));
         }
