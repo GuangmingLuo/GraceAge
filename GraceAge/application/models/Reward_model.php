@@ -12,10 +12,9 @@ class Reward_model extends CI_Model{
         $this->load->database();
         $this->load->library('session');
     }  
-    
-    function get_rewards_as_json() {
-        $query = $this->db->select('*')->from('Rewards')->get();
-        return json_encode($query->result());
+    function get_rewards() {
+        $query = $this->db->query("select Reward, Price, Language from Rewards");
+        return $query->result();
     }
     
     function add_reward($reward,$price){

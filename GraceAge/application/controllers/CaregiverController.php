@@ -119,6 +119,7 @@ class CaregiverController extends CI_Controller {
             $data['write_new_reward'] = $this->lang->line('write_new_reward');
             $data['add_new_reward'] = $this->lang->line('add_new_reward');
             $data['price'] = $this->lang->line('price');
+            $data['allrewards'] = $this->Reward_model ->get_rewards();
             $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
             $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
@@ -130,16 +131,22 @@ class CaregiverController extends CI_Controller {
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
     }
-    function get_rewards(){
-        $this->output->set_content_type("application/json")->append_output(
-                $this->Reward_model->get_rewards_as_json());
-    }
-    
-    function add_reward(){
-        $reward = $this->input->post('reward');
-        $price = $this->input->post('price');
-        $this->Reward_model->add_reward($reward,$price);
-    }
+    function rewardPost(){
+        if ($this->session->userType == "Caregiver") {// if session exists
+            if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
+                $reward = filter_input(INPUT_POST, 'new_reward');
+                $price = filter_input(INPUT_POST, 'price');
+                $this->Reward_model ->add_reward($reward,$price);
+            }else{
+                // error message should show in an alert window               
+            }
+             redirect(base_url() . 'CaregiverController/rewards');
+            
+        } else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
+        }
+    }   
     
     function get_tips(){
         $topic = $this->input->post('topic');

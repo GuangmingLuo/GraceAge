@@ -2,18 +2,22 @@
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<div class="container-fluid"  onload="func()">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <form>
-                <input type="text" id="new_reward" placeholder="{write_new_reward}">
-                <input type="text" id="price" placeholder="{price}">
-                <input type="button" class="btn btn-default fontfamily" onclick="add_new_reward()" value="{add_new_reward}">
+            <form name="rewardForm" id="rewardForm" action="rewardPost" method="post">
+                <input type="text" id="new_reward" name="new_reward" placeholder="{write_new_reward}">
+                <input type="text" id="price" name="price" placeholder="{price}">
+                <input type="submit" class="btn btn-default fontfamily"  value="{add_new_reward}">
+<!--                <input type="button" class="btn btn-default fontfamily" onclick="add_new_reward()" value="{add_new_reward}">-->
             </form>
         </div>
         
         <div class ="col-sm-12 overviewbox">
             <ul id="rewards_list">
+                {allrewards}
+                <li>{Reward} - {Price} - {Language}</li>
+                {/allrewards}
             </ul>
         </div>
         
