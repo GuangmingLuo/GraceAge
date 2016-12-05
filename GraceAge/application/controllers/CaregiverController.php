@@ -42,9 +42,10 @@ class CaregiverController extends CI_Controller {
             $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
             $data['content'] = "";
             $data['page_content'] = 'Caregiver/index.html';
+            $data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
+            $data ['show'] = $this->Caregiver_Home_model->show_messages();
             $this->parser->parse('master.php', $data);
-            //echo $this->Caregiver_Home_model->get_topic_with_score();
-            //echo $this->Caregiver_Home_model->get_answer_array();
+            
         } else {
             echo "You are not allowed to access this page!!!";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
