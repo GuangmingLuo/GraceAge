@@ -25,6 +25,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
         $this->load->model('Tip_model');
+        $this->load->model('Reward_model');
         $this->load->model('Account_model');
     }
 
@@ -107,11 +108,11 @@ class CaregiverController extends CI_Controller {
         }
     }
     
-    function reward() {
+    function rewards() {
         if ($this->session->userType == "Caregiver") { // if session exists
-            $data['profile_func'] = base_url() . 'CaregiverController/reward';
+            $data['profile_func'] = base_url() . 'CaregiverController/rewards';
             $data['show_navbar'] = true;
-            $data['page_title'] = 'Reward';
+            $data['page_title'] = 'Rewards';
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
             $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
@@ -124,6 +125,15 @@ class CaregiverController extends CI_Controller {
             echo "You are not allowed to access this page!!!";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
         }
+    }
+    function get_rewards(){
+        $this->output->set_content_type("application/json")->append_output(
+                $this->Reward_model->get_rewards_as_json());
+    }
+    
+    function add_rewards(){ echo "sucess";
+        $reward = $this->input->post('reward');
+        $this->Reward_model->add_rewards($reward);
     }
     
     function get_tips(){

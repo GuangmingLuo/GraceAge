@@ -2,7 +2,21 @@
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<div class="container-fluid">
-    <div>To be implemented! </div>
+<div class="container-fluid"  onload="func()">
+    <div class="row">
+        <div class="col-sm-12">
+            <form>
+                <input type="text" id="new_tip" placeholder="{write_new_reward}">
+                <input type="button" class="btn btn-default fontfamily" onclick="add_new_reward()" value="{add_new_reward}">
+            </form>
+        </div>
+        
+        <div class ="col-sm-12 overviewbox">
+            <ul id="rewards_list">
+            </ul>
+        </div>
+        
+    </div>
     
 </div>
+
