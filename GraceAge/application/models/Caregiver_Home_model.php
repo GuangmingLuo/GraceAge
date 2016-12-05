@@ -244,17 +244,43 @@ class Caregiver_Home_model extends CI_Model {
         return $display;
     }
 
-    
-
-    
-
-    
-
     function current_user($username) {
         if ($username == NULL) {
             return " nobody, please select someone.";
         }
         return $username;
+    }
+    
+    function add_message($message){
+        if($message == "" || strlen($message) > 255){
+            //error message, nothing filled in or too long
+        }else{
+        //echo "..".$message."..";
+        $name = $this->session->Name;
+        date_default_timezone_set("Europe/Brussels");
+        $data = array(
+            'Name' => $name,
+            'Message' => $message,
+            'Date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('a16_webapps_2.Messages', $data);
+        }
+    }
+    
+    function show_messages(){
+        $messages;
+        $query = $this->db->select('Name, Message')->order_by('Date', 'DESC')->limit(10)->get('Messages');
+        $messages = $query->result();
+        $result = array();
+        $messageshow = array();
+        
+        for($i = count($messages)-1; $i >=0; $i--){
+            array_push($result, array('Message' => $messages[$i]->Name.": ".$messages[$i]->Message."."));
+        }
+//        for($j = 0; $j < count($result); $j++){
+//            echo " ".$result[$j]['Message'];
+//        }
+        return $result;
     }
 
 }
