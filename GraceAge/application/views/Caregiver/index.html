@@ -28,11 +28,46 @@
                 </table>
             </div>
         </div>
+        </br>
+        
+
+        </br>
+
+
+
+
+    </div>
+    
+    <div class="col-lg-4">
         <div class="row">
-            <div class="col-md-12 messagesbox">{messages}</div>
+            <div class="col-md-12 Messagebox">
+                <table style="width:100%">
+                    <tr>
+                    <b>Last Messages:</b></br>
+                       
+
+                    </tr>
+                    {show}
+                    <tr>{Message} </br></tr>
+                    {/show}
+
+
+
+                </table>
+                
+               <form  name="messagesend" id="messagesend" action="index" method="get">
+            <label class='fontfamily' for="messagesend">Message to write:</label>
+            <textarea name="messagesend" cols="55" rows="5"></textarea>
+            <br />
+            <input name="Send" type="submit" />
+        </form> 
+                
+            </div>
         </div>
     </div>
-    <h1>{content}</h1>
+</div>
+</div>
+<h1>{content}</h1>
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="../../assets/js/chart.js" type="text/javascript"></script>
