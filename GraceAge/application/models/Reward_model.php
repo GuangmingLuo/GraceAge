@@ -11,7 +11,6 @@ class Reward_model extends CI_Model{
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        //$this->lang->load('tip', $this->session->Language);
     }  
     
     function get_rewards_as_json() {

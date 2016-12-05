@@ -22,6 +22,7 @@ class CaregiverController extends CI_Controller {
         $this->lang->load('caregiver', $this->session->Language);
         $this->lang->load('caregiver_menu', $this->session->Language);
         $this->lang->load('tip', $this->session->Language);
+        $this->lang->load('reward', $this->session->Language);
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
         $this->load->model('Tip_model');
@@ -115,6 +116,8 @@ class CaregiverController extends CI_Controller {
             $data['page_title'] = 'Rewards';
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
+            $data['write_new_reward'] = $this->lang->line('write_new_reward');
+            $data['add_new_reward'] = $this->lang->line('add_new_reward');
             $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
             $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
             $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
