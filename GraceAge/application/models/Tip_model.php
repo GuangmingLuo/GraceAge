@@ -50,6 +50,13 @@ class Tip_model extends CI_Model{
         $this->db->delete('tips');
     }
     
+    function update_tip($tipId,$topic, $tip){
+        $this->db->set($this->session->Language, $tip);
+        $this->db->set('topic', $topic);
+        $this->db->where('idtips', $tipId);
+        $this->db->update('tips');
+    }
+    
     function get_navigationbuttons(){
         return $this->navigationbuttons;
     }

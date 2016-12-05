@@ -46,10 +46,20 @@ function updateTip(id){
     var select = document.getElementById("select_topic");
     var chosen_topic = select.options[select.selectedIndex].value;
     var new_tip = $("#newtext").val();
-    alert(new_tip);
+    if(!new_tip) alert("write a tip");
+    else{
+        $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id});
+        register_topic(); //refresh the tips
+    }
 };
 
 function deleteTip(id){
+    var x;
+    if(confirm("are you sure?") == true){
+        // delete the tip
+        $.post("delete_tip", {id: id});
+        register_topic();
+    }
     
 }
 

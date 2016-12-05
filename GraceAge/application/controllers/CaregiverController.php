@@ -152,6 +152,18 @@ class CaregiverController extends CI_Controller {
         $tip = $this->input->post('tip');
         $this->Tip_model->add_tip($topic, $tip);
     }
+    function delete_tip(){
+        $id = $this->input->post('id');        
+        $this->Tip_model->remove_tip($id);
+    }
+    
+    function update_tip(){
+        $tipId = $this->input->post('id');
+        $topic = $this->input->post('topic');
+        $tip = $this->input->post('tip');
+        
+        $this->Tip_model->update_tip($tipId,$topic, $tip);
+    }
 
     function profile() {
         if ($this->session->userType == "Caregiver") {
