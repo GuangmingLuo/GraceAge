@@ -19,7 +19,10 @@ class Account_model extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
-
+       /*
+        * @param: username of Patient or Caregiver. if caregivers and patients with the same username exist, it will return the patient
+        * @return: array that represents a tuple from the db + usertype, eg the keys are the atribute names, Values are values
+        */
     function getUser($username) {
         $query = $this->db->query("SELECT * FROM Patient where Name=?", $username);
         $row = $query->row_array();
@@ -60,5 +63,23 @@ class Account_model extends CI_Model {
         $this->db->insert($usertype, $data);
         return true;
     }
+    
+    function changeLanguage($userType, $lang, $idPatient){
+       // $sql = "UPDATE a16_webapps_2.? "
+        //            . "SET Language = ?"
+         //           . "WHERE id? = ?;";
+        $this->db->set('Language', $lang);
+        $this->db->where('id'.$userType, $idPatient);
+        $this->db->update($userType);
+        //$this->db->query($sql, array($userType,$lang,$userType, $idPatient));
+    }
+    
+    function changePassword($userType,$password, $idPatient){
+        $this->db->set('password', $password);
+        $this->db->where('id'.$userType, $idPatient);
+        $this->db->update($userType);
+        
+    }
+    
 
 }

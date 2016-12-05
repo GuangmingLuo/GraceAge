@@ -25,6 +25,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
         $this->load->model('Tip_model');
+        $this->load->model('Account_model');
     }
 
     function index() {
@@ -157,28 +158,20 @@ class CaregiverController extends CI_Controller {
         $newlang = $this->input->post('language');
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
-            $this->db->query("UPDATE a16_webapps_2.Caregiver "
-                    . "SET Language ='" . $newlang . "' "
-                    . "WHERE idCaregiver = " . $this->session->idCaregiver . ";");
+            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idCaregiver);
         }
         redirect(base_url() . 'CaregiverController/profile');
     }
 
     function change_password() {
-        $username = $this->Caregiver_Home_model->get_name($this->session->idCaregiver);
-        //echo $username;
-        $verif = $this->db->query("SELECT password, Name FROM a16_webapps_2.Caregiver WHERE Name = '" . $username . "';")->row();
+        $verif = $this->Account_model->getUser($this->session->Name);
         $old = filter_input(INPUT_POST, 'old_password');
         $new = $this->input->post('new_password');
         $conf = $this->input->post('conf_password');
         if ($conf === $new) {
-            echo "passwords equal";
-            if (password_verify($old, $verif->password)) {
+            if (password_verify($old, $verif["password"])) {
                 $password = password_hash($new, PASSWORD_DEFAULT);
-                echo " -> should update";
-                $this->db->query("UPDATE a16_webapps_2.Caregiver "
-                        . "SET Name ='" . $username . "' , password = '" . $password . "' "
-                        . "WHERE idCaregiver = " . $this->session->idCaregiver . ";");
+                $this->Account_model->changePassword($this->session->userType,$password, $this->session->idCaregiver);
             }
         }
         $this->profile();

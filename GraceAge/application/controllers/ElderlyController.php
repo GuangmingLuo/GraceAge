@@ -22,6 +22,7 @@ class ElderlyController extends CI_Controller {
         $this->load->model('Menu_model');
         $this->load->model('Question_model');
         $this->load->model('Tip_model');
+        $this->load->model('Account_model');
         $this->load->model('Caregiver_Home_model'); // In order to call the function: get_topics_with_lowest_scores()
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
@@ -212,24 +213,20 @@ class ElderlyController extends CI_Controller {
         $newlang = $this->input->post('language');
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
-            $this->db->query("UPDATE a16_webapps_2.Patient "
-                    . "SET Language ='" . $newlang . "' "
-                    . "WHERE idPatient = " . $this->session->idPatient . ";");
+            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);
         }
         redirect(base_url() . 'ElderlyController/profile');
     }
     
     function change_password() {
-        $verif = $this->db->query("SELECT password, Name FROM a16_webapps_2.Patient WHERE idPatient = '" . $this->session->idPatient . "';")->row();
+        $verif = $this->Account_model->getUser($this->session->Name);
         $old = filter_input(INPUT_POST, 'old_password');
         $new = $this->input->post('new_password');
         $conf = $this->input->post('conf_password');
         if ($conf === $new) {
-            if (password_verify($old, $verif->password)) {
+            if (password_verify($old, $verif["password"])) {
                 $password = password_hash($new, PASSWORD_DEFAULT);
-                $this->db->query("UPDATE a16_webapps_2.Patient "
-                        . "SET password = '" . $password . "' "
-                        . "WHERE idPatient = " . $this->session->idPatient . ";");
+                $this->Account_model->changePassword($this->session->userType,$password, $this->session->idPatient);
             }
         }
         $this->profile();
