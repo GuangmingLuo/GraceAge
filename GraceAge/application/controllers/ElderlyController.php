@@ -28,9 +28,26 @@ class ElderlyController extends CI_Controller {
         $this->lang->load('caregiver',$this->session->Language);
         $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
+    
+    private function loadComonData() { // place the common $data[] here
+        $data['show_navbar'] = true;
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
+        
+        return $data;
+    }
+    
+    private function is_logged_in() {// returns true if valid user is logged in, else returns false and redirects to login page
+        if ($this->session->userType == "Patient")
+            return true;
+        else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
+            return false;
+        }
+    }
 
     function index() {
-        if ($this->session->userType == "Patient") { // if session exists
+        if (!$this->is_logged_in()) return;  // if session exists
             $data['show_navbar'] = false;
             $data['settings_button'] = $this->lang->line('elderly_settings_button');
             $data['stop_button'] = $this->lang->line('elderly_stop_button');
@@ -44,16 +61,13 @@ class ElderlyController extends CI_Controller {
             $data['content'] = "This is the home page! welcome " . $this->session->Name;
             $data['page_content'] = 'Elderly/index.html';
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
-        }
+        
     }
 
     /*     * ************* All Questionnaire page functions *********************** */
 
     function questionnaire() {
-        if ($this->session->userType == "Patient") { // if session exists
+        if (!$this->is_logged_in()) return;  // if session exists
             //Go fetch necessary data from database to setup the correct question.
             $this->Question_model->get_initial_state();            
             $data['show_navbar'] = true;
@@ -69,10 +83,7 @@ class ElderlyController extends CI_Controller {
             $data['questions'] = $this->Question_model->get_question($this->session->question_id, $this->session->Language);
             $data['page_content'] = 'Elderly/questionnaire.php';
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
-        }
+       
     }
 
     function previous() {
@@ -93,7 +104,7 @@ class ElderlyController extends CI_Controller {
     /*     * **********************End of Questionnaire functions*************************** */
 
     function tips() {
-        if ($this->session->userType == "Patient") { // if session exists
+        if (!$this->is_logged_in()) return; // if session exists
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_title'] = $this->lang->line('tips');;
@@ -107,15 +118,12 @@ class ElderlyController extends CI_Controller {
             $data['tip_4'] = $this->Tip_model->get_tip($topics[3]);
             $data['page_content'] = 'Elderly/tips.html';
             $this->parser->parse('master.php', $data);
-        }else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
-        }
+        
     }
     
     
     function score() {
-        if ($this->session->userType == "Patient") {
+        if (!$this->is_logged_in()) return;
 
             $rewardBought = "false";
             $data['reward_message'] = lang('buy_the_reward');
@@ -147,13 +155,11 @@ class ElderlyController extends CI_Controller {
             $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
             $data['page_content'] = 'Elderly/score.html';
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+      
     }
 
     function buyReward(){
+        if (!$this->is_logged_in()) return;
         $reward = $_GET["reward"];
         $idPatient = $this->session->idPatient;
         $rewardBought = ($this->Question_model->buyReward($reward, $idPatient)) ? 'true' : 'false';
@@ -161,6 +167,7 @@ class ElderlyController extends CI_Controller {
     }
 
     function congratulations() {
+        if (!$this->is_logged_in()) return;
         $this->lang->load('congratulations', $this->session->Language);
         $data['show_navbar'] = true;
         $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
@@ -178,7 +185,7 @@ class ElderlyController extends CI_Controller {
     }
 
     function profile(){
-        if ($this->session->userType == "Patient") {
+        if (!$this->is_logged_in()) return;
             $data['show_navbar'] = true;
             $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
@@ -198,10 +205,7 @@ class ElderlyController extends CI_Controller {
             $data['page_content'] = 'Account/elderly_profile.html';
             $data['Person_Name'] = $this->session->Name;
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url='.base_url("AccountController/login"));
-        }
+        
     }
     
     function logout(){
@@ -210,6 +214,7 @@ class ElderlyController extends CI_Controller {
     }
     
     function change_language() {
+        if (!$this->is_logged_in()) return;
         $newlang = $this->input->post('language');
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
@@ -219,6 +224,7 @@ class ElderlyController extends CI_Controller {
     }
     
     function change_password() {
+        if (!$this->is_logged_in()) return;
         $verif = $this->Account_model->getUser($this->session->Name);
         $old = filter_input(INPUT_POST, 'old_password');
         $new = $this->input->post('new_password');

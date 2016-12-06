@@ -31,7 +31,7 @@ class CaregiverController extends CI_Controller {
     }
 
     function index() {
-        if ($this->session->userType == "Caregiver") { // if session exists
+        if (!$this->is_logged_in()) return; // if session exists
             $data['show_navbar'] = true;
             $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['page_title'] = 'Caregiver Home';
@@ -49,10 +49,7 @@ class CaregiverController extends CI_Controller {
             $data ['show'] = $this->Caregiver_Home_model->show_messages();
             $this->parser->parse('master.php', $data);
             
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+     
     }
 
      function getTitle(){
@@ -64,7 +61,7 @@ class CaregiverController extends CI_Controller {
     }
     
     function personal() {
-        if ($this->session->userType == "Caregiver") { // if session exists
+        if (!$this->is_logged_in()) return; // if session exists
             $data['profile'] = $this->lang->line('caregiver_menu_profile');
             $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['show_navbar'] = true;
@@ -80,14 +77,11 @@ class CaregiverController extends CI_Controller {
 
             $data['page_content'] = 'Caregiver/personal.html';
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+       
     }
 
     function tips() {
-        if ($this->session->userType == "Caregiver") { // if session exists
+        if (!$this->is_logged_in()) return; // if session exists
             $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['show_navbar'] = true;
             $data['page_title'] = 'Tips';
@@ -103,14 +97,11 @@ class CaregiverController extends CI_Controller {
             $data['page_content'] = 'Caregiver/tips.html';
             $data['write_new_tip'] = $this->lang->line('tip_write_new');
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+      
     }
     
     function rewards() {
-        if ($this->session->userType == "Caregiver") { // if session exists
+        if (!$this->is_logged_in()) return; // if session exists
             $data['profile_func'] = base_url() . 'CaregiverController/rewards';
             $data['show_navbar'] = true;
             $data['page_title'] = 'Rewards';
@@ -126,13 +117,10 @@ class CaregiverController extends CI_Controller {
             $data['page_content'] = 'Caregiver/reward.html';
            
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+       
     }
     function rewardPost(){
-        if ($this->session->userType == "Caregiver") {// if session exists
+        if (!$this->is_logged_in()) return;// if session exists
             if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
                 $reward = filter_input(INPUT_POST, 'new_reward');
                 $price = filter_input(INPUT_POST, 'price');
@@ -142,10 +130,7 @@ class CaregiverController extends CI_Controller {
             }
              redirect(base_url() . 'CaregiverController/rewards');
             
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+        
     }   
     
     function editReward(){
@@ -177,7 +162,7 @@ class CaregiverController extends CI_Controller {
     }
 
     function profile() {
-        if ($this->session->userType == "Caregiver") {
+        if (!$this->is_logged_in()) return;
             $data['profile_func'] = base_url() . 'CaregiverController/profile';
             $data['log_out'] = $this->lang->line('caregiver_log_out');
             $data['logout'] = $this->lang->line('caregiver_logout');
@@ -200,10 +185,7 @@ class CaregiverController extends CI_Controller {
             $data['page_content'] = 'Account/caregiver_profile.html';
             $data['Person_Name'] = $this->session->Name;
             $this->parser->parse('master.php', $data);
-        } else {
-            echo "You are not allowed to access this page!!!";
-            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
-        }
+        
     }
 
     function logout() {
@@ -221,6 +203,7 @@ class CaregiverController extends CI_Controller {
     }
 
     function change_password() {
+        if (!$this->is_logged_in()) return;
         $verif = $this->Account_model->getUser($this->session->Name);
         $old = filter_input(INPUT_POST, 'old_password');
         $new = $this->input->post('new_password');
@@ -240,6 +223,14 @@ class CaregiverController extends CI_Controller {
         //    echo "\$a[$k] => $v.\n";
         //}
         $this->Tip_model->remove_tip(42);
+    }
+        private function is_logged_in() { // returns true if valid user is logged in, else returns false and redirects to login page
+        if ($this->session->userType == "Caregiver")  return true;
+        else {
+            echo "You are not allowed to access this page!!!";
+            $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
+            return false;
+        }
     }
 
 }
