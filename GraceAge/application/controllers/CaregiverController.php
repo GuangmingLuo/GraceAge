@@ -169,24 +169,10 @@ class CaregiverController extends CI_Controller {
     
     function register() {
         if(!$this->session->isAdmin){
+            session_destroy();
             redirect(base_url() . 'AccountController/login');
         }
-        $this->lang->load('login', $this->session->Language);
-        $data['profile'] = $this->lang->line('caregiver_menu_profile');
-        $data['show_navbar'] = true;
-        $data['confirm'] = $this->lang->line('confirm');
-        $data['user_type'] = $this->lang->line('user_type');
-        $data['patient'] = $this->lang->line('patient');
-        $data['caregiver'] = $this->lang->line('caregiver');
-        $data['language'] = $this->lang->line('language');
-        $data['page_title'] = 'Add Profile';
-        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_register'));
-        $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
-        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-        $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-        $data['other_language'] = $this->lang->line('other_language');
-        $data['register_state'] = lang('not_created');
-        $data['page_content'] = 'Account/register.html';
+        $data = $this->loadRegisterData();
         $this->parser->parse('master.php', $data);
     }
     
@@ -245,6 +231,20 @@ class CaregiverController extends CI_Controller {
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
             return false;
         }
+    }
+    
+    function loadRegisterData(){
+        $data = $this->loadCommonData();
+        $this->lang->load('login', $this->session->Language);
+        $data['confirm'] = $this->lang->line('confirm');
+        $data['user_type'] = $this->lang->line('user_type');
+        $data['patient'] = $this->lang->line('patient');
+        $data['caregiver'] = $this->lang->line('caregiver');
+        $data['language'] = $this->lang->line('language');
+        $data['page_title'] = 'Add Profile';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_register'));
+        $data['page_content'] = 'Account/register.html';
+        return $data;
     }
 
     private function loadIndexData() {
