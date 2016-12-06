@@ -60,14 +60,14 @@
     </div>
     <footer>
         <div class="row">
-            <div class="col-xs-1">
+            <div class="col-sm-1">
             </div>
             {navigationbuttons}
-            <div class="col-xs-5" id="{title}">
+            <div class="col-sm-5" id="{title}">
                 <button style="white-space: normal" type="button" class ="{class}" onclick="{func}" >{name}</button>
             </div>
             {/navigationbuttons}
-            <div class="col-xs-1">
+            <div class="col-sm-1">
             </div>
         </div>
     </footer>
