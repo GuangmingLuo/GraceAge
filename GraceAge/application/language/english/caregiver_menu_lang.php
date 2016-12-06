@@ -7,6 +7,7 @@ $lang['caregiver_menu_personal'] = 'Personal';
 $lang['caregiver_menu_tips'] = 'Tips';
 $lang['caregiver_menu_reward'] = 'Rewards';
 $lang['caregiver_menu_profile'] = 'Profile';
+$lang['caregiver_menu_register'] = 'Register';
 $lang['logout'] = 'Log out';
 $lang['settings'] = 'Settings';
 

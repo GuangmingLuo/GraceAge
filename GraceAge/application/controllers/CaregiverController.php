@@ -119,6 +119,7 @@ class CaregiverController extends CI_Controller {
             $this->parser->parse('master.php', $data);
        
     }
+    
     function rewardPost(){
         if (!$this->is_logged_in()) return;// if session exists
             if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
@@ -223,6 +224,10 @@ class CaregiverController extends CI_Controller {
             }
         }
         $this->profile();
+    }
+    
+    function register(){
+        redirect(base_url()."AccountController/register");
     }
 
     function debug() {

@@ -7,5 +7,6 @@ $lang['caregiver_menu_personal'] = 'Persoonlijk';
 $lang['caregiver_menu_tips'] = 'Tips';
 $lang['caregiver_menu_reward'] = 'Belonings';
 $lang['caregiver_menu_profile'] = 'Profiel';
+$lang['caregiver_menu_register'] = 'Registreer';
 $lang['logout'] = 'Afmelden';
 $lang['settings'] = 'Instellingen';

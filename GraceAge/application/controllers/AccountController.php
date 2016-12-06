@@ -13,6 +13,9 @@ class AccountController extends CI_Controller {
         $this->load->model('Account_model');
     }
 
+    function return_to_home(){
+        redirect(base_url(). 'CaregiverController/index');
+    }
     public function change_language() {
         $language =  $this->session->language;
         if ($language == "english") {
