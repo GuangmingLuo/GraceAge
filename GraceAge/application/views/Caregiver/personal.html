@@ -1,9 +1,56 @@
 <head>
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 </head>
 
 <div class="container row" style="width: auto">
-    <div class="col-lg-5 overviewbox">
+    <div id="display-scores" title="Scores of selected patient">Displays the scores of {currentuser}</div>
+    <div class="table-responsive col-lg-7">
+        <table id="personal-datatable" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Topic</th>
+                    <th>Score</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {patients}
+                <tr class="clickable-row">
+                    <td>{Name}</td>
+                    <td>Privacy</td>
+                    <td>80</td>
+                    <td>Doing well!</td>
+                </tr>
+                {/patients}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-md-12 overviewbox">
+                <table style="width:100%">
+                    <tr>
+                        <th>Patient score of: {currentuser}</th>
+                        <th>Score in %</th> 
+
+                    </tr>
+                    <tr>
+                        <td>{results} {Topic}<br> {/results}</td>
+                        <td>{results} {Score}<br> {/results}</td> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <h1>{content}</h1>
+</div>
+
+<div class="col-lg-7 overviewbox">
 
         <form name="namesearch" id="namesearch" action="personal" method="get">
             <div class="form-group">
@@ -16,44 +63,9 @@
             <br>
         </form>
         
-        
-
-
         <br>List of names:<br>
         {patients}
         {Name}<br>
         {/patients}
 
-
     </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-5">
-        <div class="row">
-            <div class="col-md-12 overviewbox">
-                <table style="width:100%">
-                    <tr>
-                        <th>Patient score of: {currentuser}</th>
-                        <th>Score in %</th> 
-
-                    </tr>
-                    <tr>
-                        <td>{results} {Topic}<br> {/results}</td>
-                        <td>{results} {Score}<br> {/results}</td> 
-
-                    </tr>
-
-
-
-                </table>
-                
-
-            </div>
-        </div>
-
-    </div>
-
-    <h1>{content}</h1>
-</div>
-
-
-
