@@ -23,3 +23,4 @@ $lang['not_created'] ="Account not created";
 $lang['account_created'] ="Account created";
 $lang['different_passwords'] ="The passwords are different.";
 $lang['user_exists'] ="This user already exists.";
+$lang['register_form_incomplete'] = "Fill in all fields!";

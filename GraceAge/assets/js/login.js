@@ -1,5 +1,10 @@
 var $password = $("#password");
 var $username = $("#username");
+var $password1 = $("#password1");
+var $password2 = $("#password2");
+var $usertype = $("#usertype");
+var $language = $("#language");
+var $errorbox = $("#errorbox");
 
 function login(){
     var pass = $password.val();
@@ -9,9 +14,29 @@ function login(){
             window.location.href = "loginPost";
         }
         else{
-            $("#errorbox").removeClass('inactive');
-            $("#errorbox").html(data.errormessage);
+            $errorbox.removeClass('inactive');
+            $errorbox.html(data.errormessage);
         }
+    });
+}
+
+function register(){
+    var user = $username.val();
+    var pass1 = $password1.val();
+    var pass2 = $password2.val();
+    var lang = $language.val();
+    var type = $usertype.val();
+    $.post('registerPost', {username: user, password1:pass1, password2:pass2, usertype:type, language:lang}, function(data){
+        if(data.success){
+            $errorbox.removeClass('alert-warning');
+            $errorbox.addClass('alert-success');
+        }
+        else{
+            $errorbox.removeClass('alert-success');
+            $errorbox.addClass('alert-warning');
+        }
+        $errorbox.removeClass('inactive');
+        $errorbox.html(data.err_msg);
     });
 }
 

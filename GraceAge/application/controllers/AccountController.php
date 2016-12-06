@@ -101,8 +101,9 @@ class AccountController extends CI_Controller {
         }
     }
 
-    public function register() {
-        $this->lang->load('login', 'english');
+    function register() {
+        $this->lang->load('login', $this->session->Language);
+        $data['other_language'] = $this->lang->line('other_language');
         $data['register_state'] = lang('not_created');
         $data = array_merge($data, $this->common_data(), $this->register_data());
         $data['page_content'] = 'Account/register.html';
@@ -110,32 +111,30 @@ class AccountController extends CI_Controller {
     }
 
     public function registerPost() {
-        $this->lang->load('login', 'english');
-        $data['register_state'] = lang('not_created');
-        $data = array_merge($data, $this->common_data(), $this->register_data());
+        $this->lang->load('login', $this->session->Language);
+        $return_data['err_msg'] = $this->lang->line('register_form_incomplete');
+        $return_data['success'] = false;
         if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
             $usertype = filter_input(INPUT_POST, 'usertype');
             $language = filter_input(INPUT_POST, 'language');
             $username = filter_input(INPUT_POST, 'username');
             $password1 = filter_input(INPUT_POST, 'password1');
             $password2 = filter_input(INPUT_POST, 'password2');
-            $this->load->database();
             if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
                 if ($this->Account_model->addUser($usertype, $language, $username, $password)) {
-                    $data['register_state'] = lang('account_created');
-                } else {
-                    $data['register_state'] = lang('user_exists');
-                    $data['username'] = $username;
-                    $data['password1'] = $password1;
-                    $data['password2'] = $password2;
+                    $return_data['err_msg'] = $this->lang->line('account_created');
+                    $return_data['success'] = true;
+                } 
+                else {
+                    $return_data['err_msg'] = $this->lang->line('user_exists');
                 }
-            } else {
-                $data['register_state'] = lang('different_passwords');
+            } 
+            else {
+                $return_data['err_msg'] = $this->lang->line('different_passwords');
             }
         }
-        $data['page_content'] = 'Account/register.html';
-        $this->parser->parse('master.php', $data);
+        $this->output->set_content_type("application/json")->append_output(json_encode($return_data));
     }
 
     public function logOut() { //destroy current session and goto login page

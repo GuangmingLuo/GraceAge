@@ -23,3 +23,4 @@ $lang['not_created'] ="Geen account aangemaakt";
 $lang['account_created'] ="Account aangemaakt";
 $lang['different_passwords'] ="Paswoorden zijn niet gelijk.";
 $lang['user_exists'] ="Deze gebruiker bestaat al.";
+$lang['register_form_incomplete'] = "Vul alle velden in.";
