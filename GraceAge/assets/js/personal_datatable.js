@@ -17,8 +17,8 @@ $(document).ready(function(){
     
     //When clicked on a table row, this function is called, which opens the dialog screen.
     $('#personal-datatable tbody').on('click', 'tr', function(){
-        //var data = table.row(this).data();
-        //window.location.href = "personal?username="+data[0];  //This displays the scores in Christophe's table.
-        $('#display-scores').dialog("open");    //Opens a dialog screen. This should contain the data.
+        var data = table.row(this).data();
+        window.location.href = "personal?username="+data[0];  //This displays the scores in Christophe's table.
+        //$('#display-scores').dialog("open");    //Opens a dialog screen. This should contain the data.
     });
 });
