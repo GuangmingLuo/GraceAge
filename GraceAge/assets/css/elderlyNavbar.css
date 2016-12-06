@@ -11,39 +11,43 @@
     border-bottom: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    height: 90px !important;
+    height: 15vh !important;
     margin: 0px;
     padding: 0px;
 }
 
 @media only screen and (orientation: portrait){
     #entireNavbar{
-        height: 110px !important;
+        height: 10vh !important;
     }
 }
-
 
 .navbar-nav>li{
    text-align: center;
 }
 
 .col-sm-11{
-       text-align: center;
+    text-align: center;
     align-items: center;
 
 }
 
 .navbar-nav > li > a > span
 {
-   font-size: 16px;
+   font-size: 15px;
    font-weight: bold;
    color: #000;
    font-family: 'Open Sans';       
 }
+
 .navbar-nav > li > a > i {
    font-size: 40px;
    font-weight: bold;
    color: #009688;
+}
+
+.col-lg-12{
+    padding: 0px;
 }
 
 
