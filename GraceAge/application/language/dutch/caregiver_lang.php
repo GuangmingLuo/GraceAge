@@ -13,4 +13,7 @@ $lang['caregiver_logout'] = 'Log uit';
 $lang['caregiver_new_placeholder'] = 'Nieuw wachtwoord';
 $lang['caregiver_old_placeholder'] = 'Oud wachtwoord';
 $lang['caregiver_conf_placeholder'] = 'Nieuw wachtwoord';
+$lang['caregiver_password_placeholder'] = 'Vul paswoord in';
+$lang['caregiver_username_placeholder'] = 'Vul gebruikersnaam in';
+$lang['caregiver_confirm_placeholder'] = 'Herhaal paswoord';
 $lang['caregiver_menu_profile'] = 'Profiel';

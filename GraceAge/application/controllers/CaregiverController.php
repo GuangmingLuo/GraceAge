@@ -237,6 +237,9 @@ class CaregiverController extends CI_Controller {
         $data = $this->loadCommonData();
         $this->lang->load('login', $this->session->Language);
         $data['confirm'] = $this->lang->line('confirm');
+        $data['confirm_ph'] = $this->lang->line('caregiver_confirm_placeholder');
+        $data['username_ph'] = $this->lang->line('caregiver_username_placeholder');
+        $data['password_ph'] = $this->lang->line('caregiver_password_placeholder');
         $data['user_type'] = $this->lang->line('user_type');
         $data['patient'] = $this->lang->line('patient');
         $data['caregiver'] = $this->lang->line('caregiver');
