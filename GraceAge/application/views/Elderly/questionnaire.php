@@ -22,9 +22,7 @@
 
 
         <div id='question_row' class="row">
-            <div class="col-xs-1">
-            </div>
-            <div class="col-xs-10">
+            <div class="col-xs-offset-1 col-xs-10">
 
 
                 <div id="question_panel" class="panel panel-default">
@@ -42,8 +40,6 @@
                     </table>
                 </div>
             </div>
-            <div class="col-xs-1">
-            </div>
         </div>
         <div id='answers_row' class="row">
             <div class="col-sm-1">
@@ -58,16 +54,17 @@
             </div>
         </div>
     </div>
+
     <footer>
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-xs-1">
             </div>
             {navigationbuttons}
-            <div class="col-sm-5" id="{title}">
-                <button style="white-space: normal" type="button" class ="{class}" onclick="{func}" >{name}</button>
+            <div class="col-xs-5" id="{title}">
+                <button style="white-space: normal" type="button" class ="{class}" class ="{class}" onclick="{func}" >{name}</button>
             </div>
             {/navigationbuttons}
-            <div class="col-sm-1">
+            <div class="col-xs-1">
             </div>
         </div>
     </footer>
