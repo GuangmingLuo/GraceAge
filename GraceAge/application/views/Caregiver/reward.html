@@ -18,6 +18,10 @@
                 {allrewards}
                 <li>
                         {Reward} - {Price} - {Language} {Available}
+                        <form action="editReward" method="post">
+                            <input onchange="this.form.submit()" type="checkbox" name="available" id="available" {Available} />
+                            <input type='hidden' id='Reward' name='Reward' value='{Reward}'/>
+                        </form>
                 </li>
                 {/allrewards}
             </ul>
