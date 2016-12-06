@@ -164,7 +164,6 @@ class CaregiverController extends CI_Controller {
             $this->session->set_userdata('Language', $newlang);
             $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idCaregiver);
         }
-        redirect(base_url() . 'CaregiverController/profile');
     }
     
     function register() {
@@ -207,17 +206,26 @@ class CaregiverController extends CI_Controller {
         if (!$this->is_logged_in()) {
             return;
         }
+        $this->lang->load('login', $this->session->Language);
+        $data['success'] = false;
+        $data['err_msg'] = $this->lang->line('register_form_incomplete');
         $verif = $this->Account_model->getUser($this->session->Name);
-        $old = filter_input(INPUT_POST, 'old_password');
+        $old = $this->input->post('old_password');
         $new = $this->input->post('new_password');
         $conf = $this->input->post('conf_password');
-        if ($conf === $new) {
-            if (password_verify($old, $verif["password"])) {
-                $password = password_hash($new, PASSWORD_DEFAULT);
-                $this->Account_model->changePassword($this->session->userType,$password, $this->session->idCaregiver);
+        if($old && $new && $conf){
+            $data['err_msg'] = $this->lang->line('different_passwords');
+            if ($conf === $new) {
+                $data['err_msg'] = $this->lang->line('incorrect_password');
+                if (password_verify($old, $verif["password"])) {
+                    $password = password_hash($new, PASSWORD_DEFAULT);
+                    $this->Account_model->changePassword($this->session->userType,$password, $this->session->idCaregiver);
+                    $data['err_msg'] = $this->lang->line('saved_changed');
+                    $data['success'] = true;
+                }
             }
         }
-        $this->profile();
+        $this->output->set_content_type("application/json")->append_output(json_encode($data));
     }
     
 
