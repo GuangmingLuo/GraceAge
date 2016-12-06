@@ -59,7 +59,7 @@ class Caregiver_Menu_model extends CI_Model{
                 'title' => 'Register', 
                 'link' => 'register', 
                 'className' => 'inactive', 
-                'gridClass' => 'col-lg-2', ,
+                'gridClass' => 'col-lg-2', 
                 'text' => $this->lang->line('caregiver_menu_register'));
         }
         $this->set_active($menutitle);
