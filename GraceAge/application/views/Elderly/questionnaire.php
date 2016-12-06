@@ -42,15 +42,15 @@
             </div>
         </div>
         <div id='answers_row' class="row">
-            <div class="col-sm-1">
+            <div class="col-xs-1"> 
             </div>
 
             {answers}
-            <div class="col-sm-2">
+            <div class="col-xs-2">
                 <button type="button" title="{title}" class="{className}">{name}</button>
             </div>
             {/answers}
-            <div class="col-sm-1">
+            <div class="col-xs-1">
             </div>
         </div>
     </div>

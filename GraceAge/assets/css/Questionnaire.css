@@ -102,10 +102,6 @@ footer{
     footer{
         height: 12vh !important;
     }
-    
-    #answers_row button {
-        margin-bottom: 10px;
-    }
 }
 
 #question_panel{
@@ -203,6 +199,29 @@ table{
 .col-sm-4{
     padding: 0px;
     margin: 0px;
+}
+
+/* tips page */
+#tipsTitle{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+    padding: 8px;
+    background-color: #CDDC39;
+    width: 100%;  
+    
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+
+#frame{
+    border: 4px solid;
+    border-color: #CDDC39;
+    border-bottom-left-radius: 4px !important; border-bottom-right-radius: 4px !important;
+    padding-top: 17px;
 }
 
 

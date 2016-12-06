@@ -5,17 +5,22 @@
 <div id='questionnairy_content' class="container">
 
     <main id="q_and_a">
-        <h1>{header}</h1>
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div id="tipsTitle">
+
+                    {header}
+                </div>
             </div>
-            <div class="col-sm-10">
-                <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_1}</button>
-                <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_2}</button>
-                <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_3}</button>
-                <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_4}</button>
-            </div>
-            <div class="col-sm-1">
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div id="frame">
+                    <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_1}</button>
+                    <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_2}</button>
+                    <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_3}</button>
+                    <button type="button" id="question_panel" title="{title}" class="panel panel-default">{tip_4}</button>
+                </div>
             </div>
         </div>
     </main>
