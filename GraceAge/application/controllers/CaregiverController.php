@@ -29,24 +29,21 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Reward_model');
         $this->load->model('Account_model');
     }
+    
+    private function loadCommonData() {
+        $data['show_navbar'] = true;
+        $data['profile_func'] = base_url() . 'CaregiverController/profile';
+        $data['profile'] = $this->lang->line('caregiver_menu_profile');
+        $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
+        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
+        $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
+        return $data;
+    }
+
 
     function index() {
         if (!$this->is_logged_in()) return; // if session exists
-            $data['show_navbar'] = true;
-            $data['profile_func'] = base_url() . 'CaregiverController/profile';
-            $data['page_title'] = 'Caregiver Home';
-            $data['header1'] = 'Welcome to Caregiver Home';
-            $data['profile'] = $this->lang->line('caregiver_menu_profile');
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
-            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['topics'] = $this->Caregiver_Home_model->get_topics();
-            $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
-            $data['content'] = "";
-            $data['page_content'] = 'Caregiver/index.html';
-            $data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
-            $data ['show'] = $this->Caregiver_Home_model->show_messages();
+            $data = $this->loadIndexData();
             $this->parser->parse('master.php', $data);
             
      
@@ -60,61 +57,26 @@ class CaregiverController extends CI_Controller {
         $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_topic_with_score());
     }
     
+
+    
     function personal() {
         if (!$this->is_logged_in()) return; // if session exists
-            $data['profile'] = $this->lang->line('caregiver_menu_profile');
-            $data['profile_func'] = base_url() . 'CaregiverController/profile';
-            $data['show_navbar'] = true;
-            $data['page_title'] = 'Personal Patient Information';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_personal'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
-            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['content'] = lang(''); //to check whether internationalization set up works
-            $data['patients'] = $this->Caregiver_Home_model->get_patients();
-            $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
-            $data['results'] = $this->Caregiver_Home_model->calculate_topic_eff($this->input->get('username'));
-
-            $data['page_content'] = 'Caregiver/personal.html';
+            $data = $this->loadPersonalData();
             $this->parser->parse('master.php', $data);
        
     }
 
+
     function tips() {
         if (!$this->is_logged_in()) return; // if session exists
-            $data['profile_func'] = base_url() . 'CaregiverController/profile';
-            $data['show_navbar'] = true;
-            $data['page_title'] = 'Tips';
-            $data['profile'] = $this->lang->line('caregiver_menu_profile');
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
-            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
-            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['content'] = "Tips to be added.";
-            $data['options'] = $this->Caregiver_Home_model->get_topics();
-            $data['choose_option'] = $this->lang->line('tip_choose_topic');
-            $data['add_new_tip'] = $this->lang->line('tip_add_new_tip');
-            $data['page_content'] = 'Caregiver/tips.html';
-            $data['write_new_tip'] = $this->lang->line('tip_write_new');
+        $data = $this->loadTipsData();
             $this->parser->parse('master.php', $data);
       
     }
-    
+
     function rewards() {
         if (!$this->is_logged_in()) return; // if session exists
-            $data['profile_func'] = base_url() . 'CaregiverController/rewards';
-            $data['show_navbar'] = true;
-            $data['page_title'] = 'Rewards';
-            $data['profile'] = $this->lang->line('caregiver_menu_profile');
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
-            $data['write_new_reward'] = $this->lang->line('write_new_reward');
-            $data['add_new_reward'] = $this->lang->line('add_new_reward');
-            $data['price'] = $this->lang->line('price');
-            $data['allrewards'] = $this->Reward_model ->get_rewards();
-            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
-            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['page_content'] = 'Caregiver/reward.html';
+            $data = $this->loadRewardsData();
            
             $this->parser->parse('master.php', $data);
        
@@ -170,29 +132,10 @@ class CaregiverController extends CI_Controller {
         $this->Tip_model->update_tip($tipId,$topic, $tip);
     }
 
+
     function profile() {
         if (!$this->is_logged_in()) return;
-            $data['profile_func'] = base_url() . 'CaregiverController/profile';
-            $data['log_out'] = $this->lang->line('caregiver_log_out');
-            $data['logout'] = $this->lang->line('caregiver_logout');
-            $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
-            $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
-            $data['conf_placeholder'] = $this->lang->line('caregiver_conf_placeholder');
-            $data['change_password'] = $this->lang->line('caregiver_change_password');
-            $data['old_password'] = $this->lang->line('caregiver_old_password');
-            $data['new_password'] = $this->lang->line('caregiver_new_password');
-            $data['conf_password'] = $this->lang->line('caregiver_conf_password');
-            $data['change_lang'] = $this->lang->line('caregiver_change_lang');
-            $data['Apply'] = $this->lang->line('caregiver_apply');
-            $data['profile'] = $this->lang->line('caregiver_menu_profile');
-            $data['show_navbar'] = true;
-            $data['page_title'] = 'Edit Profile';
-            $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
-            $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
-            $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
-            $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
-            $data['page_content'] = 'Account/caregiver_profile.html';
-            $data['Person_Name'] = $this->session->Name;
+        $data = $this->loadProfileData();
             $this->parser->parse('master.php', $data);
         
     }
@@ -230,20 +173,95 @@ class CaregiverController extends CI_Controller {
         redirect(base_url()."AccountController/register");
     }
 
-    function debug() {
-        //$array = $this->Caregiver_Home_model->calculate_topic_testplsignore("axel");
-        //foreach ($array as $k => $v) {
-        //    echo "\$a[$k] => $v.\n";
-        //}
-        $this->Tip_model->remove_tip(42);
-    }
-        private function is_logged_in() { // returns true if valid user is logged in, else returns false and redirects to login page
-        if ($this->session->userType == "Caregiver")  return true;
+
+
+    private function is_logged_in() { // returns true if valid user is logged in, else returns false and redirects to login page
+        if ($this->session->userType == "Caregiver")
+            return true;
         else {
             echo "You are not allowed to access this page!!!";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
             return false;
         }
+    }
+
+    private function loadIndexData() {
+        $data = $this->loadCommonData();
+        $data['page_title'] = 'Caregiver Home';
+        $data['header1'] = 'Welcome to Caregiver Home';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
+        $data['topics'] = $this->Caregiver_Home_model->get_topics();
+        $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
+        $data['content'] = "";
+        $data['page_content'] = 'Caregiver/index.html';
+        $data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
+        $data ['show'] = $this->Caregiver_Home_model->show_messages();
+        return $data;
+    }
+
+    private function loadPersonalData() {
+        $data = $this->loadCommonData();
+        $data['page_title'] = 'Personal Patient Information';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_personal'));
+        $data['content'] = lang(''); //to check whether internationalization set up works
+        $data['patients'] = $this->Caregiver_Home_model->get_patients();
+        $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
+        $data['results'] = $this->Caregiver_Home_model->calculate_topic_eff($this->input->get('username'));
+        $data['page_content'] = 'Caregiver/personal.html';
+        return $data;
+    }
+
+    private function loadProfileData() {
+        $data = $this->loadCommonData();
+
+        $data['log_out'] = $this->lang->line('caregiver_log_out');
+        $data['logout'] = $this->lang->line('caregiver_logout');
+        $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
+        $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
+        $data['conf_placeholder'] = $this->lang->line('caregiver_conf_placeholder');
+        $data['change_password'] = $this->lang->line('caregiver_change_password');
+        $data['old_password'] = $this->lang->line('caregiver_old_password');
+        $data['new_password'] = $this->lang->line('caregiver_new_password');
+        $data['conf_password'] = $this->lang->line('caregiver_conf_password');
+        $data['change_lang'] = $this->lang->line('caregiver_change_lang');
+        $data['Apply'] = $this->lang->line('caregiver_apply');
+        $data['page_title'] = 'Edit Profile';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
+        $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
+        $data['page_content'] = 'Account/caregiver_profile.html';
+        $data['Person_Name'] = $this->session->Name;
+        return $data;
+    }
+
+    private function loadTipsData() {
+        $data = $this->loadCommonData();
+        $data['page_title'] = 'Tips';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_tips'));
+        $data['content'] = "Tips to be added.";
+        $data['options'] = $this->Caregiver_Home_model->get_topics();
+        $data['choose_option'] = $this->lang->line('tip_choose_topic');
+        $data['add_new_tip'] = $this->lang->line('tip_add_new_tip');
+        $data['page_content'] = 'Caregiver/tips.html';
+        $data['write_new_tip'] = $this->lang->line('tip_write_new');
+        return $data;
+    }
+
+    private function loadRewardsData() {
+        $data = $this->loadCommonData();
+        $data['profile_func'] = base_url() . 'CaregiverController/rewards';
+
+        $data['page_title'] = 'Rewards';
+
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
+        $data['write_new_reward'] = $this->lang->line('write_new_reward');
+        $data['add_new_reward'] = $this->lang->line('add_new_reward');
+        $data['price'] = $this->lang->line('price');
+        $data['allrewards'] = $this->Reward_model->get_rewards();
+
+
+
+        $data['page_content'] = 'Caregiver/reward.html';
+        return $data;
     }
 
 }
