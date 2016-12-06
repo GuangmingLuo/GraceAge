@@ -13,7 +13,7 @@ class Reward_model extends CI_Model{
         $this->load->library('session');
     }  
     function get_rewards() {
-        $query = $this->db->query("select Reward, Price, Language from Rewards");
+        $query = $this->db->query("select Reward, Price, Language, Available from Rewards");
         return $query->result();
     }
     
@@ -21,8 +21,16 @@ class Reward_model extends CI_Model{
         $data = array(
             'Reward' => $reward,
             'Price' => $price,
-            'Language' => $this->session->Language,
+            'Language' => $this->session->Language
         );
         $this->db->insert('a16_webapps_2.Rewards' , $data);
+    }
+    
+    function edit_reward($reward,$available){
+        $data = array(
+            'Available' => $available
+        );
+        $this->db->where('Reward' , $reward);
+        $this->db->update('Rewards' , $data);
     }
 }

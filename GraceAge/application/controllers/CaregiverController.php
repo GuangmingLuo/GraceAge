@@ -148,6 +148,10 @@ class CaregiverController extends CI_Controller {
         }
     }   
     
+    function editReward(){
+
+    }   
+    
     function get_tips(){
         $topic = $this->input->post('topic');
         $this->output->set_content_type("application/json")->append_output(
