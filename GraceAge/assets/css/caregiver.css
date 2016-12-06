@@ -105,6 +105,16 @@ ul.dropdown li a.active{
     display: none;
 }
 
+.alert{
+    background-color: #F0F4C3;
+}
+
+.alert.inactive{
+    color: #F0F4C3;
+}
+
+
+
 /* mobile version */
 @media only screen and (max-width: 766px){
     ul.navbar-nav li a{

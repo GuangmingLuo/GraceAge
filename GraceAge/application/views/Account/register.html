@@ -1,5 +1,5 @@
 <head>
-    <link href="../../assets/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <div class="container-fluid">
@@ -7,11 +7,8 @@
     <div class="row">
         <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6">
             <div class="box">
-                <div class="fontfamily" id="registerTitle">
-                    {page_title}
-                </div>
                 <div class="tab-content fontfamily">
-                    <form name="registerForm" id="registerForm" action="registerPost" method="post">                
+                    <form name="registerForm" id="registerForm" >                
                         <div class="form-group">
                             <select class="form-control" id="usertype" name="usertype">
                                 <option  value="Patient">{patient}</option>
@@ -44,13 +41,4 @@
             </div>
         </div>
     </div>
-
-    <div class ="row">
-        <div class ="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6" id ="languageTab">
-            <a href="return_to_home" id="language" class="btn btn-link fonttype">
-                {return_to_home}
-            </a>
-        </div>
-    </div>
-
 </div>

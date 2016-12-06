@@ -25,6 +25,7 @@ class CaregiverController extends CI_Controller {
         $this->lang->load('reward', $this->session->Language);
         $this->load->model('Caregiver_Menu_model');
         $this->load->model('Caregiver_Home_model');
+        $this->load->model('Account_model');
         $this->load->model('Tip_model');
         $this->load->model('Reward_model');
         $this->load->model('Account_model');
@@ -42,9 +43,11 @@ class CaregiverController extends CI_Controller {
 
 
     function index() {
-        if (!$this->is_logged_in()) return; // if session exists
-            $data = $this->loadIndexData();
-            $this->parser->parse('master.php', $data);
+        if (!$this->is_logged_in()){ 
+            return;
+        }
+        $data = $this->loadIndexData();
+        $this->parser->parse('master.php', $data);
             
      
     }
@@ -60,38 +63,46 @@ class CaregiverController extends CI_Controller {
 
     
     function personal() {
-        if (!$this->is_logged_in()) return; // if session exists
-            $data = $this->loadPersonalData();
-            $this->parser->parse('master.php', $data);
+        if (!$this->is_logged_in()) {
+            return;
+        }
+        $data = $this->loadPersonalData();
+        $this->parser->parse('master.php', $data);
        
     }
 
 
     function tips() {
-        if (!$this->is_logged_in()) return; // if session exists
+        if (!$this->is_logged_in()) {
+            return;
+        }
         $data = $this->loadTipsData();
-            $this->parser->parse('master.php', $data);
-      
+        $this->parser->parse('master.php', $data);
     }
 
     function rewards() {
-        if (!$this->is_logged_in()) return; // if session exists
-            $data = $this->loadRewardsData();
-           
-            $this->parser->parse('master.php', $data);
+        if (!$this->is_logged_in()) {
+            return;
+        }
+        $data = $this->loadRewardsData();
+
+        $this->parser->parse('master.php', $data);
        
     }
     
     function rewardPost(){
-        if (!$this->is_logged_in()) return;// if session exists
-            if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
-                $reward = filter_input(INPUT_POST, 'new_reward');
-                $price = filter_input(INPUT_POST, 'price');
-                $this->Reward_model ->add_reward($reward,$price);
-            }else{
-                // error message should show in an alert window               
-            }
-             redirect(base_url() . 'CaregiverController/rewards');
+        if (!$this->is_logged_in()) {
+            return;
+        }
+        if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
+            $reward = filter_input(INPUT_POST, 'new_reward');
+            $price = filter_input(INPUT_POST, 'price');
+            $this->Reward_model ->add_reward($reward,$price);
+        }
+        else{
+            // error message should show in an alert window               
+        }
+        redirect(base_url() . 'CaregiverController/rewards');
             
         
     }   
@@ -134,7 +145,9 @@ class CaregiverController extends CI_Controller {
 
 
     function profile() {
-        if (!$this->is_logged_in()) return;
+        if (!$this->is_logged_in()) {
+            return;
+        }
         $data = $this->loadProfileData();
             $this->parser->parse('master.php', $data);
         
@@ -153,9 +166,61 @@ class CaregiverController extends CI_Controller {
         }
         redirect(base_url() . 'CaregiverController/profile');
     }
+    
+    function register() {
+        if(!$this->session->isAdmin){
+            redirect(base_url() . 'AccountController/login');
+        }
+        $this->lang->load('login', $this->session->Language);
+        $data['profile'] = $this->lang->line('caregiver_menu_profile');
+        $data['show_navbar'] = true;
+        $data['confirm'] = $this->lang->line('confirm');
+        $data['user_type'] = $this->lang->line('user_type');
+        $data['patient'] = $this->lang->line('patient');
+        $data['caregiver'] = $this->lang->line('caregiver');
+        $data['language'] = $this->lang->line('language');
+        $data['page_title'] = 'Add Profile';
+        $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_register'));
+        $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
+        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
+        $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
+        $data['other_language'] = $this->lang->line('other_language');
+        $data['register_state'] = lang('not_created');
+        $data['page_content'] = 'Account/register.html';
+        $this->parser->parse('master.php', $data);
+    }
+    
+    public function registerPost() {
+        $this->lang->load('login', $this->session->Language);
+        $return_data['err_msg'] = $this->lang->line('register_form_incomplete');
+        $return_data['success'] = false;
+        if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
+            $usertype = filter_input(INPUT_POST, 'usertype');
+            $language = filter_input(INPUT_POST, 'language');
+            $username = filter_input(INPUT_POST, 'username');
+            $password1 = filter_input(INPUT_POST, 'password1');
+            $password2 = filter_input(INPUT_POST, 'password2');
+            if ($password1 === $password2) {
+                $password = password_hash($password1, PASSWORD_DEFAULT);
+                if ($this->Account_model->addUser($usertype, $language, $username, $password)) {
+                    $return_data['err_msg'] = $this->lang->line('account_created');
+                    $return_data['success'] = true;
+                } 
+                else {
+                    $return_data['err_msg'] = $this->lang->line('user_exists');
+                }
+            } 
+            else {
+                $return_data['err_msg'] = $this->lang->line('different_passwords');
+            }
+        }
+        $this->output->set_content_type("application/json")->append_output(json_encode($return_data));
+    }
 
     function change_password() {
-        if (!$this->is_logged_in()) return;
+        if (!$this->is_logged_in()) {
+            return;
+        }
         $verif = $this->Account_model->getUser($this->session->Name);
         $old = filter_input(INPUT_POST, 'old_password');
         $new = $this->input->post('new_password');
@@ -169,9 +234,6 @@ class CaregiverController extends CI_Controller {
         $this->profile();
     }
     
-    function register(){
-        redirect(base_url()."AccountController/register");
-    }
 
 
 
