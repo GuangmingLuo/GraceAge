@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+.col-sm-12, .col-sm-10, .col-sm-2 {
+    padding: 0px;
+}
+
 body{
     background-color: #F0F4C3;
     margin: 0px;
