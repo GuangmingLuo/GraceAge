@@ -1,31 +1,43 @@
 <head>
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/tipsCaregiver.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <div class="container-fluid">
     <div class ="row">
-        <div class="col-sm-8">
-            <select id="select_topic" class="btn btn-default fontfamily" onchange="register_topic()">
-                <option value="0">--{choose_option}--</option>
-                {options}
-                <option value="{Topic}">{Topic}</option>
-                {/options}
-            </select>
-        </div>
-        <div class="col-sm-4">
-            <form>
-                <input type="text" id="new_tip" placeholder="{write_new_tip}">
-                <input type="button" class="btn btn-default fontfamily" onclick="add_new_tip()" value="{add_new_tip}">
-            </form>
+        <div class="col-sm-offset-1 col-sm-10">
+            <div class="frame">
+
+                <div class ="row">
+                    <div class="col-sm-10">   
+                        <div class="form-group">
+                            <select id="select_topic" class="form-control" onchange="register_topic()">
+                                <option value="0">--{choose_option}--</option>
+                                {options}
+                                <option value="{Topic}">{Topic}</option>
+                                {/options}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class ="col-sm-10 overviewbox">
+                        <ul id="tips_list">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <form>
+                            <input type="text" id="new_tip" placeholder="{write_new_tip}"> 
+                            <input type="button" class="btn btn-default fontfamily" onclick="add_new_tip()" value="{add_new_tip}">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-    
-    
-    <div class="row">
-        <div class ="col-sm-12 overviewbox">
-            <ul id="tips_list">
-            </ul>
-        </div>
-    </div>
-    
 </div>
