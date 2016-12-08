@@ -1,5 +1,15 @@
-.container-fluid{
-    margin: -15px;
+
+#congrats_message,
+#exchange_message{
+    font-family: 'Open Sans';       
+    font-size: 4.5vh;
+    font-weight: bold;
+}
+
+#score_message{
+    font-family: 'Open Sans';       
+    font-size: 8.5vh;
+    font-weight: bold;
 }
 
 footer{
@@ -13,6 +23,17 @@ footer{
     bottom: 0;
     width: 100%;
 }
+
+#content_wrapper{
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+
+#buttonnext:hover{
+    text-decoration: none;
+}
+    
 .background{
     background: url("../pictures/FlowerGarden.jpg") ;
     background-size:cover;
@@ -21,33 +42,39 @@ footer{
     background-attachment: fixed;
     position: absolute;
     overflow: hidden;
-    opacity: .5;
+    opacity: .4;
     width: 100%;
-    height: 90%;    /*10% is the navbar*/
+    height: 80%;    /*10% is the navbar*/
     z-index: -1;
 }
 
 #content{
     height: 80%;
-    padding: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     white-space: normal !important;
     word-wrap: break-word;
 }
 
-#buttonnext{
-    height: 10%;
-}
-
-.btn-arrow-right {
+.btn-arrow-right,
+.btn-arrow-left {
     color: white;
     height: 60px;
     position: relative;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-top:0px;
     background-color: #009688;
-    margin: 10%;
-    font: 'Open Sans';
-    font-size: 1.75vw;
+    margin-top: 17px;
+    font-family: 'Open Sans';       
+    font-size: 14px;
+
+}
+.btn-arrow-left:hover,
+.btn-arrow-left:active,
+.btn-arrow-right:hover,
+.btn-arrow-right:active
+{
+    background-color: #009688;
+    color:#CDDC39;
 }
 
 .btn-arrow-right:before,
@@ -68,7 +95,6 @@ footer{
     -webkit-border-radius: 0px 4px 0px 0px;
     -moz-border-radius: 0px 4px 0px 0px;
 }
-
 .btn-arrow-right:after {
     
     transform: rotate(45deg); /* rotate right arrow squares 45 deg to point right */
@@ -77,7 +103,6 @@ footer{
     -o-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
 }
-
 .btn-arrow-left:before{
     transform: rotate(225deg); /* rotate left arrow squares 225 deg to point left */
     -webkit-transform: rotate(225deg);
@@ -85,7 +110,6 @@ footer{
     -o-transform: rotate(225deg);
     -ms-transform: rotate(225deg);
 }
-
 .btn-arrow-left:after,
 .btn-arrow-right:before{ /* align the "after" square to the right */
     display: none;
@@ -94,7 +118,15 @@ footer{
 .btn-arrow-left:before { /* align the "before" square to the left */
     left: -20px;
 }
-
 .btn-arrow-right:after{ /* align the "after" square to the right */
     right: -20px;
-}  
+}
+
+#previous_navbutton{
+        padding-left: 60px;
+
+}
+#next_navbutton{
+        padding-right: 60px;
+
+}
