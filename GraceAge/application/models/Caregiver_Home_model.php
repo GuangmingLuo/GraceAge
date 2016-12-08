@@ -156,7 +156,7 @@ class Caregiver_Home_model extends CI_Model {
             if ($k == 0) {
                 $avg = 0;
             } else {
-                $avg = $sum * 25 / $k;
+                $avg = $sum * 20 / $k;
             }
             $k = 0;
             $nombre_format_francais = number_format($avg, 2, ',', ' ');
@@ -239,7 +239,7 @@ class Caregiver_Home_model extends CI_Model {
                     if ($k == 0) {
                         $topicavg = 0;
                     } else {
-                        $topicavg = $topicscore * 25 / $k;
+                        $topicavg = $topicscore * 20 / $k;
                     }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                     array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
@@ -254,6 +254,77 @@ class Caregiver_Home_model extends CI_Model {
             return " nobody, please select someone.";
         }
         return $username;
+    }
+
+    function getJSONtable() {
+        $patients;
+        $answers;
+        $topics;
+        $questions;
+        $topicscore;
+        $persontopic = array();
+        $personavg;
+        $resultarray = array();
+        $resutls = array();
+
+
+        $query = $this->db->select('idPatient, Name, Language')->get('Patient');
+        $patients = $query->result();
+        for ($i = 0; $i < count($patients); $i++) {
+            //getting all data needed
+            $query = $this->db->select('Topic, QuestionNumber')->where('Language', $patients[$i]->Language)->get('Question');
+            $questions = $query->result();
+            $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
+            $answers = $query->result();
+            $query = $this->db->distinct()->select('Topic')->where('Language', $patients[$i]->Language)->get('Question');
+            $topics = $query->result();
+
+            //calculate worst topic here
+            for ($j = 0; $j < count($topics); $j++) { //go through every topic
+                $score = 0;
+                $amount = 0;
+                $avg;
+                for ($k = 0; $k < count($questions); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
+                    for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
+                        if ($topics[$j]->Topic == $questions[$k]->Topic) {
+                            if ($questions[$k]->QuestionNumber == $answers[$l]->Question_Number) {
+                                $score += $answers[$l]->Answer;
+                                $amount++;
+                            }
+                        }
+                    }
+                }if($amount == 0){
+                    $avg = 0;
+                }else{
+                $avg = $score * 20 / $amount;
+                }
+                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topics[$j]->Topic));
+                foreach ($persontopic as $key => $row) {
+                    $topic[$key] = $row['Topic'];
+                    $scoree[$key] = $row['Score'];
+                }
+
+
+                array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
+                $lowesttopic = array_slice($persontopic, 0, 1);
+            }
+            
+            //calculate avg
+            $amount = 0;
+            $score = 0;
+            for ($m = 0; $m < count($answers) ; $m++){
+                $score += $answers[$m]->Answer;
+                $amount++;
+            }if($amount == 0){
+                $personavg = 0;
+            }else{
+            $personavg = $score * 20 / $amount;
+            }
+            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $personavg));
+        }
+        //echo json_encode($resultarray);
+        //return json_encode($resultarray);
+        return $resultarray;
     }
 
     function add_message($message) {
