@@ -26,7 +26,7 @@ class ElderlyController extends CI_Controller {
         $this->load->model('Caregiver_Home_model'); // In order to call the function: get_topics_with_lowest_scores()
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
-        $this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
+        //$this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
     
     private function loadComonData() { // place the common $data[] here
@@ -198,7 +198,7 @@ class ElderlyController extends CI_Controller {
     function congratulations() {
         if (!$this->is_logged_in()) return;
         $this->lang->load('congratulations', $this->session->Language);
-       
+       $data = $this->loadCongratulationsData();
         //$this->Question_model->updatePatientScore($this->session->idPatient, 1);
         $this->parser->parse('master.php', $data);
     }
