@@ -25,4 +25,5 @@ $lang['different_passwords'] ="Paswoorden zijn niet gelijk.";
 $lang['user_exists'] ="Deze gebruiker bestaat al.";
 $lang['register_form_incomplete'] = "Vul alle velden in.";
 $lang['incorrect_password'] = "Oud paswoord niet correct";
-$lang['saved_changes'] = "Wijzigingen opgeslagen";
+$lang['saved_changes'] = " wijzigingen opgeslagen. ";
+$lang['errorbox_password'] = "Paswoord: ";

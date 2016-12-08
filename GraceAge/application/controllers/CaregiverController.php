@@ -160,10 +160,14 @@ class CaregiverController extends CI_Controller {
 
     function change_language() {
         $newlang = $this->input->post('language');
+        $data['err_msg'] ="";
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
             $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idCaregiver);
+            $this->lang->load('login', $this->session->Language);
+            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');
         }
+        $this->output->set_content_type("application/json")->append_output(json_encode($data));
     }
     
     function register() {
@@ -208,19 +212,22 @@ class CaregiverController extends CI_Controller {
         }
         $this->lang->load('login', $this->session->Language);
         $data['success'] = false;
-        $data['err_msg'] = $this->lang->line('register_form_incomplete');
+        $data['err_msg'] = " ";
         $verif = $this->Account_model->getUser($this->session->Name);
         $old = $this->input->post('old_password');
         $new = $this->input->post('new_password');
         $conf = $this->input->post('conf_password');
+        if ($old || $new || $conf){
+            $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('register_form_incomplete');
+        }
         if($old && $new && $conf){
-            $data['err_msg'] = $this->lang->line('different_passwords');
+            $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('different_passwords');
             if ($conf === $new) {
-                $data['err_msg'] = $this->lang->line('incorrect_password');
+                $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('incorrect_password');
                 if (password_verify($old, $verif["password"])) {
                     $password = password_hash($new, PASSWORD_DEFAULT);
                     $this->Account_model->changePassword($this->session->userType,$password, $this->session->idCaregiver);
-                    $data['err_msg'] = $this->lang->line('saved_changed');
+                    $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('saved_changed');
                     $data['success'] = true;
                 }
             }
@@ -287,7 +294,6 @@ class CaregiverController extends CI_Controller {
 
     private function loadProfileData() {
         $data = $this->loadCommonData();
-
         $data['log_out'] = $this->lang->line('caregiver_log_out');
         $data['logout'] = $this->lang->line('caregiver_logout');
         $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
@@ -302,6 +308,7 @@ class CaregiverController extends CI_Controller {
         $data['page_title'] = 'Edit Profile';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
         $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
+        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
         $data['page_content'] = 'Account/caregiver_profile.html';
         $data['Person_Name'] = $this->session->Name;
         return $data;

@@ -82,6 +82,10 @@ select {
     float: right;
 }
 
+
+#errorbox{
+    background-color: white
+}
 /* icons */
 .fa{
     color: #009688;
