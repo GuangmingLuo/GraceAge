@@ -90,25 +90,18 @@ class Caregiver_Home_model extends CI_Model {
         $n = count($topics);
         $scores;
         for ($i = 0, $j = 0; $j < $n; $j++, $i++) {
-            $scores[$i]['Topic'] = $topics[$j]['Topic']; //echo $scores[$i]['Topic'];
-            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']); //echo round($scores[$i]['Score'],2);
+            $scores[$i]['Topic'] = $topics[$j]['Topic']; 
+            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']); 
+        }       
+        foreach ($scores as $key => $row) {
+            $topic[$key] = $row['Topic'];
+            $score[$key] = $row['Score'];
         }
-        for ($i = 0; $i < $n; $i++) {
-            for ($j = 1; $j < ($n - $i); $j++) {
-                if ($scores[$j - 1]['Score'] > $scores[$j]['Score']) {
-                    //swap the elements!
-                    $temp['Score'] = $scores[$j - 1]['Score'];
-                    $temp['Topic'] = $scores[$j - 1]['Topic'];
-                    $scores[$j - 1]['Score'] = $scores[$j]['Score'];
-                    $scores[$j - 1]['Topic'] = $scores[$j]['Topic'];
-                    $scores[$j]['Score'] = $temp['Score'];
-                    $scores[$j]['Topic'] = $temp['Topic'];
-                }
-            }
-        }
+        array_multisort($score, SORT_ASC, $topic, SORT_ASC, $scores);
+        $top = array_slice($scores, 0, $number);
         $topics;
         for ($i = 0; $i < $number; $i++) {
-            $topics[$i] = $scores[$i]['Topic']; //echo $topics[$i];
+            $topics[$i] = $top[$i]['Topic']; //echo $topics[$i];
         }
         return $topics;
     }
