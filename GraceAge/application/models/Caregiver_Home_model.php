@@ -156,7 +156,7 @@ class Caregiver_Home_model extends CI_Model {
             if ($k == 0) {
                 $avg = 0;
             } else {
-                $avg = $sum * 20 / $k;
+                $avg = $sum * 25 / $k;
             }
             $k = 0;
             $nombre_format_francais = number_format($avg, 2, ',', ' ');
@@ -239,7 +239,7 @@ class Caregiver_Home_model extends CI_Model {
                     if ($k == 0) {
                         $topicavg = 0;
                     } else {
-                        $topicavg = $topicscore * 20 / $k;
+                        $topicavg = $topicscore * 25 / $k;
                     }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                     array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
@@ -288,7 +288,7 @@ class Caregiver_Home_model extends CI_Model {
                     for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
                         if ($topics[$j]->Topic == $questions[$k]->Topic) {
                             if ($questions[$k]->QuestionNumber == $answers[$l]->Question_Number) {
-                                $score += $answers[$l]->Answer;
+                                $score += $answers[$l]->Answer -1;
                                 $amount++;
                             }
                         }
@@ -296,7 +296,7 @@ class Caregiver_Home_model extends CI_Model {
                 }if($amount == 0){
                     $avg = 0;
                 }else{
-                $avg = $score * 20 / $amount;
+                $avg = $score * 25 / $amount;
                 }
                 array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topics[$j]->Topic));
                 foreach ($persontopic as $key => $row) {
@@ -313,14 +313,16 @@ class Caregiver_Home_model extends CI_Model {
             $amount = 0;
             $score = 0;
             for ($m = 0; $m < count($answers) ; $m++){
-                $score += $answers[$m]->Answer;
+                $score += $answers[$m]->Answer -1;
                 $amount++;
             }if($amount == 0){
                 $personavg = 0;
+                $nombre_format_francais = 0;
             }else{
-            $personavg = $score * 20 / $amount;
+            $personavg = $score * 25 / $amount;
+            $nombre_format_francais = number_format($personavg, 2, ',', ' ');
             }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $personavg));
+            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais));
         }
         //echo json_encode($resultarray);
         //return json_encode($resultarray);
