@@ -1,20 +1,61 @@
+<head>
+    <link href="../../assets/css/Score.css" rel="stylesheet" type="text/css"/>
+</head>
+
+
 <div class="container">
-    {score_text} {score}<br>
-    {exchange_score}<br>
-    {buy_reward}<br>
-    {reward_text}
-    {reward_message}
-    <ul class="list-group">
-        {rewards}
-        <li class="list-group-item">
-            <a href="buyReward?reward={Reward}">{Reward} - {Price}</a>              
-        </li>
-        {/rewards}
-    </ul>
-    {rewards_bought_text}
-    <ul class="list-group">
-        {rewards_bought}
-        <li class="list-group-item">{Reward} - {Price} ({Date}) </li>
-        {/rewards_bought}
-    </ul>
+
+        <div id="row1" class="row">
+
+        <div  class="col-xs-offset-1 col-xs-10">
+            
+            <ol class="progress-meter">
+                {classes}
+                <li id="{class}"  class="{class}">
+                    <div id="pricetag" class="fontfamily">{price} <i id="starIcon" class="fa fa-star fa-1x"></i></div>
+                </li>
+                {/classes}  
+            </ol>
+
+        </div>
+
+    <div id='row2' class="row">
+
+        <div  class="col-xs-offset-1 col-xs-5">
+            <div id="score_panel">
+                <p class="fontfamily" id="score_text">{score_text}</p>
+                <p class="fontfamily" id="score">{score} <i id="starIcon" class="fa fa-star fa-1x"></i></p>
+                <p class="fontfamily" id="exchange_score">{exchange_score}</p>
+                
+
+            </div>
+        </div>
+
+        <div  class="col-xs-5">
+            <div id="reward_panel" class="scrollbar">
+                <p id="reward_panel_header" class="fontfamily">{buy_reward}</p>
+                
+                <ul class="list-group">
+                    {rewards}
+                    <li id="button_box" class="list-group-item">
+                        
+                        <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward}"><span id="reward_button_text" class="fontfamily">{Reward}</span> <span id="price" class="fontfamily">{Price} <i id="button_star" class="fa fa-star fa-1x"></i></span> </a>
+                    </li>
+                    {/rewards}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xs-1">
+        </div>
+    </div>
+
+    <div id='row3' class="row">
+        {rewards_bought_text}
+        <ul id="history" class="list-group">
+            {rewards_bought}
+            <li class="list-group-item">{Reward} - {Price} ({Date}) </li>
+            {/rewards_bought}
+        </ul>
+    </div>
 </div>

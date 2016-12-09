@@ -36,6 +36,7 @@ function next() {
         window.location.href = "congratulations";
     }
     });
+                            console.log("hello");
     
    
 }

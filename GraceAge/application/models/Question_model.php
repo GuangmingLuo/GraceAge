@@ -31,8 +31,8 @@ class Question_model extends CI_Model{
         );
         
         $this->navigationbuttons = array(
-            array('name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'previous_question', 'func' => 'previous()'),
-            array('name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'next_question', 'func' => 'next()'),
+            array('name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'previous_navbutton', 'func' => 'previous()'),
+            array('name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'next_navbutton', 'func' => 'next()'),
         );
         
         date_default_timezone_set("Europe/Brussels");
@@ -186,7 +186,13 @@ class Question_model extends CI_Model{
     
     
     function getRewards($language) {
-        $query = $this->db->query("select Reward, Price from Rewards where Language=?", $language);
+        $query = $this->db->query("select Reward, Price from Rewards where Language=? and Available='checked' Order BY Price Asc", $language);
+        $rewards = $query->result();
+        return $rewards;
+    }
+    
+    function getRewardsNodes($language) {
+        $query = $this->db->query("select distinct Price from Rewards where Language=? and Available='checked' Order BY Price Asc", $language);
         $rewards = $query->result();
         return $rewards;
     }
