@@ -182,6 +182,7 @@ ol.progress-meter li.todo:before {
     line-height: 0px;
 }
 ol.progress-meter li.done {
+    height:44px;
     color: #009688;
     border-bottom-color: #CDDC39;
 }
@@ -221,6 +222,6 @@ ol.progress-meter li.todo:before {
         75% 84%,
         from(#cddc39),
         to(#cddc39),
-        color-stop(.6,rgba(142, 150, 0, 0.98)))
+        color-stop(.6,rgb(205, 220, 57)))
 }
 
