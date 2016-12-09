@@ -266,28 +266,37 @@ class Caregiver_Home_model extends CI_Model {
         $personavg;
         $resultarray = array();
         $resutls = array();
-
+        $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
+        $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
+        $questionsenglish = $this->db->select('Topic, QuestionNumber')->where('Language', 'english')->get('Question')->result();
+        $questionsdutch = $this->db->select('Topic, QuestionNumber')->where('Language', 'dutch')->get('Question')->result();
+        
+        
 
         $query = $this->db->select('idPatient, Name, Language')->get('Patient');
         $patients = $query->result();
         for ($i = 0; $i < count($patients); $i++) {
             //getting all data needed
-            $query = $this->db->select('Topic, QuestionNumber')->where('Language', $patients[$i]->Language)->get('Question');
-            $questions = $query->result();
+           // $query = $this->db->select('Topic, QuestionNumber')->where('Language', $patients[$i]->Language)->get('Question');
+            //$questions = $query->result();
             $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
             $answers = $query->result();
-            $query = $this->db->distinct()->select('Topic')->where('Language', $patients[$i]->Language)->get('Question');
-            $topics = $query->result();
+           // $query = $this->db->distinct()->select('Topic')->where('Language', $patients[$i]->Language)->get('Question');
+           // $topics = $query->result();
+            
+            if($patients[$i]->Language == 'dutch'){ //dutch case
+                
+            
 
             //calculate worst topic here
-            for ($j = 0; $j < count($topics); $j++) { //go through every topic
+            for ($j = 0; $j < count($topicsdutch); $j++) { //go through every topic
                 $score = 0;
                 $amount = 0;
                 $avg;
-                for ($k = 0; $k < count($questions); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
+                for ($k = 0; $k < count($questionsdutch); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
                     for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
-                        if ($topics[$j]->Topic == $questions[$k]->Topic) {
-                            if ($questions[$k]->QuestionNumber == $answers[$l]->Question_Number) {
+                        if ($topicsdutch[$j]->Topic == $questionsdutch[$k]->Topic) {
+                            if ($questionsdutch[$k]->QuestionNumber == $answers[$l]->Question_Number) {
                                 $score += $answers[$l]->Answer -1;
                                 $amount++;
                             }
@@ -298,7 +307,7 @@ class Caregiver_Home_model extends CI_Model {
                 }else{
                 $avg = $score * 25 / $amount;
                 }
-                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topics[$j]->Topic));
+                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topicsdutch[$j]->Topic));
                 foreach ($persontopic as $key => $row) {
                     $topic[$key] = $row['Topic'];
                     $scoree[$key] = $row['Score'];
@@ -323,6 +332,52 @@ class Caregiver_Home_model extends CI_Model {
             $nombre_format_francais = number_format($personavg, 2, ',', ' ');
             }
             array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais));
+            }else{ //english case
+                //calculate worst topic here
+            for ($j = 0; $j < count($topicsenglish); $j++) { //go through every topic
+                $score = 0;
+                $amount = 0;
+                $avg;
+                for ($k = 0; $k < count($questionsenglish); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
+                    for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
+                        if ($topicsenglish[$j]->Topic == $questionsenglish[$k]->Topic) {
+                            if ($questionsenglish   [$k]->QuestionNumber == $answers[$l]->Question_Number) {
+                                $score += $answers[$l]->Answer -1;
+                                $amount++;
+                            }
+                        }
+                    }
+                }if($amount == 0){
+                    $avg = 0;
+                }else{
+                $avg = $score * 25 / $amount;
+                }
+                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topicsenglish[$j]->Topic));
+                foreach ($persontopic as $key => $row) {
+                    $topic[$key] = $row['Topic'];
+                    $scoree[$key] = $row['Score'];
+                }
+
+
+                array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
+                $lowesttopic = array_slice($persontopic, 0, 1);
+            }
+            
+            //calculate avg
+            $amount = 0;
+            $score = 0;
+            for ($m = 0; $m < count($answers) ; $m++){
+                $score += $answers[$m]->Answer -1;
+                $amount++;
+            }if($amount == 0){
+                $personavg = 0;
+                $nombre_format_francais = 0;
+            }else{
+            $personavg = $score * 25 / $amount;
+            $nombre_format_francais = number_format($personavg, 2, ',', ' ');
+            }
+            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais));
+            }
         }
         //echo json_encode($resultarray);
         //return json_encode($resultarray);
