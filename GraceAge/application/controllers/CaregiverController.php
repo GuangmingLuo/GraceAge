@@ -227,7 +227,7 @@ class CaregiverController extends CI_Controller {
                 if (password_verify($old, $verif["password"])) {
                     $password = password_hash($new, PASSWORD_DEFAULT);
                     $this->Account_model->changePassword($this->session->userType,$password, $this->session->idCaregiver);
-                    $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('saved_changed');
+                    $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('saved_changes');
                     $data['success'] = true;
                 }
             }

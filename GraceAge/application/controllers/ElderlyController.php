@@ -68,6 +68,49 @@ class ElderlyController extends CI_Controller {
             $this->parser->parse('master.php', $data);
         
     }
+    
+    /************  Profile page functions  **********/
+    
+    function change_language() {
+        $newlang = $this->input->post('language');
+        $data['err_msg'] ="";
+        if (isset($newlang)) {
+            $this->session->set_userdata('Language', $newlang);
+            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);
+            $this->lang->load('login', $this->session->Language);
+            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');
+        }
+        $this->output->set_content_type("application/json")->append_output(json_encode($data));
+    }
+    
+    function change_password() {
+        if (!$this->is_logged_in()) {
+            return;
+        }
+        $this->lang->load('login', $this->session->Language);
+        $data['success'] = false;
+        $data['err_msg'] = " ";
+        $verif = $this->Account_model->getUser($this->session->Name);
+        $old = $this->input->post('old_password');
+        $new = $this->input->post('new_password');
+        $conf = $this->input->post('conf_password');
+        if ($old || $new || $conf){
+            $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('register_form_incomplete');
+        }
+        if($old && $new && $conf){
+            $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('different_passwords');
+            if ($conf === $new) {
+                $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('incorrect_password');
+                if (password_verify($old, $verif["password"])) {
+                    $password = password_hash($new, PASSWORD_DEFAULT);
+                    $this->Account_model->changePassword($this->session->userType,$password, $this->session->idPatient);
+                    $data['err_msg'] = $this->lang->line('errorbox_password').$this->lang->line('saved_changes');
+                    $data['success'] = true;
+                }
+            }
+        }
+        $this->output->set_content_type("application/json")->append_output(json_encode($data));
+    }
 
     /*     * ************* All Questionnaire page functions *********************** */
     private function loadQuestionnaireData() {
@@ -258,31 +301,6 @@ class ElderlyController extends CI_Controller {
     function logout(){
         session_destroy();
         redirect(base_url() . 'AccountController/login');
-    }
-    
-    function change_language() {
-        if (!$this->is_logged_in()) return;
-        $newlang = $this->input->post('language');
-        if (isset($newlang)) {
-            $this->session->set_userdata('Language', $newlang);
-            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);
-        }
-        redirect(base_url() . 'ElderlyController/profile');
-    }
-    
-    function change_password() {
-        if (!$this->is_logged_in()) return;
-        $verif = $this->Account_model->getUser($this->session->Name);
-        $old = filter_input(INPUT_POST, 'old_password');
-        $new = $this->input->post('new_password');
-        $conf = $this->input->post('conf_password');
-        if ($conf === $new) {
-            if (password_verify($old, $verif["password"])) {
-                $password = password_hash($new, PASSWORD_DEFAULT);
-                $this->Account_model->changePassword($this->session->userType,$password, $this->session->idPatient);
-            }
-        }
-        $this->profile();
     }
 }
 

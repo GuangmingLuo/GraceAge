@@ -28,6 +28,7 @@
         <script src="../../assets/js/caregiver_tips.js" type="text/javascript"></script>
         <script src="../../assets/js/login.js" type="text/javascript"></script>
         <script src="../../assets/js/personal_datatable.js" type="text/javascript"></script>
+        <script src="../../assets/js/profilescript.js" type="text/javascript"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     </body>
