@@ -17,13 +17,29 @@ class Reward_model extends CI_Model{
         return $query->result();
     }
     
+    function rewardExists($reward){
+        $query = $this->db->query('SELECT Reward FROM Rewards where Reward=?', $reward);
+        if ($query->num_rows()==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
     function add_reward($reward,$price){
-        $data = array(
+        if ($this->rewardExists($reward)) {
+            return false;
+        }
+        else {
+            $data = array(
             'Reward' => $reward,
             'Price' => $price,
             'Language' => $this->session->Language
         );
         $this->db->insert('a16_webapps_2.Rewards' , $data);
+        return true;
+        }
     }
     
     function edit_reward($reward,$available){
