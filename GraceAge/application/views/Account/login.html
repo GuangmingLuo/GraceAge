@@ -8,14 +8,14 @@
         <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6">
             <div class="box">
                 <ul class="tabs fonttype">
-                    <li class = "active" style="width:50%;"><a data-toggle="tab" href="#QRtabContent">{BAGDE}</a></li>
-                    <li style="width:50%;"><a data-toggle="tab" href="#loginTabContent">{LOG_IN}</a></li>
+                    <li class = "active" style="width:50%;"><a data-toggle="tab" href="#QRtabContent">{show_your_badge}</a></li>
+                    <li style="width:50%;"><a data-toggle="tab" href="#loginTabContent">{no_badge}</a></li>
                 </ul>
                 
                 <div class="tab-content fonttype"> 
                     <div id="QRtabContent" class="tab-pane fade in active">
                         <div id="reader">
-                            <h1 class="fonttype">{show_your_badge}</h1>
+                            
                         </div>
                         <fieldset id="safariQRfunctionaity">
                             <label class='fonttype' for ="photo">{no_camera}</label>
@@ -33,7 +33,7 @@
                                 <input type="password" name="password" class="form-control fonttype" id="password" placeholder={password} required>
                             </div>
                             </br>
-                            <input type="button" class="btn btn-default fonttype" value="{confirm}" onclick="login()">
+                            <input type="button" class="btn btn-default fonttype" value="{LOG_IN}" onclick="login()">
                         </form>
                         <div id="errorbox" class="alert alert-warning inactive">
                             Test errormessage
