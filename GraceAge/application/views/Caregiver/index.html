@@ -1,74 +1,74 @@
 <head>
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/caregiver_general.css" rel="stylesheet" type="text/css"/>
 </head>
-<div class="container row" style="width: auto">
-    <div class="col-lg-7 overviewbox" id="chart_div" style="height: 500px">
-        <!--{topics}
-        {Topic}<br>
-        {/topics}-->
-    </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-4">
-        <div class="row">
-            <div class="col-md-12 urgentpatientsbox">
-                <table style="width:100%">
-                    <tr>
-                        <th>Patients in urgent needs</th>
-                        <th>Score in %</th> 
 
-                    </tr>
-                    <tr>
-                        <td>{urgent} <a href="<?php echo base_url();?>CaregiverController/personal?username={Name}">{Name}</a><br> {/urgent}</td>
-                        <td>{urgent} {Score}<br> {/urgent}</td> 
-
-                    </tr>
-
-
-
-                </table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-5">
+        <!-- chart: title + content -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pageTitle">
+                        General Score
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="chart_div">
+                    <!-- chart content -->
+                </div>
             </div>
         </div>
-        </br>
 
+        <div class="col-md-offset-1 col-md-4">
+            <div class="row">
+                <div class=col-md-12>
+                <!-- urgent patients: title + content -->
+                    <div class="row">
+                        <div class="pageTitle">
+                            Urgent Patients
+                        </div>
+                    </div>
 
-        </br>
+                    <div class="row">
+                        <table class="smallbox">
+                            <tr>
+                                <td>{urgent} <a href="<?php echo base_url();?>CaregiverController/personal?username={Name}">{Name}</a><br> {/urgent}</td>
+                                <td>{urgent} {Score}<br> {/urgent}</td> 
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-
-
-
-    </div>
-
-    <div class="col-lg-4">
-        <div class="row">
-            <div class="col-md-12 Messagebox">
-                <table style="width:100%">
-                    <tr>
-                    <b>Last Messages:</b></br></br>
-
-
-                    </tr>
-                    
-                    <ul class="list-group">
-                        {show}<li class="list-group-item">{Date} {Name} : {Message} {/show} 
-                        
-                    </ul>
-
-
-                </table>
-
-                <form  name="messagesend" id="messagesend" action="index" method="get">
-                    <label class='fontfamily' for="messagesend">Message to write:</label>
-                    <textarea name="messagesend" cols="55" rows="5"></textarea>
-                    <br />
-                    <input name="Send" type="submit" />
-                </form> 
-
+            <div class="row">
+                <div class="col-md-12">
+                <!-- messages: title + content-->
+                    <div class="row">
+                        <div class="pageTitle">
+                            Messages
+                        </div>
+                    </div>
+                
+                    <div class="row">  
+                        <div class="smallbox">
+                            <ul class="list-group">
+                                {show}<li class="list-group-item">{Date} {Name} : {Message} {/show} 
+                            </ul>
+                            
+                            <form  name="messagesend" id="messagesend" action="index" method="get">
+                                <textarea name="messagesend" cols="55" rows="5"></textarea>
+                                <br />
+                                <input name="Send" type="submit"/>
+                            </form> 
+                        </div> 
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-<h1>{content}</h1>
-</div>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="../../assets/js/chart.js" type="text/javascript"></script>
