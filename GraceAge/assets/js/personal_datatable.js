@@ -7,18 +7,19 @@ $(document).ready(function(){
     //Makes the datatable
     var table = $('#personal-datatable').DataTable();
     
-    //Creates the dialog pop-up.
-    $("#display-scores").dialog({
-            autoOpen: false,
-            buttons: {
-                OK: function() {$(this).dialog("close");}
-            }
-    });
+    $("td[colspan=4]").find("p").hide();
     
     //When clicked on a table row, this function is called, which opens the dialog screen.
     $('#personal-datatable tbody').on('click', 'tr', function(){
-        var data = table.row(this).data();
-        window.location.href = "personal?username="+data[0];  //This displays the scores in Christophe's table.
+        event.stopPropagation();
+        var $target = $(event.target);
+        if ( $target.closest("td").attr("colspan") > 1 ) {
+            $target.slideUp();
+        } else {
+            $target.closest("tr").next().find("p").slideToggle();
+        }
+        //var data = table.row(this).data();
+        //window.location.href = "personal?username="+data[0];  //This displays the scores in Christophe's table.
         //$('#display-scores').dialog("open");    //Opens a dialog screen. This should contain the data.
     });
 });
