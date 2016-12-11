@@ -1,12 +1,11 @@
 <head>
-    <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/caregiver_general.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-offset-1 col-md-5">
-        <!-- chart: title + content -->
+            <!-- chart: title + content -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="pageTitle">
@@ -15,15 +14,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" id="chart_div">
-                    <!-- chart content -->
+                <div class="col-md-12">
+                    <div id="chart_div">
+                        <!-- chart content -->
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-offset-1 col-md-4">
             <div class="row">
                 <div class=col-md-12>
-                <!-- urgent patients: title + content -->
+                    <!-- urgent patients: title + content -->
                     <div class="row">
                         <div class="pageTitle">
                             Urgent Patients
@@ -41,30 +42,53 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                <!-- messages: title + content-->
+                    <!-- messages: title + content-->
                     <div class="row">
                         <div class="pageTitle">
                             Messages
                         </div>
                     </div>
-                
+
                     <div class="row">  
                         <div class="smallbox">
-                            <ul class="list-group">
-                                {show}<li class="list-group-item">{Date} {Name} : {Message} {/show} 
-                            </ul>
-                            
-                            <form  name="messagesend" id="messagesend" action="index" method="get">
-                                <textarea name="messagesend" cols="55" rows="5"></textarea>
-                                <br />
-                                <input name="Send" type="submit"/>
-                            </form> 
-                        </div> 
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <ul class="chat list-group">
+                                        {show}
+                                        <li class="list-group-item">
+                                            <span class="pull-left">
+                                                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i>
+                                            </span>
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <b>{Name}</b> 
+                                                    <small class="pull-right text-muted"> {Date} </small>
+                                                </div>
+                                                <p> {Message} </p>
+                                            </div>
+                                        </li>  
+                                        {/show} 
+                                    </ul>
+                                </div>
+                                <div class="panel-footer">
+                                    <form  name="messagesend" id="messagesend" action="index" method="get">
+                                        <div class="input-group">
+                                            <input name="messagesend" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                            <span class="input-group-btn">
+                                                <button name="Send" type="submit" class="btn btn-sm" id="btn-chat">Send</button>
+                                            </span>
+                                        </div>
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
