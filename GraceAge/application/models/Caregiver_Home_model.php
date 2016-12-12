@@ -303,7 +303,7 @@ class Caregiver_Home_model extends CI_Model {
                         $topicavg = $topicscore * 25 / $k;
                     }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
-                    array_push($display, array('Topic' => $topicsdutch[$i]->Topic, 'Score' => $nombre_format_francais));
+                    array_push($display, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
                 }
 
 

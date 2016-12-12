@@ -22,7 +22,9 @@
                     <td>{Score}</td>
                     <td>Doing well!</td>
                 </tr>
-                <tr><td colspan="4"><p><{Topicscores}{Topic} {Score}</br>{/Topicscores}</p></td></tr>
+                <tr><td colspan="12">
+                        <table style="width:100%"><tr>{Topicscores}<td>{Topic}</td>{/Topicscores}</tr><tr>{Topicscores}<td>{Score}</td>{/Topicscores}</tr></table>
+                        </td></tr>
                 {/table}
             </tbody>
         </table>
