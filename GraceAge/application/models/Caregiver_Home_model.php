@@ -425,7 +425,7 @@ class Caregiver_Home_model extends CI_Model {
                     $personavg = $score * 25 / $amount;
                     $nombre_format_francais = number_format($personavg, 2, ',', ' ');
                 }
-                array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display));
+                array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Count' => $i));
             }
         }
         //echo json_encode($resultarray);
