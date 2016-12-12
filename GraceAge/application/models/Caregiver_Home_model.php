@@ -85,9 +85,9 @@ class Caregiver_Home_model extends CI_Model {
         $n = count($topics);
         $scores;
         for ($i = 0, $j = 0; $j < $n; $j++, $i++) {
-            $scores[$i]['Topic'] = $topics[$j]['Topic']; 
-            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']); 
-        }       
+            $scores[$i]['Topic'] = $topics[$j]['Topic'];
+            $scores[$i]['Score'] = $this->calculate_score($topics[$j]['Topic']);
+        }
         foreach ($scores as $key => $row) {
             $topic[$key] = $row['Topic'];
             $score[$key] = $row['Score'];
@@ -166,6 +166,7 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function calculate_topic_eff($username) {
+
         $display = array();
 
 
@@ -258,113 +259,173 @@ class Caregiver_Home_model extends CI_Model {
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
         $questionsenglish = $this->db->select('Topic, QuestionNumber')->where('Language', 'english')->get('Question')->result();
         $questionsdutch = $this->db->select('Topic, QuestionNumber')->where('Language', 'dutch')->get('Question')->result();
-        
-        
+
+
 
         $query = $this->db->select('idPatient, Name, Language')->get('Patient');
         $patients = $query->result();
         for ($i = 0; $i < count($patients); $i++) {
+            $username = $patients[$i]->Name;
             //getting all data needed
-           // $query = $this->db->select('Topic, QuestionNumber')->where('Language', $patients[$i]->Language)->get('Question');
+            // $query = $this->db->select('Topic, QuestionNumber')->where('Language', $patients[$i]->Language)->get('Question');
             //$questions = $query->result();
             $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
             $answers = $query->result();
-           // $query = $this->db->distinct()->select('Topic')->where('Language', $patients[$i]->Language)->get('Question');
-           // $topics = $query->result();
-            
-            if($patients[$i]->Language == 'dutch'){ //dutch case
-                
-            
+            // $query = $this->db->distinct()->select('Topic')->where('Language', $patients[$i]->Language)->get('Question');
+            // $topics = $query->result();
+            //$topiclist = array();
+            //$topiclist = $this->calculate_topic_eff($username);
 
-            //calculate worst topic here
-            for ($j = 0; $j < count($topicsdutch); $j++) { //go through every topic
-                $score = 0;
-                $amount = 0;
-                $avg;
-                for ($k = 0; $k < count($questionsdutch); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
-                    for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
-                        if ($topicsdutch[$j]->Topic == $questionsdutch[$k]->Topic) {
-                            if ($questionsdutch[$k]->QuestionNumber == $answers[$l]->Question_Number) {
-                                $score += $answers[$l]->Answer -1;
-                                $amount++;
+            if ($patients[$i]->Language == 'dutch') { //dutch case
+                //calculate topics
+                $display = array();
+                for ($j = 0; $j < count($topicsdutch); $j++) {       //itterate through the topics
+                    $current = $topicsdutch[$j]->Topic;
+
+                    $topicscore = 0;
+                    $topicavg;
+                    $k = 0;     //amount of questions in the topic
+
+                    for ($a = 0; $a < count($questionsdutch); $a++) {    //itterate through the questions
+                        if ($topicsdutch[$j]->Topic == $questionsdutch[$a]->Topic) {  //if question is part of topic do...s
+                            $questionnr = $questionsdutch[$a]->QuestionNumber;
+                            for ($o = 0; $o < count($answers); $o++) {
+                                if ($questionnr == $answers[$o]->Question_Number) {
+                                    $topicscore += $answers[$o]->Answer - 1;
+                                    $k++;
+                                }
                             }
                         }
                     }
-                }if($amount == 0){
-                    $avg = 0;
-                }else{
-                $avg = $score * 25 / $amount;
-                }
-                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topicsdutch[$j]->Topic));
-                foreach ($persontopic as $key => $row) {
-                    $topic[$key] = $row['Topic'];
-                    $scoree[$key] = $row['Score'];
+                    if ($k == 0) {
+                        $topicavg = 0;
+                    } else {
+                        $topicavg = $topicscore * 25 / $k;
+                    }
+                    $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
+                    array_push($display, array('Topic' => $topicsdutch[$i]->Topic, 'Score' => $nombre_format_francais));
                 }
 
 
-                array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
-                $lowesttopic = array_slice($persontopic, 0, 1);
-            }
-            
-            //calculate avg
-            $amount = 0;
-            $score = 0;
-            for ($m = 0; $m < count($answers) ; $m++){
-                $score += $answers[$m]->Answer -1;
-                $amount++;
-            }if($amount == 0){
-                $personavg = 0;
-                $nombre_format_francais = 0;
-            }else{
-            $personavg = $score * 25 / $amount;
-            $nombre_format_francais = number_format($personavg, 2, ',', ' ');
-            }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais));
-            }else{ //english case
+
                 //calculate worst topic here
-            for ($j = 0; $j < count($topicsenglish); $j++) { //go through every topic
-                $score = 0;
+                for ($j = 0; $j < count($topicsdutch); $j++) { //go through every topic
+                    $score = 0;
+                    $amount = 0;
+                    $avg;
+                    for ($k = 0; $k < count($questionsdutch); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
+                        for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
+                            if ($topicsdutch[$j]->Topic == $questionsdutch[$k]->Topic) {
+                                if ($questionsdutch[$k]->QuestionNumber == $answers[$l]->Question_Number) {
+                                    $score += $answers[$l]->Answer - 1;
+                                    $amount++;
+                                }
+                            }
+                        }
+                    }if ($amount == 0) {
+                        $avg = 0;
+                    } else {
+                        $avg = $score * 25 / $amount;
+                    }
+                    array_push($persontopic, array('Score' => $avg, 'Topic' => $topicsdutch[$j]->Topic));
+                    foreach ($persontopic as $key => $row) {
+                        $topic[$key] = $row['Topic'];
+                        $scoree[$key] = $row['Score'];
+                    }
+
+
+                    array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
+                    $lowesttopic = array_slice($persontopic, 0, 1);
+                }
+
+                //calculate avg
                 $amount = 0;
-                $avg;
-                for ($k = 0; $k < count($questionsenglish); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
-                    for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
-                        if ($topicsenglish[$j]->Topic == $questionsenglish[$k]->Topic) {
-                            if ($questionsenglish   [$k]->QuestionNumber == $answers[$l]->Question_Number) {
-                                $score += $answers[$l]->Answer -1;
-                                $amount++;
+                $score = 0;
+                for ($m = 0; $m < count($answers); $m++) {
+                    $score += $answers[$m]->Answer - 1;
+                    $amount++;
+                }if ($amount == 0) {
+                    $personavg = 0;
+                    $nombre_format_francais = 0;
+                } else {
+                    $personavg = $score * 25 / $amount;
+                    $nombre_format_francais = number_format($personavg, 2, ',', ' ');
+                }
+                array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display));
+            } else { //english case
+                //calculate score per topic
+                $display = array();
+                for ($j = 0; $j < count($topicsenglish); $j++) {       //itterate through the topics
+                    $current = $topicsenglish[$j]->Topic;
+
+                    $topicscore = 0;
+                    $topicavg;
+                    $k = 0;     //amount of questions in the topic
+
+                    for ($a = 0; $a < count($questionsenglish); $a++) {    //itterate through the questions
+                        if ($topicsenglish[$j]->Topic == $questionsenglish[$a]->Topic) {  //if question is part of topic do...s
+                            $questionnr = $questionsenglish[$a]->QuestionNumber;
+                            for ($o = 0; $o < count($answers); $o++) {
+                                if ($questionnr == $answers[$o]->Question_Number) {
+                                    $topicscore += $answers[$o]->Answer - 1;
+                                    $k++;
+                                }
                             }
                         }
                     }
-                }if($amount == 0){
-                    $avg = 0;
-                }else{
-                $avg = $score * 25 / $amount;
+                    if ($k == 0) {
+                        $topicavg = 0;
+                    } else {
+                        $topicavg = $topicscore * 25 / $k;
+                    }
+                    $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
+                    array_push($display, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
                 }
-                array_push($persontopic, array( 'Score' => $avg, 'Topic' => $topicsenglish[$j]->Topic));
-                foreach ($persontopic as $key => $row) {
-                    $topic[$key] = $row['Topic'];
-                    $scoree[$key] = $row['Score'];
-                }
+          
+                //calculate worst topic here
+                for ($j = 0; $j < count($topicsenglish); $j++) { //go through every topic
+                    $score = 0;
+                    $amount = 0;
+                    $avg;
+                    for ($k = 0; $k < count($questionsenglish); $k++) {  //get all the question nrs for the topic -> different topics per language so this is needed
+                        for ($l = 0; $l < count($answers); $l++) {   //go through all answers to see if matched with the topic
+                            if ($topicsenglish[$j]->Topic == $questionsenglish[$k]->Topic) {
+                                if ($questionsenglish [$k]->QuestionNumber == $answers[$l]->Question_Number) {
+                                    $score += $answers[$l]->Answer - 1;
+                                    $amount++;
+                                }
+                            }
+                        }
+                    }if ($amount == 0) {
+                        $avg = 0;
+                    } else {
+                        $avg = $score * 25 / $amount;
+                    }
+                    array_push($persontopic, array('Score' => $avg, 'Topic' => $topicsenglish[$j]->Topic));
+                    foreach ($persontopic as $key => $row) {
+                        $topic[$key] = $row['Topic'];
+                        $scoree[$key] = $row['Score'];
+                    }
 
 
-                array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
-                $lowesttopic = array_slice($persontopic, 0, 1);
-            }
-            
-            //calculate avg
-            $amount = 0;
-            $score = 0;
-            for ($m = 0; $m < count($answers) ; $m++){
-                $score += $answers[$m]->Answer -1;
-                $amount++;
-            }if($amount == 0){
-                $personavg = 0;
-                $nombre_format_francais = 0;
-            }else{
-            $personavg = $score * 25 / $amount;
-            $nombre_format_francais = number_format($personavg, 2, ',', ' ');
-            }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais));
+                    array_multisort($scoree, SORT_ASC, $topic, SORT_ASC, $persontopic);
+                    $lowesttopic = array_slice($persontopic, 0, 1);
+                }
+
+                //calculate avg
+                $amount = 0;
+                $score = 0;
+                for ($m = 0; $m < count($answers); $m++) {
+                    $score += $answers[$m]->Answer - 1;
+                    $amount++;
+                }if ($amount == 0) {
+                    $personavg = 0;
+                    $nombre_format_francais = 0;
+                } else {
+                    $personavg = $score * 25 / $amount;
+                    $nombre_format_francais = number_format($personavg, 2, ',', ' ');
+                }
+                array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display));
             }
         }
         //echo json_encode($resultarray);
