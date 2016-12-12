@@ -74,14 +74,9 @@ class Caregiver_Home_model extends CI_Model {
             $scores[$j + 1]['Topic'] = $topic_array[$j];
             $scores[$j + 1]['Score'] = $this->calculate_score($topics[$j]['Topic']);
         }
-        $scores[$j + 1]['Topic'] = $this->lang->line('y_label');
+        $scores[$j + 1]['Topic'] = "";
         $scores[$j + 1]['Score'] = $this->lang->line('recent');
         return json_encode($scores);
-    }
-
-    function get_chart_title() {
-        $title = $this->lang->line('chart_title');
-        return json_encode($title);
     }
 
     function get_topics_with_lowest_scores($number) {

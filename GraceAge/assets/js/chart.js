@@ -9,12 +9,6 @@ google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries(){
     
-    //var title_name;
-    /*
-    $.getJSON("getTitle", function(title){
-        title_name = title;
-    });
-    */
     $.getJSON("getArray", function(data){
         var data = google.visualization.arrayToDataTable([
             [data[12].Topic, data[12].Score],
@@ -32,24 +26,24 @@ function drawMultSeries(){
         ]);
     
         var options = {
-            /*chart:{
-                title: title_name
-            },*/
             bars: 'horizontal',
-            chartArea: {width: '65%'}, //This is the width of the bar chart inside its div
+            chartArea: {width: '100%'}, //This is the width of the bar chart inside its div
             colors: ['#cddc39'],
+            legend: {
+                position: 'none'
+            },
+            vAxis: {
+                textPosition: 'none'
+            },
             hAxis: {
-                //title: 'Score (%)',
+                textPosition: 'none',
                 viewWindow: {
                     max: 100,
                     min: 0
                 }
             }
         };
-    
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
         chart.draw(data, options);
-        //chart.draw(data, options);
     });
-    
 }
