@@ -1,0 +1,6 @@
+[{"idCaregiver":0, "Type":"", "Name":"Judith Fuentes", "password":"$2y$10$WOtKVMqKvddr4xXhe2SUfu8OMD93dwHvwoBnRbT.jgjed0yikCdXW", "Language":"dutch", "isAdmin":0},
+ {"idCaregiver":4, "Type":"", "Name":"Macey Sims", "password":"$2y$10$0yBVD5A7G.NOvFYmx9roGux3R17TdtSOjv4IfkTqZ4Q.vD4C6S.n2", "Language":"english", "isAdmin":1},
+ {"idCaregiver":5, "Type":"", "Name":"Finn Miller", "password":"$2y$10$SH3vb7V.ardc71MQ6HO3oOh1jKUbdx2MOYFHkLEnIUMXRHVi91W2C", "Language":"english", "isAdmin":0},
+ {"idCaregiver":6, "Type":"", "Name":"Johnathon Horton", "password":"$2y$10$5J8SPRFNfRlVxp.166.ov.bmJSLspTBRGlcWubohc5cevj1B5JDCS", "Language":"dutch", "isAdmin":0},
+ {"idCaregiver":7, "Type":"", "Name":"Kamari Dickerson", "password":"$2y$10$VgC5q/nGgd8y7kH35PHRVuw.5U0hdxM.ZthjMm21kxpoz1iAevs46", "Language":"dutch", "isAdmin":0},
+ {"idCaregiver":9, "Type":"", "Name":"Audrey Dawson", "password":"$2y$10$xYvBvaWhpFfKsx8Cdr4mZOPkdob/GQbHNwVTmSxcHsf4A9EUtp9f2", "Language":"dutch", "isAdmin":0}]
