@@ -335,7 +335,7 @@ class Caregiver_Home_model extends CI_Model {
                 $personavg = $score * 25 / $amount;
                 $nombre_format_francais = number_format($personavg, 2, ',', ' ');
             }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Note' => $note, 'Count' => $i, 'id' => $id));
+            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
         } else { //english case
             //calculate score per topic
             $display = array();
@@ -393,7 +393,7 @@ class Caregiver_Home_model extends CI_Model {
                 $personavg = $score * 25 / $amount;
                 $nombre_format_francais = number_format($personavg, 2, ',', ' ');
             }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Count' => $i, 'Note' => $note, 'id' => $id));
+            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
         }
         }
         //echo json_encode($resultarray);

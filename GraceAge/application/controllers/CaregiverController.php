@@ -142,6 +142,13 @@ class CaregiverController extends CI_Controller {
         
         $this->Tip_model->update_tip($tipId,$topic, $tip);
     }
+    
+    function update_note(){
+        $note = $this->input->post('new_note');
+        $id = $this->input->post('id');
+        
+        $this->Caregiver_Home_model->updatenote($note, $id);
+    }
 
 
     function profile() {
@@ -276,6 +283,7 @@ class CaregiverController extends CI_Controller {
         $data['page_content'] = 'Caregiver/index.html';
         $data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
         $data ['show'] = $this->Caregiver_Home_model->show_messages();
+        
         return $data;
     }
 
