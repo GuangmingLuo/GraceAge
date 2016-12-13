@@ -81,5 +81,13 @@ class Account_model extends CI_Model {
         
     }
     
-
+//    function getProfileItems($name){
+//        $result = $this->db->query("SELECT * FROM Patient where Name=?", $name);
+//        $items = array(
+//            'Birthday'=>$result->row()->Birthday,
+//            'Gender' => $result->row()->Gender,
+//            'PhoneNumber'=>$result->row()->PhoneNumber,
+//        ); 
+//        return $items;
+//    }
 }

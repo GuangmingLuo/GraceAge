@@ -315,6 +315,15 @@ class CaregiverController extends CI_Controller {
         $data['mobile'] = $this->lang->line('mobile');
         $data['language'] = $this->lang->line('language');
         $data['save'] = $this->lang->line('save');
+        //load data from database directly 
+        $result = $this->db->query("SELECT * FROM Caregiver where Name=?", $this->session->Name)->row();
+        $data['Birthday'] = $result->Birthday;
+        $data['Gender'] = $result->Gender;
+        $data['HomeAddress'] = $result->HomeAddress;
+        $data['Email'] = $result->Email;
+        $data['Landline'] = $result->Landline;
+        $data['Mobile'] = $result->Mobile;
+        
         $data['page_title'] = 'Edit Profile';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
         $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));
