@@ -8,12 +8,20 @@ function register_topic(){
         $tips_list.empty();
         
         
-        $.each(tips, function(i, tip){
-            if(tip.hasOwnProperty('dutch')){
-                $tips_list.append("<li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.dutch + "</li>"); // make new <li> element with id = idtips 
+        $.each(tips, function (i, tip) {
+            if (tip.hasOwnProperty('dutch')) {
+
+
+
+                $stringdutch = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
+                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
+
+                $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
-            if(tip.hasOwnProperty('english')){
-                $tips_list.append("<li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>");
+            if (tip.hasOwnProperty('english')) {
+                $stringenglish = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
+                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
+                $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
         });
     });
@@ -31,16 +39,28 @@ function add_new_tip(){
 
 
    function tipClick(id){ // do something when a tip is clicked
+            
        
       $(document.getElementById('editform')).remove(); // remove old form if it excists
       
-      var text_value = document.getElementById(id).innerHTML;     
-      $(document.getElementById(id)).after("<form id='editform' ></form>"); // show a form here to update or delete the question
-      $(document.getElementById('editform')).append("<input type='text' id='newtext' value='"+text_value+"'>");
-      $(document.getElementById('editform')).append("<input type='button' onclick='updateTip(" + id+ ")' value='update'>"); // button run updateTip(id) on klick
-      $(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
+      $("li").show(); // show the lines again
+      $("button").show(); //show all buttons again
       
-     
+      $(document.getElementById("button"+id)).hide();  //hide the button belonging to id
+      $element = $(document.getElementById(id));
+      $element.hide();
+      
+      var text_value = document.getElementById(id).innerHTML;     
+      //$(document.getElementById(id)).after("<form id='editform' ></form>"); // show a form here to update or delete the question
+      //$(document.getElementById('editform')).append("<input type='text' id='newtext' value='"+text_value+"'>");
+      //$(document.getElementById('editform')).append("<input type='button' onclick='updateTip(" + id+ ")' value='update'>"); // button run updateTip(id) on klick
+      //$(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
+      
+      $formHTML = "<form class='col-sm-10' id='editform' >" + "<input class='col-sm-10'  type='text' id='newtext' value='"+text_value+"'>" 
+              + "<div class='col-sm-1'><input class='btn'  type='button' onclick='updateTip(" + id+ ")' value='save'></div>" + "<div class='col-sm-1'><input class='btn'  type='button' onclick='deleteTip(" + id+ ")' value='delete'></div>"+ "</form>";
+      
+       $element.after($formHTML);
+       
 };
 
 function updateTip(id){
