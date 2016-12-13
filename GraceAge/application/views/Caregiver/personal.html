@@ -2,6 +2,7 @@
     <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <script src="../../../assets/js/carefiver-personal-notes.js" type="text/javascript"></script>
 </head>
 
 <div class="container row" style="width: auto">
@@ -20,7 +21,7 @@
                     <td class="col-lg-3">{Name}</td>
                     <td class="col-lg-3">{Topic}</td>
                     <td class="col-lg-3">{Score}</td>
-                    <td class="col-lg-3">Doing well!</td>
+                    <td class="col-lg-3"><form id='editform' ><input type='text' id='{id}' value='{Note}' size="40"><input type='button' onclick='update_note(this.id)' value='update'><input type='button' onclick='' value='delete'></form></td>
                 </tr>
                 <tr>
                     <td colspan="12">
