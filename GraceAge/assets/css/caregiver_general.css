@@ -1,5 +1,14 @@
 /* general-page */
 
+.body, .container-fluid{
+    overflow: hidden;
+}
+
+.fixedheight{
+    height: 95vh;
+}
+
+
 .col-md-6, .col-md-12, .col-md-4{
     padding: 0px;
 }
@@ -71,7 +80,7 @@
 .panel-body {
     overflow-style: auto;
     overflow-y: scroll;
-    height: 250px;
+    height: 30vh;
 }
 
 #messagesend{
