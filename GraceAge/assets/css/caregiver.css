@@ -1,5 +1,5 @@
-.body{
-    overflow-y: hidden;
+html {
+    overflow: hidden; /*static page*/
 }
 
 .container-fluid{
@@ -113,14 +113,6 @@ ul.dropdown li a.active{
     display: none;
 }
 
-.alert{
-    background-color: #F0F4C3;
-}
-
-
-.alert.inactive{
-    color: #F0F4C3;
-}
 
 
 

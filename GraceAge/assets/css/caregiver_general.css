@@ -1,13 +1,27 @@
 /* general-page */
 
+html {
+    overflow: hidden;
+}
+
 .body, .container-fluid{
     overflow: hidden;
 }
 
 .fixedheight{
-    height: 95vh;
+    height: 90vh;
+    position: relative;
 }
 
+#bottombox{
+    position: absolute;
+    height: 50%;
+    bottom: 0px !important;
+}
+
+#topbox{
+    height: 50%;
+}
 
 .col-md-6, .col-md-12, .col-md-4{
     padding: 0px;
@@ -43,9 +57,9 @@
 
 /* chart */
 #chart_div{
-    height: 85vh;
+    height: 100%;
     
-    /* frame */
+        /* frame */
     border-style: solid;
     border-color: #CDDC39;
     border-radius: 0px;
@@ -126,7 +140,7 @@ input[type=text] {
 
 ::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #CDDC39;
+    background-color: #555;
 }
 
 .panel-footer {

@@ -139,9 +139,10 @@ select {
 }
 
 /*make warning invisible*/
-.alert.alert-warning.inactive{
-    background-color: white;
-    color: white;
+.alert,
+.alert-warning.inactive{
+    background-color: transparent;
+    color: transparent;
     border: 0px;
 }
 

@@ -84,7 +84,9 @@ select {
 
 
 #errorbox{
-    background-color: white
+    background-color: transparent;
+    color: transparent;
+    border: 0px;
 }
 /* icons */
 .fa{
