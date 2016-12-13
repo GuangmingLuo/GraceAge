@@ -294,17 +294,19 @@ class CaregiverController extends CI_Controller {
 
     private function loadProfileData() {
         $data = $this->loadCommonData();
-        $data['log_out'] = $this->lang->line('caregiver_log_out');
-        $data['logout'] = $this->lang->line('caregiver_logout');
         $data['new_placeholder'] = $this->lang->line('caregiver_new_placeholder');
         $data['old_placeholder'] = $this->lang->line('caregiver_old_placeholder');
         $data['conf_placeholder'] = $this->lang->line('caregiver_conf_placeholder');
         $data['change_password'] = $this->lang->line('caregiver_change_password');
-        $data['old_password'] = $this->lang->line('caregiver_old_password');
-        $data['new_password'] = $this->lang->line('caregiver_new_password');
-        $data['conf_password'] = $this->lang->line('caregiver_conf_password');
-        $data['change_lang'] = $this->lang->line('caregiver_change_lang');
-        $data['Apply'] = $this->lang->line('caregiver_apply');
+        $data['name'] = $this->lang->line('name');
+        $data['date_of_birth'] = $this->lang->line('date_of_birth');
+        $data['gender'] = $this->lang->line('gender');
+        $data['home_address'] = $this->lang->line('home_address');
+        $data['email'] = $this->lang->line('email');
+        $data['landline'] = $this->lang->line('landline');
+        $data['mobile'] = $this->lang->line('mobile');
+        $data['language'] = $this->lang->line('language');
+        $data['save'] = $this->lang->line('save');
         $data['page_title'] = 'Edit Profile';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_profile'));
         $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems($this->lang->line('settings'));

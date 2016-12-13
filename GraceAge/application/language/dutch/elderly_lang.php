@@ -16,3 +16,4 @@ $lang['rewards_bought_text']='Uw beloningen:';
 $lang['buy_the_reward']="Koop een beloning";
 $lang['you_bought_reward']="U hebt de beloning gekocht!";
 $lang['too_low_score']="U kan momenteel deze beloning niet kopen. Uw score is te laag.";
+$lang['phone_number'] = "Telefoonnummer:";

@@ -17,31 +17,35 @@
                 <table class="table table-user-information">
                     <tbody>
                         <tr>
-                            <td>Name:</td>
-                            <td>{Person_Name} Lodewyckx</td>
+                            <td>{name}</td>
+                            <td>{Person_Name}</td>
                         </tr>
                         <tr>
-                            <td>Date of Birth</td>
-                            <td>01/24/1988</td>
+                            <td>{date_of_birth}</td>
+                            <td>{Birthday}</td>
                         </tr>
                         <tr>
-                            <td>Gender</td>
-                            <td>Female</td>
+                            <td>{gender}</td>
+                            <td>{Gender}</td>
                         </tr>
                         <tr>
-                            <td>Home Address</td>
-                            <td>Leuven, Belgium</td>
+                            <td>{home_address}</td>
+                            <td>{HomeAddress}</td>
                         </tr>
                         <tr>
-                            <td>Email</td>
-                            <td>{Person_Name}@remy.be</td>
+                            <td>{email}</td>
+                            <td>{Email}</td>
                         </tr>
                         <tr>
-                            <td>Phone Number</td>
-                            <td>123-4567-890 (Landline)<br><br>555-4567-890 (Mobile) </td>
+                            <td>{landline}</td>
+                            <td>{Landline}</td>
                         </tr>
                         <tr>
-                            <td>Language</td>
+                            <td>{mobile}</td>
+                            <td>{Mobile}</td>
+                        </tr>
+                        <tr>
+                            <td>{language}</td>
                             <td class="form-group">
                                     <select class="form-control" name="language" id="language">
                                         <option value="english">English</option>
@@ -50,7 +54,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Change password</td>                            
+                            <td>{change_password}</td>                            
                             <td id ="passwordRow" class="form-group">
                                 <input type="password" id= "old" name="old_password" class="form-control fonttype" placeholder="{old_placeholder}" required>
                                 <input type="password" id= "new" name="new_password" class="form-control fonttype" placeholder="{new_placeholder}" required>
@@ -65,7 +69,7 @@
                     <div id="errorbox" class="alert alert-success inactive">
                           
                     </div>
-                    <button class="btn btn-default" value="Save" onclick="postForm()">Save</button>
+                    <button class="btn btn-default" value="Save" onclick="postForm()">{save}</button>
                     <br>
                     <br>
                 </div>

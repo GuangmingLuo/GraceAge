@@ -2,6 +2,15 @@
 // DUTCH //
 defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['hello'] = 'Hallo';
+$lang['name'] = 'Naam:';
+$lang['date_of_birth'] = 'Geboortedag:';
+$lang['gender'] = 'Geslacht:';
+$lang['home_address'] = 'Thuisadres:';
+$lang['email'] = 'Email:';
+$lang['landline'] = 'Telefoon:';
+$lang['mobile'] = 'Mobiel:';
+$lang['language'] = 'Taal:';
+$lang['save'] = 'Bewaar';
 $lang['caregiver_change_password'] = 'Verander wachtwoord';
 $lang['caregiver_old_password'] = 'Geef uw oud wachtwoord in';
 $lang['caregiver_new_password'] = 'Geef uw nieuw wachtwoord in';
@@ -12,7 +21,7 @@ $lang['caregiver_log_out'] = 'Uitloggen';
 $lang['caregiver_logout'] = 'Log uit';
 $lang['caregiver_new_placeholder'] = 'Nieuw wachtwoord';
 $lang['caregiver_old_placeholder'] = 'Oud wachtwoord';
-$lang['caregiver_conf_placeholder'] = 'Nieuw wachtwoord';
+$lang['caregiver_conf_placeholder'] = 'Bevestig wachtwoord';
 $lang['caregiver_password_placeholder'] = 'Vul paswoord in';
 $lang['caregiver_username_placeholder'] = 'Vul gebruikersnaam in';
 $lang['caregiver_confirm_placeholder'] = 'Herhaal paswoord';
