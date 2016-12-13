@@ -401,18 +401,13 @@ class Caregiver_Home_model extends CI_Model {
         return $resultarray;
     }
     
-    function update_note($note, $id){
+    function updatenote($note, $id){
         
         $this->db->set('Note', $note);
         $this->db->where('idPatient', $id);
         $this->db->update('Patient');
     }
     
-    function remove_note($id){
-        $this->db->set('Note', " ");
-        $this->db->where('idPatient', $id);
-        $this->db->update('Patient');
-    }
     
     
 
