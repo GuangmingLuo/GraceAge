@@ -44,7 +44,7 @@ function add_new_tip(){
       $(document.getElementById('editform')).remove(); // remove old form if it excists
       
       $("li").show(); // show the lines again
-      $("button").show(); //show all buttons again
+      $("[id^='button']").show(); //show all buttons again
       
       $(document.getElementById("button"+id)).hide();  //hide the button belonging to id
       $element = $(document.getElementById(id));
