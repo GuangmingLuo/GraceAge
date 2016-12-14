@@ -60,6 +60,12 @@ class CaregiverController extends CI_Controller {
         $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_topic_with_score());
     }
     
+    function getChartData(){
+        $jsondata = array();
+        $jsondata = $this->Caregiver_Home_model->getJSONtable()->JSONCODE;
+        return $jsondata;
+    }
+    
 
     
     function personal() {

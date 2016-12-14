@@ -257,8 +257,8 @@ class Caregiver_Home_model extends CI_Model {
         $resutls = array();
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
-        $questionsenglish = $this->db->select('Topic, QuestionNumber')->where('Language', 'english')->get('Question')->result();
-        $questionsdutch = $this->db->select('Topic, QuestionNumber')->where('Language', 'dutch')->get('Question')->result();
+        $questionsenglish = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'english')->get('Question')->result();
+        $questionsdutch = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'dutch')->get('Question')->result();
 
 
 
@@ -279,6 +279,7 @@ class Caregiver_Home_model extends CI_Model {
                 //calculate topics
                 $display = array();
                 $display2 = array();
+                $badanswers = array();
                 for ($j = 0; $j < count($topicsdutch); $j++) {       //itterate through the topics
                     $current = $topicsdutch[$j]->Topic;
 
@@ -304,6 +305,7 @@ class Caregiver_Home_model extends CI_Model {
                     }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                     array_push($display, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
+                    $jsoncode = json_encode($display);
                     array_push($display2, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
                 }
 
@@ -333,9 +335,39 @@ class Caregiver_Home_model extends CI_Model {
                 $nombre_format_francais = 0;
             } else {
                 $personavg = $score * 25 / $amount;
-                $nombre_format_francais = number_format($personavg, 2, ',', ' ');
+                $nombre_format_francais = number_format($personavg, 0, ',', ' ');
+                if($nombre_format_francais < 34){
+                    $bar = "danger";
+                }
+                if($nombre_format_francais < 51 && $nombre_format_francais > 33){
+                    $bar = "warning";
+                }
+                if($nombre_format_francais > 50){
+                    $bar = "succes";
+                }
+                
             }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
+            
+            
+            //print out questions with worst answers
+            
+            
+            for ($a = 0; $a < count($answers); $a++){
+                if($answers[$a]->Answer == 1){
+                    for($b = 0; $b < count($questionsdutch) ; $b++){
+                        if($questionsdutch[$b]->QuestionNumber == $answers[$a]->Question_Number){
+                            array_push($badanswers,array('Question' => $questionsdutch[$b]->Question));
+                            
+                        }
+                    }
+                }
+            }
+            
+            
+            
+            
+            
+            array_push($resultarray, array('Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display,'JSONCODE' => $jsoncode, 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
         } else { //english case
             //calculate score per topic
             $display = array();
@@ -365,6 +397,7 @@ class Caregiver_Home_model extends CI_Model {
                 }
                 $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                 array_push($display, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
+                $jsoncode = json_encode($display);
                 array_push($display2, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
             }
 
@@ -391,9 +424,34 @@ class Caregiver_Home_model extends CI_Model {
                 $nombre_format_francais = 0;
             } else {
                 $personavg = $score * 25 / $amount;
-                $nombre_format_francais = number_format($personavg, 2, ',', ' ');
+                $nombre_format_francais = number_format($personavg, 0, ',', ' ');
+                if($nombre_format_francais < 34){
+                    $bar = "danger";
+                }
+                if($nombre_format_francais < 51 && $nombre_format_francais > 33){
+                    $bar = "warning";
+                }
+                if($nombre_format_francais > 50){
+                        $bar = "succes";
+                }
             }
-            array_push($resultarray, array('Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
+            //get the answers where worst answers is given
+            $badanswers = array();
+            for ($a = 0; $a < count($answers); $a++){
+                if($answers[$a]->Answer == 1){
+                    $qnr = $answers[$a]->Question_Number;
+                    for($b = 0; $b < count($questionsenglish) ; $b++){
+                        if($questionsenglish[$b]->QuestionNumber == $answers[$a]->Question_Number){
+                            array_push($badanswers,array( 'Question' => $questionsenglish[$b]->Question));
+                        }
+                    }
+                }
+            }
+//            if(count($answerarray == 0)){
+//                array_push($answerarray, " ");
+//            }
+            
+            array_push($resultarray, array('Bar' => $bar, 'BadAnswer' => $badanswers,'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais,'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
         }
         }
         //echo json_encode($resultarray);
