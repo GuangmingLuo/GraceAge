@@ -148,7 +148,49 @@ input[type=text] {
     padding-right: 27px;
 }
 
-
-
 /* urgent patients */
+hr{
+    margin-top: 1px; margin-bottom: 1px;
+}
+
+#borderpatient_left{
+    padding-top: 5px;
+    padding-left: 16px;
+}
+
+    #borderpatient_left>hr{ 
+        width: 120%; /* no white space in horizontal line */
+    }
+
+/* my wrapper is used to align the text in the middle of the icon */
+.my-wrapper{
+    display: inline-block;
+    height: 30px;
+}
+
+.my-wrapper .fa-user{
+    vertical-align: middle;
+    margin-right: 8px;
+}
+ 
+#borderpatient_right{
+    padding-top: 5px;
+    padding-right: 16px;
+    float: right;
+}
+
+#scrollbox{
+    overflow-style: auto;
+    overflow-y: scroll;
+    height: 30vh;
+}
+
+table{
+    width: 100%;
+}
+
+table p{
+    vertical-align: middle;
+}
+
 

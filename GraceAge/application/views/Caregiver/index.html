@@ -32,12 +32,34 @@
                             </div>
                         </div>
                         <div class="row">
-                            <table class="smallbox">
-                                <tr>
-                                    <td>{urgent} <a href="<?php echo base_url();?>CaregiverController/personal?username={Name}">{Name}</a><br> {/urgent}</td>
-                                    <td>{urgent} {Score}<br> {/urgent}</td> 
-                                </tr>
-                            </table>
+                            <div class="smallbox">
+                                <div id="scrollbox">
+                                    <table>
+
+                                        <tr>
+                                            <td id="borderpatient_left">
+                                                {urgent}
+                                                <div class="my-wrapper">
+                                                    <span class="fa fa-user fa-2x" aria-hidden="true"></span>
+                                                    <a href="<?php echo base_url();?>CaregiverController/personal?username={Name}">{Name}</a>
+                                                </div>
+                                                <hr>
+                                                {/urgent}
+
+                                            </td>
+                                            <td id="borderpatient_right">
+                                                {urgent} 
+                                                <div class="my-wrapper">
+                                                    <a>{Score}%</a>                                                
+                                                </div>
+                                                <hr>
+                                                {/urgent}
+                                            </td> 
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
