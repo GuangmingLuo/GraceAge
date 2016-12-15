@@ -51,7 +51,7 @@ select {
 
 /* input fields */
 #new_tip, #newtext{
-    text-transform: lowercase;
+    //text-transform: lowercase;
     display: block;
     width: 98% !important;
     min-width: 160px;
