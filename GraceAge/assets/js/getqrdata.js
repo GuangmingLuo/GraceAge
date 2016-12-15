@@ -38,7 +38,8 @@ $('#reader').html5_qrcode(function (data) {
     // input the values in a form :
     document.getElementById("username").value = foo.username; // name is id of "username field
     document.getElementById("password").value = foo.password; // password is id of "password" field
-    document.getElementById("loginForm").submit();
+    //document.getElementById("loginForm").submit();
+    login();
     },
     function (error) {
         $('#read_error').html(error);
