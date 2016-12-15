@@ -1,24 +1,42 @@
 #score_panel,
 #reward_panel{
-    background-color: #F0F4C3;
-    border: 0px solid;
-    border-radius: 5px;
-    padding: 0px;
-    overflow-y: hidden;
-    height: 55vh;
-    white-space: normal !important;
+        /* color:#405250; */
+        position:relative;
+        background-color: #F0F4C3;
+        border: 0px solid;
+        border-radius: 5px;
+        padding: 0px;
+        overflow-y: hidden;
+        height: 40vh;
+        white-space: normal !important;
 }
 
+#score_panel_content{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
 
 #score_text{
-    margin-top: 5vh;
-        text-align: center;
+        color:#405250;
+    text-align: center;
     font-size: 40px;
 }
 
+#pricetag{
+    float:right;
+    text-align:center;
+    left:23px;
+    font-size: 20px;
+    line-height: 10px;
+    position:relative;
+}
+
 #exchange_score{
+    width:80%;
+    margin-left:10%;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 #score{
@@ -26,10 +44,7 @@
     text-align: center;
     font-size: 80px;
 }
-#exchange_score
-{
-        text-align: center;
-}
+
 
 
 #reward_panel{
@@ -37,26 +52,25 @@
 }
 
 #reward_panel_header{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top:10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top:15px;
     font-size: 25px;
 }
 
 .answer_button {
-    
+        color:#405250;
     padding: 5px;
-    padding-left: 20px;
+    padding-left: 15px;
+    padding-right: 40%;
     background-color: #CDDC39;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border-width: 0px !important;
-    -webkit-box-shadow: 6px 5px 6px #666666;
-    -moz-box-shadow: 6px 5px 6px #666666;
-    box-shadow: 6px 5px 6px #666666;
-    font-family: Courier New;
-    color: black;
+    -webkit-box-shadow: 1px 1px 1px #666666;
+    -moz-box-shadow: 1px 1px 1px #666666;
+    box-shadow: 1px 1px 1px #666666;    color: black;
     font-size: 20px !important;
     text-decoration: none;
     text-align: left;
@@ -72,30 +86,31 @@
         text-decoration: none;
 }
 #reward_button_text{
-    
+    color:#405250;
+    position:relative;
     padding: 0px;
     text-align: left;
+    font-size:18px;
 }
 
 #button_box{
-    margin-left: 10px;
-    margin-right:10px;
+    margin-left: 15px;
+    margin-right:15px;
     background-color:transparent;
     padding:0px;
     padding-top:20px;
     border:0px;
 }
 #price{
-    float:right;
-font-weight:bold;
+        color:#405250;
+    position:absolute;
+    font-size: 30px;
+    right: 10%;
+    top:50%;
+    transform: translateY(-30%);
 }
 #button_star{
-    margin-left:5px;
     color: #009688;
-    float: right;
-    line-height: 10px;
-    margin-top:10px;
-    margin-right:40px;
 }
 
 
@@ -103,27 +118,72 @@ font-weight:bold;
     font-family: 'Open Sans';       
 }
 
-#history,
-#row3
-{
-    display:none;
-}
 
+#rewards_bought_panel{
+    color:#405250;
+    background-color: #F0F4C3;
+    border: 0px solid;
+    border-radius: 5px;
+    padding: 0px;
+    padding-top: 10px;
+    overflow-y: hidden;
+    height: 18vh;
+    white-space: normal !important;
+}
 
 #row1,
-#row2{
+#row2,
+#row3{
     margin-top: 5vh;;
 }
-#row2{
-    margin-top:15vh;
+
+#rewards_bought_text{
+   position:relative;
+   font-size:20px;
+   margin-left:15px;
+   width:100%;
 }
+
+#bought_at_text{
+    font-size:20px;
+    position:absolute;
+    right:16%;
+}
+
+#bought_reward_text{
+    position:relative;
+}
+#bought_reward_price{
+    position:relative;
+}
+#bought_reward_date{
+    position:absolute;
+    left:72%;
+}
+
+
+#history{
+
+    font-size:16px;
+    margin-top:1vh;
+}
+
+.list-group-item{
+    padding-left:15px;
+    background-color: #F0F4C3;
+    border:none;
+    border-top:1px solid;
+    border-color:#CDDC39;
+}
+
+
 
 
 
 
 .progress-meter {
     width:100%;
-    padding: 0;
+    padding: 0px;
 }
 
 
@@ -152,14 +212,7 @@ ol.progress-meter li.done {
     font-size: 10px;
 }
 
-#pricetag{
-    float:right;
-    text-align:center;
-    left:23px;
-    font-size: 20px;
-    line-height: 10px;
-    position:relative;
-}
+
 
 
 
@@ -223,5 +276,30 @@ ol.progress-meter li.todo:before {
         from(#cddc39),
         to(#cddc39),
         color-stop(.6,rgb(205, 220, 57)))
+}
+
+@media only screen and (orientation: portrait){
+    #rewards_bought_text{
+        font-size: 15px;
+    }
+    #bought_at_text{
+        font-size: 15px;
+        left:66%;
+    }
+
+    #row1,
+    #row2,
+    #row3{
+    margin-top: 7.5vh;;
+}
+
+
+    #rewards_bought_panel{
+        height:13vh;
+    }
+    
+    #bought_reward_date{
+        left:67%;
+    }
 }
 

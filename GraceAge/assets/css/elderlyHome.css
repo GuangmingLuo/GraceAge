@@ -22,9 +22,15 @@
 .navbar-fixed-bottom .btn-primary{
     background-color: #F0F4C3;
     border-width: 0px;
-    color: black;
+    color:#405250;
     font-size: 15px;
     font-weight: bold;
+}
+
+#navbar_icons{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
 }
 
 /* make 3 buttons visible with 2 vertical lines */
@@ -54,7 +60,7 @@
 .btn-group>.btn{
     border: 0px;
     background-color: white;
-    color: black;
+    color:#405250;
     font-size: 28px;
 }
     
@@ -131,4 +137,12 @@
     .navbar-fixed-bottom i{
         padding-top: 0px;
     }
+
+    #navbar_icons{
+    position: absolute;
+    top:50%;
+    width:100%;
+    transform: translateY(-50%);
+}
+
 }

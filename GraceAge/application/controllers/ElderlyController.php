@@ -117,6 +117,7 @@ class ElderlyController extends CI_Controller {
         $data = $this->loadComonData();
         $data['questionNumber'] = ($this->session->question_id);                // set initial questionNumber for progressbar
         $data['pbQuestionText'] = lang('question_text');                        // set label of progressbar
+        $data['question_out_of'] = lang('question_out_of'); 
         $data['initial_pbWidth'] = (($this->session->question_id) / 52) * 100;      // set initial width of progressbar
         $data['page_title'] = 'Questionnaire';
         $data['header1'] = 'Questionnaire';
@@ -186,6 +187,7 @@ class ElderlyController extends CI_Controller {
             $data['buy_reward'] = lang('buy_reward');
             $data['reward_text'] = lang('reward_text');
             $data['rewards_bought_text'] = lang('rewards_bought_text');
+            $data['bought_at'] = lang('bought_at');
             $data['page_title'] = 'Score';
             $data['header1'] = 'Your score';
             $data['rewards'] = $this->Question_model->getRewards($this->session->Language);

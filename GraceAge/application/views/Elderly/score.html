@@ -1,14 +1,14 @@
 <head>
-    <link href="../../assets/css/Score.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/Elderly_Score.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
 <div class="container">
 
-        <div id="row1" class="row">
+    <div id="row1" class="row">
 
-        <div  class="col-xs-offset-1 col-xs-10">
-            
+        <div id="progress_div" class="col-xs-offset-1 col-xs-10">
+
             <ol class="progress-meter">
                 {classes}
                 <li id="{class}"  class="{class}">
@@ -18,25 +18,29 @@
             </ol>
 
         </div>
+    </div>
+
 
     <div id='row2' class="row">
 
         <div  class="col-xs-offset-1 col-xs-5">
             <div id="score_panel">
-                <p class="fontfamily" id="score_text">{score_text}</p>
-                <p class="fontfamily" id="score">{score} <i id="starIcon" class="fa fa-star fa-1x"></i></p>
-                <p class="fontfamily" id="exchange_score">{exchange_score}</p>
+                <div id="score_panel_content">
+                    <p class="fontfamily" id="score_text">{score_text}</p>
+                    <p class="fontfamily" id="score">{score} <i id="starIcon" class="fa fa-star fa-1x"></i></p>
+                    <p class="fontfamily" id="exchange_score">{exchange_score}</p>
+                </div>
             </div>
         </div>
 
         <div  class="col-xs-5">
             <div id="reward_panel" class="scrollbar">
                 <p id="reward_panel_header" class="fontfamily">{buy_reward}</p>
-                
+
                 <ul class="list-group">
                     {rewards}
                     <li id="button_box" class="list-group-item">
-                        
+
                         <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward}"><span id="reward_button_text" class="fontfamily">{Reward}</span> <span id="price" class="fontfamily">{Price} <i id="button_star" class="fa fa-star fa-1x"></i></span> </a>
                     </li>
                     {/rewards}
@@ -49,11 +53,15 @@
     </div>
 
     <div id='row3' class="row">
-        {rewards_bought_text}
-        <ul id="history" class="list-group">
-            {rewards_bought}
-            <li class="list-group-item">{Reward} - {Price} ({Date}) </li>
-            {/rewards_bought}
-        </ul>
+        <div  class="col-xs-offset-1 col-xs-10">
+            <div id="rewards_bought_panel" class="scrollbar">
+                <span id="rewards_bought_text">{rewards_bought_text}</span> <span id='bought_at_text'>{bought_at}:</span>
+                <ul id="history" class="list-group">
+                    {rewards_bought}
+                    <li class="list-group-item"> <span id="bought_reward_price">{Price}<i id="bought_star" class="fa fa-star fa-1x"></i></span> <span id="bought_reward_text"> {Reward}</span> <span id="bought_reward_date">{Date}</span></li>
+                    {/rewards_bought}
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
