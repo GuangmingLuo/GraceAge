@@ -1,18 +1,152 @@
-[{"idtips":54, "topic":"Privacy", "english":"Mention whenever your privacy is not respected and ask for it to be respected immediately.", "dutch":""},
- {"idtips":55, "topic":"Food", "english":"Go to the cafeteria whenever you feel hungry and ask for snacks.", "dutch":""},
- {"idtips":56, "topic":"Food", "english":"Ask someone at the cafeteria to heat your meal whenever it is not warm enough.", "dutch":""},
- {"idtips":57, "topic":"Food", "english":"Suggest your favorite meals at the reception and cafeteria.", "dutch":""},
- {"idtips":58, "topic":"Safety", "english":"Call the caregiver or other staff whenever you feel that your safety is threatened.", "dutch":""},
- {"idtips":59, "topic":"Safety", "english":"Make sure that your possessions are safe before leaving them.", "dutch":""},
- {"idtips":60, "topic":"Comfort", "english":"Provide feedback at the reception about what things to be improved at the care facility.", "dutch":""},
- {"idtips":61, "topic":"Comfort", "english":"Plan more \"going outdoors\" time with your caregiver.", "dutch":""},
- {"idtips":62, "topic":"Comfort", "english":"Ask to be transferred in a more quiet place whenever you feel disturbed by the noise.", "dutch":""},
- {"idtips":63, "topic":"Autonomy", "english":"Make your own schedules, but make sure to notify your caregiver and not to disturb others.", "dutch":""},
- {"idtips":65, "topic":"StaffResponse", "english":"Tell your caregiver to offer you more quality attention.", "dutch":""},
- {"idtips":66, "topic":"StaffResponse", "english":"Tell your caregiver how to serve you better.", "dutch":""},
- {"idtips":67, "topic":"StaffBonding", "english":"Share your reflections with your caregiver.", "dutch":""},
- {"idtips":68, "topic":"StaffBonding", "english":"Be less demanding and more friendly.", "dutch":""},
- {"idtips":69, "topic":"Activities", "english":"Suggest your favorite activities to be included in the schedule.", "dutch":""},
- {"idtips":72, "topic":"Respect", "english":"Report at the reception or other relevant staff whenever someone disrespects you.", "dutch":""},
- {"idtips":73, "topic":"Respect", "english":"Don't hesitate to express your opinions.", "dutch":""},
- {"idtips":74, "topic":"Relationships", "english":"Communicate more with other people in the care facility.", "dutch":""}]
+[
+	{
+		"idtips" : 54,
+		"topic" : "Privacy",
+		"english" : "Mention whenever your privacy is not respected and ask for it to be respected immediately.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 55,
+		"topic" : "Food",
+		"english" : "Go to the cafeteria whenever you feel hungry and ask for snacks.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 56,
+		"topic" : "Food",
+		"english" : "Ask someone at the cafeteria to heat your meal whenever it is not warm enough.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 57,
+		"topic" : "Food",
+		"english" : "Suggest your favorite meals at the reception and cafeteria.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 58,
+		"topic" : "Safety",
+		"english" : "Call the caregiver or other staff whenever you feel that your safety is threatened.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 59,
+		"topic" : "Safety",
+		"english" : "Make sure that your possessions are safe before leaving them.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 60,
+		"topic" : "Comfort",
+		"english" : "Provide feedback at the reception about what things to be improved at the care facility.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 61,
+		"topic" : "Comfort",
+		"english" : "Plan more \"going outdoors\" time with your caregiver.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 62,
+		"topic" : "Comfort",
+		"english" : "Ask to be transferred in a more quiet place whenever you feel disturbed by the noise.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 63,
+		"topic" : "Autonomy",
+		"english" : "Make your own schedules, but make sure to notify your caregiver and not to disturb others.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 65,
+		"topic" : "StaffResponse",
+		"english" : "Tell your caregiver to offer you more quality attention.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 66,
+		"topic" : "StaffResponse",
+		"english" : "Tell your caregiver how to serve you better.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 67,
+		"topic" : "StaffBonding",
+		"english" : "Share your reflections with your caregiver.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 68,
+		"topic" : "StaffBonding",
+		"english" : "Be less demanding and more friendly.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 69,
+		"topic" : "Activities",
+		"english" : "Suggest your favorite activities to be included in the schedule.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 72,
+		"topic" : "Respect",
+		"english" : "Report at the reception or other relevant staff whenever someone disrespects you.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 73,
+		"topic" : "Respect",
+		"english" : "Don't hesitate to express your opinions.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 74,
+		"topic" : "Relationships",
+		"english" : "Communicate more with other people in the care facility.",
+		"dutch" : ""
+	},
+	{
+		"idtips" : 81,
+		"topic" : "Privacy",
+		"english" : "",
+		"dutch" : "Zeg het wanneer je privacy niet gerespecteerd word"
+	},
+	{
+		"idtips" : 82,
+		"topic" : "Food",
+		"english" : "",
+		"dutch" : "Ga naar de cafetaria als je honger hebt en haal een snack"
+	},
+	{
+		"idtips" : 83,
+		"topic" : "Food",
+		"english" : "",
+		"dutch" : "Vraag iemand om je eten op te warmen als het niet heet genoeg is"
+	},
+	{
+		"idtips" : 84,
+		"topic" : "Safety",
+		"english" : "",
+		"dutch" : "Roep een verpleegster wanneer je je onveilig voelt"
+	},
+	{
+		"idtips" : 85,
+		"topic" : "Comfort",
+		"english" : "",
+		"dutch" : "Geef feedback aan de receptie over wat er beter kan in het tehuis"
+	},
+	{
+		"idtips" : 86,
+		"topic" : "StaffResponse",
+		"english" : "",
+		"dutch" : "Vertel de verpleegkundige hoe je beter geholpen kunt worden"
+	},
+	{
+		"idtips" : 87,
+		"topic" : "StaffResponse",
+		"english" : "",
+		"dutch" : "Vertel de verpleegkundige dat je meer aandacht nodig hebt"
+	}
+]
