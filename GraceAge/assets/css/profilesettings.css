@@ -82,15 +82,32 @@ select {
     float: right;
 }
 
-
 #errorbox{
     background-color: transparent;
-    color: transparent;
     border: 0px;
 }
+
 /* icons */
 .fa{
     color: #009688;
+}
+
+#scrollbox{
+    overflow-style: auto;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }
 
 /* mobile version with navbar collapse*/

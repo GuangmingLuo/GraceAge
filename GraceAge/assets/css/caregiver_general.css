@@ -1,4 +1,8 @@
 /* general-page */
+html {
+    overflow: hidden; /*static page*/
+}
+
 
 html {
     overflow: hidden;
