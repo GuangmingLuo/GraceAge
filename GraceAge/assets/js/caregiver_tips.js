@@ -34,7 +34,7 @@ function add_new_tip(){
     var chosen_topic = select.options[select.selectedIndex].value;
     var new_tip = $("#new_tip").val();
     $.post("add_tip", {tip: new_tip, topic: chosen_topic}, function(){
-        $tips_list.append("<li>"+ new_tip +"</li>");
+        register_topic();
         alert("yes...");
     });
 }
