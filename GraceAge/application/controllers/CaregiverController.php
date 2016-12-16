@@ -155,6 +155,12 @@ class CaregiverController extends CI_Controller {
         
         $this->Caregiver_Home_model->updatenote($note, $id);
     }
+    
+    function send_message(){
+        $message = $this->input->post('message');
+        
+        $this->Caregiver_Home_model->add_message($message);
+    }
 
 
     function profile() {
