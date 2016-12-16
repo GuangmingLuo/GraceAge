@@ -2,15 +2,15 @@
 	{
 		"idPatient" : 2,
 		"Name" : "Axel Rose",
-		"score" : 2,
+		"score" : 71,
 		"QOLScore" : null,
 		"LastQuestionId" : null,
-		"password" : "$2y$10$0KHS6zucsH/4gdJp.ohxweTI7HH4fsyyBcIHU4MSRSBw.ZYYrdemi",
+		"password" : "$2y$10$megWG2qooeK.MlNL4rFZ7O31XFHYhixDcfByZu/DBW5.BVXFJw.nG",
 		"Language" : "english",
 		"Birthday" : "01/24/1928",
 		"Gender" : "Male",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : "Keep in mind to ask what Axel prefers as food!"
 	},
 	{
 		"idPatient" : 5,
@@ -23,12 +23,12 @@
 		"Birthday" : "10/14/1938",
 		"Gender" : "Male",
 		"PhoneNumber" : "0487-871-529",
-		"Note" : null
+		"Note" : ""
 	},
 	{
 		"idPatient" : 9,
 		"Name" : "Mary Holmes",
-		"score" : 114,
+		"score" : 96,
 		"QOLScore" : null,
 		"LastQuestionId" : null,
 		"password" : "$2y$10$FarLQ4e4B6AKxDfH4cd1yunDtyC0bgdYLp1..5/q5QPwZpJ4dvSMu",
@@ -36,20 +36,20 @@
 		"Birthday" : "01/24/1928",
 		"Gender" : "Female",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 11,
 		"Name" : "Karlee Simmons",
-		"score" : null,
+		"score" : 52,
 		"QOLScore" : null,
 		"LastQuestionId" : null,
 		"password" : "$2y$10$O.6eX1DnkHJxwAVx7C.45eEnFG7c6MXMuNKUSeOSddRzUxaaXLGeq",
 		"Language" : "dutch",
 		"Birthday" : "09/08/1928",
-		"Gender" : "Male",
+		"Gender" : "Female",
 		"PhoneNumber" : "0485-091-923",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 12,
@@ -62,12 +62,12 @@
 		"Birthday" : "01/24/1928",
 		"Gender" : "Male",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : ""
 	},
 	{
 		"idPatient" : 13,
 		"Name" : "Finnegan Young",
-		"score" : null,
+		"score" : 60,
 		"QOLScore" : null,
 		"LastQuestionId" : null,
 		"password" : "$2y$10$JrLltkBLOT5rf2/qSyVvMOAXkqu.ONlPmnowFm/z398e9xZeepswi",
@@ -75,7 +75,7 @@
 		"Birthday" : "06/11/1933",
 		"Gender" : "Female",
 		"PhoneNumber" : "0487-590-223",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 14,
@@ -86,9 +86,9 @@
 		"password" : "$2y$10$W/z3k13f84s5Ela6jhH8t.UNHB8yXKT89xDKpnLSjlD54BGszdJjW",
 		"Language" : "dutch",
 		"Birthday" : "01/24/1928",
-		"Gender" : "Male",
+		"Gender" : "Female",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 15,
@@ -101,7 +101,7 @@
 		"Birthday" : "03/22/1931",
 		"Gender" : "Male",
 		"PhoneNumber" : "0486-221-175",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 16,
@@ -114,7 +114,7 @@
 		"Birthday" : "01/24/1928",
 		"Gender" : "Female",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : "Leila has been mourning due to death of her husband!"
 	},
 	{
 		"idPatient" : 17,
@@ -127,7 +127,7 @@
 		"Birthday" : "09/16/1927",
 		"Gender" : "Female",
 		"PhoneNumber" : "0484-775-647",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 18,
@@ -138,9 +138,9 @@
 		"password" : "$2y$10$If4e8JfSPCXeVg.6BLUoQO504wzCi6nj1170xN1Evjd8oxFb97ex2",
 		"Language" : "dutch",
 		"Birthday" : "01/24/1928",
-		"Gender" : "Female",
+		"Gender" : "Male",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 19,
@@ -153,7 +153,7 @@
 		"Birthday" : "03/22/1935",
 		"Gender" : "Female",
 		"PhoneNumber" : "0484-463-544",
-		"Note" : null
+		"Note" : " "
 	},
 	{
 		"idPatient" : 20,
@@ -162,10 +162,10 @@
 		"QOLScore" : null,
 		"LastQuestionId" : null,
 		"password" : "$2y$10$03y20pRhZs0UrwgvM.ZpoOG/VgZJSOtJn92NpeaFI5GHIUiXUVF1C",
-		"Language" : null,
+		"Language" : "english",
 		"Birthday" : "01/24/1928",
 		"Gender" : "Male",
 		"PhoneNumber" : "0484-551-513",
-		"Note" : null
+		"Note" : " "
 	}
 ]
