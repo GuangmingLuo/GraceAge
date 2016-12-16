@@ -28,7 +28,7 @@ function drawMultSeries(){
         var options = {
             bars: 'horizontal',
             chartArea: {width: '100%'}, //This is the width of the bar chart inside its div
-            colors: ['#cddc39'],
+            colors: ['lightgray'],
             legend: {
                 position: 'none'
             },
@@ -43,6 +43,7 @@ function drawMultSeries(){
                 }
             }
         };
+        
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
         chart.draw(data, options);
     });

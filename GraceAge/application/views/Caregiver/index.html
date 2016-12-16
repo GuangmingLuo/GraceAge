@@ -1,28 +1,35 @@
 <link href="../../assets/css/caregiver_general.css" rel="stylesheet" type="text/css"/>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-1 col-sm-5 fixedheight">
-            <!-- chart: title + content -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="pageTitle">
-                        General Score
+        <div class="col-sm-offset-1 col-sm-10">
+
+            <div class="col-sm-6">
+                <div id="leftcontent" >
+                    <!-- chart: title + content -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pageTitle">
+                                General Score
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="frame">
+                                <div id="chart_div">
+                                    <!-- chart content -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="chart_div">
-                        <!-- chart content -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-offset-1 col-sm-4 fixedheight">
-            <div class="row">
-                <div class=col-sm-12>
-                    <!-- urgent patients: title + content -->
-                    <div id="topbox">
+
+            <div class="col-sm-offset-1 col-sm-5">
+                <div id ="rightcontent">
+                    <div id="rightcontent_top" >
+                        <!-- urgent patients: title + content -->
+                        
                         <div class="row">
                             <div class="pageTitle">
                                 Urgent Patients
@@ -32,12 +39,11 @@
                             <div class="smallbox">
                                 <div id="scrollbox">
                                     <table>
-
                                         <tr>
                                             <td id="borderpatient_left">
                                                 {urgent}
                                                 <div class="my-wrapper">
-                                                    <span class="fa fa-user fa-2x" aria-hidden="true"></span>
+                                                    <span class="fa fa-user-o" aria-hidden="true"></span>
                                                     <a href="<?php echo base_url();?>CaregiverController/personal?username={Name}">{Name}</a>
                                                 </div>
                                                 <hr>
@@ -53,24 +59,27 @@
                                                 {/urgent}
                                             </td> 
                                         </tr>
-
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- messages: title + content-->
-                    <div id="bottombox">
+                       
+
+
+                    <div id="rightcontent_bottom">
+
+
+
+                        <!--messages: title + content-->
+                        
                         <div class="row">
                             <div class="pageTitle">
                                 Messages
                             </div>
                         </div>
-
+    
                         <div class="row">  
                             <div class="smallbox">
                                 <div class="panel panel-primary">
@@ -96,7 +105,7 @@
                                                 <span class="input-group-btn">
                                                     <button name="Send" type="button" class="btn btn-sm" id="btn-chat" onclick='send_msg()'>Send</button>
                                                 </span>
-                                                
+    
                                             </div>
                                             <div id='updatebox'></div>
                                         </form>  
@@ -104,6 +113,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
