@@ -159,7 +159,7 @@ class CaregiverController extends CI_Controller {
     function send_message(){
         $message = $this->input->post('message');
         
-        $this->Caregiver_Home_model->add_message($message);
+        $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->add_message($message));
     }
 
 

@@ -483,6 +483,7 @@ class Caregiver_Home_model extends CI_Model {
                 'Date' => date('Y-m-d H:i:s')
             );
             $this->db->insert('a16_webapps_2.Messages', $data);
+            return json_encode($data);
         }
         
     }
