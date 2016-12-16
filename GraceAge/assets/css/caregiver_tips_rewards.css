@@ -47,17 +47,9 @@ select {
   padding-left: 5%; padding-right: 3%;
 }
 
-.form-group{
-    margin: 0px;
-    padding: 0px;
-    border: none;
-}
-
 /* input fields */
-#new_tip, #newtext{
+#new_tip, #newtext, #new_reward, #price{
     display: block;
-    width: 98% !important;
-    min-width: 160px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -70,20 +62,14 @@ select {
     font-family: "Open Sans";
 } 
 
-#new_reward, #price {
-    display: block;
-    width: 100% !important;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: "Open Sans";
-}
+    #new_reward, #newtext, #new_tip{
+        width: 98%;
+        min-width: 160px;
+    }
+    
+    #price{
+        width: 93%;
+    }
 
 /* styling button: same everywhere*/
 .btn,
@@ -112,7 +98,7 @@ select {
 }
 
 #rewardForm, #tipForm{
-    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 #reward_price{
