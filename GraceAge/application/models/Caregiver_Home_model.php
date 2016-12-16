@@ -484,6 +484,7 @@ class Caregiver_Home_model extends CI_Model {
             );
             $this->db->insert('a16_webapps_2.Messages', $data);
         }
+        
     }
 
     function show_messages() {
@@ -498,10 +499,14 @@ class Caregiver_Home_model extends CI_Model {
             //$mysqldate = date( 'Y-m-d H:i:s', $date );
             array_push($result, array('Name' => $messages[$i]->Name, 'Message' => $messages[$i]->Message, 'Date' => $messages[$i]->Date));
         }
+        
+        
 //        for($j = 0; $j < count($result); $j++){
 //            echo " ".$result[$j]['Message'];
 //        }
         return $result;
     }
+    
+    
 
 }
