@@ -11,6 +11,10 @@
         white-space: normal !important;
 }
 
+.container{
+    width:100%;
+}
+
 #score_panel_content{
     position: absolute;
     top:50%;
