@@ -38,10 +38,10 @@ html {
 }
    
 /* input fields */
-input[type=password] {
+input[type=password], input[type=text] {
     text-transform: lowercase;
     display: block;
-    width: 35% !important;
+    width: 40% !important;
     min-width: 160px;
     height: 34px;
     padding: 6px 12px;
@@ -60,7 +60,7 @@ select {
   text-transform: capitalize;
   border: 1px solid #ccc;
   border-radius: 3px;
-  width: 35% !important;
+  width: 40% !important;
   min-width: 160px !important;
   height: 34px;
   margin-bottom: 5px; 
@@ -76,7 +76,7 @@ select {
 #buttonSubmit>.btn{
     margin: 0px;
     width: 20%;
-    min-width: 70px;
+    min-width: 110px;
     background-color: #CDDC39;
     border: none;
     text-transform: uppercase;
@@ -90,6 +90,8 @@ select {
     background-color: transparent;
     border: 0px;
     color: #212121;
+    font-family: "Open Sans";
+    text-transform: uppercase;
 }
 
 /* icons */
@@ -100,7 +102,7 @@ select {
 #scrollbox{
     overflow-style: auto;
     overflow-y: scroll;
-    height: 70vh;
+    height: 80vh;
     padding-left: 10vw; padding-right: 10vw;
     padding-bottom: 3%; padding-top: 3%;
 }

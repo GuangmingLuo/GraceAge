@@ -1,6 +1,5 @@
 <head>
-    <link href="../../assets/css/caregiver.css" rel="stylesheet" type="text/css"/>
-    <link href="../../assets/css/profilesettings.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/caregiver_register_settings.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <div class ="container-fluid">
@@ -49,8 +48,8 @@
                                 <td>{language}</td>
                                 <td class="form-group">
                                     <select class="form-control" name="language" id="language">
-                                        <option value="english">English</option>
                                         <option value="dutch">Nederlands</option>
+                                        <option value="english">English</option>
                                     </select>
                                 </td>
                             </tr>
@@ -65,13 +64,9 @@
                         </tbody>
                     </table>
 
-
                     <div id="buttonSubmit">
-                        <div id="errorbox" class="alert alert-success inactive">
-
-                        </div>
                         <button class="btn btn-default" value="Save" onclick="postForm()">{save}</button>
-                        <br>
+                        <div id="errorbox" class="alert alert-success inactive"></div>
                     </div>
                 </div>
             </div>

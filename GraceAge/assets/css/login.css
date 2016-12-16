@@ -53,8 +53,7 @@ fieldset{   /* no framework around decoder*/
     height:350px;
 }
 
-#loginForm .btn,
-#registerForm .btn{
+#loginForm .btn {
     margin: 0px;
     width: 100%;
     background-color: #CDDC39;
