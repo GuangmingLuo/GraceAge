@@ -20,6 +20,7 @@ class CaregiverController extends CI_Controller {
         $this->load->library('parser'); //This will allow us to use the parser in function index.
         $this->load->helper('url'); //This allows to use the base_url function for loading the css.
         $this->lang->load('caregiver', $this->session->Language);
+        $this->lang->load('login', $this->session->Language);
         $this->lang->load('caregiver_menu', $this->session->Language);
         $this->lang->load('tip', $this->session->Language);
         $this->lang->load('reward', $this->session->Language);
@@ -272,6 +273,8 @@ class CaregiverController extends CI_Controller {
         $this->lang->load('login', $this->session->Language);
         $data['confirm'] = $this->lang->line('confirm');
         $data['confirm_ph'] = $this->lang->line('caregiver_confirm_placeholder');
+        $data['username'] = $this->lang->line('username');
+        $data['password'] = $this->lang->line('password');
         $data['username_ph'] = $this->lang->line('caregiver_username_placeholder');
         $data['password_ph'] = $this->lang->line('caregiver_password_placeholder');
         $data['user_type'] = $this->lang->line('user_type');
