@@ -298,7 +298,7 @@ class CaregiverController extends CI_Controller {
         
         return $data;
     }
-
+    
     private function loadPersonalData() {
         $data = $this->loadCommonData();
         $data['page_title'] = 'Personal Patient Information';
