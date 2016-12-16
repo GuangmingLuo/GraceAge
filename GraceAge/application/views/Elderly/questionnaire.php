@@ -1,7 +1,4 @@
-
-<head>
-    <link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
-</head>
+<link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
 <div id='questionnairy_wrapper' class="container">
     <div id='questionnairy_content' class="container">
         <h1>{header1}</h1>
@@ -43,7 +40,7 @@
             <div class="col-xs-1">
             </div>
             <div id='progress_column' class="col-xs-10">
-                
+
                 <div class="progress">
                     <div id="progressbar" class="progress-bar" role="progressbar" style="width:{initial_pbWidth}%">
                     </div>
@@ -61,7 +58,9 @@
             </div>
             {navigationbuttons}
             <div class="col-xs-5" id="{title}">
-                <button style="white-space: normal" type="button" class ="{class}" class ="{class}" onclick="{func}" >{name}</button>
+                <button style="white-space: normal" type="button" class ="{class}" class ="{class}" onclick="{
+                            func
+                        }" >{name}</button>
             </div>
             {/navigationbuttons}
             <div class="col-xs-1">
