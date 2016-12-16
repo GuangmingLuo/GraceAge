@@ -313,8 +313,8 @@ class Caregiver_Home_model extends CI_Model {
                 array_push($display2, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
             }
         
-        return $jsoncode;
-    }
+        
+    }return $jsoncode;}
 
     function current_user($username) {
         if ($username == NULL) {
