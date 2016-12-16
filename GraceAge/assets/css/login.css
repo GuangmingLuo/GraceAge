@@ -142,7 +142,6 @@ select {
 .alert,
 .alert-warning.inactive{
     background-color: transparent;
-    color: transparent;
     border: 0px;
 }
 
