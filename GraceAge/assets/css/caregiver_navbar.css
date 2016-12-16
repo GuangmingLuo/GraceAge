@@ -25,13 +25,13 @@ body{
 ul.navbar-nav li a{
     display: block;
     width: 100%;
-    color: black !important;
     text-align: center;
     text-decoration: none !important;
     text-transform: uppercase;
     font-size: 17px;
     font-family: "Open Sans";
     font-weight: bold !important;
+    color: #212121 !important;
 }
 
 .dropdown-toggle{
@@ -39,7 +39,7 @@ ul.navbar-nav li a{
 }
 
 .dropdown{
-    color: black !important;
+    color: #212121 !important;
     list-style-type: none !important;
     text-decoration: none !important;
     text-transform: uppercase;
@@ -76,7 +76,7 @@ dropdown-toggle a,
 li.active{
     display: block;
     background-color: #F0F4C3 !important;
-    color: black;
+    color: #212121;
     text-decoration: none !important;
     height: 50px;
 }
@@ -108,9 +108,6 @@ ul.dropdown li a.active{
 #settingsMobile{
     display: none;
 }
-
-
-
 
 /* mobile version */
 @media only screen and (max-width: 766px){

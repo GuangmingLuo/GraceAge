@@ -127,6 +127,12 @@ input[type=text] {
     margin-bottom: 5px;
 }
 
+#scrollbox{
+    overflow-style: auto;
+    overflow-y: scroll;
+    height: 30vh;
+}
+
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
@@ -174,12 +180,6 @@ hr{
     padding-top: 5px;
     padding-right: 16px;
     float: right;
-}
-
-#scrollbox{
-    overflow-style: auto;
-    overflow-y: scroll;
-    height: 30vh;
 }
 
 table{

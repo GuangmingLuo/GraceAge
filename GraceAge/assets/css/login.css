@@ -60,6 +60,7 @@ fieldset{   /* no framework around decoder*/
     background-color: #CDDC39;
     border: none;
     text-transform: uppercase;
+    color: #212121;
     font-weight: bold; 
     padding: 3%;
 }
@@ -101,6 +102,7 @@ select {
         list-style-type: none;
         float: left;
         text-align: center;
+        color: #212121;
     }
 
     .tabs li a{
@@ -113,7 +115,7 @@ select {
 
         .tabs li a:hover{
             text-decoration: none;
-            color: black;
+            color: #212121;
             background-color: #CDDC39;
         }
 
@@ -143,6 +145,7 @@ select {
 .alert-warning.inactive{
     background-color: transparent;
     border: 0px;
+    color: #212121;
 }
 
 .frame{
@@ -170,6 +173,7 @@ select {
     text-transform: uppercase;
     font-size: 15px;
     text-align: center;
+    color: #212121;
     
     border-top-left-radius: 4px; border-top-right-radius: 4px;
 }
