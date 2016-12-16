@@ -293,7 +293,7 @@ class CaregiverController extends CI_Controller {
         $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
         $data['content'] = "";
         $data['page_content'] = 'Caregiver/index.html';
-        $data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
+        //$data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
         $data ['show'] = $this->Caregiver_Home_model->show_messages();
         
         return $data;

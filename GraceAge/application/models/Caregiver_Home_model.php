@@ -249,6 +249,7 @@ class Caregiver_Home_model extends CI_Model {
         $patients;
         $answers;
         $topics;
+        $bar = "danger";
         $questions;
         $topicscore;
         $persontopic = array();
