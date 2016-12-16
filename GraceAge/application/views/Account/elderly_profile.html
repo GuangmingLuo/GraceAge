@@ -14,86 +14,88 @@
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10">
             <div class="frame">
+                <div id="scrollbox">
 
-                <table class="table table-user-information">
-                    <tbody>
-                        <tr>
-                            <td>{name}</td>
-                            <td>{Person_Name}</td>
-                        </tr>
-                        <tr>
-                            <td>{date_of_birth}</td>
-                            <td>{Birthday}</td>
-                        </tr>
-                        <tr>
-                            <td>{gender}</td>
-                            <td>{Gender}</td>
-                        </tr>
-                        <tr>
-                            <td>{phone_number}</td>
-                            <td>{PhoneNumber}</td>
-                        </tr>
-                        <tr>
-                            <td>{language}</td>
-                            <td class="form-group">
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>{name}</td>
+                                <td>{Person_Name}</td>
+                            </tr>
+                            <tr>
+                                <td>{date_of_birth}</td>
+                                <td>{Birthday}</td>
+                            </tr>
+                            <tr>
+                                <td>{gender}</td>
+                                <td>{Gender}</td>
+                            </tr>
+                            <tr>
+                                <td>{phone_number}</td>
+                                <td>{PhoneNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>{language}</td>
+                                <td class="form-group">
                                     <select class="form-control" name="language" id="language">
                                         <option  value="english">English</option>
                                         <option  value="dutch">Nederlands</option>
                                     </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{change_password}</td>                            
-                            <td id ="passwordRow" class="form-group">
-                                <input type="password" id= "old" name="old_password" class="form-control fonttype" placeholder="{old_placeholder}" required>
-                                <input type="password" id= "new" name="new_password" class="form-control fonttype" placeholder="{new_placeholder}" required>
-                                <input type="password" id= "conf" name="conf_password" class="form-control fonttype" placeholder="{conf_placeholder}" required>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div id="buttonSubmit">
-                    <div id="errorbox" class="alert alert-success inactive">
-                          
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{change_password}</td>                            
+                                <td id ="passwordRow" class="form-group">
+                                    <input type="password" id= "old" name="old_password" class="form-control fonttype" placeholder="{old_placeholder}" required>
+                                    <input type="password" id= "new" name="new_password" class="form-control fonttype" placeholder="{new_placeholder}" required>
+                                    <input type="password" id= "conf" name="conf_password" class="form-control fonttype" placeholder="{conf_placeholder}" required>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="buttonSubmit">
+                        <div id="errorbox" class="alert alert-success inactive">
+
+                        </div>
+                        <button class="btn btn-default" value="Save" onclick="postForm()">{save}</button>
+                        <br>
+                        <br>
                     </div>
-                    <button class="btn btn-default" value="Save" onclick="postForm()">{save}</button>
-                    <br>
-                    <br>
-                </div>
-                <!--</div>
-                <div id="buttonSubmit">
-                    <span class="btn btn-default" onclick="postForm()">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        Save
-                    </span>
-<!--s
-                    <input type="button" class="btn btn-default" value="Save">
-                    
+                    <!--</div>
+                    <div id="buttonSubmit">
+                        <span class="btn btn-default" onclick="postForm()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Save
+                        </span>
+                    <!--s
+                                        <input type="button" class="btn btn-default" value="Save">
+                                        
+                                        </br>
+                                    </div> -->
+
+                    <!-- buttons in icons
+                    <div class="btn-group btn-group-horizontal pull-right">
+                        <a href="#" class="btn btn-primary"><i class="fa fa-check fa-2x" aria-hidden="true"></i></a>
+                        <a href="#" class="btn btn-default"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+                    </div>               
                     </br>
-                </div> -->
-                
-                <!-- buttons in icons
-                <div class="btn-group btn-group-horizontal pull-right">
-                    <a href="#" class="btn btn-primary"><i class="fa fa-check fa-2x" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-default"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                </div>               
-                </br>
-                end icon-buttons -->
+                    end icon-buttons -->
 
 
-                <!-- Password (old version:)
-                <h2>{change_password}</h2>
-                <form action="change_password" method="post">
-                    {old_password}: <br>
-                    <input type="password" id= "old" name="old_password" placeholder="{old_placeholder}" required> <br>
-                    {new_password}: <br>
-                    <input type="password" id= "new" name="new_password" placeholder="{new_placeholder}" required> <br>
-                    {conf_password}: <br>
-                    <input type="password" id= "conf" name="conf_password" placeholder="{conf_placeholder}" required> <br>
-                    </br> <input class="btn btn-primary" type="submit" id="change_password" value="{change_password}"><br>
-                </form>
-                -->
+                    <!-- Password (old version:)
+                    <h2>{change_password}</h2>
+                    <form action="change_password" method="post">
+                        {old_password}: <br>
+                        <input type="password" id= "old" name="old_password" placeholder="{old_placeholder}" required> <br>
+                        {new_password}: <br>
+                        <input type="password" id= "new" name="new_password" placeholder="{new_placeholder}" required> <br>
+                        {conf_password}: <br>
+                        <input type="password" id= "conf" name="conf_password" placeholder="{conf_placeholder}" required> <br>
+                        </br> <input class="btn btn-primary" type="submit" id="change_password" value="{change_password}"><br>
+                    </form>
+                    -->
+                </div>
             </div>
         </div>
     </div>
