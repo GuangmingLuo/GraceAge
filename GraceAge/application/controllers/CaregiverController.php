@@ -35,7 +35,7 @@ class CaregiverController extends CI_Controller {
     private function loadCommonData() {
         $data['show_navbar'] = true;
         $data['profile_func'] = base_url() . 'CaregiverController/profile';
-        $data['profile'] = $this->lang->line('caregiver_menu_profile');
+        $data['profile'] = $this->session->Name;
         $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
         $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
         $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
