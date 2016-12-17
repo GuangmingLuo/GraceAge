@@ -187,7 +187,15 @@ class Question_model extends CI_Model{
     
     function getRewards($language) {
         $query = $this->db->query("select Reward, Price from Rewards where Language=? and Available='checked' Order BY Price Asc", $language);
-        $rewards = $query->result();
+        $temp = $query->result();
+        $rewards = array();
+        $newreward = array();
+        foreach ($temp as $reward){
+            $newreward['Reward_url'] = rawurlencode($reward->Reward);
+            $newreward['Reward'] = $reward->Reward;
+            $newreward['Price'] = $reward->Price;
+            $rewards[]=$newreward;
+        }
         return $rewards;
     }
     

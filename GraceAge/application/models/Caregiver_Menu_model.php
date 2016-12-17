@@ -22,12 +22,12 @@ class Caregiver_Menu_model extends CI_Model{
         $this->load->library('session');
         $this->lang->load('caregiver_menu', $this->session->Language);
         $this->caregiver_menu_items = array(
-            array('name' => $this->lang->line('caregiver_menu_general'), 'title' => 'Algemene informatie', 'link' => 'index', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_general')),
-            array('name' => $this->lang->line('caregiver_menu_personal'), 'title' => 'Persoonlijk', 'link' => 'personal', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_personal')),
-            array('name' => $this->lang->line('caregiver_menu_tips'), 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_tips')),
-            array('name' => $this->lang->line('caregiver_menu_reward'), 'title' => 'Bekijk de reward', 'link' => 'rewards', 'className' => 'inactive', 'gridClass' => 'col-lg-2','text' => $this->lang->line('caregiver_menu_reward')),
+            array('showID' => "",'name' => $this->lang->line('caregiver_menu_general'), 'title' => 'Algemene informatie', 'link' => 'index', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_general')),
+            array('showID' => "",'name' => $this->lang->line('caregiver_menu_personal'), 'title' => 'Persoonlijk', 'link' => 'personal', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_personal')),
+            array('showID' => "",'name' => $this->lang->line('caregiver_menu_tips'), 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_tips')),
+            array('showID' => "",'name' => $this->lang->line('caregiver_menu_reward'), 'title' => 'Bekijk de reward', 'link' => 'rewards', 'className' => 'inactive', 'gridClass' => 'col-lg-2','text' => $this->lang->line('caregiver_menu_reward')),
             //array('name' => '', 'title' => '', 'link' => '#', 'className' => 'inactive', 'gridClass' => 'col-lg-4'),
-            array('showID' => 'settingsMobile', 'name' => $this->lang->line('caregiver_menu_profile'), 'title' => 'Afmelden', 'link' => 'profile', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('settings')),
+            array('showID' => "id = 'settingsMobile'", 'name' => $this->lang->line('caregiver_menu_profile'), 'title' => 'Afmelden', 'link' => 'profile', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('settings')),
         );
         
         $this->caregiver_profile_items = array(

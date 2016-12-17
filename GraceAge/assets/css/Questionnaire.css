@@ -248,7 +248,7 @@ table{
     text-align: center;
 }
 
-#tip_panel{
+.panel.panel-default.tip_panel{
     margin-bottom:20px;
     background-color: #F0F4C3;
     border: 0px solid;

@@ -27,7 +27,7 @@
     font-size: 40px;
 }
 
-#pricetag{
+.fontfamily.pricetag{
     float:right;
     text-align:center;
     left:23px;
@@ -89,7 +89,7 @@
 .answer_button:hover{
         text-decoration: none;
 }
-#reward_button_text{
+.fontfamily.reward_button_text{
     color:#405250;
     position:relative;
     padding: 0px;
@@ -97,7 +97,7 @@
     font-size:18px;
 }
 
-#button_box{
+.list-group-item.button_box{
     margin-left: 15px;
     margin-right:15px;
     background-color:transparent;
@@ -105,7 +105,7 @@
     padding-top:20px;
     border:0px;
 }
-#price{
+.fontfamily.price{
         color:#405250;
     position:absolute;
     font-size: 30px;
@@ -113,7 +113,7 @@
     top:50%;
     transform: translateY(-30%);
 }
-#button_star{
+.fa.fa-star.fa-1x.button_star{
     color: #009688;
 }
 
@@ -154,13 +154,13 @@
     right:16%;
 }
 
-#bought_reward_text{
+.bought_reward_text{
     position:relative;
 }
-#bought_reward_price{
+.bought_reward_price{
     position:relative;
 }
-#bought_reward_date{
+.bought_reward_date{
     position:absolute;
     left:72%;
 }
@@ -302,7 +302,7 @@ ol.progress-meter li.todo:before {
         height:13vh;
     }
     
-    #bought_reward_date{
+    .bought_reward_date{
         left:67%;
     }
 }

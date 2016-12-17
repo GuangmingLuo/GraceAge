@@ -7,8 +7,8 @@
 
             <ol class="progress-meter">
                 {classes}
-                <li id="{class}"  class="{class}">
-                    <div id="pricetag" class="fontfamily">{price} <i id="starIcon" class="fa fa-star fa-1x"></i></div>
+                <li class="{class}">
+                    <div class="fontfamily pricetag">{price} <i class="fa fa-star fa-1x"></i></div>
                 </li>
                 {/classes}  
             </ol>
@@ -35,9 +35,9 @@
 
                 <ul class="list-group">
                     {rewards}
-                    <li id="button_box" class="list-group-item">
+                    <li class="list-group-item button_box">
 
-                        <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward}"><span id="reward_button_text" class="fontfamily">{Reward}</span> <span id="price" class="fontfamily">{Price} <i id="button_star" class="fa fa-star fa-1x"></i></span> </a>
+                        <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward_url}"><span class="fontfamily reward_button_text">{Reward}</span> <span class="fontfamily price">{Price} <i class="fa fa-star fa-1x button_star"></i></span> </a>
                     </li>
                     {/rewards}
                 </ul>
@@ -54,7 +54,7 @@
                 <span id="rewards_bought_text">{rewards_bought_text}</span> <span id='bought_at_text'>{bought_at}:</span>
                 <ul id="history" class="list-group">
                     {rewards_bought}
-                    <li class="list-group-item"> <span id="bought_reward_price">{Price}<i id="bought_star" class="fa fa-star fa-1x"></i></span> <span id="bought_reward_text"> {Reward}</span> <span id="bought_reward_date">{Date}</span></li>
+                    <li class="list-group-item"> <span class="bought_reward_price">{Price}<i class="fa fa-star fa-1x bought_star"></i></span> <span class="bought_reward_text"> {Reward}</span> <span class="bought_reward_date">{Date}</span></li>
                     {/rewards_bought}
                 </ul>
             </div>

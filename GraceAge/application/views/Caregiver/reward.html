@@ -30,11 +30,11 @@
                                 <li>
                                     <form action="editReward" method="post">
                                         <div class="col-xs-8">{Reward}<hr></div>
-                                        <div class="col-xs-2" id="reward_price">{Price}<hr></div>
+                                        <div class="col-xs-2 reward_price">{Price}<hr></div>
                                         <div class="col-xs-2">
-                                            <input onchange="this.form.submit()" type="checkbox" name="available" id="available" {Available} />
+                                            <input onchange="this.form.submit()" type="checkbox" name="available" class="available" {Available} />
                                         </div>
-                                        <input type='hidden' id='Reward' name='Reward' value='{Reward}'/>
+                                        <input type='hidden' class='Reward' name='Reward' value='{Reward}'/>
                                     </form>
                                 </li>
                                 {/allrewards}

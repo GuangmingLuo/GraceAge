@@ -17,7 +17,7 @@
                         <fieldset id="safariQRfunctionaity">
                             <label class='fonttype' for ="photo">{no_camera}</label>
                             <br/>
-                            <input type="file" class="filestyle" name="photo" id="photo" data-buttonText=" Use Photo" capture="camera">
+                            <input type="file" class="filestyle" name="photo" id="photo" data-buttonText=" Use Photo" accept = "image/*">
                         </fieldset>
                     </div>
                     <div id="loginTabContent" class="tabContent tab-pane fade">
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <input type="password" name="password" class="form-control fonttype" id="password" placeholder={password} required>
                             </div>
-                            </br>
+                            <br>
                             <input type="button" class="btn btn-default fonttype" value="{LOG_IN}" onclick="login()">
                         </form>
                         <div id="errorbox" class="alert alert-warning inactive">

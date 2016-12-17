@@ -27,14 +27,14 @@
     font-weight: bold;
 }
 
-#navbar_icons{
+.navbar_icons{
     position: absolute;
     top:50%;
     transform: translateY(-50%);
 }
 
 /* make 3 buttons visible with 2 vertical lines */
-#tipsButtonBorder{
+.btn.btn-primary.tipsButtonBorder{
     border-width: 0px;
     border-left: 4px solid;
     border-right: 4px solid;
@@ -101,7 +101,7 @@
     }
     
     /* make 3 buttons visible with 2 horizontal lines */
-    #tipsButtonBorder{
+    .btn.btn-primary.tipsButtonBorder{
         border-width: 0px;
         border-top: 4px solid;
         border-bottom: 4px solid;
@@ -138,7 +138,7 @@
         padding-top: 0px;
     }
 
-    #navbar_icons{
+    .navbar_icons{
     position: absolute;
     top:50%;
     width:100%;

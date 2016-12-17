@@ -132,10 +132,10 @@ class Caregiver_Home_model extends CI_Model {
             $temp2 = $allanswers;
         }
 
-        for ($i = 0; $i < count($namesid); $i++) {          //itterate through all patients
+        for ($i = 0; $i < count($namesid); $i++) {          //iterate through all patients
             $sum = 0;
             $id = $namesid[$i]->idPatient;
-            for ($j = 0; $j < count($allanswers); $j++) {   //itterate through all the answers the patient has answered
+            for ($j = 0; $j < count($allanswers); $j++) {   //iterate through all the answers the patient has answered
                 if ($allanswers[$j]->Patient_idPatient == $namesid[$i]->idPatient) {
                     $sum += $allanswers[$j]->Answer - 1;
                     $k++;
@@ -160,8 +160,11 @@ class Caregiver_Home_model extends CI_Model {
 
 
         array_multisort($score, SORT_ASC, $name, SORT_ASC, $results);
-        $urgent = array_slice($results, 0, 10);
-
+        $temp = array_slice($results, 0, 10);
+        foreach($temp as $patient){
+            $patient['Name_url'] = rawurlencode($patient['Name']);
+            $urgent[] = $patient;
+        }
         return $urgent;
     }
 
