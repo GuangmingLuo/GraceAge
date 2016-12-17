@@ -1,5 +1,7 @@
 $(function(){
-    $(".panel-body").scrollTop($(".panel-body")[0].scrollHeight);
+    if($("#message_scrollbox").length){
+        $("#message_scrollbox").scrollTop($("#message_scrollbox")[0].scrollHeight);
+    }
 });
 
 
