@@ -10,8 +10,8 @@ google.charts.setOnLoadCallback(drawMultSeries);
 function drawMultSeries(){
     
     $.getJSON("getArray", function(data){
-        var data = google.visualization.arrayToDataTable([
-            [data[12].Topic, data[12].Score],
+        var chart_data = google.visualization.arrayToDataTable([
+            ["", data[12].Score],
             [data[1].Topic, data[1].Score],
             [data[2].Topic, data[2].Score],
             [data[3].Topic, data[3].Score],
@@ -24,10 +24,17 @@ function drawMultSeries(){
             [data[10].Topic, data[10].Score],
             [data[11].Topic, data[11].Score]
         ]);
+        /*
+        chart_data.addColumn('string', "");
+        chart_data.addColumn('number', data[12].Score);
+        for(var i = 0; i < data.length - 1; i++){
+            chart_data.addRow([data[i].Topic, parseInt(data[i].Score)]);
+        }
+        */
     
         var options = {
             bars: 'horizontal',
-            chartArea: {width: '100%'}, //This is the width of the bar chart inside its div
+            chartArea: {width: '100%', height: '100%'}, //This is the width of the bar chart inside its div
             colors: ['lightgray'],
             legend: {
                 position: 'none'
@@ -38,13 +45,13 @@ function drawMultSeries(){
             hAxis: {
                 textPosition: 'none',
                 viewWindow: {
-                    max: 100,
-                    min: 0
-                }
+                    max: 100
+                },
+                ticks: [0, 25, 50, 75, 100]
             }
         };
         
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
-        chart.draw(data, options);
+        chart.draw(chart_data, google.charts.Bar.convertOptions(options));
     });
 }

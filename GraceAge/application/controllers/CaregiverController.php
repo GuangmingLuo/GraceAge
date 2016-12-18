@@ -49,16 +49,21 @@ class CaregiverController extends CI_Controller {
         }
         $data = $this->loadIndexData();
         $this->parser->parse('master.php', $data);
-            
-     
     }
 
      function getTitle(){
-        $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_chart_title());
+        $this->output->set_content_type("application/json")
+                ->append_output($this->Caregiver_Home_model->get_chart_title());
     }
     
     function getArray() {
-        $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->get_topic_with_score());
+        $this->output->set_content_type("application/json")
+                ->append_output($this->Caregiver_Home_model->get_topic_with_score());
+    }
+    
+    function getPersonalScores(){
+        $this->output->set_content_type("application/json")
+                ->append_output($this->Caregiver_Home_model->topicscorejson(2));
     }
     
     function getChartData(){
@@ -75,7 +80,6 @@ class CaregiverController extends CI_Controller {
         }
         $data = $this->loadPersonalData();
         $this->parser->parse('master.php', $data);
-       
     }
 
 
@@ -94,7 +98,6 @@ class CaregiverController extends CI_Controller {
         $data = $this->loadRewardsData();
 
         $this->parser->parse('master.php', $data);
-       
     }
     
     function rewardPost(){
@@ -110,8 +113,6 @@ class CaregiverController extends CI_Controller {
             // error message should show in an alert window               
         }
         redirect(base_url() . 'CaregiverController/rewards');
-            
-        
     }   
     
     function editReward(){
