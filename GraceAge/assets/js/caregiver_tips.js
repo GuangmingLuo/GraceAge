@@ -13,13 +13,13 @@ function register_topic(){
 
 
 
-                $stringdutch = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
+                $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div class='col-sm-2'>Nederlands</div>"
                         + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
-                $stringenglish = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
+                $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div class='col-sm-2'>English</div>"
                         + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
