@@ -31,9 +31,13 @@ function register_topic(){
 
 function add_new_tip(){
     var select = document.getElementById("select_topic");
+    var language = document.getElementById("select_language");
     var chosen_topic = select.options[select.selectedIndex].value;
+    
+    var chosen_language = language.options[language.selectedIndex].value;
+    alert(chosen_language);
     var new_tip = $("#new_tip").val();
-    $.post("add_tip", {tip: new_tip, topic: chosen_topic}, function(){
+    $.post("add_tip", {tip: new_tip, topic: chosen_topic, language: chosen_language}, function(){
         register_topic();
         alert("yes...");
     });

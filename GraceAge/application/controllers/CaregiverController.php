@@ -136,7 +136,8 @@ class CaregiverController extends CI_Controller {
     function add_tip(){
         $topic = $this->input->post('topic');
         $tip = $this->input->post('tip');
-        $this->Tip_model->add_tip($topic, $tip);
+        $language = $this->input->post('language');
+        $this->Tip_model->add_tip($topic, $tip, $language);
     }
     function delete_tip(){
         $id = $this->input->post('id');        
