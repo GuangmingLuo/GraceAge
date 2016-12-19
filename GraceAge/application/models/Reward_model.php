@@ -27,7 +27,7 @@ class Reward_model extends CI_Model{
         }
     }
     
-    function add_reward($reward,$price){
+    function add_reward($reward,$price, $language){
         if ($this->rewardExists($reward)) {
             return false;
         }
@@ -35,7 +35,7 @@ class Reward_model extends CI_Model{
             $data = array(
             'Reward' => $reward,
             'Price' => $price,
-            'Language' => $this->session->Language
+            'Language' => $language
         );
         $this->db->insert('a16_webapps_2.Rewards' , $data);
         return true;

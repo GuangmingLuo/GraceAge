@@ -107,10 +107,12 @@ class CaregiverController extends CI_Controller {
         if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
             $reward = filter_input(INPUT_POST, 'new_reward');
             $price = filter_input(INPUT_POST, 'price');
-            $this->Reward_model ->add_reward($reward,$price);
+            $language = $_POST['language'];
+            
+            $this->Reward_model ->add_reward($reward,$price, $language);
         }
         else{
-            // error message should show in an alert window               
+            echo "error";              
         }
         redirect(base_url() . 'CaregiverController/rewards');
     }   
