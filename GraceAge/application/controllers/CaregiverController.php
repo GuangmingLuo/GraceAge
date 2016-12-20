@@ -62,8 +62,9 @@ class CaregiverController extends CI_Controller {
     }
     
     function getPersonalScores(){
+        $id = $this->input->post('id');
         $this->output->set_content_type("application/json")
-                ->append_output($this->Caregiver_Home_model->topicscorejson(2));
+                ->append_output($this->Caregiver_Home_model->topicscorejson($id));
     }
     
     function getChartData(){
@@ -71,8 +72,6 @@ class CaregiverController extends CI_Controller {
         $jsondata = $this->Caregiver_Home_model->getJSONtable()->JSONCODE;
         return $jsondata;
     }
-    
-
     
     function personal() {
         if (!$this->is_logged_in()) {
