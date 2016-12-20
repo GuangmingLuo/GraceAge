@@ -338,7 +338,6 @@ class CaregiverController extends CI_Controller {
         $data['gender'] = $this->lang->line('gender');
         $data['home_address'] = $this->lang->line('home_address');
         $data['email'] = $this->lang->line('email');
-        $data['landline'] = $this->lang->line('landline');
         $data['mobile'] = $this->lang->line('mobile');
         $data['language'] = $this->lang->line('language');
         $data['save'] = $this->lang->line('save');
@@ -348,7 +347,6 @@ class CaregiverController extends CI_Controller {
         $data['Gender'] = $result->Gender;
         $data['HomeAddress'] = $result->HomeAddress;
         $data['Email'] = $result->Email;
-        $data['Landline'] = $result->Landline;
         $data['Mobile'] = $result->Mobile;
         
         $data['page_title'] = 'Edit Profile';

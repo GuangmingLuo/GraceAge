@@ -21,7 +21,9 @@ class Tip_model extends CI_Model{
     }    
     
     function get_tip($i) {       
-        $query = $this->db->select($this->session->Language)->where('topic', $i)->get('tips');
+        //$query = $this->db->select($this->session->Language)->where('topic', $i)->get('tips');
+        $language = $this->session->Language;
+        $query = $this->db->query("select ? from tips where topic = ? and ? != NULL", $language,$i,$language);
         $random = rand(1, $query->num_rows());
         if($this->session->Language === 'english'){
             return $query->row($random)->english;
