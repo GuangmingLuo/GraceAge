@@ -381,6 +381,7 @@ class CaregiverController extends CI_Controller {
 
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_reward'));
         $data['write_new_reward'] = $this->lang->line('write_new_reward');
+        $data['caregiver_menu_reward'] = lang('caregiver_menu_reward');
         $data['add_new_reward'] = $this->lang->line('add_new_reward');
         $data['price'] = $this->lang->line('price');
         $data['allrewards'] = $this->Reward_model->get_rewards();
