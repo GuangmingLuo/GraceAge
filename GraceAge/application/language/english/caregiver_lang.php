@@ -10,6 +10,7 @@ $lang['email'] = 'Email:';
 $lang['landline'] = 'Landline:';
 $lang['mobile'] = 'Mobile:';
 $lang['language'] = 'Language:';
+$lang['room_number'] = 'Room Number';
 $lang['save'] = 'Save';
 $lang['caregiver_change_password'] = 'Change password';
 $lang['caregiver_old_password'] = 'Enter old password';

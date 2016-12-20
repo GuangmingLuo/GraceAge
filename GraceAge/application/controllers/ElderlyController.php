@@ -290,12 +290,14 @@ class ElderlyController extends CI_Controller {
         $data['email'] = $this->lang->line('email');
         $data['phone_number'] = $this->lang->line('phone_number');
         $data['language'] = $this->lang->line('language');
+        $data['room_number'] = $this->lang->line('room_number');
         $data['save'] = $this->lang->line('save');
         $data['profile'] = $this->lang->line('caregiver_menu_profile');
         //load data from database directly 
         $result = $this->db->query("SELECT * FROM Patient where Name=?", $this->session->Name)->row();
         $data['Birthday'] = $result->Birthday;
         $data['Gender'] = $result->Gender;
+        $data['RoomNumber'] = $result->RoomNumber;
         $data['PhoneNumber'] = $result->PhoneNumber;
         
         $data['page_title'] = 'Edit Profile';
