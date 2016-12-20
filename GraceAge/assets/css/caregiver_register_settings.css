@@ -1,5 +1,10 @@
 html {
     overflow: hidden; /*static page*/
+    font-family: "Open Sans";
+}
+
+body{
+    font-family: "Open Sans";
 }
 
 .frame{

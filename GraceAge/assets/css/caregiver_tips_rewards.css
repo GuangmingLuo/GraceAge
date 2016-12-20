@@ -1,5 +1,10 @@
 html {
     overflow: hidden; /*static page*/
+    font-family: "Open Sans";
+}
+
+body{
+    font-family: "Open Sans";
 }
 
 .col-xs-8, .col-xs-2, .col-xs-1, .col-xs-9{
@@ -120,7 +125,7 @@ hr{
     overflow-style: auto;
     overflow-y: scroll;
     height: 80vh;
-    padding-left: 10vw; padding-right: 10vw;
+    padding-left: 5vw; padding-right: 5vw;
     padding-bottom: 3%; padding-top: 3%;
 }
 

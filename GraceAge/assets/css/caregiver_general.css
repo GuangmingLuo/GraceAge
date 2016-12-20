@@ -1,8 +1,11 @@
-/* general-page */
 html {
     overflow: hidden; /*static page*/
+    font-family: "Open Sans";
 }
 
+body{
+    font-family: "Open Sans";
+}
 #rightcontent, #leftcontent {
     margin-top: 3vh;
     height: 85vh;

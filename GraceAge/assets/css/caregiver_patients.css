@@ -1,5 +1,10 @@
 html {
     overflow: hidden; /*static page*/
+    font-family: "Open Sans";
+}
+
+body{
+    font-family: "Open Sans";
 }
 
 #pageTitle{  
@@ -53,5 +58,10 @@ html {
 
 .progress-bar-succes{
     background-color: #53b733;
+}
+
+/* only show useful buttons */
+.pagination>.disabled>a{
+    display: none;
 }
 

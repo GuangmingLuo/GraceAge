@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 <link href="../../assets/css/caregiver_patients.css" rel="stylesheet" type="text/css"/>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10">
             <div id="pageTitle">
@@ -33,7 +33,7 @@
                                                 onclick="setID({id}); setBarChartTitle('{Name}');">{Name}</td>
                                             <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); setBarChartTitle('{Name}');">{Topic}</td>
-                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); setBarChartTitle('{Name}');">
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-{Bar} " 
@@ -57,6 +57,7 @@
                             </div>
                         </div>
 
+                        <!-- pop up -->
                         <div class="modal fade" id="modChart" role="dialog" tabindex="-1" 
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="width: 900px; height: 450px;">
