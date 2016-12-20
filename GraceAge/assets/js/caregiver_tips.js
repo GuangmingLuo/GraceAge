@@ -33,7 +33,7 @@ function add_new_tip(){
     var select = document.getElementById("select_topic");
     var language = document.getElementById("select_language");
     var chosen_topic = select.options[select.selectedIndex].value;
-    
+    if(chosen_topic !="0"){
     var chosen_language = language.options[language.selectedIndex].value;
     alert(chosen_language);
     var new_tip = $("#new_tip").val();
@@ -41,6 +41,7 @@ function add_new_tip(){
         register_topic();
         alert("yes...");
     });
+    }   else alert("choose a topic");
 }
 
 
