@@ -13,7 +13,7 @@ class Reward_model extends CI_Model{
         $this->load->library('session');
     }  
     function get_rewards() {
-        $query = $this->db->query("select Reward, Price, Language, Available from Rewards");
+        $query = $this->db->query("select Reward, Price, Language, Available from Rewards order by Available=' ', Id desc");
         return $query->result();
     }
     
