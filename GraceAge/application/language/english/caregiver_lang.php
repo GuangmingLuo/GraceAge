@@ -32,3 +32,7 @@ $lang['caregiver_datatable_titles'] = array(
     array('Name' => 'Topic with lowest score'), 
     array('Name' => 'Average score'), 
     array('Name' => 'Note'));
+$lang['caregiver_urgent_patients'] = 'Urgent patients';
+$lang['messages_title'] = 'Messages';
+$lang['send_button'] = 'Send';
+$lang['input_text_placeholder'] = "Type your message here ...";

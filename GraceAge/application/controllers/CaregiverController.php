@@ -299,6 +299,11 @@ class CaregiverController extends CI_Controller {
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_general'));
         $data['topics'] = $this->Caregiver_Home_model->get_topics();
         $data['urgent'] = $this->Caregiver_Home_model->calculate_avg();
+        $data['chart_title'] = $this->lang->line('chart_title');
+        $data['urgent_patient_title'] = $this->lang->line('caregiver_urgent_patients');
+        $data['messages_title'] = $this->lang->line('messages_title');
+        $data['send_button_text'] = $this->lang->line('send_button');
+        $data['input_text_placeholder'] = $this->lang->line('input_text_placeholder');
         $data['content'] = "";
         $data['page_content'] = 'Caregiver/index.html';
         //$data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));

@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pageTitle">
-                                General Score
+                                {chart_title}
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         
                         <div class="row">
                             <div class="pageTitle">
-                                Urgent Patients
+                                {urgent_patient_title}
                             </div>
                         </div>
                         <div class="row">
@@ -76,7 +76,7 @@
                         
                         <div class="row">
                             <div class="pageTitle">
-                                Messages
+                                {messages_title}
                             </div>
                         </div>
     
@@ -101,9 +101,9 @@
                                     <div class="panel-footer">
                                         <form  name="messagesend" id="messagesend" action="index" method="get">
                                             <div class="input-group">
-                                                <input name="messagesend" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                                <input name="messagesend" id="btn-input" type="text" class="form-control input-sm" placeholder="{input_text_placeholder}" />
                                                 <span class="input-group-btn">
-                                                    <button name="Send" type="button" class="btn btn-sm" id="btn-chat" onclick='send_msg()'>Send</button>
+                                                    <button name="Send" type="button" class="btn btn-sm" id="btn-chat" onclick='send_msg()'>{send_button_text}</button>
                                                 </span>
     
                                             </div>
