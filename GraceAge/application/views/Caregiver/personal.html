@@ -43,7 +43,8 @@
                                                     </div>
                                                 </div></td>
                                             <td class="col-sm-3">
-                                                <p id="text{id}">{Note}</p> <button id="button{id}" onclick="editNote({id})"><?php echo $this->lang->line('edit'); ?></button>
+                                                <p id="text{id}">{Note}</p> 
+                                                <button class="editbutton" id="button{id}" onclick="editNote({id})"><?php echo $this->lang->line('edit'); ?></button>
                                                 <form class='editform' id="form{id}" hidden >
                                                     <input type='text' id="{id}s" value='{Note}' size="40">
                                                     <input type='button' onclick='update_note({id})' value='update'>

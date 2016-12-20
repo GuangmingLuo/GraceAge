@@ -60,6 +60,23 @@ body{
     background-color: #009688;
 }
 
+.editbutton{
+    border: none;
+    background-color: transparent;
+    color: #009688;
+    text-transform: lowercase;
+    text-decoration: underline;
+    padding-left: 0px; padding-right: 0px;
+}
+
+.editform>input[type=button]{
+    /* updqte button */
+}
+
+.col-sm-3>p{
+    margin: 0px;
+}
+
 /*style buttons: next, last, ... */
 .pagination>li>a{
     margin: 2px;
