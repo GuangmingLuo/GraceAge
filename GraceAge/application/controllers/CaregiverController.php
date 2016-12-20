@@ -77,6 +77,7 @@ class CaregiverController extends CI_Controller {
         if (!$this->is_logged_in()) {
             return;
         }
+        
         $data = $this->loadPersonalData();
         $this->parser->parse('master.php', $data);
     }
@@ -322,6 +323,7 @@ class CaregiverController extends CI_Controller {
         $data['table_titles'] = $this->lang->line('caregiver_datatable_titles'); //Gets the titles for the datatable in the correct language.
         $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
         $data['page_content'] = 'Caregiver/personal.html';
+        $data['edit'] = $this->lang->line('edit');
         return $data;
     }
 
