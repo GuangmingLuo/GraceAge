@@ -1,5 +1,11 @@
 
 var $tips_list = $('#tips_list');
+var localizedText;
+$(document).ready(function(){
+    $.getJSON("getTipsLocalization",function(data){
+        localizedText = data;
+    });
+});
 
 function register_topic(){
     var select = document.getElementById("select_topic");
@@ -13,13 +19,13 @@ function register_topic(){
 
 
                 $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value='Nederlands'>Nederlands</div>"
-                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
+                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> " +localizedText.edit+" </button></div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
                 $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value ='English'>English</div>"
-                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
+                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'> "+localizedText.edit+" </button></div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
         });
@@ -28,19 +34,21 @@ function register_topic(){
     });
 }
 
-function add_new_tip(){
+function add_new_tip() {
     var select = document.getElementById("select_topic");
     var language = document.getElementById("select_language");
     var chosen_topic = select.options[select.selectedIndex].value;
-    if(chosen_topic !=="0"){
-    var chosen_language = language.options[language.selectedIndex].value;
-    alert(chosen_language);
-    var new_tip = $("#new_tip").val();
-    $.post("add_tip", {tip: new_tip, topic: chosen_topic, language: chosen_language}, function(){
-        register_topic();
-        alert("yes...");
-    });
-    }   else alert("choose a topic");
+    if (chosen_topic !== "0") {
+        var chosen_language = language.options[language.selectedIndex].value;
+        //alert(chosen_language);
+        var new_tip = $("#new_tip").val();
+        if(new_tip !=='') $.post("add_tip", {tip: new_tip, topic: chosen_topic, language: chosen_language}, function () {
+            register_topic();
+            //alert("yes...");
+        });
+        else alert(localizedText.write_a_tip);
+    } else
+        alert(localizedText.choose_a_topic);
 }
 
 
@@ -83,7 +91,7 @@ function updateTip(id){
         lang = "english";
     }
     alert(lang);
-    if(!new_tip) alert("write a tip");
+    if(!new_tip) alert(localizedText.write_a_tip);
     else{
         $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id, language:lang});
         alert("okay");
@@ -92,7 +100,7 @@ function updateTip(id){
 };
 
 function deleteTip(id){
-    if(confirm("are you sure?") === true){
+    if(confirm(localizedText.confirm) === true){
         // delete the tip
         $.post("delete_tip", {id: id});
         register_topic();

@@ -390,5 +390,15 @@ class CaregiverController extends CI_Controller {
         $data['page_content'] = 'Caregiver/reward.html';
         return $data;
     }
+    function getTipsLocalization(){
+        $data['edit'] = $this->lang->line('edit');
+        $data['save'] = $this->lang->line('save');
+        $data['choose_a_topic'] = $this->lang->line('tip_choose_topic');
+        $data['confirm'] = $this->lang->line('confirm_action');
+        $data['write_a_tip'] = $this->lang->line('write_a_tip');
+        $jsondata = json_encode($data);
+        $this->output->set_content_type("application/json")
+                ->append_output($jsondata);
+    }
 
 }
