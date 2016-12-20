@@ -242,6 +242,7 @@ class Caregiver_Home_model extends CI_Model {
       } */
 
     function topicscorejson($id) {
+        $topic_array = $this->lang->line('topic_array');
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
         $questionsenglish = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'english')->get('Question')->result();
@@ -279,9 +280,9 @@ class Caregiver_Home_model extends CI_Model {
                     $topicavg = $topicscore * 25 / $k;
                 }
                 $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
-                array_push($display, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
+                array_push($display, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
                 $jsoncode = json_encode($display);
-                array_push($display2, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
+                array_push($display2, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
             }
         } else {
             //calculate score per topic
@@ -311,9 +312,9 @@ class Caregiver_Home_model extends CI_Model {
                     $topicavg = $topicscore * 25 / $k;
                 }
                 $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
-                array_push($display, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
+                array_push($display, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
                 $jsoncode = json_encode($display);
-                array_push($display2, array('Topic' => $topicsenglish[$j]->Topic, 'Score' => $nombre_format_francais));
+                array_push($display2, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
             }
         }return $jsoncode;
     }
@@ -539,7 +540,6 @@ class Caregiver_Home_model extends CI_Model {
         }
         //echo json_encode($resultarray);
         //return json_encode($resultarray);
-        echo $jsoncode;
         return $resultarray;
     }
 
