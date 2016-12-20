@@ -10,6 +10,7 @@ $lang['email'] = 'Email:';
 $lang['landline'] = 'Telefoon:';
 $lang['mobile'] = 'Mobiel:';
 $lang['language'] = 'Taal:';
+$lang['room_number'] = 'Kamernummer';
 $lang['save'] = 'Bewaar';
 $lang['caregiver_change_password'] = 'Verander wachtwoord';
 $lang['caregiver_old_password'] = 'Geef uw oud wachtwoord in';

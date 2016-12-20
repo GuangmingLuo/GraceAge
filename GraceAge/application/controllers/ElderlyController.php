@@ -286,8 +286,9 @@ class ElderlyController extends CI_Controller {
         $data['name'] = $this->lang->line('name');
         $data['date_of_birth'] = $this->lang->line('date_of_birth');
         $data['gender'] = $this->lang->line('gender');
-        $data['home_address'] = $this->lang->line('home_address');
-        $data['email'] = $this->lang->line('email');
+        //$data['home_address'] = $this->lang->line('home_address');
+        //$data['email'] = $this->lang->line('email');
+        $data['room_number'] = $this->lang->line('room_number');
         $data['phone_number'] = $this->lang->line('phone_number');
         $data['language'] = $this->lang->line('language');
         $data['save'] = $this->lang->line('save');
@@ -296,6 +297,7 @@ class ElderlyController extends CI_Controller {
         $result = $this->db->query("SELECT * FROM Patient where Name=?", $this->session->Name)->row();
         $data['Birthday'] = $result->Birthday;
         $data['Gender'] = $result->Gender;
+        $data['RoomNumber'] = $result->RoomNumber;
         $data['PhoneNumber'] = $result->PhoneNumber;
         
         $data['page_title'] = 'Edit Profile';
