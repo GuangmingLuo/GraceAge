@@ -1,74 +1,88 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 <link href="../../assets/css/caregiver_patients.css" rel="stylesheet" type="text/css"/>
-<div><!--<table>{table}
-    <td class="col-lg-3">{Name}</td>
-                    <td class="col-lg-3">{Topic}</td>
-                    <td class="col-lg-3">{Score}</td>
-                    <td class="col-lg-3"><form id='editform' ><input type='text' id="{id}" value='{Note}' size="40"><input type='button' onclick='update_note({id})' value='update'><input type='button' onclick='' value='delete'></form></td>
-    {/table}</table>-->
-</div>
-<div class="container row" style="width: auto">
-    <div class="table-responsive col-lg-12">
-        <table id="personal-datatable" class="table table-striped table-hover">
-            <thead>
-                <tr class="row">
-                    {table_titles}
-                    <th class="col-lg-3">{Name}</th>
-                    {/table_titles}
-                </tr>
-            </thead>
-            <tbody>
-                {table}
-                <tr class="clickable row">
-                    <td class="col-lg-3" data-toggle="modal" data-target="#modChart"
-                        onclick="setID({id}); setBarChartTitle('{Name}');">{Name}</td>
-                    <td class="col-lg-3" data-toggle="modal" data-target="#modChart"
-                        onclick="setID({id}); setBarChartTitle('{Name}');">{Topic}</td>
-                    <td class="col-lg-3" data-toggle="modal" data-target="#modChart"
-                        onclick="setID({id}); setBarChartTitle('{Name}');">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-{Bar} " 
-                                 role="progressbar" aria-valuenow="10" aria-valuemin="0" 
-                                 aria-valuemax="100" style="width: {Score}%">
-                                {Score} %
-                            </div>
-                        </div></td>
-                    <td class="col-lg-3">
-                        <p id="text{id}">{Note}</p> <button id="button{id}" onclick="editNote({id})"><?php echo $this->lang->line('edit'); ?></button>
-                        <form class='editform' id="form{id}" hidden >
-                            <input type='text' id="{id}s" value='{Note}' size="40">
-                            <input type='button' onclick='update_note({id})' value='update'>
-                            <div id="{id}sss"></div>
-                        </form>
-                    </td>
-                </tr>
-                {/table}
-            </tbody>
-        </table>
-    </div>
-</div>
 
-<div class="modal fade" id="modChart" role="dialog" tabindex="-1" 
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 900px; height: 450px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span> <span class="sr-only"></span>
-                </button>
-                <h4 class="modal-title" id="exampleModalLabel">Bar Chart</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <div id="pageTitle">
+                PATIENTS
             </div>
-            <div class="modal-body">
-                <div id="canvas" style="width: 800px; height: 450px;"></div>
-                <!--<div>
-                    {table}
-                    {BadAnswer} </br>
-                    {/table}
-                </div>-->
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <div class="frame">
+                <div id="scrollbox">                  
+
+                    <div class ="row">
+                        <div class="col-sm-12">  
+                            <div class="table-responsive">
+                                <table id="personal-datatable" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="row">
+                                            {table_titles}
+                                            <th class="col-sm-3">{Name}</th>
+                                            {/table_titles}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {table}
+                                        <tr class="clickable row">
+                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                                onclick="setID({id}); setBarChartTitle('{Name}');">{Name}</td>
+                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                                onclick="setID({id}); setBarChartTitle('{Name}');">{Topic}</td>
+                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                                onclick="setID({id}); setBarChartTitle('{Name}');">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-{Bar} " 
+                                                         role="progressbar" aria-valuenow="10" aria-valuemin="0" 
+                                                         aria-valuemax="100" style="width: {Score}%">
+                                                        {Score} %
+                                                    </div>
+                                                </div></td>
+                                            <td class="col-sm-3">
+                                                <p id="text{id}">{Note}</p> <button id="button{id}" onclick="editNote({id})"><?php echo $this->lang->line('edit'); ?></button>
+                                                <form class='editform' id="form{id}" hidden >
+                                                    <input type='text' id="{id}s" value='{Note}' size="40">
+                                                    <input type='button' onclick='update_note({id})' value='update'>
+                                                    <div id="{id}sss"></div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {/table}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="modChart" role="dialog" tabindex="-1" 
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 900px; height: 450px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span> <span class="sr-only"></span>
+                                        </button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Bar Chart</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="canvas" style="width: 800px; height: 450px;"></div>
+                                        <!--<div>
+                                            {table}
+                                            {BadAnswer} </br>
+                                            {/table}
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
