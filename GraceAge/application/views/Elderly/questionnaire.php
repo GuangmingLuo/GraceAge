@@ -2,6 +2,15 @@
 <div id='questionnairy_wrapper' class="container">
     <div id='questionnairy_content' class="container">
         <h1>{header1}</h1>
+        <div  class="row">
+            <div class="col-xs-offset-1 col-xs-5">
+            
+                
+                    <p class="fontfamily" id="score_text">{score_text}</p>
+                    <p class="fontfamily" id="score">{score} <i id="starIcon" class="fa fa-star fa-1x"></i></p>
+                   
+            </div>   
+        </div>
         <div id='question_row' class="row">
             <div id='question_column' class="col-xs-offset-1 col-xs-10">
 

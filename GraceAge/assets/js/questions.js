@@ -24,6 +24,7 @@ function previous() {
     $.getJSON("previous", function (data) {
         $('#question_placeholder').text(data[0].Question);      //set question
         $('#topic_placeholder').text(data[0].Topic);            //set topic
+        getscore();                                             // update the score
         updateProgressbar(data[0].QuestionNumber.valueOf());    //call function to update progressbar
     });
 }
@@ -35,10 +36,16 @@ function next() {
         $('#question_placeholder').text(data[0].Question);      //set question
         $('#topic_placeholder').text(data[0].Topic);            //set topic
         updateProgressbar(data[0].QuestionNumber.valueOf());    //call function to update progressbar
-        
+        getscore();                                             //update the score
          if(data[0].QuestionNumber.valueOf()== 1){ // show congratualtions at and of questionnaire -> when 52nd question is answered questionumber equals 1
         window.location.href = "congratulations";
     }
     });    
    
+}
+
+function getscore(){
+    $.get("getJsonScore", function(data){
+        $("#score").html(data.toString() +"<i id='starIcon' class='fa fa-star fa-1x'></i>"); // update de nieuwe score
+    });
 }

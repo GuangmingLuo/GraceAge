@@ -126,6 +126,8 @@ class ElderlyController extends CI_Controller {
         $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
         $data['questions'] = $this->Question_model->get_question($this->session->question_id, $this->session->Language);
         $data['page_content'] = 'Elderly/questionnaire.php';
+        $data['score_text'] = lang('score_text');
+        $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
         return $data;
     }
     function questionnaire() {
@@ -312,6 +314,12 @@ class ElderlyController extends CI_Controller {
     function logout(){
         session_destroy();
         redirect(base_url() . 'AccountController/login');
+    }
+    
+    function getJsonScore(){
+         $this->output->append_output(
+       $data = $this->Question_model->getPatientScore($this->session->idPatient));
+       
     }
 }
 
