@@ -7,19 +7,18 @@ function register_topic(){
     $.post("get_tips", {topic: chosen_topic}, function(tips){
         $tips_list.empty();
         
-        
         $.each(tips, function (i, tip) {
             if (tip.hasOwnProperty('dutch') && tip.dutch !== null) {
 
 
 
-                $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div class='col-sm-2'>Nederlands</div>"
+                $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value='Nederlands'>Nederlands</div>"
                         + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
-                $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div class='col-sm-2'>English</div>"
+                $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value ='English'>English</div>"
                         + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'> edit </button></div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
@@ -33,7 +32,7 @@ function add_new_tip(){
     var select = document.getElementById("select_topic");
     var language = document.getElementById("select_language");
     var chosen_topic = select.options[select.selectedIndex].value;
-    if(chosen_topic !="0"){
+    if(chosen_topic !=="0"){
     var chosen_language = language.options[language.selectedIndex].value;
     alert(chosen_language);
     var new_tip = $("#new_tip").val();
@@ -77,16 +76,23 @@ function updateTip(id){
     var select = document.getElementById("select_topic");
     var chosen_topic = select.options[select.selectedIndex].value;
     var new_tip = $("#newtext").val();
+    var language = $("#tip_language_" + id).text();
+    var lang = "dutch";
+    if(language === "English"){
+        alert("inside if!");
+        lang = "english";
+    }
+    alert(lang);
     if(!new_tip) alert("write a tip");
     else{
-        $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id});
+        $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id, language:lang});
+        alert("okay");
         register_topic(); //refresh the tips
     }
 };
 
 function deleteTip(id){
-    var x;
-    if(confirm("are you sure?") == true){
+    if(confirm("are you sure?") === true){
         // delete the tip
         $.post("delete_tip", {id: id});
         register_topic();

@@ -149,8 +149,9 @@ class CaregiverController extends CI_Controller {
         $tipId = $this->input->post('id');
         $topic = $this->input->post('topic');
         $tip = $this->input->post('tip');
+        $language = $this->input->post('language');
         
-        $this->Tip_model->update_tip($tipId,$topic, $tip);
+        $this->Tip_model->update_tip($tipId,$topic, $tip, $language);
     }
     
     function update_note(){
