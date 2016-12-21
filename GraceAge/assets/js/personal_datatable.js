@@ -13,7 +13,15 @@ var title;
 $(document).ready(function(){
     //Makes the datatable
     var table = $('#personal-datatable').DataTable({
-        "pagingType": "full"    //Shows "First", "Previous", "Next" and "Last" buttons.
+        "pagingType": "full",    //Shows "First", "Previous", "Next" and "Last" buttons.
+        "language": {
+            "search": "Find patient: ",
+            "searchPlaceHolder": "Patient name"
+        },
+        //Only search on the first column.
+        "aoColumnDefs": [
+            {"bSearchable": false, "aTargets": [1,2,3]}
+        ]
     });
     id = 2;
     //$('#modChart').on('shown.bs.modal', initialize);
