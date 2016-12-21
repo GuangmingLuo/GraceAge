@@ -22,7 +22,7 @@
                                     <thead>
                                         <tr class="row">
                                             {table_titles}
-                                            <th class="col-sm-3">{Name}</th>
+                                            <th class="{gridClass}">{text}</th>
                                             {/table_titles}
                                         </tr>
                                     </thead>
@@ -31,9 +31,9 @@
                                         <tr class="clickable row">
                                             <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Name}</td>
-                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-2" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Topic}</td>
-                                            <td class="col-sm-" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-1" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-{Bar} " 
@@ -42,7 +42,7 @@
                                                         {Score} %
                                                     </div>
                                                 </div></td>
-                                            <td class="col-sm-3">
+                                            <td class="col-sm-6">
                                                 <p id="text{id}">{Note}</p> 
                                                 <button class="editbutton" id="button{id}" onclick="editNote({id})"><?php echo $this->lang->line('edit'); ?></button>
                                                 <form class='editform' id="form{id}" hidden >
