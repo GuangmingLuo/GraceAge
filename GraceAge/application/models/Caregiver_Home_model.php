@@ -168,80 +168,9 @@ class Caregiver_Home_model extends CI_Model {
         return $urgent;
     }
 
-    /* function calculate_topic_eff($username) {
+    
 
-      $display = array();
-
-
-      if ($username == NULL) {        //give results for no name, all 0
-      $query = $this->db->distinct()->select('Topic')->get('Question'); //get all the topics
-      $topics = $query->result();
-      for ($i = 0; $i < count($topics); $i++) {
-      array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
-      }
-      } else {
-      $language;
-      $query = $this->db->select('Language')->where('Name', $username)->get('Patient');
-      $language2 = $query->result();
-      $language = $language2[0]->Language;
-
-
-      $query = $this->db->distinct()->select('Topic')->where('Language', $language)->get('Question'); //get all the topics
-      $topics = $query->result();
-      $query = $this->db->select('idPatient')->where('Name', $username)->get('Patient');      //get id of patient to use
-      $id2 = $query->result();
-      if (count($id2) == 0) {                     //if wrong name is given
-      if (count($id2) == 0) {
-      for ($i = 0; $i < count($topics); $i++) {
-      array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => 0));
-      }
-      }
-      } else {
-      $id = $id2[0]->idPatient;
-
-
-      $query = $this->db->distinct()->select('QuestionNumber, Topic')->where('Language', $language)->get('Question'); //get all the question numbers allong with their topic
-      $questions = $query->result();
-
-
-
-      $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $id)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');  //get last answered questions and their number
-      $answers = $query->result();
-      $aaa = 0;
-
-
-      for ($i = 0; $i < count($topics); $i++) {       //itterate through the topics
-      $current = $topics[$i]->Topic;
-
-      $topicscore = 0;
-      $topicavg;
-      $k = 0;     //amount of questions in the topic
-
-      for ($a = 0; $a < count($questions); $a++) {    //itterate through the questions
-      if ($topics[$i]->Topic == $questions[$a]->Topic) {  //if question is part of topic do...s
-      $questionnr = $questions[$a]->QuestionNumber;
-      for ($j = 0; $j < count($answers); $j++) {
-      if ($questionnr == $answers[$j]->Question_Number) {
-      $topicscore += $answers[$j]->Answer - 1;
-      $k++;
-      }
-      }
-      }
-      }
-      if ($k == 0) {
-      $topicavg = 0;
-      } else {
-      $topicavg = $topicscore * 25 / $k;
-      }
-      $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
-      array_push($display, array('Topic' => $topics[$i]->Topic, 'Score' => $nombre_format_francais));
-      }
-      }
-      }
-      return $display;
-      } */
-
-    function topicscorejson($id) {
+    function topicscorejson($id) {      
         $topic_array = $this->lang->line('topic_array');
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
@@ -345,7 +274,7 @@ class Caregiver_Home_model extends CI_Model {
 
 
 
-        $query = $this->db->select('idPatient, Name, Language, Note')->get('Patient');
+        $query = $this->db->select('idPatient, Name, Language, Note, RoomNumber, Gender, Birthday')->get('Patient');
         $patients = $query->result();
         for ($i = 0; $i < count($patients); $i++) {
             $username = $patients[$i]->Name;
@@ -363,6 +292,7 @@ class Caregiver_Home_model extends CI_Model {
                 $display = array();
                 $display2 = array();
                 $badanswers = array();
+                $extradata = array();
                 for ($j = 0; $j < count($topicsdutch); $j++) {       //itterate through the topics
                     $current = $topicsdutch[$j]->Topic;
 
@@ -445,15 +375,25 @@ class Caregiver_Home_model extends CI_Model {
                     }
                 }
 
+                
+                //calculate some extra data: room, gender...
+                if($patients[$i]->RoomNumber != NULL){$roomnumber = $patients[$i]->RoomNumber;}else{$roomnumber="";}
+                if($patients[$i]->Gender != NULL){$gender = $patients[$i]->Gender;}else{$gender="";}
+                if($patients[$i]->Birthday != NULL){$bday = $patients[$i]->Birthday;}else{$bday="";}
+                
+                
+                
+                array_push($extradata,array('Roomnumber' => $roomnumber,'Gender' => $gender, 'Bday' => $bday));
 
 
 
 
-                array_push($resultarray, array('Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, 'JSONCODE' => $jsoncode, 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
+                array_push($resultarray, array('Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display,/* 'JSONCODE' => $jsoncode,*/ 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
             } else { //english case
                 //calculate score per topic
                 $display = array();
                 $display2 = array();
+                $extradata = array();
                 for ($j = 0; $j < count($topicsenglish); $j++) {       //itterate through the topics
                     $current = $topicsenglish[$j]->Topic;
 
@@ -534,8 +474,18 @@ class Caregiver_Home_model extends CI_Model {
 //            if(count($answerarray == 0)){
 //                array_push($answerarray, " ");
 //            }
+                
+                //calculate some extra data: room, gender...
+                if($patients[$i]->RoomNumber != NULL){$roomnumber = $patients[$i]->RoomNumber;}else{$roomnumber="";}
+                if($patients[$i]->Gender != NULL){$gender = $patients[$i]->Gender;}else{$gender="";}
+                if($patients[$i]->Birthday != NULL){$bday = $patients[$i]->Birthday;}else{$bday="";}
+                
+                
+                
+                array_push($extradata,array('Roomnumber' => $roomnumber,'Gender' => $gender, 'Bday' => $bday));
+                
 
-                array_push($resultarray, array('Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
+                array_push($resultarray, array('Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
             }
         }
         //echo json_encode($resultarray);
