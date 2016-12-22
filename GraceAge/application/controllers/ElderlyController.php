@@ -26,6 +26,7 @@ class ElderlyController extends CI_Controller {
         $this->load->model('Caregiver_Home_model'); // In order to call the function: get_topics_with_lowest_scores()
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
+        $this->lang->load('login', $this->session->Language);
         //$this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
     
@@ -72,22 +73,36 @@ class ElderlyController extends CI_Controller {
     /************  Profile page functions  **********/
     
     function change_language() {
-        $newlang = $this->input->post('language');
+        $newlang = $this->input->post('language'); 
         $data['err_msg'] ="";
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
-            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);
-            $this->lang->load('login', $this->session->Language);
-            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');
+            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);  
+            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');  
+                        
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($data));
+    }
+    
+    function change_profile() {
+        $newroom = $this->input->post('room_number'); 
+        $newphone = $this->input->post('phone_number');
+        $mydata['err_msg'] ="";
+        if ($newroom != null) {
+            $this->Account_model->changeRoom($this->session->userType,$newroom, $this->session->idPatient);
+            $mydata['err_msg'] = $this->lang->line('room_number') .$this->lang->line('saved_changes');
+        }
+        if ($newphone != null) {
+            $this->Account_model->changePhone($this->session->userType,$newphone, $this->session->idPatient);
+            $mydata['err_msg'] = $mydata['err_msg']."  ".$this->lang->line('phone_number').$this->lang->line('saved_changes');
+        }
+        $this->output->set_content_type("application/json")->append_output(json_encode($mydata));
     }
     
     function change_password() {
         if (!$this->is_logged_in()) {
             return;
         }
-        $this->lang->load('login', $this->session->Language);
         $data['success'] = false;
         $data['err_msg'] = " ";
         $verif = $this->Account_model->getUser($this->session->Name);

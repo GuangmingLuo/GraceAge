@@ -189,10 +189,29 @@ class CaregiverController extends CI_Controller {
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
             $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idCaregiver);
-            $this->lang->load('login', $this->session->Language);
             $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($data));
+    }
+    
+    function change_profile() {
+        $home_address = $this->input->post('home_address'); 
+        $email = $this->input->post('email');
+        $mobile = $this->input->post('mobile');
+        $mydata['err_msg'] ="";
+        if ($home_address != null) {
+            $this->Account_model->changeHomeAddress($this->session->userType,$home_address, $this->session->idCaregiver);
+            $mydata['err_msg'] = $mydata['err_msg'].$this->lang->line('room_number') .$this->lang->line('saved_changes');
+        }
+        if ($email != null) {
+            $this->Account_model->changeEmail($this->session->userType,$email, $this->session->idCaregiver);
+            $mydata['err_msg'] = $mydata['err_msg']." ".$this->lang->line('phone_number').$this->lang->line('saved_changes');
+        }
+        if ($mobile != null) {
+            $this->Account_model->changeMobile($this->session->userType,$mobile, $this->session->idCaregiver);
+            $mydata['err_msg'] = $mydata['err_msg']." ".$this->lang->line('phone_number').$this->lang->line('saved_changes');
+        }
+        $this->output->set_content_type("application/json")->append_output(json_encode($mydata));
     }
     
     function register() {

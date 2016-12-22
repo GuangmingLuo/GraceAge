@@ -80,14 +80,31 @@ class Account_model extends CI_Model {
         $this->db->update($userType);
         
     }
+    function changeRoom($userType,$room_number, $idPatient){ //only for elderly
+        $this->db->set('RoomNumber', $room_number);
+        $this->db->where('id'.$userType, $idPatient);
+        $this->db->update($userType);               
+    }
     
-//    function getProfileItems($name){
-//        $result = $this->db->query("SELECT * FROM Patient where Name=?", $name);
-//        $items = array(
-//            'Birthday'=>$result->row()->Birthday,
-//            'Gender' => $result->row()->Gender,
-//            'PhoneNumber'=>$result->row()->PhoneNumber,
-//        ); 
-//        return $items;
-//    }
+    function changePhone($userType,$phone_number, $idPatient){ //only for elderly
+        $this->db->set('PhoneNumber', $phone_number);
+        $this->db->where('id'.$userType, $idPatient);
+        $this->db->update($userType);      
+    }
+
+    function changeHomeAddress($userType,$home_address, $idCaregiver){//only for caregiver
+        $this->db->set('HomeAddress', $home_address);
+        $this->db->where('id'.$userType, $idCaregiver);
+        $this->db->update($userType); 
+    }
+    function changeEmail($userType,$email, $idCaregiver){//only for caregiver
+        $this->db->set('Email', $email);
+        $this->db->where('id'.$userType, $idCaregiver);
+        $this->db->update($userType); 
+    }
+    function changeMobile($userType,$mobile, $idCaregiver){//only for caregiver
+        $this->db->set('Mobile', $mobile);
+        $this->db->where('id'.$userType, $idCaregiver);
+        $this->db->update($userType); 
+    }
 }
