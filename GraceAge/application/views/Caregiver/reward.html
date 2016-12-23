@@ -27,12 +27,13 @@
                     </div>
 
                     <div class ="row">
-                        <div class="col-sm-12"> 
+                        <div class="col-xs-12"> 
 
                             <ul id="rewards_list">
                                 {allrewards}
                                 <li>
                                     <form action="editReward" method="post">
+                                        <div class ="row">
                                         <div class="col-xs-6">{Reward}<hr></div>
                                         <div class="col-xs-2 reward_price">{Price}<hr></div>
                                         <div class="col-xs-2">{Language}</div>
@@ -40,6 +41,8 @@
                                             <input onchange="this.form.submit()" type="checkbox" name="available" class="available" {Available} />
                                         </div>
                                         <input type='hidden' class='Reward' name='Reward' value='{Reward}'/>
+                                        </br>
+                                        </div>
                                     </form>
                                 </li>
                                 {/allrewards}
