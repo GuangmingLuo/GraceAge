@@ -30,14 +30,29 @@ function register(){
         if(data.success){
             $errorbox.removeClass('alert-warning');
             $errorbox.addClass('alert-success');
+            $errorbox.hide();
+            showToast(data.err_msg);
         }
         else{
+            $errorbox.show();
             $errorbox.removeClass('alert-success');
             $errorbox.addClass('alert-warning');
         }
         $errorbox.removeClass('inactive');
         $errorbox.html(data.err_msg);
+        
     });
+}
+function showToast(text) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+    x.innerHTML=text;
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 
