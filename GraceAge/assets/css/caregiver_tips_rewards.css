@@ -135,6 +135,12 @@ select {
     margin-bottom: 50px;
 }
 
+#rewards_list div.row{
+    border-bottom: 1px solid;
+    border-color: #ede9e9;
+    margin-top: 9px;
+}
+
 .reward_price{
     padding-left: 12px;
 }
