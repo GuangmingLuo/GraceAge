@@ -38,3 +38,4 @@ $lang['messages_title'] = 'Messages';
 $lang['send_button'] = 'Send';
 $lang['input_text_placeholder'] = "Type your message here ...";
 $lang['confirm_action'] = "are you sure?";
+$lang['notify_deleted'] = "deleted";

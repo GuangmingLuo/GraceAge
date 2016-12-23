@@ -100,7 +100,6 @@ function updateTip(id){
 };
 
 function deleteTip(id){
-    if(confirm(localizedText.confirm) === true){
         // delete the tip
         $.post("delete_tip", {id: id}, function(data){
             if(data){
@@ -110,7 +109,21 @@ function deleteTip(id){
                 deleteTip(id);
             }
         });
-    }
     
+    
+    showToast(localizedText.notify_deleted);
+    
+}
+
+function showToast(text) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+    x.innerHTML=text;
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 

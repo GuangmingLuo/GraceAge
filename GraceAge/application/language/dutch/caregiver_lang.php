@@ -38,3 +38,4 @@ $lang['messages_title'] = 'Berichten';
 $lang['send_button'] = 'Verstuur';
 $lang['input_text_placeholder'] = "Schrijf hier een bericht ...";
 $lang['confirm_action'] = "ben je zeker?";
+$lang['notify_deleted'] = "verwijderd";

@@ -416,6 +416,7 @@ class CaregiverController extends CI_Controller {
         $data['choose_a_topic'] = $this->lang->line('tip_choose_topic');
         $data['confirm'] = $this->lang->line('confirm_action');
         $data['write_a_tip'] = $this->lang->line('write_a_tip');
+        $data['notify_deleted'] = $this->lang->line('notify_deleted');
         $jsondata = json_encode($data);
         $this->output->set_content_type("application/json")
                 ->append_output($jsondata);
