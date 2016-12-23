@@ -71,11 +71,10 @@ body{
 
 /* dropdown */
 select {
-  position:absolute
   text-transform: capitalize;
   border: 1px solid #ccc;
   border-radius: 3px;
-  width:35% !important;
+  width: 35% !important;
   min-width: 130px !important;
   height: 34px;
   margin-bottom: 5px;
