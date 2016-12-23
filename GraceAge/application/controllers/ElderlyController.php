@@ -27,13 +27,11 @@ class ElderlyController extends CI_Controller {
         $this->lang->load('elderly', $this->session->Language);
         $this->lang->load('caregiver',$this->session->Language);
         $this->lang->load('login', $this->session->Language);
-        //$this->session->set_userdata('patient_id', 2); // Assume user 2 for now!
     }
     
     private function loadComonData() { // place the common $data[] here
         $data['show_navbar'] = true;
-        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
-        
+        $data['navbar_content'] = 'Elderly/elderlyNavbar.html';        
         return $data;
     }
     
@@ -64,9 +62,11 @@ class ElderlyController extends CI_Controller {
         return $data;
     }
     function index() {
-        if (!$this->is_logged_in()) return;  // if session exists
-            $data =$this->loadIndexData();
-            $this->parser->parse('master.php', $data);
+        if (!$this->is_logged_in()) {
+            return;
+        }  // if session exists
+        $data =$this->loadIndexData();
+        $this->parser->parse('master.php', $data);
         
     }
     
@@ -78,8 +78,7 @@ class ElderlyController extends CI_Controller {
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
             $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);  
-            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');  
-                        
+            $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');                          
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($data));
     }
@@ -145,14 +144,13 @@ class ElderlyController extends CI_Controller {
         $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
         return $data;
     }
+    
     function questionnaire() {
         if (!$this->is_logged_in()) return;  // if session exists
             //Go fetch necessary data from database to setup the correct question.
             $this->Question_model->get_initial_state();            
             $data = $this->loadQuestionnaireData();
-
-            $this->parser->parse('master.php', $data);
-       
+            $this->parser->parse('master.php', $data);       
     }
 
     function previous() {
@@ -188,30 +186,30 @@ class ElderlyController extends CI_Controller {
     }
     
     function tips() {
-        if (!$this->is_logged_in()) return; // if session exists
-            
-            $data = $this->loadTipsData();
-
-            $this->parser->parse('master.php', $data);
+        if (!$this->is_logged_in()) {
+            return;
+        } // if session exists
+        $data = $this->loadTipsData();
+        $this->parser->parse('master.php', $data);
         
     }
     
     private function loadScoreData(){
         $data = $this->loadComonData();
-            $data['score_text'] = lang('score_text');
-            $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
-            $data['exchange_score'] = lang('exchange_score');
-            $data['buy_reward'] = lang('buy_reward');
-            $data['reward_text'] = lang('reward_text');
-            $data['rewards_bought_text'] = lang('rewards_bought_text');
-            $data['bought_at'] = lang('bought_at');
-            $data['page_title'] = 'Score';
-            $data['header1'] = 'Your score';
-            $data['rewards'] = $this->Question_model->getRewards($this->session->Language);
-            $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
-            $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
-            $data['page_content'] = 'Elderly/score.html';
-            return $data;
+        $data['score_text'] = lang('score_text');
+        $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+        $data['exchange_score'] = lang('exchange_score');
+        $data['buy_reward'] = lang('buy_reward');
+        $data['reward_text'] = lang('reward_text');
+        $data['rewards_bought_text'] = lang('rewards_bought_text');
+        $data['bought_at'] = lang('bought_at');
+        $data['page_title'] = 'Score';
+        $data['header1'] = 'Your score';
+        $data['rewards'] = $this->Question_model->getRewards($this->session->Language);
+        $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
+        $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
+        $data['page_content'] = 'Elderly/score.html';
+        return $data;
         
     }
     function score() {
@@ -260,7 +258,9 @@ class ElderlyController extends CI_Controller {
     }
 
     function buyReward(){
-        if (!$this->is_logged_in()) return;
+        if (!$this->is_logged_in()) {
+            return;
+        }
         $reward = $_GET["reward"];
         $idPatient = $this->session->idPatient;
         $rewardBought = ($this->Question_model->buyReward($reward, $idPatient)) ? 'true' : 'false';
@@ -282,10 +282,11 @@ class ElderlyController extends CI_Controller {
     }
 
     function congratulations() {
-        if (!$this->is_logged_in()) return;
+        if (!$this->is_logged_in()) {
+            return;
+        }
         $this->lang->load('congratulations', $this->session->Language);
        $data = $this->loadCongratulationsData();
-        //$this->Question_model->updatePatientScore($this->session->idPatient, 1);
         $this->parser->parse('master.php', $data);
     }
 
@@ -301,8 +302,6 @@ class ElderlyController extends CI_Controller {
         $data['name'] = $this->lang->line('name');
         $data['date_of_birth'] = $this->lang->line('date_of_birth');
         $data['gender'] = $this->lang->line('gender');
-        //$data['home_address'] = $this->lang->line('home_address');
-        //$data['email'] = $this->lang->line('email');
         $data['room_number'] = $this->lang->line('room_number');
         $data['phone_number'] = $this->lang->line('phone_number');
         $data['language'] = $this->lang->line('language');
@@ -322,8 +321,10 @@ class ElderlyController extends CI_Controller {
     }
 
     function profile(){
-        if (!$this->is_logged_in()) return;
-            $data = $this->loadProfileData();
+        if (!$this->is_logged_in()) {
+            return;
+        }
+        $data = $this->loadProfileData();
             $this->parser->parse('master.php', $data);
         
     }

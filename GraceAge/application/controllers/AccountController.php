@@ -7,8 +7,7 @@ class AccountController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
-        $this->load->helper('url');
-        
+        $this->load->helper('url');        
         $this->load->library('session');
         $this->load->model('Account_model');
     }
@@ -16,6 +15,7 @@ class AccountController extends CI_Controller {
     function return_to_home(){
         redirect(base_url(). 'CaregiverController/index');
     }
+    
     public function change_language() {
         $language =  $this->session->language;
         if ($language == "english") {
@@ -47,15 +47,6 @@ class AccountController extends CI_Controller {
         $data['credentials'] = lang('credentials');
         return $data;
     }
-    
-    private function register_data() {
-        $data['page_title'] = lang('create_account');
-        $data['user_type'] = lang('user_type');
-        $data['patient'] = lang('patient');
-        $data['caregiver'] = lang('caregiver');
-        $data['language'] = lang('language');
-        return $data;
-    }
 
     public function login() {
         if(!$this->session->has_userdata('language')){
@@ -69,7 +60,7 @@ class AccountController extends CI_Controller {
         $this->parser->parse('master.php', $data);
     }
 
-    function login_valid(){
+    function login_valid(){ 
         $this->lang->load('login', $this->session->language);
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
@@ -97,10 +88,10 @@ class AccountController extends CI_Controller {
         }
     }
     
-    function loginPost() {
+    function loginPost() {   //redirect to the corresponding index page according to the usertype
         if ($this->session->userType == "Patient") {
             redirect(base_url() . 'ElderlyController/index');
-        } else if($this->session->userType == "Caregiver") { // userType = Caregiver
+        } else if($this->session->userType == "Caregiver") { 
             redirect(base_url() . 'CaregiverController/index');
         }
     }
