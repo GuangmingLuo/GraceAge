@@ -224,7 +224,7 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('master.php', $data);
     }
     
-    public function registerPost() {
+    function registerPost() {
         $this->lang->load('login', $this->session->Language);
         $return_data['err_msg'] = $this->lang->line('register_form_incomplete');
         $return_data['success'] = false;
