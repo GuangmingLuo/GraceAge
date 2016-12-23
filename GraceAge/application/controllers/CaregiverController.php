@@ -143,7 +143,8 @@ class CaregiverController extends CI_Controller {
     }
     function delete_tip(){
         $id = $this->input->post('id');        
-        $this->Tip_model->remove_tip($id);
+        $success = $this->Tip_model->remove_tip($id);
+        $this->output->set_content_type("application/json")->append_output($success);
     }
     
     function update_tip(){

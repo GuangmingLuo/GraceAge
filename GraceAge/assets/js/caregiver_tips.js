@@ -12,7 +12,7 @@ function register_topic(){
     var chosen_topic = select.options[select.selectedIndex].value;
     $.post("get_tips", {topic: chosen_topic}, function(tips){
         $tips_list.empty();
-        
+        //alert(JSON.stringify(tips));
         $.each(tips, function (i, tip) {
             if (tip.hasOwnProperty('dutch') && tip.dutch !== null) {
 
@@ -102,8 +102,14 @@ function updateTip(id){
 function deleteTip(id){
     if(confirm(localizedText.confirm) === true){
         // delete the tip
-        $.post("delete_tip", {id: id});
-        register_topic();
+        $.post("delete_tip", {id: id}, function(data){
+            if(data){
+                register_topic();
+            }
+            else{
+                deleteTip(id);
+            }
+        });
     }
     
 }

@@ -51,7 +51,8 @@ class Tip_model extends CI_Model{
     
     function remove_tip($tipId){
         $this->db->where('idtips', $tipId);
-        $this->db->delete('tips');
+        $success = $this->db->delete('tips');
+        return $success;
     }
     
     function update_tip($tipId,$topic, $tip, $language){
