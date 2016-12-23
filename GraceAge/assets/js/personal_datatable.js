@@ -4,8 +4,8 @@
  * Allows to search on name.
  */
 
-google.charts.load('current', {packages: ['bar']});
-google.charts.setOnLoadCallback(initialize());
+google.charts.load('current', {packages: ['bar'], "callback": initialize});
+//google.charts.setOnLoadCallback(initialize());
 
 var id;
 var title;
@@ -26,7 +26,7 @@ $(document).ready(function(){
         ]
     });
     id = 2;
-    //$('#modChart').on('shown.bs.modal', initialize);
+    $('#modChart').on('shown.bs.modal', initialize);
     //initialize();
     });
     
@@ -66,7 +66,8 @@ function drawChart(){
 
          var options = {
                 bars: 'horizontal',
-                width: 800, height: 450,
+                width: 800, height: 400,
+                //chartArea: {width: '100%', height: '100%'},
                 chartArea: {left: '8%', top: '8%', width: '80%', height: '80%'},
                 colors: ['#cddc39'],
                 legend: {
@@ -84,5 +85,6 @@ function drawChart(){
             };
          var chart = new google.charts.Bar(document.getElementById('canvas'));
          chart.draw(chart_data, google.charts.Bar.convertOptions(options));
+         //chart.draw(chart_data, options);
     });
 }
