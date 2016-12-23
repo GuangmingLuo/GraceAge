@@ -37,8 +37,6 @@ $lang['caregiver_urgent_patients'] = 'Dringende patiënten';
 $lang['messages_title'] = 'Berichten';
 $lang['send_button'] = 'Verstuur';
 $lang['input_text_placeholder'] = "Schrijf hier een bericht ...";
-
 $lang['confirm_action'] = "ben je zeker?";
-$lang['not_filled_in'] = "Nog niet ingevuld."
-
-$lang['notify_deleted'] = "verwijderd";>>>>>>> .r354
+$lang['not_filled_in'] = "Nog niet ingevuld.";
+$lang['notify_deleted'] = "verwijderd";

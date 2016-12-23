@@ -37,8 +37,6 @@ $lang['caregiver_urgent_patients'] = 'Urgent patients';
 $lang['messages_title'] = 'Messages';
 $lang['send_button'] = 'Send';
 $lang['input_text_placeholder'] = "Type your message here ...";
-
 $lang['confirm_action'] = "are you sure?";
-$lang['not_filled_in'] = "Not yet filled in."
-
-$lang['notify_deleted'] = "deleted";>>>>>>> .r354
+$lang['not_filled_in'] = "Not yet filled in.";
+$lang['notify_deleted'] = "deleted";
