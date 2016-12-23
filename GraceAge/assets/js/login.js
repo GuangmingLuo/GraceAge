@@ -7,39 +7,39 @@ var $language = $("#language");
 var $errorbox = $("#errorbox");
 
 function login(){
-    var pass = $password.val();
-    var user = $username.val();
+    var pass = $("#password").val();
+    var user = $("#username").val();
     $.post('login_valid', {'password':pass, 'username':user}, function(data){
         if(data.valid_user && data.correct_password){
             window.location.href = "loginPost";
         }
         else{
-            $errorbox.removeClass('inactive');
-            $errorbox.html(data.errormessage);
+            $("#errorbox").removeClass('inactive');
+            $("#errorbox").html(data.errormessage);
         }
     });
 }
 
 function register(){
-    var user = $username.val();
-    var pass1 = $password1.val();
-    var pass2 = $password2.val();
-    var lang = $language.val();
-    var type = $usertype.val();
+    var user = $("#username").val();
+    var pass1 = $("#password1").val();
+    var pass2 = $("#password2").val();
+    var lang = $("#language").val();
+    var type = $("#usertype").val();
     $.post('registerPost', {username: user, password1:pass1, password2:pass2, usertype:type, language:lang}, function(data){
         if(data.success){
-            $errorbox.removeClass('alert-warning');
-            $errorbox.addClass('alert-success');
-            $errorbox.hide();
+            $("#errorbox").removeClass('alert-warning');
+            $("#errorbox").addClass('alert-success');
+            $("#errorbox").hide();
             showToast(data.err_msg);
         }
         else{
-            $errorbox.show();
-            $errorbox.removeClass('alert-success');
-            $errorbox.addClass('alert-warning');
+            $("#errorbox").show();
+            $("#errorbox").removeClass('alert-success');
+            $("#errorbox").addClass('alert-warning');
         }
-        $errorbox.removeClass('inactive');
-        $errorbox.html(data.err_msg);
+        $("#errorbox").removeClass('inactive');
+        $("#errorbox").html(data.err_msg);
         
     });
 }

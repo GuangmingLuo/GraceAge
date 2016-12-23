@@ -37,8 +37,8 @@ function post_elderly(){
             location.reload();
         }
         else{
-            $errorbox.html($message);
-            $errorbox.removeClass('inactive');
+            $("#errorbox").html($message);
+            $("#errorbox").removeClass('inactive');
         }
     });
 }
@@ -57,8 +57,8 @@ function post_caregiver(){
             location.reload();
         }
         else{
-            $errorbox.html($message);
-            $errorbox.removeClass('inactive');
+            $("#errorbox").html($message);
+            $("#errorbox").removeClass('inactive');
         }
     });
 }

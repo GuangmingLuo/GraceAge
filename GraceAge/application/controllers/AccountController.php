@@ -45,6 +45,14 @@ class AccountController extends CI_Controller {
         $data['no_badge'] = lang('no_badge');
         $data['no_camera'] = lang('no_camera');
         $data['credentials'] = lang('credentials');
+        $scripts[] = array('source' => "../../assets/js/login.js");
+        $scripts[] = array('source' => "../../assets/js/jsqrcode-combined.min.js");
+        $scripts[] = array('source' => "../../assets/js/html5-qrcode.min.js");
+        $scripts[] = array('source' => "../../assets/js/getqrdata.js");
+        $links[] = array('source' => "../../assets/css/login.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 

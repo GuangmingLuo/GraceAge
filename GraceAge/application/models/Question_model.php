@@ -23,11 +23,11 @@ class Question_model extends CI_Model{
         $this->load->library('session');
         $this->lang->load('question', $this->session->Language);
         $this->answers = array(
-            array('title' => '1', 'name' => $this->lang->line('question_never'), 'className' => 'answer_button btn-block'),
-            array('title' => '2', 'name' => $this->lang->line('question_rarely'), 'className' => 'answer_button btn-block'),
-            array('title' => '3', 'name' => $this->lang->line('question_sometimes'), 'className' => 'answer_button btn-block'),
-            array('title' => '4', 'name' => $this->lang->line('question_usually'), 'className' => 'answer_button btn-block'),
-            array('title' => '5', 'name' => $this->lang->line('question_always'), 'className' => 'answer_button btn-block'),
+            array('id' => '1', 'onclick' => 'mark_answer(this.id)', 'name' => $this->lang->line('question_never'), 'className' => 'answer_button btn-block'),
+            array('id' => '2', 'onclick' => 'mark_answer(this.id)', 'name' => $this->lang->line('question_rarely'), 'className' => 'answer_button btn-block'),
+            array('id' => '3', 'onclick' => 'mark_answer(this.id)', 'name' => $this->lang->line('question_sometimes'), 'className' => 'answer_button btn-block'),
+            array('id' => '4', 'onclick' => 'mark_answer(this.id)', 'name' => $this->lang->line('question_usually'), 'className' => 'answer_button btn-block'),
+            array('id' => '5', 'onclick' => 'mark_answer(this.id)', 'name' => $this->lang->line('question_always'), 'className' => 'answer_button btn-block'),
         );
         
         $this->navigationbuttons = array(

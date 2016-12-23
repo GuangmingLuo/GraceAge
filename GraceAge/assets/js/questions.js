@@ -1,15 +1,13 @@
-$('.answer_button').click(function () {
+function mark_answer(id){
     $('.answer_button').css('box-shadow', "1px 1px 1px #666666");     //reset borders of all answerbuttons
     $('.answer_button').css('color', "#405250");
     $('.answer_button').css('background-color', "#CDDC39");
-    $(this).css('box-shadow', "none");                 //set border of selected answer to highlight color
-    $(this).css('color', "white");
-    $(this).css('background-color', "#009688");
-    var title = $(this).attr('title');                      
-    $.post('answer_clicked', {clicked: title}, function(){
+    $("#"+id).css('box-shadow', "none");                 //set border of selected answer to highlight color
+    $("#"+id).css('color', "white");
+    $("#"+id).css('background-color', "#009688");                      
+    $.post('answer_clicked', {clicked: id}, function(){
     });
-
-});
+}
 
 function updateProgressbar(questionID) {
     var targetValue = (questionID/52)*100;              //convert questionNumber to percentage

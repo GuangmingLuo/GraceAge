@@ -59,6 +59,14 @@ class ElderlyController extends CI_Controller {
         $data['menu_items'] = $this->Menu_model->get_menuitems('Home');
         $data['content'] = "This is the home page! welcome " . $this->session->Name;
         $data['page_content'] = 'Elderly/index.html';
+        
+        $links[] = array('source' => "../../assets/css/elderlyHome.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
     function index() {
@@ -144,6 +152,14 @@ class ElderlyController extends CI_Controller {
         $data['page_content'] = 'Elderly/questionnaire.php';
         $data['score_text'] = lang('score_text');
         $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/questions.js");
+        $links[] = array('source' => "../../assets/css/Questionnaire.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
     
@@ -184,6 +200,15 @@ class ElderlyController extends CI_Controller {
         $data['tip_3'] = $this->Tip_model->get_tip($topics[2]);
         $data['tip_4'] = $this->Tip_model->get_tip($topics[3]);
         $data['page_content'] = 'Elderly/tips.html';
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/tips.js");
+        $links[] = array('source' => "../../assets/css/elderly_tips.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
+        
         return $data;
     }
     
@@ -211,6 +236,14 @@ class ElderlyController extends CI_Controller {
         $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
         $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
         $data['page_content'] = 'Elderly/score.html';
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $links[] = array('source' => "../../assets/css/Elderly_Score.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
+        
         $data['bought_popup'] =  $this->lang->line('bought_popup');
         return $data;
         
@@ -281,6 +314,13 @@ class ElderlyController extends CI_Controller {
         $data['these_can_be_exchanged'] = $this->lang->line('congrats_these_can_be_exchanged');
         $data['button_text'] = $this->lang->line('congrats_button_text');
         $data['score'] = $this->Question_model->getPatientScore($this->session->idPatient);
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $links[] = array('source' => "../../assets/css/Congratulations.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 
@@ -320,6 +360,15 @@ class ElderlyController extends CI_Controller {
         $data['page_title'] = 'Edit Profile';
         $data['page_content'] = 'Account/elderly_profile.html';
         $data['Person_Name'] = $this->session->Name;
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/profilescript.js");
+        $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        $links[] = array('source' => "../../assets/css/elderly_profile.css");
+        $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 

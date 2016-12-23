@@ -9,6 +9,20 @@
         <link rel="stylesheet" href="../../assets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
         <link rel="stylesheet" href="../../assets/font-awesome-4.7.0/css/font-awesome.min.css">
         <link href="../../assets/css/w3.css" rel="stylesheet" type="text/css"/>
+        
+        <!-- SCAFFOLDING FOR FUTURE FIXES -->
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        {css_links}
+            <link href={source} rel="stylesheet" type="text/css"/>
+        {/css_links}
+        
+        {scripts}
+            <script src={source} type="text/javascript"></script>
+        {/scripts}
         <title>{page_title}</title>
     </head>
     <body>
@@ -19,34 +33,5 @@
         ?>
 
         <?php include($page_content); ?>
-        <!-- SCAFFOLDING FOR FUTURE FIXES
-        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
-        {css_links}
-            <link href="{link}" rel="stylesheet" type="text/css"/>
-        {/css_links}
-        
-        {js_scripts}
-            <script src="{source}"type="text/javascript"></script>
-        {js_scripts} -->
-        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
-        <script src="../../assets/js/questions.js" type="text/javascript"></script>
-        <script src="../../assets/js/carefiver-personal-notes.js" type="text/javascript"></script>
-        <script src="../../assets/js/tips.js" type="text/javascript"></script>
-        <script src="../../assets/js/caregiver_tips.js" type="text/javascript"></script>
-        <script src="../../assets/js/login.js" type="text/javascript"></script>
-        <script src="../../assets/js/personal_datatable.js" type="text/javascript"></script>
-        <script src="../../assets/js/profilescript.js" type="text/javascript"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-        <script src="../../assets/js/carefiver-personal-notes.js" type="text/javascript"></script>
-        <script src="../../assets/js/caregiver_messages.js" type="text/javascript"></script>
     </body>
 </html>

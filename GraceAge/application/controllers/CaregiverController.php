@@ -315,6 +315,16 @@ class CaregiverController extends CI_Controller {
         $data['page_title'] = 'Add Profile';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_register'));
         $data['page_content'] = 'Account/register.html';
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/login.js");
+        $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        $links[] = array('source' => "../../assets/css/caregiver_register_settings.css");
+        $links[] = array('source' => "../../assets/css/snackbar.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 
@@ -335,6 +345,15 @@ class CaregiverController extends CI_Controller {
         //$data['messages'] = $this->Caregiver_Home_model->add_message($this->input->get('messagesend'));
         $data ['show'] = $this->Caregiver_Home_model->show_messages();
         
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/caregiver_messages.js");
+        
+        $links[] = array('source' => "../../assets/css/caregiver_general.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
+        
         return $data;
     }
     
@@ -350,6 +369,19 @@ class CaregiverController extends CI_Controller {
         $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
         $data['page_content'] = 'Caregiver/personal.html';
         $data['edit'] = $this->lang->line('edit');
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/personal_datatable.js");
+        $scripts[] = array('source' => "../../assets/js/carefiver-personal-notes.js");
+        $scripts[] = array('source' => "https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js");
+        
+        $links[] = array('source' => "https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css");
+        $links[] = array('source' => "https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css");
+        $links[] = array('source' => "../../assets/css/caregiver_patients.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 
@@ -381,6 +413,17 @@ class CaregiverController extends CI_Controller {
         $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
         $data['page_content'] = 'Account/caregiver_profile.html';
         $data['Person_Name'] = $this->session->Name;
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        $scripts[] = array('source' => "../../assets/js/profilescript.js");
+        
+        $links[] = array('source' => "../../assets/css/caregiver_register_settings.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        $links[] = array('source' => "../../assets/css/snackbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 
@@ -394,6 +437,17 @@ class CaregiverController extends CI_Controller {
         $data['add_new_tip'] = $this->lang->line('tip_add_new_tip');
         $data['page_content'] = 'Caregiver/tips.html';
         $data['write_new_tip'] = $this->lang->line('tip_write_new');
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        $scripts[] = array('source' => "../../assets/js/caregiver_tips.js");
+        
+        $links[] = array('source' => "../../assets/css/caregiver_tips_rewards.css");
+        $links[] = array('source' => "../../assets/css/snackbar.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
 
@@ -409,10 +463,16 @@ class CaregiverController extends CI_Controller {
         $data['add_new_reward'] = $this->lang->line('add_new_reward');
         $data['price'] = $this->lang->line('price');
         $data['allrewards'] = $this->Reward_model->get_rewards();
-
-
-
         $data['page_content'] = 'Caregiver/reward.html';
+        
+        $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        
+        $links[] = array('source' => "../../assets/css/caregiver_tips_rewards.css");
+        $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        
+        $data['scripts'] = $scripts;
+        $data['css_links'] = $links;
         return $data;
     }
     function getTipsLocalization(){

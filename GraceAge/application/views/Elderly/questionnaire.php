@@ -1,4 +1,3 @@
-<link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
 <div id='questionnairy_wrapper' class="container">
     <div id='questionnairy_content' class="container">
         <h1>{header1}</h1>
@@ -36,7 +35,7 @@
 
             {answers}
             <div class="col-sm-2">
-                <button type="button" title="{title}" class="{className}">{name}</button>
+                <button type="button" id="{id}" onclick="{onclick}" class="{className}">{name}</button>
             </div>
             {/answers}
             <div class="col-sm-1">
