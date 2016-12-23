@@ -91,7 +91,7 @@ class Caregiver_Home_model extends CI_Model {
         return json_encode($scores);
     }
 
-    /*function get_topics_with_lowest_scores($number) {
+    function get_topics_with_lowest_scores($number) {
         $this->get_answer_array();
         $topics = $this->get_topics();
         $n = count($topics);
@@ -111,13 +111,13 @@ class Caregiver_Home_model extends CI_Model {
             $topics[$i] = $top[$i]['Topic']; //echo $topics[$i];
         }
         return $topics;
-    }*/
+    }
 
-    /*function get_username_id() {
+    function get_username_id() {
         $namesid;
         $query = $this->db->select('Name, idPatient')->get('Patient');
         return $query->result();
-    }*/
+    }
     
     /////////////////////////////////////////////
     //  Get all answers from all patients, 
