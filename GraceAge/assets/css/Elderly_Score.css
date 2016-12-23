@@ -131,8 +131,11 @@
     padding: 0px;
     padding-top: 10px;
     overflow-y: hidden;
-    height: 18vh;
     white-space: normal !important;
+}
+
+#history{
+    margin-bottom:0px;
 }
 
 #row1,
@@ -143,13 +146,13 @@
 
 #rewards_bought_text{
    position:relative;
-   font-size:30px;
+   font-size:25px;
    margin-left:15px;
    width:100%;
 }
 
 #bought_at_text{
-    font-size:30px;
+    font-size:25px;
     position:absolute;
     left:71.5%;
 }
