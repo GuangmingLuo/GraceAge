@@ -78,10 +78,10 @@ body{
 .editbutton{
     border: none;
     background-color: transparent;
-    color: #AFB42B;
+    color: #212121;
     text-transform: lowercase;
-    text-decoration: underline;
     padding: 0px;
+    cursor: pointer;
 }
 
 /*update button*/
