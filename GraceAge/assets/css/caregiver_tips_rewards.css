@@ -35,6 +35,10 @@ body{
     color: #212121;
 }
 
+.edit.fontfamily{
+  margin-right:10px;
+}
+
 
 .col-xs-8, .col-xs-2, .col-xs-1, .col-xs-9{
     margin: 0px;
@@ -94,11 +98,17 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: "Open Sans";
-} 
+}
+
+
 
     #new_reward, #newtext, #new_tip{
         width: 98%;
         min-width: 160px;
+    }
+    #newtext{
+      margin-top:1vh;
+      margin-bottom:0.5vh;
     }
     
     #price{
@@ -128,6 +138,11 @@ select {
     padding-left: 12px;
     margin-top: 2%; margin-bottom: 2%;
     font-family: "Open Sans";
+}
+
+#tips_list{
+  padding-left:0px;
+
 }
 
 #rewardForm, #tipForm{

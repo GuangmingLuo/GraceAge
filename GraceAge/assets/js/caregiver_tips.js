@@ -19,13 +19,13 @@ function register_topic(){
 
 
                 $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value='Nederlands'>Nederlands</div>"
-                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a></div>";
+                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a> </div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
                 $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value ='English'>English</div>"
-                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> "+localizedText.edit+" </a></div>";
+                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> "+localizedText.edit+" </a><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'> <i class='fa fa-trash'></i> delete</a> </div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
         });
@@ -71,7 +71,7 @@ function add_new_tip() {
       //$(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
       
       $formHTML = "<form id='editform' >" + "<input type='text' id='newtext' value='"+text_value+"'>" 
-              + "<input class='btn save'  type='button' onclick='updateTip(" + id+ ")' value='save'>" + "<input class='btn delete'  type='button' onclick='deleteTip(" + id+ ")' value='delete'>"+ "</form>";
+              + "<input class='btn save'  type='button' onclick='updateTip(" + id+ ")' value='save'>"+ "</form>";
       
       
        $element.after($formHTML);
