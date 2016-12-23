@@ -123,9 +123,8 @@ body{
     width: 100%;
     padding-right: 27px;
     margin-bottom: 2px;
+    height: 19%;
 }
-
-
 
 #btn-chat{
     margin: 0px;
@@ -135,12 +134,11 @@ body{
     font-weight: bold; 
     padding-left: 5px !important; padding-right: 5px ! important; 
     float: right;
-    height: 34px;
+    vertical-align: middle;
 }
 
 input[type=text] {
     display: block;
-    height: 34px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
@@ -150,6 +148,8 @@ input[type=text] {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 5px;
+    top: 25%;
+    vertical-align: middle;
 }
 
 /* urgent patients */
