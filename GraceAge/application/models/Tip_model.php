@@ -11,8 +11,7 @@ class Tip_model extends CI_Model{
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        $this->lang->load('tip', $this->session->Language);
-        
+        $this->lang->load('tip', $this->session->Language);        
         
         $this->navigationbuttons = array(
             array('name' => $this->lang->line('return_to_question'),'class' => 'btn  btn-arrow-left btn-block',  'func' => 'back()'),
@@ -20,10 +19,9 @@ class Tip_model extends CI_Model{
         );
     }    
     
-    function get_tip($i) {       
-        //$query = $this->db->select($this->session->Language)->where('topic', $i)->get('tips');       
+    function get_tip($topic) {         // get a random tip (not null) from a given topic   
         $language = $this->session->Language;
-        $array = array('topic' => $i, $language."!=" => NULL);
+        $array = array('topic' => $topic, $language."!=" => NULL);
         $query = $this->db->select($language)->where($array)->get('tips');
         $random = rand(1, $query->num_rows());
         if($this->session->Language === 'english'){
@@ -31,17 +29,15 @@ class Tip_model extends CI_Model{
         }
         if($this->session->Language === 'dutch'){
             return $query->row($random)->dutch;
-        }
-        
-        
+        }        
     }
-    function get_tips_as_json($topic) {
-        
+    
+    function get_tips_as_json($topic) {    //get all tips from a topic as json data   
         $query = $this->db->select('english, dutch')->select('tips.idtips')->where('topic', $topic)->order_by('idtips', 'desc')->get('tips');
         return json_encode($query->result());
     }
     
-    function add_tip($topic, $tip, $language){
+    function add_tip($topic, $tip, $language){ //add a new tip to a topic
         $data = array(
             'topic' => $topic,
             $language => $tip
@@ -49,13 +45,13 @@ class Tip_model extends CI_Model{
         $this->db->insert('a16_webapps_2.tips' , $data);
     }
     
-    function remove_tip($tipId){
+    function remove_tip($tipId){ //remove a tip with given id
         $this->db->where('idtips', $tipId);
         $success = $this->db->delete('tips');
         return $success;
     }
     
-    function update_tip($tipId,$topic, $tip, $language){
+    function update_tip($tipId,$topic, $tip, $language){ //update the content of a tip
         $this->db->set($language, $tip);
         $this->db->set('topic', $topic);
         $this->db->where('idtips', $tipId);

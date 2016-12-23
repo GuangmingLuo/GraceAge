@@ -27,7 +27,7 @@ class Reward_model extends CI_Model{
         }
     }
     
-    function add_reward($reward,$price, $language){
+    function add_reward($reward,$price, $language){ //add a new reward with language
         if ($this->rewardExists($reward)) {
             return false;
         }
@@ -42,7 +42,7 @@ class Reward_model extends CI_Model{
         }
     }
     
-    function edit_reward($reward,$available){
+    function edit_reward($reward,$available){  //change the state of a reward
         $data = array(
             'Available' => $available
         );

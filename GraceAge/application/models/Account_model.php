@@ -13,7 +13,6 @@
  */
 class Account_model extends CI_Model {
 
-    //put your code here
 
     function __construct() {
         parent::__construct();
@@ -65,13 +64,9 @@ class Account_model extends CI_Model {
     }
     
     function changeLanguage($userType, $lang, $idPatient){
-       // $sql = "UPDATE a16_webapps_2.? "
-        //            . "SET Language = ?"
-         //           . "WHERE id? = ?;";
         $this->db->set('Language', $lang);
         $this->db->where('id'.$userType, $idPatient);
         $this->db->update($userType);
-        //$this->db->query($sql, array($userType,$lang,$userType, $idPatient));
     }
     
     function changePassword($userType,$password, $idPatient){
