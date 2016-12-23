@@ -81,13 +81,11 @@ class Question_model extends CI_Model{
                     $this->session->selected_answer, 
                     $this->session->question_id, 
                     $this->session->n_questionaire,
-                    $this->session->idPatient);
-            
+                    $this->session->idPatient);            
             $this->session->set_userdata('question_id', $this->session->question_id + 1);
             if ($this->session->question_id > 52){
                 $this->session->set_userdata('question_id', 1);
                 $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
-                //delete_old_data($this->session->idPatient, $this->session->n_questionaire);
             }
         }
         $this->db->reconnect();
@@ -96,8 +94,7 @@ class Question_model extends CI_Model{
             $query = $this->db->select('Topic, Question, QuestionNumber')
                     ->where($array)
                     ->get('a16_webapps_2.Question');
-        } while($query->num_rows() < 1);
-        
+        } while($query->num_rows() < 1);       
         $this->session->unset_userdata('selected_answer');
         return json_encode($query->result());
     }

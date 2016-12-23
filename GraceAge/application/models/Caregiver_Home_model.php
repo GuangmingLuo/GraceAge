@@ -21,7 +21,6 @@ class Caregiver_Home_model extends CI_Model {
         $this->load->helper('date');
         $this->lang->load('topics', $this->session->Language);
         $this->lang->load('caregiver', $this->session->Language);
-        //$this->load->database();
     }
 
     function get_table_header($headers_array) {
