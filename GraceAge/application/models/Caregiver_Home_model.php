@@ -20,6 +20,7 @@ class Caregiver_Home_model extends CI_Model {
         $this->load->library('session');
         $this->load->helper('date');
         $this->lang->load('topics', $this->session->Language);
+        $this->lang->load('caregiver', $this->session->Language);
         //$this->load->database();
     }
 
@@ -32,7 +33,7 @@ class Caregiver_Home_model extends CI_Model {
         );
         return $caregiver_table_headers;
     }
-    
+
     function get_topics() {
         $query = $this->db->distinct()->select('Topic')->get('Question');
         return $query->result_array();
@@ -171,16 +172,14 @@ class Caregiver_Home_model extends CI_Model {
 
         array_multisort($score, SORT_ASC, $name, SORT_ASC, $results);
         $temp = array_slice($results, 0, 10);
-        foreach($temp as $patient){
+        foreach ($temp as $patient) {
             $patient['Name_url'] = rawurlencode($patient['Name']);
             $urgent[] = $patient;
         }
         return $urgent;
     }
 
-    
-
-    function topicscorejson($id) {      
+    function topicscorejson($id) {
         $topic_array = $this->lang->line('topic_array');
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
@@ -188,7 +187,7 @@ class Caregiver_Home_model extends CI_Model {
         $questionsdutch = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'dutch')->get('Question')->result();
         $patient = $this->db->select('idPatient, Name, Language, Note')->where('idPatient', $id)->get('Patient')->result();
         $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $patient[0]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
-            $answers = $query->result();
+        $answers = $query->result();
 
         if ($patient[0]->Language == 'dutch') { //dutch case
             //calculate topics
@@ -276,6 +275,7 @@ class Caregiver_Home_model extends CI_Model {
         $personavg;
         $resultarray = array();
         $resutls = array();
+        $newDate = $this->lang->line('not_filled_in');
         $topic_array = $this->lang->line('topic_array');
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
@@ -288,7 +288,7 @@ class Caregiver_Home_model extends CI_Model {
         $patients = $query->result();
         for ($i = 0; $i < count($patients); $i++) {
             $username = $patients[$i]->Name;
-            $query = $this->db->select('Answer, Question_Number')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
+            $query = $this->db->select('Answer, Question_Number, DateTime')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
             $answers = $query->result();
             $note = $patients[$i]->Note;
             $id = $patients[$i]->idPatient;
@@ -298,6 +298,21 @@ class Caregiver_Home_model extends CI_Model {
 
 
             if ($patients[$i]->Language == 'dutch') { //dutch case
+                //get date of last filled in question
+                $lastq = array_slice($answers, 0, 1);
+                foreach ($answers as $row) {
+                    list($date, $time) = explode(" ", $row->DateTime);
+                    //echo $date;
+                    $originalDate = $date;
+                    $newDate = date("d-m-Y", strtotime($originalDate));
+                }
+                
+                if (empty($answers)) {
+                    $newDate = $this->lang->line('not_filled_in');
+                }
+
+
+
                 //calculate topics
                 $display = array();
                 $display2 = array();
@@ -385,21 +400,48 @@ class Caregiver_Home_model extends CI_Model {
                     }
                 }
 
-                
+
                 //calculate some extra data: room, gender...
-                if($patients[$i]->RoomNumber != NULL){$roomnumber = $patients[$i]->RoomNumber;}else{$roomnumber="";}
-                if($patients[$i]->Gender != NULL){$gender = $patients[$i]->Gender;}else{$gender="";}
-                if($patients[$i]->Birthday != NULL){$bday = $patients[$i]->Birthday;}else{$bday="";}
-                
-                
-                
-                array_push($extradata,array('Roomnumber' => $roomnumber,'Gender' => $gender, 'Bday' => $bday));
+                if ($patients[$i]->RoomNumber != NULL) {
+                    $roomnumber = $patients[$i]->RoomNumber;
+                } else {
+                    $roomnumber = "";
+                }
+                if ($patients[$i]->Gender != NULL) {
+                    $gender = $patients[$i]->Gender;
+                } else {
+                    $gender = "";
+                }
+                if ($patients[$i]->Birthday != NULL) {
+                    $bday = $patients[$i]->Birthday;
+                } else {
+                    $bday = "";
+                }
+
+
+
+                array_push($extradata, array('Roomnumber' => $roomnumber, 'Gender' => $gender, 'Bday' => $bday));
 
 
 
 
-                array_push($resultarray, array('Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display,/* 'JSONCODE' => $jsoncode,*/ 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
+                array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, /* 'JSONCODE' => $jsoncode, */ 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
             } else { //english case
+                //get date of last filled in question
+                $lastq = array_slice($answers, 0, 1);
+                foreach ($answers as $row) {
+                    list($date, $time) = explode(" ", $row->DateTime);
+                    //echo $date;
+                    $originalDate = $date;
+                    $newDate = date("d-m-Y", strtotime($originalDate));
+                }
+                
+                if (empty($answers)) {
+                    $newDate = $this->lang->line('not_filled_in');
+                }
+
+
+
                 //calculate score per topic
                 $display = array();
                 $display2 = array();
@@ -484,18 +526,29 @@ class Caregiver_Home_model extends CI_Model {
 //            if(count($answerarray == 0)){
 //                array_push($answerarray, " ");
 //            }
-                
                 //calculate some extra data: room, gender...
-                if($patients[$i]->RoomNumber != NULL){$roomnumber = $patients[$i]->RoomNumber;}else{$roomnumber="";}
-                if($patients[$i]->Gender != NULL){$gender = $patients[$i]->Gender;}else{$gender="";}
-                if($patients[$i]->Birthday != NULL){$bday = $patients[$i]->Birthday;}else{$bday="";}
-                
-                
-                
-                array_push($extradata,array('Roomnumber' => $roomnumber,'Gender' => $gender, 'Bday' => $bday));
-                
+                if ($patients[$i]->RoomNumber != NULL) {
+                    $roomnumber = $patients[$i]->RoomNumber;
+                } else {
+                    $roomnumber = "";
+                }
+                if ($patients[$i]->Gender != NULL) {
+                    $gender = $patients[$i]->Gender;
+                } else {
+                    $gender = "";
+                }
+                if ($patients[$i]->Birthday != NULL) {
+                    $bday = $patients[$i]->Birthday;
+                } else {
+                    $bday = "";
+                }
 
-                array_push($resultarray, array('Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
+
+
+                array_push($extradata, array('Roomnumber' => $roomnumber, 'Gender' => $gender, 'Bday' => $bday));
+
+
+                array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
             }
         }
         //echo json_encode($resultarray);

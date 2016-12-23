@@ -30,12 +30,15 @@ $lang['caregiver_menu_profile'] = 'Profile';
 $lang['edit'] = 'edit';
 $lang['caregiver_datatable_titles'] = array(
     array('Name' => 'Name '), 
-    array('Name' => 'Topic with lowest score'), 
+    array('Name' => 'Date of last filled in question'), 
     array('Name' => 'Average score'), 
     array('Name' => 'Note'));
 $lang['caregiver_urgent_patients'] = 'Urgent patients';
 $lang['messages_title'] = 'Messages';
 $lang['send_button'] = 'Send';
 $lang['input_text_placeholder'] = "Type your message here ...";
+
 $lang['confirm_action'] = "are you sure?";
-$lang['notify_deleted'] = "deleted";
+$lang['not_filled_in'] = "Not yet filled in."
+
+$lang['notify_deleted'] = "deleted";>>>>>>> .r354

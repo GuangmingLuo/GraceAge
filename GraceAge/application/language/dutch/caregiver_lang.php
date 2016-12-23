@@ -30,12 +30,15 @@ $lang['caregiver_menu_profile'] = 'Profiel';
 $lang['edit'] = 'pas aan';
 $lang['caregiver_datatable_titles'] = array(
     array('Name' => 'Naam'), 
-    array('Name' => 'Onderwerp met laagste score'), 
+    array('Name' => 'Datum van laatst ingevulde vraag'), 
     array('Name' => 'Gemiddelde score'), 
     array('Name' => 'Opmerking'));
 $lang['caregiver_urgent_patients'] = 'Dringende patiënten';
 $lang['messages_title'] = 'Berichten';
 $lang['send_button'] = 'Verstuur';
 $lang['input_text_placeholder'] = "Schrijf hier een bericht ...";
+
 $lang['confirm_action'] = "ben je zeker?";
-$lang['notify_deleted'] = "verwijderd";
+$lang['not_filled_in'] = "Nog niet ingevuld."
+
+$lang['notify_deleted'] = "verwijderd";>>>>>>> .r354
