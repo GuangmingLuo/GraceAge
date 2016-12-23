@@ -59,7 +59,7 @@
     margin-left: 15px;
     margin-right: 15px;
     margin-top:15px;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .answer_button {
@@ -143,19 +143,20 @@
 
 #rewards_bought_text{
    position:relative;
-   font-size:20px;
+   font-size:30px;
    margin-left:15px;
    width:100%;
 }
 
 #bought_at_text{
-    font-size:20px;
+    font-size:30px;
     position:absolute;
-    right:16%;
+    left:71.5%;
 }
 
 .bought_reward_text{
     position:relative;
+    margin-left: 20px;
 }
 .bought_reward_price{
     position:relative;

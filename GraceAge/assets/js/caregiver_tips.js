@@ -19,13 +19,13 @@ function register_topic(){
 
 
                 $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value='Nederlands'>Nederlands</div>"
-                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'> " +localizedText.edit+" </button></div>";
+                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a></div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
                 $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value ='English'>English</div>"
-                        + "<div class='col-sm-2'> <button class='btn btn-default fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'> "+localizedText.edit+" </button></div>";
+                        + "<div class='col-sm-2'> <a class='edit fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> "+localizedText.edit+" </a></div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
         });
@@ -71,7 +71,7 @@ function add_new_tip() {
       //$(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
       
       $formHTML = "<form id='editform' >" + "<input type='text' id='newtext' value='"+text_value+"'>" 
-              + "<div class='col-sm-1'><input class='btn'  type='button' onclick='updateTip(" + id+ ")' value='save'></div>" + "<div class='col-sm-1'><input class='btn'  type='button' onclick='deleteTip(" + id+ ")' value='delete'></div>"+ "</form>";
+              + "<input class='btn save'  type='button' onclick='updateTip(" + id+ ")' value='save'>" + "<input class='btn delete'  type='button' onclick='deleteTip(" + id+ ")' value='delete'>"+ "</form>";
       
       
        $element.after($formHTML);

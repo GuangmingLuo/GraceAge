@@ -1,25 +1,22 @@
-<link href="../../assets/css/Questionnaire.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/css/elderly_tips.css" rel="stylesheet" type="text/css"/>
 <div id='questionnairy_content' class="container">
 
     <main id="q_and_a">
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-10">
-                <div id="tipsTitle">
+    <div  class="col-xs-offset-2 col-xs-8">
+            <div id="tips_panel">
+                <span id="rewards_bought_text">{header}</span>
+                <ul id="frame" class="list-group">
+                    <li class="list-group-item"><i class="fa fa-lightbulb-o fa-3x"></i><span>  {tip_1} </span></li>
+                    <li class="list-group-item"><i class="fa fa-lightbulb-o fa-3x"></i><span>  {tip_2} </span></li>
+                    <li class="list-group-item"><i class="fa fa-lightbulb-o fa-3x"></i><span>  {tip_3} </span></li>
+                    <li class="list-group-item"><i class="fa fa-lightbulb-o fa-3x"></i><span>  {tip_4} </span></li>
 
-                    {header}
-                </div>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-10">
-                <div id="frame">
-                    <div title="{title}" class="panel panel-default tip_panel">{tip_1}</div>
-                    <div title="{title}" class="panel panel-default tip_panel">{tip_2}</div>
-                    <div title="{title}" class="panel panel-default tip_panel">{tip_3}</div>
-                    <div title="{title}" class="panel panel-default tip_panel">{tip_4}</div>
-                </div>
-            </div>
-        </div>
+    
+    
+   
     </main>
 
 </div>

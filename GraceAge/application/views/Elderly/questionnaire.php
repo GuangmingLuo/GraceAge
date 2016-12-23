@@ -2,13 +2,12 @@
 <div id='questionnairy_wrapper' class="container">
     <div id='questionnairy_content' class="container">
         <h1>{header1}</h1>
-        <div  class="row">
-            <div class="col-xs-offset-1 col-xs-5">
+        <div id="score_row" class="row">
+            <div class="col-xs-offset-3 col-xs-6">
             
-                
-                    <p class="fontfamily" id="score_text">{score_text}</p>
-                    <p class="fontfamily" id="score">{score} <i id="starIcon" class="fa fa-star fa-1x"></i></p>
-                   
+                <div id="score_panel" class="panel panel-default">
+                    <span class="fontfamily" id="score_text">{score_text} <span class="fontfamily" id="score"> {score} <i id="starIcon" class="fa fa-star fa-1x"></i></span></span>
+                </div> 
             </div>   
         </div>
         <div id='question_row' class="row">
