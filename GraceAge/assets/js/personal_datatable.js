@@ -8,44 +8,42 @@ google.charts.load('current', {packages: ['bar'], "callback": initialize});
 //google.charts.setOnLoadCallback(initialize());
 
 var id;
-var title;
 
 $(document).ready(function(){
     //Makes the datatable
     var table = $('#personal-datatable').DataTable({
         "pagingType": "simple",    //Shows "Previous" & "Next" buttons.
         "language": {
-            //"search": "Find patient: ",
-            "search": "",
-            "searchPlaceholder": "Find patient"
+            "search": "",   //No text before the search field.
+            "searchPlaceholder": "Find patient" //Placeholder to indicate what to type
         },
-        "dom": '<lf<t>ip>',
+        "dom": '<lf<t>ip>', //Puts search box underneath the "Showing elements".
         //Only search on the first column.
         "aoColumnDefs": [
             {"bSearchable": false, "aTargets": [1,2,3]}
         ]
     });
     id = 2;
-    $('#modChart').on('shown.bs.modal', initialize);
-    //initialize();
+    initialize();
+    //$('#modChart').on('shown.bs.modal', drawChart);
     });
+    
     
 function setID(new_id){
     id = new_id;
 }
 
 function setBarChartTitle(new_title, new_subtitle){
-    title = new_title;
-    document.getElementById("exampleModalLabel").innerHTML = title;
+    document.getElementById("exampleModalLabel").innerHTML = new_title;
     document.getElementById("modalSubtitle").innerHTML = new_subtitle;
 }
     
 function initialize(){
     //When clicked on a table row, this function is called, which opens the dialog screen and draws the chart.
-     $('#personal-datatable tbody tr').on('click', function(){
+    $('#personal-datatable tbody tr').on('click', function(){
      //$('.showchart').on('click', function(){
-         drawChart();
-     });
+        drawChart();
+    });
 }
     
 function drawChart(){
