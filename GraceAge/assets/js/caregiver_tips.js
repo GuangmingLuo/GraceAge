@@ -16,15 +16,13 @@ function register_topic(){
         $.each(tips, function (i, tip) {
             if (tip.hasOwnProperty('dutch') && tip.dutch !== null) {
 
-
-
-                $stringdutch = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value='Nederlands'>Nederlands</div>"
+                $stringdutch = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
                         + "<div class='col-sm-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a> </div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             if (tip.hasOwnProperty('english') && tip.english !== null) {
-                $stringenglish = "<div class='col-sm-8'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>" + "<div id='tip_language_"+tip.idtips+"' class='col-sm-2' value ='English'>English</div>"
+                $stringenglish = "<div class='col-sm-10'> <li class='fontfamily'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
                         + "<div class='col-sm-2'> <a class='edit fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> "+localizedText.edit+" </a><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'> <i class='fa fa-trash'></i> delete</a> </div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
