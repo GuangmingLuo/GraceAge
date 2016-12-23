@@ -15,9 +15,11 @@ $(document).ready(function(){
     var table = $('#personal-datatable').DataTable({
         "pagingType": "full",    //Shows "First", "Previous", "Next" and "Last" buttons.
         "language": {
-            "search": "Find patient: ",
-            "searchPlaceHolder": "Patient name"
+            //"search": "Find patient: ",
+            "search": "",
+            "searchPlaceholder": "Find patient"
         },
+        "dom": '<lf<t>ip>',
         //Only search on the first column.
         "aoColumnDefs": [
             {"bSearchable": false, "aTargets": [1,2,3]}
