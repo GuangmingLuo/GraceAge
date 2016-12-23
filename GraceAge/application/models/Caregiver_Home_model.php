@@ -22,7 +22,9 @@ class Caregiver_Home_model extends CI_Model {
         $this->lang->load('topics', $this->session->Language);
         $this->lang->load('caregiver', $this->session->Language);
     }
-
+    
+    
+    
     function get_table_header($headers_array) {
         $caregiver_table_headers = array(
             array('text' => $headers_array[0]["Name"], 'gridClass' => 'col-sm-3'),
@@ -89,7 +91,7 @@ class Caregiver_Home_model extends CI_Model {
         return json_encode($scores);
     }
 
-    function get_topics_with_lowest_scores($number) {
+    /*function get_topics_with_lowest_scores($number) {
         $this->get_answer_array();
         $topics = $this->get_topics();
         $n = count($topics);
@@ -109,13 +111,20 @@ class Caregiver_Home_model extends CI_Model {
             $topics[$i] = $top[$i]['Topic']; //echo $topics[$i];
         }
         return $topics;
-    }
+    }*/
 
-    function get_username_id() {
+    /*function get_username_id() {
         $namesid;
         $query = $this->db->select('Name, idPatient')->get('Patient');
         return $query->result();
-    }
+    }*/
+    
+    /////////////////////////////////////////////
+    //  Get all answers from all patients, 
+    //  itterate through all the patients, per patients through all answers and calculate avg score for that patient then
+    //  Result is array with all average scores per patient, then sort ascending and get 10 worst scoring patients
+    //
+    ////////////////////////////////////////////
 
     function calculate_avg() {
         $namesid;
@@ -177,6 +186,17 @@ class Caregiver_Home_model extends CI_Model {
         }
         return $urgent;
     }
+    
+    /////////////////////////////////////////////
+    //  Funtction to supply the charts in the personal tab (chart per person)
+    //  
+    //  First see if patient is english or dutch -> different topics and questions belinging to it
+    //  
+    //  Then itterate per topic through the questions, 
+    //  Array will be Topic -> score
+    //  
+    //
+    ////////////////////////////////////////////
 
     function topicscorejson($id) {
         $topic_array = $this->lang->line('topic_array');
@@ -192,7 +212,7 @@ class Caregiver_Home_model extends CI_Model {
             //calculate topics
             $display = array();
             $display2 = array();
-            $badanswers = array();
+            
             for ($j = 0; $j < count($topicsdutch); $j++) {       //itterate through the topics
                 $current = $topicsdutch[$j]->Topic;
 
@@ -219,9 +239,9 @@ class Caregiver_Home_model extends CI_Model {
                 $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                 array_push($display, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
                 $jsoncode = json_encode($display);
-                array_push($display2, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
+                
             }
-        } else {
+        } else { //english case
             //calculate score per topic
             $display = array();
             $display2 = array();
@@ -251,7 +271,7 @@ class Caregiver_Home_model extends CI_Model {
                 $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                 array_push($display, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
                 $jsoncode = json_encode($display);
-                array_push($display2, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
+                
             }
         }return $jsoncode;
     }
@@ -264,56 +284,36 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     function getJSONtable() {
-        $patients;
-        $answers;
-        $topics;
         $bar = "danger";
-        $questions;
-        $topicscore;
-        $persontopic = array();
-        $personavg;
         $resultarray = array();
-        $resutls = array();
         $newDate = $this->lang->line('not_filled_in');
         $topic_array = $this->lang->line('topic_array');
         $topicsenglish = $this->db->distinct()->select('Topic')->where('Language', 'english')->get('Question')->result();
         $topicsdutch = $this->db->distinct()->select('Topic')->where('Language', 'dutch')->get('Question')->result();
         $questionsenglish = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'english')->get('Question')->result();
         $questionsdutch = $this->db->select('Topic, QuestionNumber, Question')->where('Language', 'dutch')->get('Question')->result();
-
-
-
         $query = $this->db->select('idPatient, Name, Language, Note, RoomNumber, Gender, Birthday')->get('Patient');
         $patients = $query->result();
-        for ($i = 0; $i < count($patients); $i++) {
-            $username = $patients[$i]->Name;
+        for ($i = 0; $i < count($patients); $i++) {  //get all the date for one person
             $query = $this->db->select('Answer, Question_Number, DateTime')->where('Patient_idPatient', $patients[$i]->idPatient)->order_by('DateTime', 'DESC')->limit(52)->get('Patient_Answered_Question');
             $answers = $query->result();
             $note = $patients[$i]->Note;
             $id = $patients[$i]->idPatient;
-            if ($note == "(") {
-                $note = " ";
-            }
-
-
-            if ($patients[$i]->Language == 'dutch') { //dutch case
+            
+                if ($patients[$i]->Language == 'dutch') { //dutch case
                 //get date of last filled in question
                 $lastq = array_slice($answers, 0, 1);
                 foreach ($answers as $row) {
-                    list($date, $time) = explode(" ", $row->DateTime);
-                    //echo $date;
+                    list($date, $time) = explode(" ", $row->DateTime); // splits database version of date
                     $originalDate = $date;
                     $newDate = date("d-m-Y", strtotime($originalDate));
                 }
-                
                 if (empty($answers)) {
                     $newDate = $this->lang->line('not_filled_in');
                 }
 
-
-
                 //calculate topics
-                $display = array();
+                $display = array();     //to calculate avg scores per topic
                 $display2 = array();
                 $badanswers = array();
                 $extradata = array();
@@ -342,27 +342,20 @@ class Caregiver_Home_model extends CI_Model {
                     }
                     $nombre_format_francais = number_format($topicavg, 2, ',', ' ');
                     array_push($display, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
-                    //array_push($display, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
                     $jsoncode = json_encode($display);
                     array_push($display2, array('Topic' => $topic_array[$j], 'Score' => $nombre_format_francais));
-                    //array_push($display2, array('Topic' => $topicsdutch[$j]->Topic, 'Score' => $nombre_format_francais));
                 }
-
-
-
+                
                 //worst topic
                 $display2 = $display;
-
                 foreach ($display2 as $key1 => $row1) {
                     $topiccc[$key1] = $row1['Topic'];
                     $scoreee[$key1] = $row1['Score'];
                 }
-
-
                 array_multisort($scoreee, SORT_ASC, $topiccc, SORT_ASC, $display2);
                 $lowesttopic = array_slice($display2, 0, 1);
-                //}
-                //calculate avg
+                
+                //calculate avg 
                 $amount = 0;
                 $score = 0;
                 for ($m = 0; $m < count($answers); $m++) {
@@ -374,22 +367,11 @@ class Caregiver_Home_model extends CI_Model {
                 } else {
                     $personavg = $score * 25 / $amount;
                     $nombre_format_francais = number_format($personavg, 0, ',', ' ');
-                    if ($nombre_format_francais < 34) {
-                        $bar = "danger";
-                    }
-                    if ($nombre_format_francais < 51 && $nombre_format_francais > 33) {
-                        $bar = "warning";
-                    }
-                    if ($nombre_format_francais > 50) {
-                        $bar = "succes";
-                    }
                 }
 
 
                 //print out questions with worst answers
-
-
-                for ($a = 0; $a < count($answers); $a++) {
+                    for ($a = 0; $a < count($answers); $a++) {
                     if ($answers[$a]->Answer == 1) {
                         for ($b = 0; $b < count($questionsdutch); $b++) {
                             if ($questionsdutch[$b]->QuestionNumber == $answers[$a]->Question_Number) {
@@ -417,15 +399,10 @@ class Caregiver_Home_model extends CI_Model {
                     $bday = "";
                 }
 
-
-
                 array_push($extradata, array('Roomnumber' => $roomnumber, 'Gender' => $gender, 'Bday' => $bday));
-
-
-
-
                 array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, /* 'JSONCODE' => $jsoncode, */ 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
             } else { //english case
+            
                 //get date of last filled in question
                 $lastq = array_slice($answers, 0, 1);
                 foreach ($answers as $row) {
@@ -443,6 +420,7 @@ class Caregiver_Home_model extends CI_Model {
 
                 //calculate score per topic
                 $display = array();
+                $badanswers = array();
                 $display2 = array();
                 $extradata = array();
                 for ($j = 0; $j < count($topicsenglish); $j++) {       //itterate through the topics
@@ -500,15 +478,7 @@ class Caregiver_Home_model extends CI_Model {
                 } else {
                     $personavg = $score * 25 / $amount;
                     $nombre_format_francais = number_format($personavg, 0, ',', ' ');
-                    if ($nombre_format_francais < 34) {
-                        $bar = "danger";
-                    }
-                    if ($nombre_format_francais < 51 && $nombre_format_francais > 33) {
-                        $bar = "warning";
-                    }
-                    if ($nombre_format_francais > 50) {
-                        $bar = "succes";
-                    }
+                    
                 }
                 //get the answers where worst answers is given
                 $badanswers = array();
@@ -550,8 +520,7 @@ class Caregiver_Home_model extends CI_Model {
                 array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
             }
         }
-        //echo json_encode($resultarray);
-        //return json_encode($resultarray);
+        
         return $resultarray;
     }
 
