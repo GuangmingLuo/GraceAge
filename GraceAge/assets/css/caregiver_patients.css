@@ -7,6 +7,16 @@ body{
     font-family: "Open Sans";
 }
 
+/*search a patient*/
+#personal-datatable_filter label{
+    float: left;
+}
+
+.dataTables_length label{
+    margin-left: 6px;
+    display: none;
+}
+
 #pageTitle{  
     margin-top: 3%;
     padding: 0;
@@ -60,18 +70,29 @@ body{
     background-color: #009688;
 }
 
+/* edit: text no button */
 .editbutton{
     border: none;
     background-color: transparent;
-    color: #009688;
+    color: #AFB42B;
     text-transform: lowercase;
     text-decoration: underline;
     padding-left: 0px; padding-right: 0px;
 }
 
-.editform>input[type=button]{
-    /* updqte button */
+/*update button*/
+.editform input[type=button]{
+    margin: 2px;
+    height: 16px;
+    background-color: #CDDC39;
+    border: 1px solid #CDDC39;
+    border-radius: 4px;    
+    text-transform: lowercase;
+    padding-bottom: 6px;
+    font-family: "Open Sans";
+    color: #212121;
 }
+
 
 .col-sm-3>p{
     margin: 0px;
@@ -110,6 +131,8 @@ body{
     font-size: 11px;
     color: lightgray;
 }
+
+
 
 /* mobile version with navbar collapse*/
 @media only screen and (max-width: 766px){
