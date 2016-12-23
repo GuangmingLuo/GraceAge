@@ -75,9 +75,11 @@ class ElderlyController extends CI_Controller {
     function change_language() {
         $newlang = $this->input->post('language'); 
         $data['err_msg'] ="";
+        $data["changed_lang"] = false;
         if (isset($newlang)) {
             $this->session->set_userdata('Language', $newlang);
-            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);  
+            $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idPatient);
+            $data["changed_lang"] = true;
             $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');                          
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($data));

@@ -5,12 +5,17 @@
  */
 var $errorbox = $("#errorbox");
 var $message = "null";
+var $reload = false;
 
 function post_common() {
     $message = "";
     var select = document.getElementById("language");
     var lang = select.options[select.selectedIndex].value;
-    $.post("change_language", {language: lang});
+    $.post("change_language", {language: lang}, function(data){
+        if(data.changed_lang){
+            $reload = true;
+        }
+    });
     var old = $("#old").val();
     var newpass = $("#new").val();
     var conf = $("#conf").val();
@@ -28,8 +33,13 @@ function post_elderly(){
             if(data.changes_made){
                 $message += data.err_msg;
             }
+        if($reload){
+            location.reload();
+        }
+        else{
             $errorbox.html($message);
             $errorbox.removeClass('inactive');
+        }
     });
 }
 
@@ -40,11 +50,16 @@ function post_caregiver(){
     var mobile = $("#mobile").val();
     $.post("change_profile",{home_address:home,email: email,mobile:mobile},  function(data){
             //alert("pass_data = " + data.err_msg);
-            if(data.changes_made){
-                $message += data.err_msg;
-            }
+        if(data.changes_made){
+            $message += data.err_msg;
+        }
+        if($reload){
+            location.reload();
+        }
+        else{
             $errorbox.html($message);
             $errorbox.removeClass('inactive');
+        }
     });
 }
 

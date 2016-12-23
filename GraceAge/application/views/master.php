@@ -19,6 +19,20 @@
         ?>
 
         <?php include($page_content); ?>
+        <!-- SCAFFOLDING FOR FUTURE FIXES
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
+        {css_links}
+            <link href="{link}" rel="stylesheet" type="text/css"/>
+        {/css_links}
+        
+        {js_scripts}
+            <script src="{source}"type="text/javascript"></script>
+        {js_scripts} -->
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../../assets/js/bootstrap.min.js"></script>
         <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
