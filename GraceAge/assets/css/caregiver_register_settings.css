@@ -43,8 +43,7 @@ body{
 }
    
 /* input fields */
-input[type=password], input[type=text] {
-    text-transform: lowercase;
+input[type=password]{
     display: block;
     width: 40% !important;
     min-width: 160px;
