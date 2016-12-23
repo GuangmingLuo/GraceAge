@@ -13,7 +13,7 @@ var title;
 $(document).ready(function(){
     //Makes the datatable
     var table = $('#personal-datatable').DataTable({
-        "pagingType": "full",    //Shows "First", "Previous", "Next" and "Last" buttons.
+        "pagingType": "simple",    //Shows "Previous" & "Next" buttons.
         "language": {
             //"search": "Find patient: ",
             "search": "",
