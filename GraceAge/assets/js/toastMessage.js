@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
+/*
+ * display text in the toast/snackbar. if text in empty, the toast wil show whatever text was already in the html
+ */
 function showToast(text) {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar")
-    x.innerHTML=text;
+    if(text)x.innerHTML=text;
 
     // Add the "show" class to DIV
     x.className = "show";

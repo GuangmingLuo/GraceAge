@@ -40,3 +40,4 @@ $lang['input_text_placeholder'] = "Type your message here ...";
 $lang['confirm_action'] = "are you sure?";
 $lang['not_filled_in'] = "Not yet filled in.";
 $lang['notify_deleted'] = "deleted";
+$lang['bought_popup'] = 'Bought reward';

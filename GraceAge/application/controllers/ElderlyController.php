@@ -211,6 +211,7 @@ class ElderlyController extends CI_Controller {
         $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
         $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
         $data['page_content'] = 'Elderly/score.html';
+        $data['bought_popup'] =  $this->lang->line('bought_popup');
         return $data;
         
     }

@@ -1,4 +1,6 @@
 <link href="../../assets/css/Elderly_Score.css" rel="stylesheet" type="text/css"/>
+<script src="../../assets/js/toastMessage.js" type="text/javascript"></script>
+<link href="../../assets/css/snackbar.css" rel="stylesheet" type="text/css"/>
 <div class="container">
 
     <div id="row1" class="row">
@@ -37,7 +39,7 @@
                     {rewards}
                     <li class="list-group-item button_box">
 
-                        <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward_url}"><span class="fontfamily reward_button_text">{Reward}</span> <span class="fontfamily price">{Price} <i class="fa fa-star fa-1x button_star"></i></span> </a>
+                        <a style="white-space: normal" class ="answer_button btn-block" href="buyReward?reward={Reward_url}" onclick="showToast()"><span class="fontfamily reward_button_text">{Reward}</span> <span class="fontfamily price">{Price} <i class="fa fa-star fa-1x button_star"></i></span> </a>
                     </li>
                     {/rewards}
                 </ul>
@@ -61,3 +63,4 @@
         </div>
     </div>
 </div>
+<div id="snackbar">{bought_popup}</div>

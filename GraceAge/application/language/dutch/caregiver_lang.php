@@ -40,3 +40,4 @@ $lang['input_text_placeholder'] = "Schrijf hier een bericht ...";
 $lang['confirm_action'] = "ben je zeker?";
 $lang['not_filled_in'] = "Nog niet ingevuld.";
 $lang['notify_deleted'] = "verwijderd";
+$lang['bought_popup'] = 'Beloning Gekocht';

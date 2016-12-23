@@ -24,7 +24,7 @@ date_default_timezone_set('Europe/Amsterdam');
   | a PHP script and you can easily do that on your own.
   |
  */
-$config['base_url'] = 'http://localhost/GraceAge/index.php';
+$config['base_url'] = 'http://localhost/GraceAge/index.php'; // https://a16_webapps_2.studev.groept.be
 $config['language'] = 'english';
 /*
   |--------------------------------------------------------------------------
