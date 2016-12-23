@@ -186,31 +186,36 @@ class CaregiverController extends CI_Controller {
 
     function change_language() {
         $newlang = $this->input->post('language');
-        $data['err_msg'] ="";
-        if (isset($newlang)) {
+        $data["changed_lang"] = false;
+        if ($newlang !== $this->session->Language) {
             $this->session->set_userdata('Language', $newlang);
             $this->Account_model->changeLanguage($this->session->userType,$newlang,$this->session->idCaregiver);
+            $data['changed_lang']= true;
             $data['err_msg'] = $this->lang->line('language') . $this->lang->line('saved_changes');
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($data));
     }
     
     function change_profile() {
+        $this->lang->load('login', $this->session->Language);
         $home_address = $this->input->post('home_address'); 
         $email = $this->input->post('email');
         $mobile = $this->input->post('mobile');
-        $mydata['err_msg'] ="";
+        $mydata['changes_made'] = false;
         if ($home_address != null) {
             $this->Account_model->changeHomeAddress($this->session->userType,$home_address, $this->session->idCaregiver);
-            $mydata['err_msg'] = $mydata['err_msg'].$this->lang->line('room_number') .$this->lang->line('saved_changes');
+            $mydata['changes_made'] = true;
         }
         if ($email != null) {
             $this->Account_model->changeEmail($this->session->userType,$email, $this->session->idCaregiver);
-            $mydata['err_msg'] = $mydata['err_msg']." ".$this->lang->line('phone_number').$this->lang->line('saved_changes');
+            $mydata['changes_made'] = true;
         }
         if ($mobile != null) {
             $this->Account_model->changeMobile($this->session->userType,$mobile, $this->session->idCaregiver);
-            $mydata['err_msg'] = $mydata['err_msg']." ".$this->lang->line('phone_number').$this->lang->line('saved_changes');
+            $mydata['changes_made'] = true;
+        }
+        if($mydata['changes_made']){
+            $mydata['err_msg'] = $this->lang->line('changes_were_saved');
         }
         $this->output->set_content_type("application/json")->append_output(json_encode($mydata));
     }
