@@ -30,11 +30,11 @@
                                         {table}
                                         <tr class="clickable row">
                                             <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
-                                                onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Name}</td>
+                                                onclick="setID({id}); setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Name}</td>
                                             <td class="col-sm-2" data-toggle="modal" data-target="#modChart"
-                                                onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Topic}</td>
+                                                onclick="setID({id}); setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">{Topic}</td>
                                             <td class="col-sm-1" data-toggle="modal" data-target="#modChart"
-                                                onclick="setID({id}); setBarChartTitle('{Name}: {Extra}<?php echo $this->lang->line('gender'); ?> {Gender}, <?php echo $this->lang->line('room_number'); ?>: {Roomnumber}, <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">
+                                                onclick="setID({id}); setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra}');">
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-{Bar} " 
                                                          role="progressbar" aria-valuenow="10" aria-valuemin="0" 
@@ -68,6 +68,7 @@
                                             <span aria-hidden="true">&times;</span> <span class="sr-only"></span>
                                         </button>
                                         <h4 class="modal-title" id="exampleModalLabel">Bar Chart</h4>
+                                        <h6 id="modalSubtitle"></h6>
                                     </div>
                                     <div class="modal-body">
                                         <div id="canvas" style="width: 800px; height: 450px;"></div>

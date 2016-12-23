@@ -34,9 +34,10 @@ function setID(new_id){
     id = new_id;
 }
 
-function setBarChartTitle(new_title){
+function setBarChartTitle(new_title, new_subtitle){
     title = new_title;
     document.getElementById("exampleModalLabel").innerHTML = title;
+    document.getElementById("modalSubtitle").innerHTML = new_subtitle;
 }
     
 function initialize(){
