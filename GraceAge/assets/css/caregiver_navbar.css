@@ -87,6 +87,7 @@ li.active{
     color: #212121;
     text-decoration: none !important;
     height: 50px;
+    cursor: pointer;
 }
 
 /* active tab in dropdown: settings */

@@ -28,7 +28,7 @@
                                     </thead>
                                     <tbody>
                                         {table}
-                                        <tr class="clickable row">
+                                        <tr class="clickable row" title="Click to show more information about the patient">
                                             <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
                                                 onclick="setID({id}); 
                                                     setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra} </br>');
