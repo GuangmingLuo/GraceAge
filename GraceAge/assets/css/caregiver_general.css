@@ -135,6 +135,7 @@ body{
     padding-left: 5px !important; padding-right: 5px ! important; 
     float: right;
     vertical-align: middle;
+    height: 34px;
 }
 
 input[type=text] {
@@ -147,9 +148,8 @@ input[type=text] {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 5px;
-    top: 25%;
-    vertical-align: middle;
+    height: 34px;
+    margin-bottom: 10px;
 }
 
 /* urgent patients */
