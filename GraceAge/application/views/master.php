@@ -9,20 +9,9 @@
         <link rel="stylesheet" href="../../assets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
         <link rel="stylesheet" href="../../assets/font-awesome-4.7.0/css/font-awesome.min.css">
         <link href="../../assets/css/w3.css" rel="stylesheet" type="text/css"/>
-        
-        <!-- SCAFFOLDING FOR FUTURE FIXES -->
-        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
         {css_links}
             <link href={source} rel="stylesheet" type="text/css"/>
         {/css_links}
-        
-        {scripts}
-            <script src={source} type="text/javascript"></script>
-        {/scripts}
         <title>{page_title}</title>
     </head>
     <body>
@@ -33,5 +22,13 @@
         ?>
 
         <?php include($page_content); ?>
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        {scripts}
+            <script src={source} type="text/javascript"></script>
+        {/scripts}
     </body>
 </html>

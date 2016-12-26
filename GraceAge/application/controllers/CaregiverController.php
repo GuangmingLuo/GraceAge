@@ -347,6 +347,8 @@ class CaregiverController extends CI_Controller {
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/caregiver_messages.js");
+        $scripts[] = array('source' => "https://www.gstatic.com/charts/loader.js");
+        $scripts[] = array('source' => "../../assets/js/chart.js");
         
         $links[] = array('source' => "../../assets/css/caregiver_general.css");
         $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
@@ -370,10 +372,12 @@ class CaregiverController extends CI_Controller {
         $data['page_content'] = 'Caregiver/personal.html';
         $data['edit'] = $this->lang->line('edit');
         
+        $scripts[] = array('source' => "https://www.gstatic.com/charts/loader.js");
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
-        $scripts[] = array('source' => "../../assets/js/personal_datatable.js");
         $scripts[] = array('source' => "../../assets/js/carefiver-personal-notes.js");
         $scripts[] = array('source' => "https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js");
+        $scripts[] = array('source' => "../../assets/js/personal_datatable.js");
+        //$scripts[] = array('source' => "../../assets/js/chart.js");
         
         $links[] = array('source' => "https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css");
         $links[] = array('source' => "https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css");
