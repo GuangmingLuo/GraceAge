@@ -47,7 +47,6 @@ body{
     border-bottom: 0px;
     border-top-left-radius: 4px; border-top-right-radius: 4px;
     cursor: default;
-
 }
 
 /* styling tabs in rewards page*/
@@ -137,7 +136,7 @@ body{
 }
 
 /* dropdown */
-select {
+select{
     text-transform: capitalize;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -163,7 +162,6 @@ select {
     border-radius: 4px;
     font-family: "Open Sans";
 }
-
 
 #new_reward, #newtext, #new_tip{
     width: 98%;
@@ -215,10 +213,14 @@ select {
     margin-bottom: 50px;
 }
 
-#rewards_list div.row{
+/* line under each row */
+#rewards_list div.row,
+#tips_list div.row{
     border-bottom: 1px solid;
     border-color: #F0F4C3;
     margin-top: 9px;
+    margin-left: 9px;
+    margin-right: 9px;
 }
 
 .reward_price{
