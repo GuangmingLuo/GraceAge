@@ -84,6 +84,7 @@ tbody{
     text-transform: lowercase;
     padding: 0px;
     cursor: pointer !important;
+    padding-left: 10px;
 }
 
 /*update button*/
