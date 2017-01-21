@@ -49,22 +49,22 @@
                                             <td class="col-sm-6">
                                                 <p id="text{id}">{Note} 
 
-                                    <nobr>
-                                        <a class="editbutton" id="button{id}" onclick="editNote({id})">
-                                            <i class="fa fa-pencil" > </i>
-                                            <?php echo $this->lang->line('edit'); ?>
-                                        </a>
-                                    </nobr>
-                                    </p>
+                                                    <nobr> <!-- icon and text together -->
+                                                        <a class="editbutton" id="button{id}" onclick="editNote({id})">
+                                                        <i class="fa fa-pencil" > </i>
+                                                            <?php echo $this->lang->line('edit'); ?>
+                                                        </a>
+                                                    </nobr>
+                                                </p>
 
-                                    <form class='editform' id="form{id}" hidden >
-                                        <input type='text' id="{id}s" value='{Note}' size="40">
-                                        <input type='button' onclick='update_note({id})' value='update'>
-                                        <div id="{id}sss"></div>
-                                    </form>
-                                    </td>
-                                    </tr>
-                                    {/table}
+                                                <form class='editform' id="form{id}" hidden >
+                                                    <input type='text' id="{id}s" value='{Note}' size="40">
+                                                    <input type='button' onclick='update_note({id})' value='update'>
+                                                    <div id="{id}sss"></div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {/table}
                                     </tbody>
                                 </table>
                             </div>

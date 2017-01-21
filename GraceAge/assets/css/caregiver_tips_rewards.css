@@ -7,10 +7,15 @@ body{
     font-family: "Open Sans";
 }
 
-.col-sm-8,
-.col-sm-12{
-    margin-left:0px;
-    padding-left:0px;
+.col-sm-12,
+.col-xs-12,
+.col-xs-9,
+.col-xs-8,
+.col-xs-3,
+.col-xs-2, 
+.col-xs-1{
+    padding: 0px;
+    margin: 0px;
 }
 
 #pageTitle{  
@@ -104,6 +109,7 @@ body{
     padding: 0px;
 }
 
+/*
 .btn.save,
 .btn.save:hover,
 .btn.save:active,
@@ -125,14 +131,58 @@ body{
     font-family: "Open Sans";
     color: #212121;
 }
+*/
 
-.edit.fontfamily{
-    margin-right:10px;
+
+/* styling button: same everywhere*/
+.btn,
+.btn:hover,
+.btn:active,
+.btn:target {
+    height: 34px;
+    min-width: 70px;
+    background-color: #CDDC39;
+    border: 1px solid #CDDC39;
+    border-radius: 4px;    
+    text-transform: uppercase;
+    font-weight: bold; 
+    padding: 6px 12px;
+    font-family: "Open Sans";
+    color: #212121;
 }
 
-.col-xs-8, .col-xs-2, .col-xs-1, .col-xs-9{
-    margin: 0px;
-    padding: 0px;
+#add_tip_button,
+#add_reward_button{
+    margin-left: 6px;
+    margin-right: 6px;
+    float: right;
+}
+
+.delete{
+    float: right;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+/* when delete and edit can't be on the same line*/
+@media only screen and (max-width: 811px){
+    .edit{
+        float: right;
+        margin-right: 0px !important;
+    }
+}
+
+/* when delete and edit are in the same line under the text */
+@media only screen and (max-width: 767px){
+    .delete{
+        float: none;
+    }
+    
+    .edit{
+        float: none;
+    }
 }
 
 /* dropdown */
@@ -140,12 +190,20 @@ select{
     text-transform: capitalize;
     border: 1px solid #ccc;
     border-radius: 3px;
-    width: 35% !important;
-    min-width: 130px !important;
+    min-width: 136px !important;
     height: 34px;
     margin-bottom: 5px;
     padding-left: 5%; padding-right: 3%;
     cursor: pointer;
+}
+
+#select_language {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+#select_topic {
+    width: 25%;
 }
 
 /* input fields */
@@ -161,10 +219,12 @@ select{
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: "Open Sans";
+    margin-left: 6px;
+    margin-right: 16px !important;
 }
 
 #new_reward, #newtext, #new_tip{
-    width: 98%;
+    width: 100%;
     min-width: 160px;
 }
 #newtext{
@@ -173,32 +233,24 @@ select{
 }
 
 #price{
-    width: 93%;
+    width: 100%;
 }
 
-/* styling button: same everywhere*/
-.btn,
-.btn:hover,
-.btn:active,
-.btn:target {
-    margin: 0px;
-    width: 100%;
-    height: 34px;
-    min-width: 70px;
-    background-color: #CDDC39;
-    border: 1px solid #CDDC39;
-    border-radius: 4px;    text-transform: uppercase;
-    font-weight: bold; 
-    padding: 6px 12px;
-    font-family: "Open Sans";
-    color: #212121;
+/*check boxes */
+.available{
+   float: right; 
+   margin-right: 23px !important;
 }
 
 #tips_list, #rewards_list{
     list-style-type: none !important;
     padding-left: 12px;
-    margin-top: 2%; margin-bottom: 2%;
+    margin-top: 10px; margin-bottom: 10px;
     font-family: "Open Sans";
+}
+
+.tipsstring{
+    margin-right: 6px;
 }
 
 #tips_list{
@@ -224,17 +276,12 @@ select{
 }
 
 .reward_price{
-    padding-left: 12px;
+    padding-left: 18px;
     cursor: default;
 }
 
 .reward_name{
     cursor: default;
-}
-
-input[type=checkbox]{
-    float: right !important;
-    margin-right: 45%;
 }
 
 .edit, .delete{
