@@ -18,6 +18,10 @@ body{
     margin: 0px;
 }
 
+.col-sm-10{
+    padding-right: 15px !important;
+}
+
 #pageTitle{  
     margin-top: 3%;
     overflow: hidden;
@@ -109,31 +113,6 @@ body{
     padding: 0px;
 }
 
-/*
-.btn.save,
-.btn.save:hover,
-.btn.save:active,
-.btn.save:target,
-.btn.delete,
-.btn.delete:hover,
-.btn.delete:active,
-.btn.delete:target {
-    width:25%;
-    margin-right:20px;
-    margin-top:5px;
-    height: 34px;
-    min-width: 70px;
-    background-color: #CDDC39;
-    border: 1px solid #CDDC39;
-    border-radius: 4px;    text-transform: uppercase;
-    font-weight: bold; 
-    padding: 6px 12px;
-    font-family: "Open Sans";
-    color: #212121;
-}
-*/
-
-
 /* styling button: same everywhere*/
 .btn,
 .btn:hover,
@@ -149,6 +128,17 @@ body{
     padding: 6px 12px;
     font-family: "Open Sans";
     color: #212121;
+}
+
+.btn.save,
+.btn.save:hover,
+.btn.save:active,
+.btn.save:target{
+    margin-top: 8px;
+    margin-right: -2px;
+    height: 34px;
+    min-width: 70px;
+    float: right;
 }
 
 #add_tip_button,
@@ -167,7 +157,7 @@ body{
 }
 
 /* when delete and edit can't be on the same line*/
-@media only screen and (max-width: 811px){
+@media only screen and (max-width: 831px){
     .edit{
         float: right;
         margin-right: 0px !important;
@@ -219,8 +209,6 @@ select{
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: "Open Sans";
-    margin-left: 6px;
-    margin-right: 16px !important;
 }
 
 #new_reward, #newtext, #new_tip{
@@ -230,6 +218,8 @@ select{
 #newtext{
     margin-top:1vh;
     margin-bottom:0.5vh;
+    margin-left: 6px;
+    width: 100%;
 }
 
 #price{
@@ -251,6 +241,7 @@ select{
 
 .tipsstring{
     margin-right: 6px;
+    margin-left: 18px;
 }
 
 #tips_list{

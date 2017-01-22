@@ -18,21 +18,26 @@ function register_topic(){
 
                 $stringdutch = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
                         + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
-                        + "</div>";
+                        + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
 
                 $tips_list.append($stringdutch); // make new <li> element with id = idtips 
             }
             
             if (tip.hasOwnProperty('english') && tip.english !== null) {
                 $stringenglish = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
-                        + "<div class='col-xs-2'> <a class='edit fontfamily' id='button'" + tip.idtips + " onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> "+localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'> <i class='fa fa-trash'></i> delete</a></nobr></div>"
-                        + "</div>";
+                        + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
+                        + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
                 $tips_list.append($stringenglish); //old version : <li id='" + tip.idtips +"' onClick='tipClick(this.id)'>"+ tip.english +"</li>
             }
+            
+            $(document.getElementById("save"+tip.idtips)).hide();  //hide the save button belonging to id
+
         });
         
         
     });
+    
+    
 }
 
 function add_new_tip() {
@@ -60,8 +65,15 @@ function add_new_tip() {
       
       $("li").show(1000); // show the lines again
       $("[id^='button']").show(); //show all buttons again
+      $("[id^='delete']").show(); //show all buttons again
+      $("[id^='save']").hide(); //hide save button again
+
       
       $(document.getElementById("button"+id)).hide();  //hide the button belonging to id
+      $(document.getElementById("delete"+id)).hide();  //hide the button belonging to id
+      $(document.getElementById("save"+id)).show();  //show the save button belonging to id
+
+
       $element = $(document.getElementById(id));
       $element.hide();
       
@@ -71,8 +83,7 @@ function add_new_tip() {
       //$(document.getElementById('editform')).append("<input type='button' onclick='updateTip(" + id+ ")' value='update'>"); // button run updateTip(id) on klick
       //$(document.getElementById('editform')).append("<input type='button' onclick='deleteTip(" + id+ ")' value='delete'>");
       
-      $formHTML = "<form id='editform' >" + "<input type='text' id='newtext' value='"+text_value+"'>" 
-              + "<input class='btn save'  type='button' onclick='updateTip(" + id+ ")' value='save'>"+ "</form>";
+      $formHTML = "<form id='editform' >" + "<div class='col-sm-12'>" + "<input type='text' id='newtext' value='"+text_value+"'>" + "</div>" + "</form>";
       
       
        $element.after($formHTML);
@@ -88,14 +99,15 @@ function updateTip(id){
     var language = $("#tip_language_" + id).text();
     var lang = "dutch";
     if(language === "English"){
-        alert("inside if!");
+        //alert("inside if!");
         lang = "english";
     }
-    alert(lang);
+    
+    //alert(lang);
     if(!new_tip) alert(localizedText.write_a_tip);
     else{
         $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id, language:lang});
-        alert("okay");
+        //alert("okay");
         register_topic(); //refresh the tips
     }
 };
