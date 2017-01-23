@@ -119,7 +119,7 @@ ul.dropdown li a.active{
 }
 
 /* mobile version */
-@media only screen and (max-width: 766px){
+@media only screen and (max-width: 767px){
     ul.navbar-nav li a{
         text-align: left;
         margin-left: 10px;
@@ -143,6 +143,13 @@ ul.dropdown li a.active{
     .dropdown{
         display: none;
     }
+    
+    /* only the important functions/tabs */
+    #newuserTab, #tipsTab, #settingsMobile{ /*tips, new user & settings */
+        display: none;
+    }
+    
+    
 }
 
 

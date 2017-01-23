@@ -198,14 +198,34 @@ table p{
 }
 
 /* mobile version with navbar collapse*/
-@media only screen and (max-width: 766px){
+@media only screen and (max-width: 767px){
 
-    #pageTitle{
+    #leftcontent{
         margin-top: 0px;
     }
 
     html{
-        overflow: auto;
+        overflow: auto; /* scroll is possible */
+    }
+    
+    /* show only the necessary functions */
+      
+    #rightcontent {
+        height: 50vh;
+        margin-bottom: 10px;
+    }
+    
+    #rightcontent_bottom{ /* messages box */
+        display: none;
+    }
+    
+    #scrollbox {    /* scroll in patients box */
+        overflow-style: auto;
+        overflow-y: hidden;
+    }
+    
+    .row{
+        overflow-x: hidden;
     }
 }
 

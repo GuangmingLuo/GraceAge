@@ -24,7 +24,7 @@ class Caregiver_Menu_model extends CI_Model{
         $this->caregiver_menu_items = array(
             array('showID' => "",'name' => $this->lang->line('caregiver_menu_general'), 'title' => 'Algemene informatie', 'link' => 'index', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_general')),
             array('showID' => "",'name' => $this->lang->line('caregiver_menu_personal'), 'title' => 'Persoonlijk', 'link' => 'personal', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_personal')),
-            array('showID' => "",'name' => $this->lang->line('caregiver_menu_tips'), 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_tips')),
+            array('showID' => "id = 'tipsTab'",'name' => $this->lang->line('caregiver_menu_tips'), 'title' => 'Bekijk de tips', 'link' => 'tips', 'className' => 'inactive', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('caregiver_menu_tips')),
             array('showID' => "",'name' => $this->lang->line('caregiver_menu_reward'), 'title' => 'Bekijk de reward', 'link' => 'rewards', 'className' => 'inactive', 'gridClass' => 'col-lg-2','text' => $this->lang->line('caregiver_menu_reward')),
             array('showID' => "id = 'settingsMobile'", 'name' => $this->lang->line('caregiver_menu_profile'), 'title' => 'Afmelden', 'link' => 'profile', 'className' => 'active', 'gridClass' => 'col-lg-2', 'text' => $this->lang->line('settings')),
         );        
@@ -53,6 +53,7 @@ class Caregiver_Menu_model extends CI_Model{
     function get_menuitems($menutitle='Algemeen') {
         if($this->session->isAdmin){
             $this->caregiver_menu_items[] = array(
+                'showID' => "id = 'newuserTab'",
                 'name' => $this->lang->line('caregiver_menu_register'), 
                 'title' => 'Register', 
                 'link' => 'register', 
