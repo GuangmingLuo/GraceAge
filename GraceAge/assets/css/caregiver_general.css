@@ -222,6 +222,11 @@ table p{
     #scrollbox {    /* scroll in patients box */
         overflow-style: auto;
         overflow-y: hidden;
+        height: 100%;
+    }
+    
+    .smallbox{
+        margin-bottom: 3px;
     }
     
     .row{
