@@ -62,6 +62,10 @@ body{
     cursor: default;
 }
 
+#mobileversion{
+    display: none;
+}
+
 /* styling tabs in rewards page*/
 .tabs{  
     margin: 0;
@@ -333,11 +337,42 @@ hr {
 }
 
 /* mobile version with navbar collapse*/
-@media only screen and (max-width: 766px){
+@media only screen and (max-width: 767px){
 
+    html{
+        overflow: auto; /* scroll is possible */
+    }
+    
     #pageTitle{
         margin-top: 0px;
     }
+    
+    #mobileversion{
+        display: block;
+    }
+    
+    .tabbox{
+        display: none;
+    }
+    
+    #mobileversion>.row{
+        margin: 0;
+    }
+    
+    .col-sm-10{
+        padding-right: 0px !important;
+    }
+    
+    .frame{
+        padding-left: 12px;
+        padding-right: 12px;
+        height: 84vh;
+    }
+    
+    .available{
+        float: right; 
+        margin-right: 9px !important;
+    }  
 }
 
 

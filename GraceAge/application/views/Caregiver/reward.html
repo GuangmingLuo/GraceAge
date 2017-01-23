@@ -2,6 +2,7 @@
 
     <div class ="row">
         <div class="col-sm-offset-1 col-sm-10">
+            <!-- begin desktop / tablet version -->
             <div class="tabbox">
                 <div id="tabsheader">
                     <ul class="tabs">
@@ -33,26 +34,26 @@
                                 <div class="col-xs-2">Waarde </div>
                                 <div class="col-xs-2 alignright">Beschikbaar</div>
                             </div>
-                            
+
                             <div class ="row">
 
-                                    <ul id="rewards_list">
-                                        {allrewards}
-                                        <li>
-                                            <form action="editReward" method="post">
-                                                <div class ="row">
-                                                    <div class="col-xs-8 reward_name">{Reward}</div>
-                                                    <div class="col-xs-2 reward_price">{Price}</div>
-                                                    <div class="col-xs-2">
-                                                        <input onchange="this.form.submit()" type="checkbox" name="available" class="available" {Available} />
-                                                    </div>
-                                                    <input type='hidden' class='Reward' name='Reward' value='{Reward}'/>
-                                                    </br>
+                                <ul id="rewards_list">
+                                    {allrewards}
+                                    <li>
+                                        <form action="editReward" method="post">
+                                            <div class ="row">
+                                                <div class="col-xs-8 reward_name">{Reward}</div>
+                                                <div class="col-xs-2 reward_price">{Price}</div>
+                                                <div class="col-xs-2">
+                                                    <input onchange="this.form.submit()" type="checkbox" name="available" class="available" {Available} />
                                                 </div>
-                                            </form>
-                                        </li>
-                                        {/allrewards}
-                                    </ul>
+                                                <input type='hidden' class='Reward' name='Reward' value='{Reward}'/>
+                                                </br>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    {/allrewards}
+                                </ul>
                             </div>
 
                         </div>
@@ -86,12 +87,56 @@
                                     </div>
                                 </div>
                             </div>  
-
                         </div>
+
                     </div>
 
                 </div>
             </div>
+            <!-- end desktop/tablet version -->
+
+            <!-- begin mobile version -->
+            <div id="mobileversion">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="pageTitle">
+                            REWARDS
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="frame">
+
+                            <!-- titles -->
+                            <div class="row titles">
+                                <div class="col-xs-5">Name</div>
+                                <div class="col-xs-5">Reward </div>
+                                <div class="col-xs-2"></div>
+                            </div>
+                            <!-- list -->
+                            <div id="bought_rewards_list">
+                                <div class="row">
+                                    <div class="col-xs-5">Axel Rose</div>
+                                    <div class="col-xs-5">headstart in the bingo</div>
+                                    <div class="col-xs-2">
+                                        <input type="checkbox" class="available"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5">Baron Richard</div>
+                                    <div class="col-xs-5">Lekker dessert</div>
+                                    <div class="col-xs-2">
+                                        <input id= "boughtrewards" type="checkbox" class="available"/>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end mobile version -->
+
         </div>
     </div>
 </div>
