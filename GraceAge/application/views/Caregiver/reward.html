@@ -15,22 +15,26 @@
                     <div id="rewardsListTabContent" class="tab-pane fade">
                         <div id="scrollbox">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <form name="rewardForm" id="rewardForm" action="rewardPost" method="post">
-                                        <div class="col-sm-6"><input type="text" id="new_reward" name="new_reward" placeholder="{write_new_reward}"></div>
-                                        <div class="col-sm-2"><select name="language">
-                                                <option id="language" value="dutch">Nederlands</option>
-                                                <option id="language" value="english">English</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-2"><input type="text" id="price" name="price" placeholder="{price}"></div>
-                                        <div class="col-sm-2"><input type="submit" id="add_reward_button" class="btn btn-default fontfamily"  value="{add_new_reward}"></div>
-                                    </form>
-                                </div>
+                                <form name="rewardForm" id="rewardForm" action="rewardPost" method="post">
+                                    <div class="col-sm-6"><input type="text" id="new_reward" name="new_reward" placeholder="{write_new_reward}"></div>
+                                    <div class="col-sm-2"><select name="language">
+                                            <option id="language" value="dutch">Nederlands</option>
+                                            <option id="language" value="english">English</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2"><input type="text" id="price" name="price" placeholder="{price}"></div>
+                                    <div class="col-sm-2"><input type="submit" id="add_reward_button" class="btn btn-default fontfamily"  value="{add_new_reward}"></div>
+                                </form>
                             </div>
 
+
+                            <div class="row titles">
+                                <div class="col-xs-8">Reward</div>
+                                <div class="col-xs-2">Waarde </div>
+                                <div class="col-xs-2 alignright">Beschikbaar</div>
+                            </div>
+                            
                             <div class ="row">
-                                <div class="col-xs-12"> 
 
                                     <ul id="rewards_list">
                                         {allrewards}
@@ -49,7 +53,6 @@
                                         </li>
                                         {/allrewards}
                                     </ul>
-                                </div>
                             </div>
 
                         </div>
@@ -57,17 +60,36 @@
 
                     <div id="boughtRewardsTabContent" class="tabContent tab-pane fade in active">
                         <div id="scrollbox">
-                            <div class="row">
-                                <div class="col-sm-12">
-
-                                    CONTENT
-
-                                </div>
+                            <!-- titles -->
+                            <div class="row titles">
+                                <div class="col-xs-4">Name</div>
+                                <div class="col-xs-4">Reward </div>
+                                <div class="col-xs-2">Date</div>
+                                <div class="col-xs-2 alignright">Received</div>
                             </div>
+                            <!-- list -->
+                            <div id="bought_rewards_list">
+                                <div class="row">
+                                    <div class="col-xs-4">Axel Rose</div>
+                                    <div class="col-xs-4">headstart in the bingo</div>
+                                    <div class="col-xs-2">23-12-2016</div>
+                                    <div class="col-xs-2">
+                                        <input type="checkbox" class="available"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">Baron Richard</div>
+                                    <div class="col-xs-4">Lekker dessert</div>
+                                    <div class="col-xs-2">07-01-2017</div>
+                                    <div class="col-xs-2">
+                                        <input id= "boughtrewards" type="checkbox" class="available"/>
+                                    </div>
+                                </div>
+                            </div>  
+
                         </div>
-
-
                     </div>
+
                 </div>
             </div>
         </div>
