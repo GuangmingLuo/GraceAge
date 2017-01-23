@@ -3,6 +3,10 @@ html {
     font-family: "Open Sans";
 }
 
+#mobileversion{
+    display: none;
+}
+
 body{
     font-family: "Open Sans";
 }
@@ -142,11 +146,47 @@ tbody{
 
 
 /* mobile version with navbar collapse*/
-@media only screen and (max-width: 766px){
+@media only screen and (max-width: 767px){
 
     #pageTitle{
         margin-top: 0px;
     }
+    
+    html{
+        overflow: auto; /* scroll is possible */
+    }
+    
+    #mobileversion{
+        display: block;
+    }
+    
+    #scrollbox{
+        display: none;
+    }
+    
+    #mobileversion>.row{
+        margin: 0;
+    }
+    
+    .table-responsive{
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        font-size: 11px;
+    }
+    
+    /* column sizes in table */
+    
+    td.col-sm-3, td.col-sm-4,
+    th.col-sm-3, th.col-sm-4{
+        padding-left: 0px !important;
+    }
+    
+    td.col-sm-5, td.col-sm-4,
+    th.col-sm-5, th.col-sm-4{
+        padding-right: 0px !important;
+    }
+    
 }
 
 /* pop up window */

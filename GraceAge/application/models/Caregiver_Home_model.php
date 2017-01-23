@@ -23,14 +23,21 @@ class Caregiver_Home_model extends CI_Model {
         $this->lang->load('caregiver', $this->session->Language);
     }
     
-    
-    
     function get_table_header($headers_array) {
         $caregiver_table_headers = array(
             array('text' => $headers_array[0]["Name"], 'gridClass' => 'col-sm-3'),
             array('text' => $headers_array[1]["Name"], 'gridClass' => 'col-sm-2'),
             array('text' => $headers_array[2]["Name"], 'gridClass' => 'col-sm-1'),
             array('text' => $headers_array[3]["Name"], 'gridClass' => 'col-sm-6'),
+        );
+        return $caregiver_table_headers;
+    }
+    
+    function get_table_header_mobile($headers_array) {
+        $caregiver_table_headers = array(
+            array('text' => $headers_array[0]["Name"], 'gridClass' => 'col-sm-5'),
+            array('text' => $headers_array[1]["Name"], 'gridClass' => 'col-sm-4'),
+            array('text' => $headers_array[2]["Name"], 'gridClass' => 'col-sm-3'),
         );
         return $caregiver_table_headers;
     }

@@ -9,6 +9,7 @@
     <div class ="row">
         <div class="col-sm-offset-1 col-sm-10">
             <div class="frame">
+                <!-- desktop / tablet version -->
                 <div id="scrollbox">                  
 
                     <div class ="row">
@@ -84,17 +85,71 @@
                                     </div>
                                     <div class="modal-body">
                                         <div id="canvas" style="width: 900px; height: 450px;"></div>
-                                        <div id="badanswer">
-                                            <!--{table}
-                                            {BadAnswer}{Question}</br>{/BadAnswer} </br>
-                                            {/table}-->
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- end desktop/ tablet version -->
+                
+                <!-- mobile version -->
+                <div id="mobileversion">                  
+
+                    <div class ="row">
+                        <div class="col-sm-12">  
+                            <div class="table-responsive">
+                                <table id="personal-datatable" class="table table-hover">
+                                    <thead>
+                                        <tr class="row">
+                                            {table_titles_mobile}
+                                            <th class="{gridClass}">{text}</th>
+                                            {/table_titles_mobile}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {table}
+                                        <tr class="row" >
+                                            <td class="col-sm-5" data-toggle="modal" data-target="#modChart">{Name}</td>
+                                            <td class="col-sm-4" data-toggle="modal" data-target="#modChart">{Last}</td>
+                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-{Bar} " 
+                                                         role="progressbar" aria-valuenow="10" aria-valuemin="0" 
+                                                         aria-valuemax="100" style="width: {Score}%">
+                                                        {Score} %
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/table}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- pop up -->
+                        <div class="modal fade" id="modChart" role="dialog" tabindex="-1" 
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 900px; height: 550px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span> <span class="sr-only"></span>
+                                        </button>
+                                        <h4 class="modal-title" id="exampleModalLabel">Bar Chart</h4>
+                                        <h6 id="modalSubtitle"></h6>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="canvas" style="width: 900px; height: 450px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end mobile version -->
+                
             </div>
         </div>
     </div>

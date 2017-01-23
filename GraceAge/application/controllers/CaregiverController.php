@@ -367,6 +367,7 @@ class CaregiverController extends CI_Controller {
         $data['patients'] = $this->Caregiver_Home_model->get_patients();
         $data['table'] = $this->Caregiver_Home_model->getJSONtable();
         $data['table_titles'] = $this->Caregiver_Home_model->get_table_header($this->lang->line('caregiver_datatable_titles'));
+        $data['table_titles_mobile'] = $this->Caregiver_Home_model->get_table_header_mobile($this->lang->line('caregiver_datatable_titles'));
         //$data['table_titles'] = $this->lang->line('caregiver_datatable_titles'); //Gets the titles for the datatable in the correct language.
         $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
         $data['page_content'] = 'Caregiver/personal.html';
