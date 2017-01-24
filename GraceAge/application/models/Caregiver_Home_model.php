@@ -62,6 +62,12 @@ class Caregiver_Home_model extends CI_Model {
         return $query->result();
     }
 
+    /*
+     * To reduce the amount of queries on the page, we query once to get the
+     * info we need and store it in an array.
+     * This query gets a joint table with all the answer scores of questions 
+     * answered in a certain period of time, with their corresponding topic.
+     */
     function get_answer_array() {
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
@@ -71,22 +77,37 @@ class Caregiver_Home_model extends CI_Model {
                 ->get();
         $this->all_answers = $query->result_array(); //Store the data in an array;
     }
-
+    
+    /*
+     * Calculate the scores per topic and return them in percentage.
+     */
     function calculate_score($topic) {
         $sum_of_answers = 0;
-        $iterations = 1;
-        for ($i = 0; $i < count($this->all_answers); $i++, $iterations++) {
+        $iterations = 0;
+        
+        for ($i = 0; $i < count($this->all_answers); $i++/*, $iterations++*/) {
             if ($this->all_answers[$i]['Topic'] == $topic) {
-                $sum_of_answers += $this->all_answers[$i]['Answer'];
+                $sum_of_answers += $this->all_answers[$i]['Answer']-1; //Do the '-1' to fit in an interval of [0; 4] instead of [1; 5].
+                $iterations++;
             }
         }
-        return ($sum_of_answers / $iterations) * 25;
+        //Check if a topic hasn't been answered.
+        if($iterations > 0){
+            return ($sum_of_answers / ($iterations * 4)) * 100; //Adapt to percentage.
+        }else{
+            return 0;
+        }
     }
 
+    /*
+     * Returns a json encoded string containing all the topics and their
+     * corresponding score, calculated for a certain time interval (e.g. past
+     * month).
+     */
     function get_topic_with_score() {
         $this->get_answer_array();
         $topics = $this->get_topics();
-        $topic_array = $this->lang->line('topic_array');
+        $topic_array = $this->lang->line('topic_array'); //Get the topics in the language of the caregiver currently trying to access the scores.
         $scores = [];
         for ($j = 0; $j < count($topic_array); $j++) {
             $scores[$j + 1]['Topic'] = $topic_array[$j];
