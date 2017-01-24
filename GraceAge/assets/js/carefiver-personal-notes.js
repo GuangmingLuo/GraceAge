@@ -12,7 +12,6 @@ function update_note(id) {
     
     $("#text"+id).text(new_note);
 }
-;
 
 function editNote(id){
     $("#button"+id).hide();
@@ -20,3 +19,11 @@ function editNote(id){
     $("#text"+id).hide();
     
 }
+
+$(function(){
+    $.get("isAdmin", function(isAdmin){
+        if(isAdmin.isAdmin === "1"){
+            $('#newuserButton').removeClass("inactive");
+        }
+    });
+});

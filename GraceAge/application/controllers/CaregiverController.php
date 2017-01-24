@@ -51,9 +51,14 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('master.php', $data);
     }
 
-     function getTitle(){
+    function getTitle(){
         $this->output->set_content_type("application/json")
                 ->append_output($this->Caregiver_Home_model->get_chart_title());
+    }
+    
+    function isAdmin(){
+        $this->output->set_content_type("application/json")
+                ->append_output(json_encode(array("isAdmin" => $this->session->isAdmin)));
     }
     
     function getArray() {
@@ -68,7 +73,6 @@ class CaregiverController extends CI_Controller {
     }
     
     function getChartData(){
-        $jsondata = array();
         $jsondata = $this->Caregiver_Home_model->getJSONtable()->JSONCODE;
         return $jsondata;
     }
