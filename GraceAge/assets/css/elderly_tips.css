@@ -2,6 +2,11 @@ html {
     overflow: hidden;
 }
 
+.container{
+    margin: 0px;
+    padding: 0px;
+}
+
 #questionnairy_content{
    width:100%;
 }

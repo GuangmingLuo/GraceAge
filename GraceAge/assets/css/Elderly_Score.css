@@ -2,21 +2,29 @@ html {
     overflow: hidden;
 }
 
-#score_panel,
-#reward_panel{
-        /* color:#405250; */
-        position:relative;
-        background-color: #F0F4C3;
-        border: 0px solid;
-        border-radius: 5px;
-        padding: 0px;
-        overflow-y: hidden;
-        height: 40vh;
-        white-space: normal !important;
+.row{
+    margin: 0px;
 }
 
 .container{
     width:100%;
+}
+
+#progress_div{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#score_panel,
+#reward_panel{
+    position:relative;
+    background-color: #F0F4C3;
+    border: 0px solid;
+    border-radius: 5px;
+    padding: 0px;
+    overflow-y: hidden;
+    height: 40vh;
+    white-space: normal !important;
 }
 
 #score_panel_content{
@@ -26,7 +34,7 @@ html {
 }
 
 #score_text{
-        color:#405250;
+    color:#405250;
     text-align: center;
     font-size: 40px;
 }
@@ -52,8 +60,6 @@ html {
     text-align: center;
     font-size: 80px;
 }
-
-
 
 #reward_panel{
         overflow-y: auto;
@@ -110,7 +116,7 @@ html {
     border:0px;
 }
 .fontfamily.price{
-        color:#405250;
+    color:#405250;
     position:absolute;
     font-size: 30px;
     right: 10%;
@@ -121,11 +127,9 @@ html {
     color: #009688;
 }
 
-
 .fontfamily {
     font-family: 'Open Sans';       
 }
-
 
 #rewards_bought_panel{
     color:#405250;
@@ -165,14 +169,15 @@ html {
     position:relative;
     margin-left: 20px;
 }
+
 .bought_reward_price{
     position:relative;
 }
+
 .bought_reward_date{
     position:absolute;
     left:72%;
 }
-
 
 #history{
 
@@ -188,17 +193,10 @@ html {
     border-color:#CDDC39;
 }
 
-
-
-
-
-
 .progress-meter {
     width:100%;
     padding: 0px;
 }
-
-
 
 ol.progress-meter {
     display: table;
@@ -206,6 +204,7 @@ ol.progress-meter {
     padding-bottom: 9.5px;
     list-style-type: none;
 }
+
 ol.progress-meter li {
     display: table-cell;
     text-align: center;
@@ -215,11 +214,13 @@ ol.progress-meter li {
     border-bottom-width: 12px;
     border-bottom-style: solid;
 }
+
 ol.progress-meter li:before {
     position: relative;
     float: right;
     text-indent: 0px;
 }
+
 ol.progress-meter li.done {
     font-size: 10px;
 }
