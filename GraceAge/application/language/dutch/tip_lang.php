@@ -12,3 +12,4 @@ $lang['tips'] = 'Tips';
 $lang['overview_of_tips'] = 'Overzicht Met Tips';
 $lang['tip_write_new'] = 'Schrijf hier nieuwe tip';
 $lang['write_a_tip'] = 'schrijf een tip';
+$lang['undo_tip'] = 'Ongedaan maken';

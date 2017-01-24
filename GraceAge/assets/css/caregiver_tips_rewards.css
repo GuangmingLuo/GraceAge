@@ -138,6 +138,10 @@ body{
     color: #212121;
 }
 
+.btn.btn-default.inactive {
+    display: none;
+}
+
 .btn.save,
 .btn.save:hover,
 .btn.save:active,

@@ -360,6 +360,8 @@ class ElderlyController extends CI_Controller {
         $data['page_title'] = 'Edit Profile';
         $data['page_content'] = 'Account/elderly_profile.html';
         $data['Person_Name'] = $this->session->Name;
+        $data['checked_dutch'] = ($this->session->Language == "dutch") ? "selected" : " ";
+        $data['checked_english'] = ($this->session->Language == "english") ? "selected" : " ";
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/profilescript.js");

@@ -418,6 +418,8 @@ class CaregiverController extends CI_Controller {
         $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
         $data['page_content'] = 'Account/caregiver_profile.html';
         $data['Person_Name'] = $this->session->Name;
+        $data['checked_dutch'] = ($this->session->Language == "dutch") ? "selected" : " ";
+        $data['checked_english'] = ($this->session->Language == "english") ? "selected" : " ";
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/toastMessage.js");
@@ -442,6 +444,7 @@ class CaregiverController extends CI_Controller {
         $data['add_new_tip'] = $this->lang->line('tip_add_new_tip');
         $data['page_content'] = 'Caregiver/tips.html';
         $data['write_new_tip'] = $this->lang->line('tip_write_new');
+        $data['tip_undo'] = $this->lang->line('undo_tip');
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/toastMessage.js");

@@ -1,4 +1,5 @@
-
+var $deleted_tip = new Object();
+var $language_map = new Object();
 var $tips_list = $('#tips_list');
 var localizedText;
 $(document).ready(function(){
@@ -14,8 +15,10 @@ function register_topic(){
         $tips_list.empty();
         //alert(JSON.stringify(tips));
         $.each(tips, function (i, tip) {
+            id = tip.idtips;
             if (tip.hasOwnProperty('dutch') && tip.dutch !== null) {
 
+                $language_map.id = "dutch";
                 $stringdutch = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
                         + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
                         + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
@@ -24,6 +27,8 @@ function register_topic(){
             }
             
             if (tip.hasOwnProperty('english') && tip.english !== null) {
+                
+                $language_map.id = "english";
                 $stringenglish = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
                         + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
                         + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
@@ -96,9 +101,8 @@ function updateTip(id){
     var select = document.getElementById("select_topic");
     var chosen_topic = select.options[select.selectedIndex].value;
     var new_tip = $("#newtext").val();
-    var language = $("#tip_language_" + id).text();
     var lang = "dutch";
-    if(language === "English"){
+    if($language_map.id === "english"){
         //alert("inside if!");
         lang = "english";
     }
@@ -106,14 +110,26 @@ function updateTip(id){
     //alert(lang);
     if(!new_tip) alert(localizedText.write_a_tip);
     else{
-        $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id, language:lang});
-        //alert("okay");
-        register_topic(); //refresh the tips
+        $.post("update_tip", {tip: new_tip, topic: chosen_topic, id: id, language:lang}, function(){
+            register_topic(); //refresh the tips
+        });
     }
 };
 
+function undo(){
+    $('#undo').addClass("inactive");
+    $.post("add_tip", {tip: $deleted_tip.tip, topic: $deleted_tip.topic, language: $deleted_tip.language}, function () {
+        register_topic();
+    });
+}
+
 function deleteTip(id){
         // delete the tip
+        $('#undo').removeClass("inactive");
+        var select = document.getElementById("select_topic");
+        $deleted_tip.tip = document.getElementById(id).innerHTML;
+        $deleted_tip.topic = select.options[select.selectedIndex].value;
+        $deleted_tip.language = $language_map.id;
         $.post("delete_tip", {id: id}, function(data){
             if(data){
                 register_topic();
