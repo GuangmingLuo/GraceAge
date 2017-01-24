@@ -128,7 +128,7 @@ function deleteTip(id){
         var select = document.getElementById("select_topic");
         $deleted_tip.tip = document.getElementById(id).innerHTML;
         $deleted_tip.topic = select.options[select.selectedIndex].value;
-        $deleted_tip.language = $language_map.id;
+        $deleted_tip.language = $language_map[id];
         $.post("delete_tip", {id: id}, function(data){
             if(data){
                 register_topic();
