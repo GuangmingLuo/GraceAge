@@ -74,11 +74,10 @@ class Caregiver_Home_model extends CI_Model {
 
     function calculate_score($topic) {
         $sum_of_answers = 0;
-        $iterations = 0;
-        for ($i = 0; $i < count($this->all_answers); $i++) {
+        $iterations = 1;
+        for ($i = 0; $i < count($this->all_answers); $i++, $iterations++) {
             if ($this->all_answers[$i]['Topic'] == $topic) {
                 $sum_of_answers += $this->all_answers[$i]['Answer'];
-                $iterations++;
             }
         }
         return ($sum_of_answers / $iterations) * 25;

@@ -21,14 +21,17 @@ class Tip_model extends CI_Model{
     
     function get_tip($topic) {         // get a random tip (not null) from a given topic   
         $language = $this->session->Language;
-        $array = array('topic' => $topic, $language."!=" => NULL);
+        $array = array('topic' => $topic, $language." != " => NULL);
         $query = $this->db->select($language)->where($array)->get('tips');
-        $random = rand(1, $query->num_rows());
-        if($this->session->Language === 'english'){
-            return $query->row($random)->english;
-        }
-        if($this->session->Language === 'dutch'){
-            return $query->row($random)->dutch;
+        if($query->num_rows() > 0){
+            $random = rand(1, $query->num_rows());
+            if($this->session->Language === 'english'){
+                $row = $query->row($random);
+                return $row->english;
+            }
+            if($this->session->Language === 'dutch'){
+                return $query->row($random)->dutch;
+            }
         }        
     }
     
