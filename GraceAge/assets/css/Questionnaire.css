@@ -2,6 +2,14 @@ h1{
     display:none;
 }
 
+.row{
+    margin: 0px;
+}
+
+html {
+    overflow: hidden;
+}
+
 .fontfamily {
     font-family: 'Open Sans';       
 }
@@ -14,7 +22,7 @@ h1{
 
 #questionnairy_content{
     position:absolute;
-    top:50%;
+    top:45%;
     transform:translateY(-42%);
     width: 100%;
 }
@@ -131,7 +139,7 @@ h1{
 }
 #score_text{
    font-family: "Open Sans";
-    font-size: 30px;;  
+    font-size: 20px;;  
 }
 #score{
   color:#009688;
@@ -140,7 +148,7 @@ h1{
 #question_placeholder{
     text-align: center;
     font-family: "Open Sans";
-    font-size: 24px;;    
+    font-size: 30px;;    
 }
 
 #tableheader_topic,
@@ -159,7 +167,6 @@ footer{
     border-top: 4px solid;
     border-color: #CDDC39;
     background-color: #F0F4C3;
-    margin-top: 50px;
     line-height: 50px;
     height: 15vh !important;
     position: fixed;

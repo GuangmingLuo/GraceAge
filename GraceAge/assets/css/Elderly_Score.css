@@ -1,3 +1,7 @@
+html {
+    overflow: hidden;
+}
+
 #score_panel,
 #reward_panel{
         /* color:#405250; */
