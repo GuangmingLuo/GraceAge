@@ -18,7 +18,7 @@ function register_topic(){
             id = tip.idtips;
             if (tip.hasOwnProperty('dutch') && tip.dutch !== null) {
 
-                $language_map.id = "dutch";
+                $language_map[id] = "dutch";
                 $stringdutch = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.dutch + "</li> </div>"
                         + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
                         + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
@@ -28,7 +28,7 @@ function register_topic(){
             
             if (tip.hasOwnProperty('english') && tip.english !== null) {
                 
-                $language_map.id = "english";
+                $language_map[id] = "english";
                 $stringenglish = "<div class='row'>" + "<div class='col-sm-10'> <li class='tipsstring'  id='" + tip.idtips + "' onClick='tipClick(this.id)'>" + tip.english + "</li> </div>"
                         + "<div class='col-xs-2'> <a class='edit fontfamily' id='button" + tip.idtips + "' onClick='tipClick(" + tip.idtips + ")'><i class='fa fa-pencil'></i> " +localizedText.edit+" </a><nobr><a class='delete' id='delete" + tip.idtips + "' onClick='deleteTip(" + tip.idtips + ")' value='delete'><i class='fa fa-trash'></i> delete </a></nobr></div>"
                         + "<input class='btn save' id='save" + tip.idtips + "'  type='button' onclick='updateTip(" +tip.idtips+ ")' value='save'>"+ "</div>";
@@ -38,7 +38,6 @@ function register_topic(){
             $(document.getElementById("save"+tip.idtips)).hide();  //hide the save button belonging to id
 
         });
-        
         
     });
     
@@ -102,7 +101,7 @@ function updateTip(id){
     var chosen_topic = select.options[select.selectedIndex].value;
     var new_tip = $("#newtext").val();
     var lang = "dutch";
-    if($language_map.id === "english"){
+    if($language_map[id] === "english"){
         //alert("inside if!");
         lang = "english";
     }
