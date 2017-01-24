@@ -10,11 +10,13 @@
         <div class="col-sm-offset-1 col-sm-10">
             <div class="frame">
                 <!-- desktop / tablet version -->
-                <div id="scrollbox">                  
-
+                <div id="scrollbox"> 
                     <div class ="row">
                         <div class="col-sm-12">  
                             <div class="table-responsive">
+                                <a id="newuserButton" class="btn" href="register">
+                                    <i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                                </a>
                                 <table id="personal-datatable" class="table table-hover">
                                     <thead>
                                         <tr class="row">
@@ -50,22 +52,22 @@
                                             <td class="col-sm-6">
                                                 <p id="text{id}">{Note} 
 
-                                                    <nobr> <!-- icon and text together -->
-                                                        <a class="editbutton" id="button{id}" onclick="editNote({id})">
-                                                        <i class="fa fa-pencil" > </i>
-                                                            <?php echo $this->lang->line('edit'); ?>
-                                                        </a>
-                                                    </nobr>
-                                                </p>
+                                    <nobr> <!-- icon and text together -->
+                                        <a class="editbutton" id="button{id}" onclick="editNote({id})">
+                                            <i class="fa fa-pencil" > </i>
+                                            <?php echo $this->lang->line('edit'); ?>
+                                        </a>
+                                    </nobr>
+                                    </p>
 
-                                                <form class='editform' id="form{id}" hidden >
-                                                    <input type='text' id="{id}s" value='{Note}' size="40">
-                                                    <input type='button' onclick='update_note({id})' value='update'>
-                                                    <div id="{id}sss"></div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        {/table}
+                                    <form class='editform' id="form{id}" hidden >
+                                        <input type='text' id="{id}s" value='{Note}' size="40">
+                                        <input type='button' onclick='update_note({id})' value='update'>
+                                        <div id="{id}sss"></div>
+                                    </form>
+                                    </td>
+                                    </tr>
+                                    {/table}
                                     </tbody>
                                 </table>
                             </div>
@@ -92,7 +94,7 @@
                     </div>
                 </div>
                 <!-- end desktop/ tablet version -->
-                
+
                 <!-- mobile version -->
                 <div id="mobileversion">                  
 
@@ -149,7 +151,7 @@
                     </div>
                 </div>
                 <!-- end mobile version -->
-                
+
             </div>
         </div>
     </div>

@@ -16,6 +16,12 @@ body{
     float: left;
 }
 
+#newuserButton{
+    float: right;
+    background: transparent;
+    padding: 0px;
+}
+
 .dataTables_length label{
     margin-left: 6px;
     display: none;
