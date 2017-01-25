@@ -28,6 +28,10 @@ $('#photo').change(function () {
     $('div#processing').show();
     handleFiles(this.files[0]);
 });
+var qrError;
+$.get("getQrError", function(data){
+    qrError = data;
+});
 
 $('#reader').html5_qrcode(function (data) {
     //where data will get the decoded information
@@ -42,6 +46,9 @@ $('#reader').html5_qrcode(function (data) {
     login();
     },
     function (error) {
+        if(error == "Couldn't find enough finder patterns"){
+            error = qrError;
+        }
         $('#read_error').html(error);
     }, 
     function (videoError) {

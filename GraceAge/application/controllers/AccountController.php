@@ -10,6 +10,7 @@ class AccountController extends CI_Controller {
         $this->load->helper('url');        
         $this->load->library('session');
         $this->load->model('Account_model');
+        $this->lang->load('login', $this->session->language);
     }
 
     function return_to_home(){
@@ -107,6 +108,11 @@ class AccountController extends CI_Controller {
     public function logOut() { //destroy current session and goto login page
         session_destroy();
         redirect(base_url() . 'AccountController/login');
+    }
+    
+    public function getQrError(){
+       
+        echo $this->lang->line('QrError');
     }
 
 }
