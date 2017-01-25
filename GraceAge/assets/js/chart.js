@@ -7,10 +7,37 @@
 google.charts.load('current', {packages: ['bar']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
+var chart_data;
+var options;
+var chart;
+/*
+window.onload = resize();
+window.onresize = resize();
+
+
+function resize(){
+    var chart = new google.charts.Bar(document.getElementById('chart_div'));
+    chart.draw(chart_data, google.charts.Bar.convertOptions(options));
+
+}
+*/
+
+$(window).resize(function(){
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function(){
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+
+$(window).on('resizeEnd', function(){
+    chart.draw(chart_data, google.charts.Bar.convertOptions(options));
+});
+
+
 function drawMultSeries(){
     
     $.getJSON("getArray", function(data){
-        var chart_data = google.visualization.arrayToDataTable([
+        chart_data = google.visualization.arrayToDataTable([
             ["", data[12].Score],
             [data[1].Topic, data[1].Score],
             [data[2].Topic, data[2].Score],
@@ -32,7 +59,7 @@ function drawMultSeries(){
         }
         */
     
-        var options = {
+        options = {
             bars: 'horizontal',
             chartArea: {width: '100%', height: '100%'}, //This is the width of the bar chart inside its div
             colors: ['lightgray'],
@@ -50,8 +77,8 @@ function drawMultSeries(){
                 ticks: [0, 25, 50, 75, 100]
             }
         };
-        
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        //resize();
+        chart = new google.charts.Bar(document.getElementById('chart_div'));
         chart.draw(chart_data, google.charts.Bar.convertOptions(options));
     });
 }
