@@ -118,7 +118,9 @@ class CaregiverController extends CI_Controller {
         else{
             echo "error";              
         }
-        redirect(base_url() . 'CaregiverController/rewards');
+        //redirect(base_url() . 'CaregiverController/rewards');
+        $data['allrewards'] = $this->Reward_model->get_rewards();
+        $this->parser->parse('Caregiver/rewardsList.html', $data);
     }   
     
     function editReward(){
@@ -479,6 +481,7 @@ class CaregiverController extends CI_Controller {
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/toastMessage.js");
+        $scripts[] = array('source' => "../../assets/js/Caregiver_reward.js");
         
         $links[] = array('source' => "../../assets/css/caregiver_tips_rewards.css");
         $links[] = array('source' => "../../assets/css/caregiver_navbar.css");

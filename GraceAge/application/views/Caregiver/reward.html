@@ -1,5 +1,5 @@
 <div class="container-fluid">
-
+ 
     <div class ="row">
         <div class="col-sm-offset-1 col-sm-10">
             <!-- begin desktop / tablet version -->
@@ -54,12 +54,7 @@
                                     </li>
                                     {/allrewards}
                                 </ul>
-                                <script>
-                                    function submitChange( Reward, el){ // will perform an ajax .post
-                                        var value = $(el).is(':checked');
-                                        $.post("editReward", {'Reward' : Reward, 'available': value  });
-                                    }
-                                    </script>
+
                             </div>
 
                         </div>
