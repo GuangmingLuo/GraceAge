@@ -63,8 +63,8 @@ class Caregiver_Home_model extends CI_Model {
     }
 
     /*
-     * To reduce the amount of queries on the page, we query once to get the
-     * info we need and store it in an array.
+     * To reduce the amount of queries on the general page, we query once to get 
+     * the info we need and store it in an array.
      * This query gets a joint table with all the answer scores of questions 
      * answered in a certain period of time, with their corresponding topic.
      */
@@ -72,7 +72,6 @@ class Caregiver_Home_model extends CI_Model {
         $query = $this->db->select('Question.Topic, Patient_Answered_Question.Answer')
                 ->from('Question')
                 ->join('Patient_Answered_Question', 'Question.QuestionNumber=Patient_Answered_Question.Question_Number')
-                //->where('Language', $language)    //TODO Get the language from the logged in caregiver.
                 ->where('DateTime >=', 'now() - INTERVAL 1 MONTH', FALSE)  //Get Answers from past month. FALSE has to be added for MYSQL functions.
                 ->get();
         $this->all_answers = $query->result_array(); //Store the data in an array;

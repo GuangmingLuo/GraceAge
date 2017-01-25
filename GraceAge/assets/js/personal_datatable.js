@@ -14,7 +14,6 @@ $(document).ready(function(){
      * Allows to search on name.
      */
     var table = $('#personal-datatable').DataTable({
-        "pagingType": "simple",    //Shows "Previous" & "Next" buttons.
         "language": {
             "search": "",   //No text before the search field.
             "searchPlaceholder": "Find patient" //Placeholder to indicate what to type
@@ -24,13 +23,20 @@ $(document).ready(function(){
         "aoColumnDefs": [
             {"bSearchable": false, "aTargets": [1,2,3]}
         ],
-        "paging": false
+        "paging": false,
+        //"oSearch": {"sSearch": "Axel"}
     });
     id = 2;
-    //initialize();
-    //drawChart();
-    //$('#modChart').on('shown.bs.modal', drawChart);
-    });
+    
+    //Get the username from the url. If 'undefined', no urgent patient was clicked.
+    var patient_to_find = decodeURI(getUrlVars()["username"]);
+    
+    //If no urgent patient was clicked, no username will be seen, so we have
+    //to check for that.
+    //If an urgent patient was clicked, search on that patients name and redraw
+    //the table.
+    if(patient_to_find !== "undefined") table.search(patient_to_find).draw();
+});
     
 /*
  * 
@@ -57,6 +63,23 @@ function setBarChartTitle(new_title, new_subtitle){
  */
 function setBadAnswersDiv(bad_answer_array){
     document.getElementById("badanswer").innerHTML = bad_answer_array;
+}
+
+/*
+ * If a caregiver clicks on an urgent patient in the general page, we can get
+ * the username of the clicked patient from the url, to search on this patient
+ * immediately.
+ * @returns {Array|getUrlVars.vars}
+ */
+function getUrlVars(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++){
+         hash = hashes[i].split('=');
+         vars.push(hash[0]);
+         vars[hash[0]] = hash[1];
+     }
+     return vars;
 }
 
 /*
