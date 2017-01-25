@@ -10,7 +10,7 @@
 function showToast(text) {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar")
-    if(text)x.innerHTML=text;
+    if(text)x.innerHTML=text; // only change innhtml if text is not empty.
 
     // Add the "show" class to DIV
     x.className = "show";

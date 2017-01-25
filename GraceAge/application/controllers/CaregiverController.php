@@ -478,6 +478,7 @@ class CaregiverController extends CI_Controller {
         $data['price'] = $this->lang->line('price');
         $data['allrewards'] = $this->Reward_model->get_rewards();
         $data['page_content'] = 'Caregiver/reward.html';
+        $data['reward_added'] = $this->lang->line('reward_added');
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/toastMessage.js");
@@ -485,6 +486,7 @@ class CaregiverController extends CI_Controller {
         
         $links[] = array('source' => "../../assets/css/caregiver_tips_rewards.css");
         $links[] = array('source' => "../../assets/css/caregiver_navbar.css");
+        $links[] = array('source' => "../../assets/css/snackbar.css");
         
         $data['scripts'] = $scripts;
         $data['css_links'] = $links;

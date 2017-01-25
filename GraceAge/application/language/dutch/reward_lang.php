@@ -7,4 +7,5 @@ $lang['price'] = 'Prijs';
 $lang['Reward'] = 'Beloning: ';
 $lang['Price'] = ' Prijs: ';
 $lang['Language'] = ' Taal: ';
+$lang['reward_added'] = ' Beloning toegevoegd ';
 

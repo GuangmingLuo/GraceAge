@@ -15,7 +15,9 @@ $('#rewardForm').submit(function(){
         // Do something with the response `res`
         $('#rewards_list').html(res)
         document.getElementById('rewardForm').reset();
+        
     });
+    showToast();
     return false;// prevent default submit action
 
 });

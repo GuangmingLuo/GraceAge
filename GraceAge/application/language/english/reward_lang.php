@@ -7,3 +7,4 @@ $lang['price'] = 'Price';
 $lang['Reward'] = 'Reward: ';
 $lang['Price'] = ' Price: ';
 $lang['Language'] = ' Language: ';
+$lang['reward_added'] = ' Reward Added ';
