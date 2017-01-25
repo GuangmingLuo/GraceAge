@@ -123,14 +123,14 @@ class CaregiverController extends CI_Controller {
     
     function editReward(){
         $reward = $_POST['Reward'];
-        if(isset($_POST['available'])) {
-            $available = "checked";
+        if($_POST['available'] == "true") {
+            $available = "checked";  
         }
         else {
             $available = " ";
         }
         $this->Reward_model ->edit_reward($reward, $available);
-        redirect(base_url() . 'CaregiverController/rewards');
+        //redirect(base_url() . 'CaregiverController/rewards');
     }   
     
     function get_tips(){
