@@ -43,6 +43,7 @@ class AccountController extends CI_Controller {
         $data['BAGDE'] = lang('BAGDE');
         $data['LOG_IN'] = lang('LOG_IN');
         $data['show_your_badge'] = lang('show_your_badge');
+        $data['information_badge'] = lang('information_badge');
         $data['no_badge'] = lang('no_badge');
         $data['no_camera'] = lang('no_camera');
         $data['credentials'] = lang('credentials');

@@ -3,7 +3,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['BAGDE'] = 'BADGE';
 $lang['LOG_IN'] = "Aanmelden";
-$lang['show_your_badge'] = "PRESENT BADGE";
+$lang['show_your_badge'] = "TOON BADGE";
+$lang['information_badge'] = "Toon de badge aan de camera.";
 $lang['no_badge'] = "GEEN BADGE?";
 $lang['no_camera'] = "Gebruik een foto van je badge";
 $lang['use_photo'] = "Kies foto";

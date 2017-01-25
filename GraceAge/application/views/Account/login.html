@@ -10,16 +10,18 @@
 
                 <div class="tab-content"> 
                     <div id="QRtabContent" class="tab-pane fade in active">
-                        <div id="reader"></div>
-                        <!-- this was meant for showing errors thrown by js, for debugging -->
-                       <span id="read_error" class="alert alert-warning inactive"></span> 
                         
+                        <div id="reader"> <!-- QR scanner -->
+                            <span id="informationtext"> {information_badge} </span><br>
+                            <span id="read_error" class="alert alert-warning inactive"></span> 
+                        </div>
+                                               
                         <fieldset id="safariQRfunctionaity">
                             <label for ="photo">{no_camera}</label>
                             <br/>
                             <input type="file" class="filestyle" name="photo" id="photo" data-buttonText=" Use Photo" accept = "image/*">
                         </fieldset>
-                        
+
                     </div>
                     
                     <div id="loginTabContent" class="tabContent tab-pane fade">

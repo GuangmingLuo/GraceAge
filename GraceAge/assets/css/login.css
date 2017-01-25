@@ -200,6 +200,15 @@ video {
     height: auto;
 }
 
+#informationtext{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#read_error{
+    font-size: 12px;
+}
+
 @media only screen and (max-width: 767px){
     video{
         max-width: 95%;
