@@ -76,7 +76,8 @@ function initialize(){
 }
 
 /*
- * Draw the bar chart with the correct data.
+ * Draw the bar chart with the correct data. (Basically the same as the bar
+ * chart from chart.js
  */
 function drawChart(){
     //alert("hello");
@@ -96,7 +97,6 @@ function drawChart(){
             chart_data.addRow([data[i].Topic, parseInt(data[i].Score)]);
         }
 
-        //
          var options = {
                 bars: 'horizontal',
                 width: 800, height: 400,

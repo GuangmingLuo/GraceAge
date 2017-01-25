@@ -1,64 +1,47 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 google.charts.load('current', {packages: ['bar']});
+//do this callback function when loading the page.
 google.charts.setOnLoadCallback(drawMultSeries);
 
 var chart_data;
 var options;
 var chart;
+
 /*
-window.onload = resize();
-window.onresize = resize();
-
-
-function resize(){
-    var chart = new google.charts.Bar(document.getElementById('chart_div'));
-    chart.draw(chart_data, google.charts.Bar.convertOptions(options));
-
-}
-*/
-
+ * To redraw only when window resize is completed and avoid multiple triggers,
+ * create trigger to resizeEnd event.
+ */
 $(window).resize(function(){
     if(this.resizeTO) clearTimeout(this.resizeTO);
     this.resizeTO = setTimeout(function(){
         $(this).trigger('resizeEnd');
-    }, 500);
+    }, 250); //Waits 250ms to recognize a end of resize.
 });
 
+//Redraw chart when window resize is completed.
 $(window).on('resizeEnd', function(){
     chart.draw(chart_data, google.charts.Bar.convertOptions(options));
 });
 
-
 function drawMultSeries(){
-    
+    //Get the json data from the Controller function getArray.
     $.getJSON("getArray", function(data){
-        chart_data = google.visualization.arrayToDataTable([
-            ["", data[12].Score],
-            [data[1].Topic, data[1].Score],
-            [data[2].Topic, data[2].Score],
-            [data[3].Topic, data[3].Score],
-            [data[4].Topic, data[4].Score],
-            [data[5].Topic, data[5].Score],
-            [data[6].Topic, data[6].Score],
-            [data[7].Topic, data[7].Score],
-            [data[8].Topic, data[8].Score],
-            [data[9].Topic, data[9].Score],
-            [data[10].Topic, data[10].Score],
-            [data[11].Topic, data[11].Score]
-        ]);
-        /*
+        chart_data = google.visualization.arrayToDataTable([]);
+        
+        //Add a value for the y-axis, this can be left empty in this case.
         chart_data.addColumn('string', "");
-        chart_data.addColumn('number', data[12].Score);
-        for(var i = 0; i < data.length - 1; i++){
+        
+        //Displays how the score should be interpreted. It is stored as the
+        //last element of the json object.
+        chart_data.addColumn('number', data[Object.keys(data).length].Score);
+        
+        //Add all topics and corresponding score to the bar chart
+        //Leave out the last element, since it contains the title.
+        for(var i = 1; i < Object.keys(data).length - 1; i++){
             chart_data.addRow([data[i].Topic, parseInt(data[i].Score)]);
         }
-        */
-    
+        
+        //Add options for the layout of the chart.
         options = {
             bars: 'horizontal',
             chartArea: {width: '100%', height: '100%'}, //This is the width of the bar chart inside its div
@@ -77,8 +60,9 @@ function drawMultSeries(){
                 ticks: [0, 25, 50, 75, 100]
             }
         };
-        //resize();
+        //Create a new chart and define where to draw it.
         chart = new google.charts.Bar(document.getElementById('chart_div'));
+        //Actually draws the chart.
         chart.draw(chart_data, google.charts.Bar.convertOptions(options));
     });
 }
