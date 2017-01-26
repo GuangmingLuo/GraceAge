@@ -13,19 +13,35 @@ $(document).ready(function(){
      * Default shows first 10 entries
      * Allows to search on name.
      */
-    var table = $('#personal-datatable').DataTable({
+    var table = $('.personal-datatable').DataTable({
         "language": {
             "search": "",   //No text before the search field.
             "searchPlaceholder": "Find patient" //Placeholder to indicate what to type
         },
-        "dom": '<lf<t>ip>', //Puts search box underneath the "Showing elements".
+        //Puts search box underneath the "Showing elements".
+        "dom": '<lf<t>ip>', 
+        
         //Only search on the first column.
         "aoColumnDefs": [
             {"bSearchable": false, "aTargets": [1,2,3]}
         ],
-        "paging": false,
-        //"oSearch": {"sSearch": "Axel"}
+        "paging": false
     });
+    /*
+    var mobile_table = $('#personal-datatable-mobile').DataTable({
+        "language": {
+            "search": "",   //No text before the search field.
+            "searchPlaceholder": "Find patient" //Placeholder to indicate what to type
+        },
+        //Puts search box underneath the "Showing elements".
+        "dom": '<lf<t>ip>', 
+        
+        //Only search on the first column.
+        "aoColumnDefs": [
+            {"bSearchable": false, "aTargets": [1,2,3]}
+        ],
+        "paging": false
+    });*/
     id = 2;
     
     //Get the username from the url. If 'undefined', no urgent patient was clicked.
