@@ -47,8 +47,10 @@ $('#reader').html5_qrcode(function (data) {
     } catch (e) {
         $.get("getQrError", function (data) { // get internationalization for error message
 
-            $("div [name='errorbox']").removeClass('inactive');
-            $("div [name='errorbox']").html(data);
+            $("#error1").removeClass('inactive');
+            $("#error1").html(data.errormessage);
+            $("#errorbox").removeClass('inactive');
+            $("#errorbox").html(data.errormessage);
         });
        
     }
