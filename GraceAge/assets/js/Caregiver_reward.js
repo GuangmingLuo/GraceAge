@@ -9,6 +9,13 @@ function submitChange(Reward, el) { // will perform an ajax .post
     $.post("editReward", {'Reward': Reward, 'available': value});
 }
 
+function submitRecievedChange(Id, el) { // will perform an ajax .post
+    
+    var value = $(el).is(':checked');
+    
+    $.post("editRecievedReward", {'changed': value, 'id': Id});
+}
+
 
 $('#rewardForm').submit(function(){
     $.post($(this).attr('action'), $(this).serialize(), function(res){

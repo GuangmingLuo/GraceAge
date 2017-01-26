@@ -14,8 +14,9 @@ function login(){
             window.location.href = "loginPost";
         }
         else{
-            $("#errorbox").removeClass('inactive');
-            $("#errorbox").html(data.errormessage);
+            
+            $("div [name='errorbox']").removeClass('inactive');
+            $("div [name='errorbox']").html(data.errormessage);
         }
     });
 }

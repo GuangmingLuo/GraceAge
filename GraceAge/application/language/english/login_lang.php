@@ -31,4 +31,4 @@ $lang['incorrect_password'] = "Old password incorrect. ";
 $lang['saved_changes'] = " changes were saved. ";
 $lang['errorbox_password'] = "Password: ";
 $lang['changes_were_saved'] = "Your changes were saved.";
-$lang['QrError'] = "can't find badge";
+$lang['QrError'] = "Unknown Qr Code. ask your Caregiver for help.";

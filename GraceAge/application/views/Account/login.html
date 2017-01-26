@@ -10,10 +10,11 @@
 
                 <div class="tab-content"> 
                     <div id="QRtabContent" class="tab-pane fade in active">
+                                             
                         
                         <div id="reader"> <!-- QR scanner -->
                             <span id="informationtext"> {information_badge} </span><br>
-                            <span id="read_error" class="alert alert-warning inactive"></span> 
+                            <span name="errorbox" class="alert alert-warning inactive"></span> 
                         </div>
                                                
                         <fieldset id="safariQRfunctionaity">
@@ -38,7 +39,7 @@
                             <br>
                             <input id="loginbutton" type="button" class="btn btn-default" value="{LOG_IN}" onclick="login()">
                         </form>
-                        <div id="errorbox" class="alert alert-warning inactive"></div>
+                        <div id="errorbox" name="errorbox" class="alert alert-warning inactive"></div>
                     </div>
                 </div>
             </div>

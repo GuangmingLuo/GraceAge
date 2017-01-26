@@ -101,9 +101,16 @@ class CaregiverController extends CI_Controller {
         }
         $data = $this->loadRewardsData();
 
+        $data["boughtRewards"] = $this->Reward_model->getRewardsByPatient();
+        foreach ($data["boughtRewards"] as $value) {
+            if ($value->Recieved) {
+                $value->Recieved = "checked";
+            } else
+                $value->Recieved = "";
+        }
         $this->parser->parse('master.php', $data);
     }
-    
+
     function rewardPost(){
         if (!$this->is_logged_in()) {
             return;
@@ -134,6 +141,20 @@ class CaregiverController extends CI_Controller {
         $this->Reward_model ->edit_reward($reward, $available);
         //redirect(base_url() . 'CaregiverController/rewards');
     }   
+        function editRecievedReward(){
+        
+        if($_POST['changed'] == "true") {
+            $recieved = 1;  
+        }
+        else {
+            $recieved = 0;
+        }
+        $id = $_POST['id'];
+        echo var_dump($id);
+        echo var_dump($recieved);
+        $this->Reward_model->editRewardsRecieved($id,$recieved);
+        //redirect(base_url() . 'CaregiverController/rewards');
+    } 
     
     function get_tips(){
         $topic = $this->input->post('topic');

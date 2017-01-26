@@ -31,4 +31,4 @@ $lang['incorrect_password'] = "Oud paswoord niet correct. ";
 $lang['saved_changes'] = " wijzigingen opgeslagen. ";
 $lang['errorbox_password'] = "Paswoord: ";
 $lang['changes_were_saved'] = "Uw wijzigingen zijn opgeslagen";
-$lang['QrError'] = "kan badge niet vinden";
+$lang['QrError'] = "onbekende QR Code, Vraag hulp aan een begeleider.";

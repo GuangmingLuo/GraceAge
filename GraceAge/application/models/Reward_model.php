@@ -49,4 +49,15 @@ class Reward_model extends CI_Model{
         $this->db->where('Reward' , $reward);
         $this->db->update('Rewards' , $data);
     }
+    
+    function getRewardsByPatient(){
+        $query = $this->db->query("Select R.Reward, P.Name, PR.Date , PR.Recieved, PR.PatientId, PR.RewardId, PR.Id from Rewards as R, Patient as P, PatientReward as PR where P.idPatient = PR.PatientId and R.Id = PR.RewardId order by Date desc");
+        return $query->result();
+    }
+    function editRewardsRecieved($id ,$checked){
+        $this->db->set('Recieved', $checked);
+        $this->db->where('Id', $id);
+       
+        $this->db->update('PatientReward');
+    }
 }
