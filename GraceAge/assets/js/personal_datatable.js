@@ -10,8 +10,7 @@ $(document).ready(function(){
     /*
      * Makes the datatable
      * Automatically sorts on name
-     * Default shows first 10 entries
-     * Allows to search on name.
+     * Allows to search on name only.
      */
     var table = $('#personal-datatable').DataTable({
         "language": {
