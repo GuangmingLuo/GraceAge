@@ -1,12 +1,18 @@
 
 #congrats_message,
 #exchange_message{
+    color:#405250;
     font-family: 'Open Sans';       
     font-size: 4.5vh;
     font-weight: bold;
 }
 
+#Help_icon{
+    display:none;
+}
+
 #score_message{
+    color:#405250;
     font-family: 'Open Sans';       
     font-size: 8.5vh;
     font-weight: bold;
@@ -49,6 +55,7 @@ footer{
 }
 
 #content{
+    text-allign:center;
     height: 80%;
     padding-top: 5%;
     padding-bottom: 5%;

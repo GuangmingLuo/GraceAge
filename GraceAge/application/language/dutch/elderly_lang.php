@@ -9,6 +9,7 @@ $lang['Tips_help_text'] = 'Bekijk hier de tips waarmee u uw levenskwaliteit kan 
 $lang['Rewards_help_text'] = 'Bekijk hier uw score en de belongingen die u hiermee kan aankopen. Door te drukken op de beloning koop je hem aan. Je kan door de lijst te zoeken door er verticaal over te wrijven';
 $lang['Profile_help_text'] = 'Bekijk hier uw profielgegevens. Om deze aan te passen vraaagt u best hulp aan een verpleger. Uw taal kan u wijzigen door op de taal naar keuze te drukken.';
 $lang['Index'] = 'index_test1';
+$lang['Congratiulations_help_text'] = 'congrat_text';
 $lang['elderly_settings_button']='WIE BEN IK?';
 $lang['elderly_stop_button']='STOP APPLICATIE';
 $lang['elderly_tips_button']='TIPS';

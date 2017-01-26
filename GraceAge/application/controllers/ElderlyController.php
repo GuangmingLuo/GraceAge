@@ -316,6 +316,8 @@ class ElderlyController extends CI_Controller {
         $data = $this->loadComonData();
         $data['page_title'] = 'Congratulations';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
+        $data['help_item'] = $this->Menu_model->get_helpItem('Congratiulations_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Congratiulations_help_text');
         $data['content'] = "congratulations!!!";
         $data['page_content'] = 'Elderly/congratulations.html';
         $data['congrats_message']  = $this->lang->line('congrats_congrats_message');
