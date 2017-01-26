@@ -1,3 +1,7 @@
+var originalText = null;
+var buttonText = null;
+var timer = null;
+
 function mark_answer(id){
     $('.answer_button').css('box-shadow', "1px 1px 1px #666666");     //reset borders of all answerbuttons
     $('.answer_button').css('color', "#405250");
@@ -7,21 +11,25 @@ function mark_answer(id){
     $("#"+id).css('background-color', "#009688");                      
     $.post('answer_clicked', {clicked: id}, function(){
     });
-    var helpText = document.getElementById("next");
-    var originalText = helpText.innerHTML;
-    helpText.innerHTML = "---3---";
-    /// wait 1 seconds
-    setTimeout(function() {
-    helpText.innerHTML = "---2---";
-    }, 1000);
-    /// wait 1 seconds
-    setTimeout(function() {
-    helpText.innerHTML = "---1---";
-    }, 2000);
-    setTimeout(function() {
-    helpText.innerHTML = originalText;
-    next();
-    }, 3000);
+    buttonText = document.getElementById("next");
+    originalText = buttonText.innerHTML;
+            buttonText.innerHTML = "---3---";
+            /// wait 1 seconds
+    timer = setTimeout(function() {
+        buttonText.innerHTML = "---2---";
+            /// wait 1 seconds
+            timer = setTimeout(function() {
+                buttonText.innerHTML = "---1---";
+                /// wait 1 seconds
+                timer = setTimeout(function() {
+                    buttonText.innerHTML = originalText;
+                    next();
+                    timer = null;
+                }, 1000);
+            }, 1000);
+        }, 1000);
+     
+    
 
 }
 
@@ -42,6 +50,13 @@ function updateProgressbar(questionID) {
 }
 
 function previous() {
+    if(timer!=null)
+    {
+        clearTimeout(timer);
+        buttonText.innerHTML = originalText;
+        timer = null;
+    }
+    else{
     $('.answer_button').css('box-shadow', "1px 1px 1px #666666");         //reset border of answerbutton
     $('.answer_button').css('color', "#405250");
     $('.answer_button').css('background-color', "#CDDC39");
@@ -51,9 +66,17 @@ function previous() {
         getscore();                                             // update the score
         updateProgressbar(data[0].QuestionNumber.valueOf());    //call function to update progressbar
     });
+    }
 }
 
 function next() {
+    if(timer!=null)
+    {
+        clearTimeout(timer);
+        buttonText.innerHTML = originalText;
+        timer = null;
+    }
+    
     $('.answer_button').css('box-shadow', "1px 1px 1px #666666");         //reset border of answerbutton
     $('.answer_button').css('color', "#405250");
     $('.answer_button').css('background-color', "#CDDC39");
