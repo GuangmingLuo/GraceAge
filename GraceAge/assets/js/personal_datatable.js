@@ -7,6 +7,7 @@ var id;
 var isInit = false;
 
 $(document).ready(function(){
+    
     /*
      * Makes the datatable
      * Automatically sorts on name
@@ -27,6 +28,8 @@ $(document).ready(function(){
         "paging": false
     });
     id = 2;
+    
+    $('#modChart').on('shown.bs.modal', drawChart);
     
     //Get the username from the url. If 'undefined', no urgent patient was clicked.
     var patient_to_find = decodeURI(getUrlVars()["username"]);
