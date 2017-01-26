@@ -28,17 +28,17 @@
                                     <tbody>
                                         {table}
                                         <tr class="clickable row" title="Click to show more information about the patient">
-                                            <td class="col-sm-3" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-3" data-toggle="modal" data-target=".modChart"
                                                 onclick="setID({id});
                                                                 setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra} </br>');
                                                         drawChart();">
                                                 {Name}
                                             </td>
-                                            <td class="col-sm-2" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-2" data-toggle="modal" data-target=".modChart"
                                                 onclick="setID({id});
                                                                 setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra} </br>');
                                                         drawChart();">{Last}</td>
-                                            <td class="col-sm-1" data-toggle="modal" data-target="#modChart"
+                                            <td class="col-sm-1" data-toggle="modal" data-target=".modChart"
                                                 onclick="setID({id});
                                                                 setBarChartTitle('{Name}:', '{Extra}<?php echo $this->lang->line('gender'); ?> {Gender} </br> <?php echo $this->lang->line('room_number'); ?>: {Roomnumber} </br> <?php echo $this->lang->line('date_of_birth'); ?> {Bday}{/Extra} </br>');
                                                         drawChart();">
@@ -52,16 +52,15 @@
                                             </td>
                                             <td class="col-sm-6">
                                                 <p id="text{id}">{Note} 
-                                                    <nobr> <!-- icon and text together -->
+                                                    <!-- icon and text together -->
                                                         <a class="editbutton" id="button{id}" onclick="editNote({id})">
                                                             <i class="fa fa-pencil" > </i>
                                                             <?php echo $this->lang->line('edit'); ?>
                                                         </a>
-                                                    </nobr>
                                                 </p>
 
                                                 <form class='editform' id="form{id}" hidden >
-                                                    <input type='text' id="{id}s" value='{Note}' size="40">
+                                                    <input type='text' id="{id}s" value="{Note}" size="40">
                                                     <input type='button' onclick='update_note({id})' value='update'>
                                                     <div id="{id}sss"></div>
                                                 </form>
@@ -74,7 +73,7 @@
                         </div>
 
                         <!-- pop up -->
-                        <div class="modal fade" id="modChart" role="dialog" tabindex="-1" 
+                        <div class="modChartmodal fade" role="dialog" tabindex="-1" 
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="width: 900px; height: 550px;">
                                 <div class="modal-content">
@@ -83,7 +82,6 @@
                                             <span aria-hidden="true">&times;</span> <span class="sr-only"></span>
                                         </button>
                                         <h4 class="modal-title" id="exampleModalLabel">Bar Chart</h4>
-                                        <h6 id="modalSubtitle"></h6>
                                     </div>
                                     <div class="modal-body">
                                         <div id="canvas" style="width: 900px; height: 450px;"></div>

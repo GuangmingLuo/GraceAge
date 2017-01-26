@@ -280,7 +280,7 @@ select{
 }
 
 /* line under each row*/
-#bought_rewards_list div.row{
+.bought_rewards_list div.row{
     border-bottom: 1px solid;
     border-color: #ddd;
     margin-top: 9px;
@@ -320,7 +320,7 @@ hr {
     margin-top: 2px;
 }
 
-#scrollbox{
+.scrollbox{
     overflow-style: auto;
     overflow-y: scroll;
     height: 80vh;
