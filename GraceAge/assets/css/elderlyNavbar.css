@@ -11,11 +11,20 @@
     padding: 0px;
 }
 
-#navbar_icons{
+
+
+#navbar_icons,
+#Help_icon{
     padding: 0px;
     position:absolute;
     top:50%;
     transform:translateY(-50%);
+}
+
+#Help_button{
+   
+       text-align: center;
+
 }
 
 #entireNavbar{
@@ -33,6 +42,23 @@
     }
 }
 
+
+.col-sm-8{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+#helpText{
+    padding-right:35px;
+    padding-left:35px;
+    width: 100%;
+    font-size: 17px;
+   font-weight: bold;
+   color: #405250;
+   font-family: 'Open Sans';    
+}
+
 .navbar-nav>li{
    text-align: center;
 }
@@ -43,7 +69,8 @@
 
 }
 
-.navbar-nav > li > a > span
+
+a > span
 {
    font-size: 15px;
    font-weight: bold;
@@ -51,11 +78,24 @@
    font-family: 'Open Sans';       
 }
 
-.navbar-nav > li > a > i {
+#Help_button>a>.fa{
+    font-size: 40px;
+   font-weight: bold;
+   color: #009688;
+}
+
+a,
+a:hover{
+     text-decoration: none;
+}
+
+.navbar-nav > li > a > i
+{
    font-size: 40px;
    font-weight: bold;
    color: #009688;
 }
+
 
 .col-lg-12{
     padding: 0px;

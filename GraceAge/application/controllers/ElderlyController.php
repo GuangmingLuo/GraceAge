@@ -57,6 +57,8 @@ class ElderlyController extends CI_Controller {
         $data['page_title'] = 'Elderly Home';
         $data['header1'] = 'Welcome to Elderly Home';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Home');
+        $data['help_item'] = $this->Menu_model->get_helpItem('Home_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Index_help_text');
         $data['content'] = "This is the home page! welcome " . $this->session->Name;
         $data['page_content'] = 'Elderly/index.html';
         
@@ -146,6 +148,8 @@ class ElderlyController extends CI_Controller {
         $data['page_title'] = 'Questionnaire';
         $data['header1'] = 'Questionnaire';
         $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
+        $data['help_item'] = $this->Menu_model->get_helpItem('Questionnaire_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Questionnaire_help_text');
         $data['answers'] = $this->Question_model->get_answerbuttons();
         $data['navigationbuttons'] = $this->Question_model->get_navigationbuttons();
         $data['questions'] = $this->Question_model->get_question($this->session->question_id, $this->session->Language);
@@ -193,6 +197,8 @@ class ElderlyController extends CI_Controller {
         $data['page_title'] = $this->lang->line('tips');
         $data['header'] = $this->lang->line('overview_of_tips');
         $data['menu_items'] = $this->Menu_model->get_menuitems('Tips');
+        $data['help_item'] = $this->Menu_model->get_helpItem('Tips_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Tips_help_text');
         $data['navigationbuttons'] = $this->Tip_model->get_navigationbuttons();
         $topics = $this->Caregiver_Home_model->get_topics_with_lowest_scores('4');
         $data['tip_1'] = $this->Tip_model->get_tip($topics[0]);
@@ -235,9 +241,12 @@ class ElderlyController extends CI_Controller {
         $data['rewards'] = $this->Question_model->getRewards($this->session->Language);
         $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
         $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
+        $data['help_item'] = $this->Menu_model->get_helpItem('Rewards_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Rewards_help_text');
         $data['page_content'] = 'Elderly/score.html';
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
+        $scripts[] = array('source' => "../../assets/js/elderly_rewards.js");
         $links[] = array('source' => "../../assets/css/Elderly_Score.css");
         $links[] = array('source' => "../../assets/css/elderlyNavbar.css");
         
@@ -278,7 +287,6 @@ class ElderlyController extends CI_Controller {
             }            
             $data['rewards'] = $this->Question_model->getRewards($this->session->Language);
             $data['percentages'] = array();
-            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['score_text'] = lang('score_text');
             $data['exchange_score'] = lang('exchange_score');
             $data['buy_reward'] = lang('buy_reward');
@@ -288,6 +296,7 @@ class ElderlyController extends CI_Controller {
             $data['header1'] = 'Your score';
             $data['rewards_bought'] = $this->Question_model->getRewardsBought($this->session->idPatient);
             $data['menu_items'] = $this->Menu_model->get_menuitems('Score');
+            $data['navbar_content'] = 'Elderly/elderlyNavbar.html';
             $data['page_content'] = 'Elderly/score.html';
             $this->parser->parse('master.php', $data);
       
@@ -335,6 +344,8 @@ class ElderlyController extends CI_Controller {
 
     private function loadProfileData() {
         $data = $this->loadComonData();
+        $data['help_item'] = $this->Menu_model->get_helpItem('Profile_help()');
+        $data['help_text'] = $this->Menu_model->get_helpText('Profile_help_text');
         $data['menu_items'] = $this->Menu_model->get_menuitems('Questionnaire');
         $data['log_out'] = $this->lang->line('caregiver_log_out');
         $data['logout'] = $this->lang->line('caregiver_logout');
