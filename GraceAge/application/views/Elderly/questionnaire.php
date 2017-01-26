@@ -1,6 +1,6 @@
 <div id='questionnairy_wrapper' class="container">
     <div id='questionnairy_content' class="container">
-        <h1>{header1}</h1>
+        
         <div id="score_row" class="row">
             <div class="col-xs-offset-3 col-xs-6">
             

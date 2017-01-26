@@ -576,7 +576,7 @@ class Caregiver_Home_model extends CI_Model {
 
     function show_messages() {
         $messages;
-        $query = $this->db->select('Name, Message, Date')->order_by('Date', 'DESC')->limit(6)->get('Messages');
+        $query = $this->db->select('Name, Message, Date')->order_by('Date', 'DESC')->limit(10)->get('Messages');
         $messages = $query->result();
         $result = array();
         $messageshow = array();
