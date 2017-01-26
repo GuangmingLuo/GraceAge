@@ -132,6 +132,7 @@ html {
 }
 
 #rewards_bought_panel{
+    font-family: "Open Sans";
     color:#405250;
     background-color: #F0F4C3;
     border: 0px solid;
