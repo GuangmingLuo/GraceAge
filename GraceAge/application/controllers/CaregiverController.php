@@ -378,6 +378,7 @@ class CaregiverController extends CI_Controller {
         $data['currentuser'] = $this->Caregiver_Home_model->current_user($this->input->get('username'));
         $data['page_content'] = 'Caregiver/personal.html';
         $data['edit'] = $this->lang->line('edit');
+        $data['personal_patients'] = $this->lang->line('personal_patients_capital');
         
         $scripts[] = array('source' => "https://www.gstatic.com/charts/loader.js");
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
@@ -478,6 +479,14 @@ class CaregiverController extends CI_Controller {
         $data['price'] = $this->lang->line('price');
         $data['allrewards'] = $this->Reward_model->get_rewards();
         $data['page_content'] = 'Caregiver/reward.html';
+        $data['rewards_list'] = $this->lang->line('rewards_list');
+        $data['bought_rewards'] = $this->lang->line("bought_rewards");
+        $data['date'] = $this->lang->line("date");
+        $data['value'] = $this->lang->line("value");
+        $data['received'] = $this->lang->line("received");
+        $data['name'] = $this->lang->line("name");
+        $data['reward'] = $this->lang->line("reward");
+        $data['available'] = $this->lang->line("available");
         $data['reward_added'] = $this->lang->line('reward_added');
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");

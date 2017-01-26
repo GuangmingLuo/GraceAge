@@ -6,8 +6,8 @@
             <div class="tabbox">
                 <div id="tabsheader">
                     <ul class="tabs">
-                        <li class = "active" style="width:50%;"><a data-toggle="tab" href="#boughtRewardsTabContent">bought rewards</a></li>
-                        <li style="width:50%;"><a data-toggle="tab" href="#rewardsListTabContent">rewards list</a></li>
+                        <li class = "active" style="width:50%;"><a data-toggle="tab" href="#boughtRewardsTabContent">{bought_rewards}</a></li>
+                        <li style="width:50%;"><a data-toggle="tab" href="#rewardsListTabContent">{rewards_list}</a></li>
                     </ul>
                 </div>
 
@@ -30,9 +30,9 @@
 
 
                             <div class="row titles">
-                                <div class="col-xs-8">Reward</div>
-                                <div class="col-xs-2">Waarde </div>
-                                <div class="col-xs-2 alignright">Beschikbaar</div>
+                                <div class="col-xs-8">{reward}</div>
+                                <div class="col-xs-2">{value} </div>
+                                <div class="col-xs-2 alignright">{available}</div>
                             </div>
 
                             <div class ="row">
@@ -64,10 +64,10 @@
                         <div id="scrollbox">
                             <!-- titles -->
                             <div class="row titles">
-                                <div class="col-xs-4">Name</div>
-                                <div class="col-xs-4">Reward </div>
-                                <div class="col-xs-2">Date</div>
-                                <div class="col-xs-2 alignright">Received</div>
+                                <div class="col-xs-4">{name}</div>
+                                <div class="col-xs-4">{reward} </div>
+                                <div class="col-xs-2">{date}</div>
+                                <div class="col-xs-2 alignright">{received}</div>
                             </div>
                             <!-- list -->
                             <div id="bought_rewards_list">
@@ -111,8 +111,8 @@
 
                             <!-- titles -->
                             <div class="row titles">
-                                <div class="col-xs-5">Name</div>
-                                <div class="col-xs-5">Reward </div>
+                                <div class="col-xs-5">{name}</div>
+                                <div class="col-xs-5">{reward} </div>
                                 <div class="col-xs-2"></div>
                             </div>
                             <!-- list -->
