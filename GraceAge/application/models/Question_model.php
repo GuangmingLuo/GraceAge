@@ -81,13 +81,14 @@ class Question_model extends CI_Model{
                     $this->session->selected_answer, 
                     $this->session->question_id, 
                     $this->session->n_questionaire,
-                    $this->session->idPatient);            
-            $this->session->set_userdata('question_id', $this->session->question_id + 1);
-            if ($this->session->question_id > 52){
-                $this->session->set_userdata('question_id', 1);
-                $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
-            }
+                    $this->session->idPatient);
         }
+        $this->session->set_userdata('question_id', $this->session->question_id + 1);
+        if ($this->session->question_id > 52){
+            $this->session->set_userdata('question_id', 1);
+            $this->session->set_userdata('n_questionaire', $this->session->n_questionaire +1);
+        }
+           
         $this->db->reconnect();
         do{
             $array = array('QuestionNumber' => $this->session->question_id, 'Language' => $this->session->Language);
