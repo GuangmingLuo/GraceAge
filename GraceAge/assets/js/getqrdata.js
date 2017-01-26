@@ -48,9 +48,9 @@ $('#reader').html5_qrcode(function (data) {
         $.get("getQrError", function (data) { // get internationalization for error message
 
             $("#error1").removeClass('inactive');
-            $("#error1").html(data.errormessage);
+            $("#error1").html(data);
             $("#errorbox").removeClass('inactive');
-            $("#errorbox").html(data.errormessage);
+            $("#errorbox").html(data);
         });
        
     }
