@@ -13,16 +13,18 @@ function mark_answer(id){
     });
     buttonText = document.getElementById("next");
     originalText = buttonText.innerHTML;
-            buttonText.innerHTML = "---3---";
+            buttonText.innerHTML = "3";
+            buttonText.style.fontSize = "xx-large";
             /// wait 1 seconds
     timer = setTimeout(function() {
-        buttonText.innerHTML = "---2---";
+        buttonText.innerHTML = "2";
             /// wait 1 seconds
             timer = setTimeout(function() {
-                buttonText.innerHTML = "---1---";
+                buttonText.innerHTML = "1";
                 /// wait 1 seconds
                 timer = setTimeout(function() {
                     buttonText.innerHTML = originalText;
+                    buttonText.style.fontSize = "medium";
                     next();
                     timer = null;
                 }, 1000);

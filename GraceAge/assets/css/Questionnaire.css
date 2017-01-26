@@ -93,22 +93,6 @@ html {
   text-decoration: none;
 }
 
-@media only screen and (orientation: portrait){
-    footer{
-        height: 12vh !important;
-    }
-    #answer_row{
-      text-align:center;
-    }
-    #answers_row button {
-      margin-left:8.5%;
-      margin-bottom:20px;
-      width:79.5vw;
-    }
-    .col-sm-2{
-      width:100%
-    }
-}
 
 #bar_row,
 #answers_row,
@@ -168,7 +152,7 @@ footer{
     border-color: #CDDC39;
     background-color: #F0F4C3;
     line-height: 50px;
-    height: 15vh !important;
+    height: 15vh;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -184,7 +168,7 @@ footer{
     background-color: #009688;
     margin-top: 2.5vh;
     font-family: 'Open Sans';       
-    font-size: 15px;
+    font-size: 16px;
     padding-bottom: 0px;
 
 }
@@ -249,10 +233,43 @@ i{
     padding: 0px;
     margin: 0px;
 }
+
 #previous_navbutton{
   padding-left:55px;
+  padding-top: 7px;
 }
+
 #next_navbutton{
   padding-right:60px;
+  padding-top: 7px;
 }
+
+
+@media only screen and (orientation: portrait){
+    footer{
+        height: 12vh !important;
+    }
+    
+    #answer_row{
+        text-align:center;
+    }
+    
+    #answers_row button {
+        margin-left:8.5%;
+        margin-bottom:20px;
+        width:79.5vw;
+    }
+    .col-sm-2{
+        width:100%
+    }
+    
+    #previous_navbutton{
+        padding-top: 5px;
+    }
+
+    #next_navbutton{
+        padding-top: 5px;
+    }
+}
+
 
