@@ -7,6 +7,22 @@ function mark_answer(id){
     $("#"+id).css('background-color', "#009688");                      
     $.post('answer_clicked', {clicked: id}, function(){
     });
+    var helpText = document.getElementById("next");
+    var originalText = helpText.innerHTML;
+    helpText.innerHTML = "---3---";
+    /// wait 1 seconds
+    setTimeout(function() {
+    helpText.innerHTML = "---2---";
+    }, 1000);
+    /// wait 1 seconds
+    setTimeout(function() {
+    helpText.innerHTML = "---1---";
+    }, 2000);
+    setTimeout(function() {
+    helpText.innerHTML = originalText;
+    next();
+    }, 3000);
+
 }
 
 function Questionnaire_help(){

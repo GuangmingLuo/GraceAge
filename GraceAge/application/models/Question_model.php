@@ -31,8 +31,8 @@ class Question_model extends CI_Model{
         );
         
         $this->navigationbuttons = array(
-            array('name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'previous_navbutton', 'func' => 'previous()'),
-            array('name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'next_navbutton', 'func' => 'next()'),
+            array('id'=>'prev' ,'name' => $this->lang->line('question_previous'),'class' => 'btn  btn-arrow-left btn-block', 'title' => 'previous_navbutton', 'func' => 'previous()'),
+            array('id'=>'next', 'name' => $this->lang->line('question_next'),'class' => 'btn btn-arrow-right btn-block', 'title' => 'next_navbutton', 'func' => 'next()'),
         );
         
         date_default_timezone_set("Europe/Brussels");

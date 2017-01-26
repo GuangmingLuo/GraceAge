@@ -65,7 +65,7 @@
             </div>
             {navigationbuttons}
             <div class="col-xs-5" id="{title}">
-                <button style="white-space: normal" type="button" class ="{class}" onclick="{func}" >{name}</button>
+                <button id="{id}" style="white-space: normal" type="button" class ="{class}" onclick="{func}" >{name}</button>
             </div>
             {/navigationbuttons}
             <div class="col-xs-1">
