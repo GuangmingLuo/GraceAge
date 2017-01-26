@@ -55,7 +55,8 @@ html {
     border-color: #CDDC39;
     border-radius: 0px;
     border-bottom: 0px;
-    border-top-left-radius: 4px; border-top-right-radius: 4px;
+    border-top-left-radius: 4px; 
+    border-top-right-radius: 4px;
     cursor: default;
 }
 
