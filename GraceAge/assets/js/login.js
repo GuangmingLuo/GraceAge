@@ -15,8 +15,10 @@ function login(){
         }
         else{
             
-            $("div [name='errorbox']").removeClass('inactive');
-            $("div [name='errorbox']").html(data.errormessage);
+            $("#error1").removeClass('inactive');
+            $("#error1").html(data.errormessage);
+            $("#errorbox").removeClass('inactive');
+            $("#errorbox").html(data.errormessage);
         }
     });
 }
