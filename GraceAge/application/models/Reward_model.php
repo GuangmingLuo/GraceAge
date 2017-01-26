@@ -51,8 +51,16 @@ class Reward_model extends CI_Model{
     }
     
     function getRewardsByPatient(){
-        $query = $this->db->query("Select R.Reward, P.Name, PR.Date , PR.Recieved, PR.PatientId, PR.RewardId, PR.Id from Rewards as R, Patient as P, PatientReward as PR where P.idPatient = PR.PatientId and R.Id = PR.RewardId order by Date desc");
-        return $query->result();
+        $query = $this->db->query("Select R.Reward, P.Name, PR.Date , PR.Recieved, PR.PatientId, PR.RewardId, PR.Id from Rewards as R, Patient as P, PatientReward as PR where P.idPatient = PR.PatientId and R.Id = PR.RewardId and PR.Recieved = 0 order by Date desc");
+        $result =$query->result();
+                  foreach ($result as $row) {
+            list($date, $time) = explode(" ", $row->Date); // splits database version of date
+            $originalDate = $date;
+            $newDate = date("d-m-Y", strtotime($originalDate));
+            $row->Date = $newDate;
+        }
+
+        return $result;
     }
     function editRewardsRecieved($id ,$checked){
         $this->db->set('Recieved', $checked);
