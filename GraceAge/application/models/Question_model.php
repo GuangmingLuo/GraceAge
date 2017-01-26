@@ -139,7 +139,9 @@ class Question_model extends CI_Model{
             'Question_Number' => $q_id,
             'Questionaire_Number' => $n_questionaire,
         ));
-        $this->updatePatientScore($p_id, -1); // lose a point for not having aswerd a question
+        if($this->db->affected_rows() > 0){
+            $this->updatePatientScore($p_id, -1); // lose a point for not having aswerd a question
+        }
     }
     function submit_answer($answer, $q_id, $n_questionaire, $p_id){
         $this->db->reconnect();
