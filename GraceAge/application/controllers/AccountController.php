@@ -58,26 +58,28 @@ class AccountController extends CI_Controller {
         return $data;
     }
 
+    //login page
     public function login() {
         if(!$this->session->has_userdata('language')){
-            $this->session->set_userdata('language', "dutch");
+            $this->session->set_userdata('language', "dutch");  //default dutch
         }
         $this->lang->load('login', $this->session->language);
         $data['other_language'] = $this->lang->line('other_language');
         $data['loggedin'] = lang('not_logged_in');
         $data = array_merge($data, $this->common_data(), $this->login_data());
         $data['page_content'] = 'Account/login.html';
-        $this->parser->parse('master.php', $data);
+        $this->parser->parse('master.php', $data);  //page content in master page
     }
 
+    // check login
     function login_valid(){ 
         $this->lang->load('login', $this->session->language);
         if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"])) { // check if input is set
             $username = filter_input(INPUT_POST, 'username');
             $password = filter_input(INPUT_POST, 'password');
-            $result = $this->Account_model->getUser($username);
+            $result = $this->Account_model->getUser($username); //data from database
             $data2['valid_user'] = ($result != null);
-            $data2['correct_password'] = password_verify($password, $result["password"]);
+            $data2['correct_password'] = password_verify($password, $result["password"]);   //true/false
             $data2['errormessage'] = $this->lang->line('wrong_credentials');
             if ($result != NULL) {
                 if (password_verify($password, $result["password"])) {

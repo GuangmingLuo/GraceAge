@@ -28,48 +28,33 @@ body{
     color:#405250;
    position:relative;
    font-size:40px;
-   margin-left:40px;
+   padding-left:40px;
    width:100%;
 }
 
-
-
 .table>tbody>tr>td
 {
-
-border-top:none;
-border-bottom:1px solid;
-border-color:#CDDC39;
+    border-top:none;
+    border-bottom:1px solid;
+    border-color:#CDDC39;
 }
-
-.col-sm-offset-2.col-sm-8
-{
-  position:absolute;
-  top:50%;
-  transform:translateY(-40%);
-}
-
-
 
 #profile_panel{
-    
     color:#405250;
     background-color: #F0F4C3;
     border: 0px solid;
     border-radius: 5px;
    
-    padding-bottom:10px;
-    padding-top: 10px;
+    margin-top: 40px;
     overflow-x:hidden;
-        overflow-y: hidden;
+    overflow-y: hidden;
     white-space: normal !important;
 }
 
 .table{
   margin-left:10%;
   margin-bottom:0px;
-  width:80%
-  }
+  width:80%}
 
 
 /* dropdown */
@@ -107,7 +92,6 @@ input[type=password], input[type=text] {
     margin-bottom: 5px;
 }
 
-
 #buttonSubmit>.btn{
     margin: 0px;
     width: 20%;
@@ -130,4 +114,5 @@ input[type=password], input[type=text] {
     font-family: "Open Sans";
     text-transform: uppercase;
 }
+
 

@@ -205,7 +205,7 @@ class Caregiver_Home_model extends CI_Model {
 
 
         array_multisort($score, SORT_ASC, $name, SORT_ASC, $results);
-        $temp = array_slice($results, 0, 10);
+        $temp = array_slice($results, 0, 15);
         foreach ($temp as $patient) {
             $patient['Name_url'] = rawurlencode($patient['Name']);
             $urgent[] = $patient;
@@ -387,14 +387,14 @@ class Caregiver_Home_model extends CI_Model {
                 for ($m = 0; $m < count($answers); $m++) {
                     $score += $answers[$m]->Answer - 1;
                     $amount++;
-                }if ($amount == 0) {
+                } 
+                if ($amount == 0) {
                     $personavg = 0;
                     $nombre_format_francais = 0;
                 } else {
                     $personavg = $score * 25 / $amount;
                     $nombre_format_francais = number_format($personavg, 0, ',', ' ');
                 }
-
 
                 //print out questions with worst answers
                     for ($a = 0; $a < count($answers); $a++) {
@@ -406,7 +406,6 @@ class Caregiver_Home_model extends CI_Model {
                         }
                     }
                 }
-
 
                 //calculate some extra data: room, gender...
                 if ($patients[$i]->RoomNumber != NULL) {
@@ -427,7 +426,9 @@ class Caregiver_Home_model extends CI_Model {
 
                 array_push($extradata, array('Roomnumber' => $roomnumber, 'Gender' => $gender, 'Bday' => $bday));
                 array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'Topicscores' => $display, /* 'JSONCODE' => $jsoncode, */ 'Note' => $note, 'Count' => $patients[$i]->idPatient, 'id' => $id));
-            } else { //english case
+            
+                
+                } else { //english case
             
                 //get date of last filled in question
                 $lastq = array_slice($answers, 0, 1);
@@ -441,8 +442,6 @@ class Caregiver_Home_model extends CI_Model {
                 if (empty($answers)) {
                     $newDate = $this->lang->line('not_filled_in');
                 }
-
-
 
                 //calculate score per topic
                 $display = array();
@@ -467,6 +466,7 @@ class Caregiver_Home_model extends CI_Model {
                             }
                         }
                     }
+                    
                     if ($k == 0) {
                         $topicavg = 0;
                     } else {
@@ -487,7 +487,6 @@ class Caregiver_Home_model extends CI_Model {
                     $topicccc[$key2] = $row2['Topic'];
                     $scoreeee[$key2] = $row2['Score'];
                 }
-
 
                 array_multisort($scoreeee, SORT_ASC, $topicccc, SORT_ASC, $display2);
                 $lowesttopic = array_slice($display2, 0, 1);
@@ -538,15 +537,10 @@ class Caregiver_Home_model extends CI_Model {
                     $bday = "";
                 }
 
-
-
                 array_push($extradata, array('Roomnumber' => $roomnumber, 'Gender' => $gender, 'Bday' => $bday));
-
-
                 array_push($resultarray, array('Last' => $newDate, 'Extra' => $extradata, 'Bar' => $bar, 'BadAnswer' => $badanswers, 'Name' => $patients[$i]->Name, 'Topic' => $lowesttopic[0]['Topic'], 'Score' => $nombre_format_francais, 'JSONCODE' => $jsoncode, 'Topicscores' => $display, 'Count' => $patients[$i]->idPatient, 'Note' => $note, 'id' => $id));
             }
         }
-        
         return $resultarray;
     }
 

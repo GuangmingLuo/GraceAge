@@ -34,6 +34,7 @@ class Caregiver_Menu_model extends CI_Model{
             );
         $this->caregiver_profile_class = "inactive";
     }
+    
     function set_active($menutitle) {
         if (strcasecmp($menutitle, $this->lang->line('caregiver_menu_profile')) == 0){
             $this->caregiver_profile_class = "active";
@@ -68,6 +69,7 @@ class Caregiver_Menu_model extends CI_Model{
     function get_profile_class(){
         return $this->caregiver_profile_class;
     }
+    
     function get_profileitems($menutitle = NULL){
         foreach ($this->caregiver_profile_items as &$item) { // reference to item!!
             if (strcasecmp($menutitle, $item['name']) == 0) {

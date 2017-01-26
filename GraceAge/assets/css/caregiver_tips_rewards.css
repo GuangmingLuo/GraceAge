@@ -3,10 +3,6 @@ html {
     font-family: "Open Sans";
 }
 
-body{
-    font-family: "Open Sans";
-}
-
 .col-sm-12,
 .col-sm-4,
 .col-xs-12,
@@ -287,6 +283,8 @@ select{
     
     margin-left: 3px;
     margin-right: -6px;
+    
+    text-transform: capitalize;
 }
 
 .reward_price{

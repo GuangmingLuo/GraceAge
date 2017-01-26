@@ -37,11 +37,10 @@ class CaregiverController extends CI_Controller {
         $data['profile_func'] = base_url() . 'CaregiverController/profile';
         $data['profile'] = $this->session->Name;
         $data['caregiver_profile_items'] = $this->Caregiver_Menu_model->get_profileitems();
-        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();
+        $data['profile_class'] = $this->Caregiver_Menu_model->get_profile_class();  //active or inactive
         $data['navbar_content'] = 'Caregiver/caregiverNavbar.html';
         return $data;
     }
-
 
     function index() {
         if (!$this->is_logged_in()){ 
@@ -115,6 +114,7 @@ class CaregiverController extends CI_Controller {
         if (!$this->is_logged_in()) {
             return;
         }
+        
         if (!empty($_POST["new_reward"]) && !empty($_POST["price"])){
             $reward = filter_input(INPUT_POST, 'new_reward');
             $price = filter_input(INPUT_POST, 'price');
@@ -122,6 +122,7 @@ class CaregiverController extends CI_Controller {
             
             $this->Reward_model ->add_reward($reward,$price, $language);
         }
+        
         else{
             echo "error";              
         }
@@ -168,6 +169,7 @@ class CaregiverController extends CI_Controller {
         $language = $this->input->post('language');
         $this->Tip_model->add_tip($topic, $tip, $language);
     }
+    
     function delete_tip(){
         $id = $this->input->post('id');        
         $success = $this->Tip_model->remove_tip($id);
@@ -196,14 +198,13 @@ class CaregiverController extends CI_Controller {
         $this->output->set_content_type("application/json")->append_output($this->Caregiver_Home_model->add_message($message));
     }
 
-
     function profile() {
         if (!$this->is_logged_in()) {
             return;
         }
-        $data = $this->loadProfileData();
-            $this->parser->parse('master.php', $data);
         
+        $data = $this->loadProfileData();
+        $this->parser->parse('master.php', $data);   
     }
 
     function logout() {
@@ -315,14 +316,11 @@ class CaregiverController extends CI_Controller {
         $this->output->set_content_type("application/json")->append_output(json_encode($data));
     }
     
-
-
-
     private function is_logged_in() { // returns true if valid user is logged in, else returns false and redirects to login page
         if ($this->session->userType == "Caregiver")
             return true;
         else {
-            echo "You are not allowed to access this page!!!";
+            echo "You are not allowed to access this page";
             $this->output->set_header('refresh:3; url=' . base_url("AccountController/login"));
             return false;
         }
@@ -529,6 +527,7 @@ class CaregiverController extends CI_Controller {
         $data['css_links'] = $links;
         return $data;
     }
+    
     function getTipsLocalization(){
         $data['edit'] = $this->lang->line('edit');
         $data['save'] = $this->lang->line('save');

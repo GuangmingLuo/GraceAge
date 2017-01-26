@@ -79,7 +79,7 @@ body{
 }
 
 tbody{
-    cursor: default;
+    cursor: pointer;
 }
 
 .progress{
