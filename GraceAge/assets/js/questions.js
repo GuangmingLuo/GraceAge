@@ -3,6 +3,12 @@ var buttonText = null;
 var timer = null;
 
 function mark_answer(id){
+    if(timer!=null)
+    {
+        clearTimeout(timer);
+        buttonText.innerHTML = originalText;
+        timer = null;
+    }
     $('.answer_button').css('box-shadow', "1px 1px 1px #666666");     //reset borders of all answerbuttons
     $('.answer_button').css('color', "#405250");
     $('.answer_button').css('background-color', "#CDDC39");
