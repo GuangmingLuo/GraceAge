@@ -259,16 +259,19 @@ class CaregiverController extends CI_Controller {
     function registerPost() {
         $this->lang->load('login', $this->session->Language);
         $return_data['err_msg'] = $this->lang->line('register_form_incomplete');
-        $return_data['success'] = false;
-        if (!empty($_POST["username"]) && !empty($_POST["password1"]) && !empty($_POST["password2"]) && !empty($_POST["usertype"])) { // check if none of the input is empty
-            $usertype = filter_input(INPUT_POST, 'usertype');
-            $language = filter_input(INPUT_POST, 'language');
-            $username = filter_input(INPUT_POST, 'username');
-            $password1 = filter_input(INPUT_POST, 'password1');
-            $password2 = filter_input(INPUT_POST, 'password2');
+        $return_data['success'] = false; 
+        $usertype = $this->input->post("usertype");
+        $language = $this->input->post("language");
+        $username = $this->input->post("username");
+        $password1 = $this->input->post("password1");
+        $password2 = $this->input->post("password2");
+        $gender = $this->input->post("gender");
+        $birthdate = $this->input->post("birthdate");
+        if($username!=NULL && $usertype!=NULL && $password1!=NULL && $password2!=NULL 
+                && $gender!=NULL && $language!=NULL && $birthdate!=NULL){
             if ($password1 === $password2) {
                 $password = password_hash($password1, PASSWORD_DEFAULT);
-                if ($this->Account_model->addUser($usertype, $language, $username, $password)) {
+                if ($this->Account_model->addUser($usertype, $language, $username, $password, $gender, $birthdate)) {
                     $return_data['err_msg'] = $this->lang->line('account_created');
                     $return_data['success'] = true;
                 } 
@@ -342,6 +345,10 @@ class CaregiverController extends CI_Controller {
         $data['page_title'] = 'Add Profile';
         $data['caregiver_menu_items'] = $this->Caregiver_Menu_model->get_menuitems($this->lang->line('caregiver_menu_register'));
         $data['page_content'] = 'Account/register.html';
+        $data['birthdate'] = $this->lang->line("birthdate");
+        $data['gender'] = $this->lang->line("gender");
+        $data['male'] = $this->lang->line("male");
+        $data['female'] = $this->lang->line("female");
         
         $scripts[] = array('source' => "../../assets/js/jquery.min.js");
         $scripts[] = array('source' => "../../assets/js/login.js");

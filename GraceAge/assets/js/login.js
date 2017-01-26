@@ -27,7 +27,9 @@ function register(){
     var pass2 = $("#password2").val();
     var lang = $("#language").val();
     var type = $("#usertype").val();
-    $.post('registerPost', {username: user, password1:pass1, password2:pass2, usertype:type, language:lang}, function(data){
+    var gender = $('#gender').val();
+    var birthdate= $('#birthdate').val();
+    $.post('registerPost', {username: user, password1:pass1, password2:pass2, usertype:type, language:lang, gender:gender, birthdate:birthdate}, function(data){
         if(data.success){
             $("#errorbox").removeClass('alert-warning');
             $("#errorbox").addClass('alert-success');

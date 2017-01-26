@@ -50,3 +50,7 @@ $lang['reward'] = "Beloning";
 $lang['available'] = "Beschikbaar";
 $lang['date'] = "Datum";
 $lang['received'] = "Ontvangen";
+$lang['birthdate'] = "Geboortedatum:";
+$lang['gender'] = "Geslacht:";
+$lang['male'] = "Man";
+$lang['female'] = "Vrouw";
